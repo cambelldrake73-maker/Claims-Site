@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agreements</title>
+  <style>
+    :root { --bg:#f4f6fb; --panel:#fff; --text:#1f2937; --muted:#6b7280; --line:#e5e7eb; --brand:#2563eb; --nav:#111827; --nav-hover:#1f2937; --shadow:0 8px 20px rgba(0,0,0,.06); }
+    * { box-sizing:border-box; font-family:Arial, Helvetica, sans-serif; }
+    body { margin:0; background:var(--bg); color:var(--text); }
+    .layout { min-height:100vh; display:flex; }
+    .sidebar-shell { width:56px; transition:width 260ms ease; position:relative; flex-shrink:0; }
+    .sidebar-shell:hover, .sidebar-shell.pinned { width:250px; }
+    .sidebar { height:100%; background:var(--nav); color:#fff; padding:24px 12px; overflow:hidden; }
+    .sidebar-head { display:flex; align-items:center; gap:10px; margin-bottom:26px; white-space:nowrap; }
+    .company-mark { width:34px; height:34px; border-radius:8px; background:#1d4ed8; display:inline-flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; }
+    .company-name { margin:0; font-size:18px; opacity:0; transform:translateX(-8px); transition:opacity 180ms ease, transform 180ms ease; }
+    .sidebar-shell:hover .company-name, .sidebar-shell.pinned .company-name, .sidebar-shell:hover .nav-label, .sidebar-shell.pinned .nav-label { opacity:1; transform:translateX(0); }
+    .sidebar-nav { display:grid; gap:6px; }
+    .nav-link { display:flex; align-items:center; justify-content:flex-start; color:#d1d5db; text-decoration:none; border-radius:10px; padding:11px 12px; white-space:nowrap; transition:background-color 180ms ease, color 180ms ease; position:relative; }
+    .nav-link:hover, .nav-link.active { background:var(--nav-hover); color:#fff; }
+    .nav-link::before { content:""; position:absolute; width:12px; height:2px; border-radius:999px; background:rgba(255,255,255,.55); left:14px; top:50%; transform:translateY(-50%); transition:opacity 180ms ease; }
+    .nav-label { opacity:0; transform:translateX(-8px); transition:opacity 180ms ease, transform 180ms ease; margin-left:14px; }
+    .sidebar-shell:hover .nav-link::before, .sidebar-shell.pinned .nav-link::before { opacity:0; }
+    .sidebar-tab { position:absolute; right:-16px; top:94px; width:16px; height:56px; border-radius:0 10px 10px 0; border:none; background:#1d4ed8; color:#fff; cursor:pointer; box-shadow:0 6px 12px rgba(29,78,216,.3); display:flex; align-items:center; justify-content:center; padding:0; }
+    .sidebar-tab span { display:inline-block; transition:transform 220ms ease; font-size:12px; }
+    .sidebar-shell.pinned .sidebar-tab span { transform:rotate(180deg); }
+    .main { flex:1; min-width:0; display:flex; flex-direction:column; }
+    .topbar { background:var(--panel); padding:18px 28px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 10px rgba(0,0,0,.06); position:relative; }
+    .topbar h1 { margin:0; font-size:24px; letter-spacing:-.02em; }
+    .account-menu { position:relative; display:inline-block; }
+    .account-button { background:#fff; color:#111827; border:1px solid #d1d5db; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600; font-size:14px; }
+    .dropdown { display:none; position:absolute; right:0; top:calc(100% + 8px); background:#fff; min-width:240px; border-radius:12px; box-shadow:0 12px 24px rgba(0,0,0,.12); overflow:hidden; z-index:1000; }
+    .account-menu.open .dropdown { display:block; }
+    .dropdown a { display:block; padding:14px 16px; text-decoration:none; color:var(--text); border-bottom:1px solid #f1f5f9; }
+    .dropdown a:hover { background:#f8fafc; }
+    .content { padding:28px; display:grid; gap:18px; }
+    .account-tabs { display:flex; gap:10px; flex-wrap:wrap; }
+    .account-tabs a { text-decoration:none; color:#334155; border:1px solid #d1d5db; background:#fff; border-radius:999px; padding:8px 12px; font-size:13px; font-weight:600; }
+    .account-tabs a.active { background:#dbeafe; border-color:#93c5fd; color:#1e3a8a; }
+    .card { background:var(--panel); border-radius:14px; box-shadow:var(--shadow); overflow:hidden; }
+    .card-head { padding:16px 18px; border-bottom:1px solid var(--line); }
+    .card-head h2 { margin:0; font-size:18px; }
+    .card-body { padding:16px 18px; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { text-align:left; padding:12px 10px; border-bottom:1px solid var(--line); font-size:14px; }
+    th { font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:#111827; }
+    .status { display:inline-block; border-radius:999px; padding:4px 8px; font-size:12px; font-weight:700; }
+    .status-signed { background:#dcfce7; color:#166534; }
+    .status-review { background:#fef3c7; color:#92400e; }
+    .download-link { color:#1d4ed8; text-decoration:none; font-weight:700; }
+    @media (max-width:900px) { .sidebar-shell, .sidebar-shell:hover, .sidebar-shell.pinned { width:100%; } .sidebar-tab { display:none; } .company-name, .nav-label { opacity:1; transform:none; } .layout { flex-direction:column; } .topbar { padding:16px 20px; } .content { padding:20px; } table { display:block; overflow-x:auto; } }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar-shell" id="sidebarShell"><div class="sidebar"><div class="sidebar-head"><div class="company-mark">CN</div><h2 class="company-name">Company Name</h2></div><nav class="sidebar-nav"><a href="dashboard.html" class="nav-link"><span class="nav-label">Dashboard</span></a><a href="submit-claims.html" class="nav-link"><span class="nav-label">Submit Claims for Review</span></a><a href="claims.html" class="nav-link"><span class="nav-label">Submitted Claims</span></a><a href="reports.html" class="nav-link"><span class="nav-label">Reports</span></a><a href="history.html" class="nav-link"><span class="nav-label">History</span></a></nav></div><button class="sidebar-tab" id="sidebarTab" aria-label="Pin sidebar" title="Pin sidebar"><span>></span></button></aside>
+    <main class="main">
+      <div class="topbar"><h1>Agreements</h1><div class="account-menu"><button class="account-button" id="accountButton" aria-expanded="false" aria-haspopup="menu">Account</button><div class="dropdown"><a href="account.html">Basic Account Information</a><a href="billing.html">Billing & Invoices</a><a href="agreements.html">Agreements</a><a href="Index.html">Log Out</a></div></div></div>
+      <div class="content">
+        <nav class="account-tabs" aria-label="Account sections"><a href="account.html">Profile</a><a href="billing.html">Billing</a><a href="agreements.html" class="active">Agreements</a></nav>
+        <section class="card"><div class="card-head"><h2>Signed Documents</h2></div><div class="card-body"><table><thead><tr><th>Agreement</th><th>Version</th><th>Status</th><th>Effective Date</th><th>Document</th></tr></thead><tbody><tr><td>Master Service Agreement</td><td>v3.2</td><td><span class="status status-signed">Signed</span></td><td>January 1, 2026</td><td><a class="download-link" href="agreements-files/master-service-agreement-v3-2.pdf" download>PDF</a></td></tr><tr><td>Business Associate Agreement</td><td>v2.1</td><td><span class="status status-signed">Signed</span></td><td>January 1, 2026</td><td><a class="download-link" href="agreements-files/baa-v2-1.pdf" download>PDF</a></td></tr><tr><td>Data Processing Addendum</td><td>v1.4</td><td><span class="status status-review">Pending Review</span></td><td>March 20, 2026</td><td><a class="download-link" href="agreements-files/dpa-v1-4.pdf" download>PDF</a></td></tr></tbody></table></div></section>
+      </div>
+    </main>
+  </div>
+  <script>
+    const shell = document.getElementById('sidebarShell'); const tab = document.getElementById('sidebarTab'); const accountMenu = document.querySelector('.account-menu'); const accountButton = document.getElementById('accountButton');
+    tab.addEventListener('click', () => { shell.classList.toggle('pinned'); });
+    accountButton.addEventListener('click', (event) => { event.stopPropagation(); const isOpen = accountMenu.classList.toggle('open'); accountButton.setAttribute('aria-expanded', String(isOpen)); });
+    document.addEventListener('click', (event) => { if (!accountMenu.contains(event.target)) { accountMenu.classList.remove('open'); accountButton.setAttribute('aria-expanded', 'false'); } });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { accountMenu.classList.remove('open'); accountButton.setAttribute('aria-expanded', 'false'); } });
+  </script>
+</body>
+</html>
+

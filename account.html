@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account Information</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --brand: #2563eb;
+      --nav: #111827;
+      --nav-hover: #1f2937;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .layout {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    .sidebar-shell {
+      width: 56px;
+      transition: width 260ms ease;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .sidebar-shell:hover,
+    .sidebar-shell.pinned {
+      width: 250px;
+    }
+
+    .sidebar {
+      height: 100%;
+      background: var(--nav);
+      color: #fff;
+      padding: 24px 12px;
+      overflow: hidden;
+    }
+
+    .sidebar-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 26px;
+      white-space: nowrap;
+    }
+
+    .company-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: #1d4ed8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .company-name {
+      margin: 0;
+      font-size: 18px;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .sidebar-shell:hover .company-name,
+    .sidebar-shell.pinned .company-name,
+    .sidebar-shell:hover .nav-label,
+    .sidebar-shell.pinned .nav-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .sidebar-nav {
+      display: grid;
+      gap: 6px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: #d1d5db;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 11px 12px;
+      white-space: nowrap;
+      transition: background-color 180ms ease, color 180ms ease;
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: var(--nav-hover);
+      color: #fff;
+    }
+
+    .nav-link::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.55);
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: opacity 180ms ease;
+    }
+
+    .nav-label {
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 180ms ease, transform 180ms ease;
+      margin-left: 14px;
+    }
+
+    .sidebar-shell:hover .nav-link::before,
+    .sidebar-shell.pinned .nav-link::before {
+      opacity: 0;
+    }
+
+    .sidebar-tab {
+      position: absolute;
+      right: -16px;
+      top: 94px;
+      width: 16px;
+      height: 56px;
+      border-radius: 0 10px 10px 0;
+      border: none;
+      background: #1d4ed8;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(29, 78, 216, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .sidebar-tab span {
+      display: inline-block;
+      transition: transform 220ms ease;
+      font-size: 12px;
+    }
+
+    .sidebar-shell.pinned .sidebar-tab span {
+      transform: rotate(180deg);
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      background: var(--panel);
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      position: relative;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .account-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .account-button {
+      background: #ffffff;
+      color: #111827;
+      border: 1px solid #d1d5db;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+
+    .account-button:hover {
+      border-color: #9ca3af;
+      background: #f9fafb;
+    }
+
+    .account-button:focus-visible {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      background: white;
+      min-width: 240px;
+      border-radius: 12px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .account-menu.open .dropdown {
+      display: block;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--text);
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .dropdown a:hover {
+      background: #f8fafc;
+    }
+
+    .content {
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .account-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .account-tabs a {
+      text-decoration: none;
+      color: #334155;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .account-tabs a.active {
+      background: #dbeafe;
+      border-color: #93c5fd;
+      color: #1e3a8a;
+    }
+
+    .card {
+      background: var(--panel);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-head {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .card-head h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .card-head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .card-body {
+      padding: 16px 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 16px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 10px;
+    }
+
+    .row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .value {
+      color: #111827;
+      font-size: 14px;
+    }
+
+    .input,
+    .select {
+      width: 100%;
+      max-width: 460px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: 9px 11px;
+      font-size: 14px;
+      color: #111827;
+      background: #fff;
+    }
+
+    .input:focus,
+    .select:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .btn {
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #111827;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+      color: #fff;
+    }
+
+    .save-status {
+      font-size: 13px;
+      color: #166534;
+      background: #dcfce7;
+      border: 1px solid #86efac;
+      border-radius: 10px;
+      padding: 8px 10px;
+      display: none;
+      width: fit-content;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar-shell,
+      .sidebar-shell:hover,
+      .sidebar-shell.pinned {
+        width: 100%;
+      }
+
+      .sidebar-tab {
+        display: none;
+      }
+
+      .company-name,
+      .nav-label {
+        opacity: 1;
+        transform: none;
+      }
+
+      .layout {
+        flex-direction: column;
+      }
+
+      .topbar {
+        padding: 16px 20px;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar-shell" id="sidebarShell">
+      <div class="sidebar">
+        <div class="sidebar-head">
+          <div class="company-mark">CN</div>
+          <h2 class="company-name">Company Name</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="nav-link"><span class="nav-label">Dashboard</span></a>
+          <a href="submit-claims.html" class="nav-link"><span class="nav-label">Submit Claims for Review</span></a>
+          <a href="claims.html" class="nav-link"><span class="nav-label">Submitted Claims</span></a>
+          <a href="reports.html" class="nav-link"><span class="nav-label">Reports</span></a>
+          <a href="history.html" class="nav-link"><span class="nav-label">History</span></a>
+        </nav>
+      </div>
+
+      <button class="sidebar-tab" id="sidebarTab" aria-label="Pin sidebar" title="Pin sidebar">
+        <span>></span>
+      </button>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <h1>Account</h1>
+
+        <div class="account-menu">
+          <button class="account-button" id="accountButton" aria-expanded="false" aria-haspopup="menu">Account</button>
+          <div class="dropdown">
+            <a href="account.html">Basic Account Information</a>
+            <a href="billing.html">Billing & Invoices</a>
+            <a href="agreements.html">Agreements</a>
+            <a href="Index.html">Log Out</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <nav class="account-tabs" aria-label="Account sections">
+          <a href="account.html" class="active">Profile</a>
+          <a href="billing.html">Billing</a>
+          <a href="agreements.html">Agreements</a>
+        </nav>
+
+        <form id="accountForm">
+        <section class="card">
+          <div class="card-head">
+            <h2>Practice Profile</h2>
+            <p>Primary account and contact details used across claim processing.</p>
+          </div>
+          <div class="card-body">
+            <div class="row"><label class="label" for="practiceName">Practice Name</label><input class="input" id="practiceName" name="practiceName" value="North Valley Medical Group" /></div>
+            <div class="row"><label class="label" for="taxId">Tax ID</label><input class="input" id="taxId" name="taxId" value="94-2374198" /></div>
+            <div class="row"><label class="label" for="npi">NPI</label><input class="input" id="npi" name="npi" value="1326079814" /></div>
+            <div class="row"><label class="label" for="primaryContact">Primary Contact</label><input class="input" id="primaryContact" name="primaryContact" value="Alyssa Monroe, Revenue Cycle Lead" /></div>
+            <div class="row"><label class="label" for="email">Email</label><input class="input" id="email" name="email" type="email" value="billing@northvalleymed.com" /></div>
+            <div class="row"><label class="label" for="phone">Phone</label><input class="input" id="phone" name="phone" value="(555) 482-1120" /></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <h2>Security</h2>
+            <p>Manage access and sign-in settings for your team.</p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <label class="label" for="twoFactor">Two-Factor Authentication</label>
+              <select class="select" id="twoFactor" name="twoFactor">
+                <option value="enabled">Enabled for all admin users</option>
+                <option value="admins-only">Enabled for admins only</option>
+                <option value="disabled">Disabled</option>
+              </select>
+            </div>
+            <div class="row"><label class="label" for="lastPasswordUpdate">Last Password Update</label><input class="input" id="lastPasswordUpdate" name="lastPasswordUpdate" value="February 22, 2026" /></div>
+            <div class="row"><label class="label" for="activeAdminSeats">Active Admin Seats</label><input class="input" id="activeAdminSeats" name="activeAdminSeats" value="4 of 6 used" /></div>
+            <div class="actions">
+              <button type="submit" class="btn primary">Save Changes</button>
+              <button type="button" class="btn" id="resetBtn">Reset</button>
+              <span class="save-status" id="saveStatus">Saved.</span>
+            </div>
+          </div>
+        </section>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const shell = document.getElementById('sidebarShell');
+    const tab = document.getElementById('sidebarTab');
+    const accountMenu = document.querySelector('.account-menu');
+    const accountButton = document.getElementById('accountButton');
+    const accountForm = document.getElementById('accountForm');
+    const resetBtn = document.getElementById('resetBtn');
+    const saveStatus = document.getElementById('saveStatus');
+    const storageKey = 'account_profile_v1';
+
+    tab.addEventListener('click', () => {
+      shell.classList.toggle('pinned');
+    });
+
+    accountButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const isOpen = accountMenu.classList.toggle('open');
+      accountButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!accountMenu.contains(event.target)) {
+        accountMenu.classList.remove('open');
+        accountButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        accountMenu.classList.remove('open');
+        accountButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    const defaultValues = Object.fromEntries(new FormData(accountForm).entries());
+
+    function setFormValues(values) {
+      Object.entries(values).forEach(([key, value]) => {
+        if (accountForm.elements[key]) {
+          accountForm.elements[key].value = value;
+        }
+      });
+    }
+
+    function showSaved(message) {
+      saveStatus.textContent = message;
+      saveStatus.style.display = 'inline-block';
+      window.setTimeout(() => {
+        saveStatus.style.display = 'none';
+      }, 2200);
+    }
+
+    // Replace this function body with your API call later.
+    async function saveAccountToBackend(payload) {
+      localStorage.setItem(storageKey, JSON.stringify(payload));
+      return { ok: true };
+    }
+
+    const persisted = localStorage.getItem(storageKey);
+    if (persisted) {
+      try {
+        setFormValues(JSON.parse(persisted));
+      } catch (_) {
+        localStorage.removeItem(storageKey);
+      }
+    }
+
+    accountForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const payload = Object.fromEntries(new FormData(accountForm).entries());
+      const result = await saveAccountToBackend(payload);
+      if (result.ok) {
+        showSaved('Profile saved.');
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      setFormValues(defaultValues);
+      localStorage.removeItem(storageKey);
+      showSaved('Reset to defaults.');
+    });
+  </script>
+</body>
+</html>
+

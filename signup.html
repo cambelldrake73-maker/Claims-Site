@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    .signup-box {
+      background: white;
+      width: 100%;
+      max-width: 460px;
+      padding: 35px;
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #111827;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 14px 0;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .agreements-title {
+      margin-top: 10px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .agreement-row {
+      display: block;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.5;
+    }
+
+    .agreement-row input[type="checkbox"] {
+      margin-right: 8px;
+      transform: translateY(1px);
+    }
+
+    .agreement-link {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .agreement-link:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 12px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-links {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .footer-links a {
+      color: #2563eb;
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 760px;
+      width: 100%;
+      margin: 40px auto;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      color: #111827;
+    }
+
+    .close {
+      font-size: 28px;
+      cursor: pointer;
+      color: #6b7280;
+      border: none;
+      background: none;
+    }
+
+    .modal-text {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 18px;
+      max-height: 320px;
+      overflow-y: auto;
+      background: #fafafa;
+      color: #374151;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .modal-text h4 {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .modal-actions {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .scroll-note {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .accept-btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .accept-btn:disabled {
+      background: #93c5fd;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 600px) {
+      .signup-box {
+        padding: 24px;
+      }
+
+      .modal-content {
+        margin: 10px auto;
+        padding: 20px;
+      }
+
+      .modal-text {
+        max-height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-box">
+    <h2>Create Account</h2>
+
+    <input type="text" placeholder="Full Name" />
+    <input type="text" placeholder="Organization Name" />
+    <input type="email" placeholder="Email Address" />
+    <input type="password" placeholder="Password" />
+
+    <p class="agreements-title">
+      By creating an account, you must review and accept the following agreements:
+    </p>
+
+    <label class="agreement-row">
+      <input type="checkbox" id="termsCheck" disabled />
+      I agree to the
+      <span class="agreement-link" onclick="openModal('terms')">Terms of Service</span>
+    </label>
+
+    <label class="agreement-row">
+      <input type="checkbox" id="privacyCheck" disabled />
+      I agree to the
+      <span class="agreement-link" onclick="openModal('privacy')">Privacy Policy</span>
+    </label>
+
+    <label class="agreement-row">
+      <input type="checkbox" id="hipaaCheck" disabled />
+      I acknowledge the
+      <span class="agreement-link" onclick="openModal('hipaa')">HIPAA Data Handling Agreement</span>
+    </label>
+
+    <label class="agreement-row">
+      <input type="checkbox" id="serviceCheck" disabled />
+      I authorize services under the
+      <span class="agreement-link" onclick="openModal('service')">Service Agreement</span>
+    </label>
+
+    <button id="createAccountBtn" disabled onclick="window.location.href='dashboard.html'">
+Create Account
+</button>
+
+    <div class="login-link">
+      Already have an account? <a href="login.html">Login</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="term.html" target="_blank" rel="noopener noreferrer">Terms</a> |
+      <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a> |
+      <a href="hipaa.html" target="_blank" rel="noopener noreferrer">HIPAA</a> |
+      <a href="service-agreement.html" target="_blank" rel="noopener noreferrer">Service Agreement</a>
+    </div>
+  </div>
+
+  <div id="agreementModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Agreement</h3>
+        <button class="close" onclick="closeModal()">&times;</button>
+      </div>
+
+      <div id="modalText" class="modal-text"></div>
+
+      <div class="modal-actions">
+        <div class="scroll-note" id="scrollNote">
+          Scroll to the bottom to enable acceptance.
+        </div>
+        <button id="acceptBtn" class="accept-btn" disabled onclick="acceptAgreement()">
+          I Have Read and Accept
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  let currentAgreement = "";
+
+  const agreementContent = {
+    terms: {
+      title: "Terms of Service",
+      checkboxId: "termsCheck",
+      text: `
+        <p><strong>Effective Date:</strong> [Insert Date]</p>
+        <p>These Terms of Service govern access to and use of the platform provided by <strong>[Company Name]</strong>. By creating an account or using the platform, you agree to be bound by these terms.</p>
+        <h4>1. Services</h4>
+        <p>The Company provides a technology platform and administrative support services intended to assist organizations in reviewing denied, underpaid, delayed, or unresolved claims and identifying potential recovery opportunities.</p>
+        <h4>2. User Responsibilities</h4>
+        <p>You agree to provide accurate information, maintain account security, and ensure that all submitted data is authorized for use and disclosure.</p>
+        <h4>3. Fees</h4>
+        <p>Fees may be based on subscription pricing, flat fees, percentage-based recovery, or another written pricing agreement.</p>
+        <h4>4. Limitation of Liability</h4>
+        <p>The platform and services are provided on a best-effort basis. The Company does not guarantee the recovery or approval of any claim or reimbursement amount.</p>
+        <h4>5. Termination</h4>
+        <p>The Company may suspend or terminate access for violation of these terms, misuse of the platform, or unlawful activity.</p>
+        <h4>6. Governing Law</h4>
+        <p>These terms shall be governed by the laws of [Insert State], subject to final legal review.</p>
+        <p><strong>Please review this draft with legal counsel before production use.</strong></p>
+      `
+    },
+
+    privacy: {
+      title: "Privacy Policy",
+      checkboxId: "privacyCheck",
+      text: `
+        <p><strong>Effective Date:</strong> [Insert Date]</p>
+        <p>This Privacy Policy describes how <strong>[Company Name]</strong> collects, uses, stores, and protects information obtained through the platform.</p>
+        <h4>1. Information Collected</h4>
+        <p>We may collect account information, organization information, claim-related records, technical usage data, and support communications.</p>
+        <h4>2. Use of Information</h4>
+        <p>Collected information may be used to operate the platform, review workflows, communicate with users, improve security, and satisfy legal obligations.</p>
+        <h4>3. Data Sharing</h4>
+        <p>We do not sell personal information. Information may be disclosed only to authorized service providers, contractors, regulators, or as otherwise required by law or contract.</p>
+        <h4>4. Data Security</h4>
+        <p>We maintain administrative, technical, and physical safeguards designed to protect submitted information from unauthorized access, disclosure, or misuse.</p>
+        <h4>5. Retention</h4>
+        <p>Information may be retained as reasonably necessary for service delivery, compliance, dispute resolution, and recordkeeping.</p>
+        <p><strong>Please review this draft with legal counsel before production use.</strong></p>
+      `
+    },
+
+    hipaa: {
+      title: "HIPAA Data Handling Agreement",
+      checkboxId: "hipaaCheck",
+      text: `
+        <p><strong>Effective Date:</strong> [Insert Date]</p>
+        <p>Because the platform may involve healthcare-related information, <strong>[Company Name]</strong> acknowledges the importance of compliance with applicable privacy and security obligations, including those related to protected health information.</p>
+        <h4>1. Authorization</h4>
+        <p>You represent that any protected health information or sensitive data submitted through the platform is submitted with proper authorization and in accordance with applicable law.</p>
+        <h4>2. Safeguards</h4>
+        <p>The Company will maintain reasonable administrative, technical, and physical safeguards designed to protect the confidentiality, integrity, and availability of submitted information.</p>
+        <h4>3. Limited Access</h4>
+        <p>Access to sensitive information will be limited to authorized personnel, systems, and service providers with a legitimate need to perform services.</p>
+        <h4>4. Separate Agreements</h4>
+        <p>Where required, the parties may execute a separate Business Associate Agreement or similar compliance document.</p>
+        <p><strong>Please review this draft with legal counsel before production use.</strong></p>
+      `
+    },
+
+    service: {
+      title: "Service Agreement",
+      checkboxId: "serviceCheck",
+      text: `
+        <p><strong>Effective Date:</strong> [Insert Date]</p>
+        <p>This Service Agreement authorizes <strong>[Company Name]</strong> to review claim-related information for administrative support and potential recovery analysis.</p>
+        <h4>1. Scope of Authorization</h4>
+        <p>By creating an account and submitting information, you authorize the Company to review denied, underpaid, delayed, or unresolved claims and associated documentation for potential recovery opportunities.</p>
+        <h4>2. Client Responsibilities</h4>
+        <p>You remain responsible for ensuring the information submitted is accurate, authorized, and compliant with all applicable payer, billing, contractual, and legal requirements.</p>
+        <h4>3. Compensation</h4>
+        <p>Fees and compensation may be governed by a separate written pricing agreement, order form, or service schedule.</p>
+        <h4>4. No Guarantee</h4>
+        <p>The Company does not guarantee successful recovery, payer reversal, or payment of any specific amount.</p>
+        <h4>5. Termination</h4>
+        <p>Either party may terminate the relationship subject to any outstanding written contractual obligations.</p>
+        <p><strong>Please review this draft with legal counsel before production use.</strong></p>
+      `
+    }
+  };
+
+  function checkAgreements() {
+    const terms = document.getElementById("termsCheck").checked;
+    const privacy = document.getElementById("privacyCheck").checked;
+    const hipaa = document.getElementById("hipaaCheck").checked;
+    const service = document.getElementById("serviceCheck").checked;
+
+    const button = document.getElementById("createAccountBtn");
+
+    if (terms && privacy && hipaa && service) {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
+    }
+  }
+
+  function openModal(type) {
+    currentAgreement = type;
+    document.getElementById("modalTitle").innerHTML = agreementContent[type].title;
+    document.getElementById("modalText").innerHTML = agreementContent[type].text;
+    document.getElementById("agreementModal").style.display = "block";
+
+    const modalText = document.getElementById("modalText");
+    const acceptBtn = document.getElementById("acceptBtn");
+    const scrollNote = document.getElementById("scrollNote");
+
+    acceptBtn.disabled = true;
+    scrollNote.textContent = "Scroll to the bottom to enable acceptance.";
+    modalText.scrollTop = 0;
+
+    modalText.onscroll = function () {
+      const reachedBottom =
+        modalText.scrollTop + modalText.clientHeight >= modalText.scrollHeight - 5;
+
+      if (reachedBottom) {
+        acceptBtn.disabled = false;
+        scrollNote.textContent = "You may now accept this agreement.";
+      }
+    };
+  }
+
+  function closeModal() {
+    document.getElementById("agreementModal").style.display = "none";
+  }
+
+  function acceptAgreement() {
+    if (!currentAgreement) return;
+
+    const checkboxId = agreementContent[currentAgreement].checkboxId;
+    const checkbox = document.getElementById(checkboxId);
+
+    checkbox.disabled = false;
+    checkbox.checked = true;
+
+    checkAgreements();
+    closeModal();
+  }
+
+  window.onclick = function (event) {
+    const modal = document.getElementById("agreementModal");
+    if (event.target === modal) {
+      closeModal();
+    }
+  };
+</script>
+</body>
+</html>

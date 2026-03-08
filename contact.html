@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Support</title>
+  <style>
+    * { box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+    body { margin: 0; background: #f4f6fb; color: #1f2937; }
+    .wrap { max-width: 980px; margin: 40px auto; padding: 0 20px; }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .top a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    .grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; }
+    .card { background: #fff; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,.07); overflow: hidden; }
+    .head { padding: 18px; border-bottom: 1px solid #e5e7eb; }
+    .head h1, .head h2 { margin: 0; }
+    .head p { margin: 8px 0 0; color: #6b7280; }
+    form { padding: 18px; display: grid; gap: 12px; }
+    label { font-size: 13px; font-weight: 700; color: #374151; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: 10px 11px;
+      font-size: 14px;
+    }
+    textarea { min-height: 140px; resize: vertical; }
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 11px 14px;
+      background: #2563eb;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      width: fit-content;
+    }
+    button:hover { background: #1d4ed8; }
+    .help { padding: 18px; display: grid; gap: 14px; }
+    .item h3 { margin: 0 0 4px; font-size: 15px; }
+    .item p { margin: 0; color: #4b5563; font-size: 14px; }
+    .item a { color: #1d4ed8; text-decoration: none; font-weight: 700; }
+    .success {
+      display: none;
+      margin-top: 8px;
+      background: #dcfce7;
+      border: 1px solid #86efac;
+      color: #166534;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 14px;
+    }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a href="Index.html">Back to Main Page</a>
+      <a href="login.html">Client Login</a>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <div class="head">
+          <h1>Contact Support</h1>
+          <p>Send our team a request and we will follow up as soon as possible.</p>
+        </div>
+
+        <form id="supportForm">
+          <div><label for="name">Full Name</label><input id="name" name="name" required /></div>
+          <div><label for="org">Organization</label><input id="org" name="org" required /></div>
+          <div><label for="email">Email</label><input id="email" name="email" type="email" required /></div>
+          <div><label for="topic">Topic</label><select id="topic" name="topic"><option>Billing Support</option><option>Claim Submission Help</option><option>Technical Issue</option><option>Account Access</option><option>Other</option></select></div>
+          <div><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+          <button type="submit">Submit Request</button>
+          <div class="success" id="successMsg">Thanks. Your support request has been submitted.</div>
+        </form>
+      </section>
+
+      <aside class="card">
+        <div class="head">
+          <h2>Help Lines</h2>
+          <p>Use these options for faster support.</p>
+        </div>
+        <div class="help">
+          <div class="item"><h3>Support Phone</h3><p>(800) 555-0199</p><p>Mon-Fri, 7:00 AM - 6:00 PM PT</p></div>
+          <div class="item"><h3>Billing Team</h3><p><a href="mailto:billing-support@companyname.com">billing-support@companyname.com</a></p></div>
+          <div class="item"><h3>Technical Team</h3><p><a href="mailto:tech-support@companyname.com">tech-support@companyname.com</a></p></div>
+          <div class="item"><h3>Useful Links</h3><p><a href="term.html">Terms</a> | <a href="privacy.html">Privacy</a> | <a href="hipaa.html">HIPAA</a></p></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    const supportForm = document.getElementById('supportForm');
+    const successMsg = document.getElementById('successMsg');
+    supportForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const payload = Object.fromEntries(new FormData(supportForm).entries());
+      localStorage.setItem('support_request_latest', JSON.stringify(payload));
+      successMsg.style.display = 'block';
+      supportForm.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6fb;
+      color: #1f2937;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #111827;
+      color: white;
+      padding: 24px 18px;
+    }
+
+    .sidebar h2 {
+      margin: 0 0 28px 0;
+      font-size: 22px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #d1d5db;
+      text-decoration: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      transition: 0.2s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: #1f2937;
+      color: white;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      background: white;
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      position: relative;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .account-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .account-button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 46px;
+      background: white;
+      min-width: 240px;
+      border-radius: 12px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: #1f2937;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .dropdown a:hover {
+      background: #f8fafc;
+    }
+
+    .account-menu:hover .dropdown {
+      display: block;
+    }
+
+    .content {
+      padding: 28px;
+    }
+
+    .welcome-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      margin-bottom: 24px;
+    }
+
+    .welcome-card h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .welcome-card p {
+      margin-bottom: 0;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .primary-action {
+      margin-top: 18px;
+      display: inline-block;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .primary-action:hover {
+      background: #1d4ed8;
+    }
+
+    .section-title {
+      margin: 28px 0 14px;
+      font-size: 20px;
+    }
+
+    .metrics-grid,
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+
+    .metric-number {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .card p {
+      color: #64748b;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    .table-card {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      margin-top: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+
+    th {
+      color: #374151;
+      font-size: 14px;
+    }
+
+    td {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .status-pill {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .status-pending {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .status-approved {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .status-partial {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .status-office {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .topbar {
+        padding: 16px 20px;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="layout">
+    <div class="sidebar">
+      <h2>Company Name</h2>
+
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="submit-claims.html">Submit Claims for Review</a>
+      <a href="claims.html">Submitted Claims</a>
+      <a href="reports.html">Reports</a>
+      <a href="history.html">History</a>
+    </div>
+
+    <div class="main">
+      <div class="topbar">
+        <h1>Dashboard</h1>
+
+        <div class="account-menu">
+          <button class="account-button">Account ▾</button>
+
+          <div class="dropdown">
+            <a href="account.html">Basic Account Information</a>
+            <a href="billing.html">Billing & Invoices</a>
+            <a href="agreements.html">Agreements</a>
+            <a href="Index.html">Log Out</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="welcome-card">
+          <h2>Welcome Back</h2>
+          <p>
+            Submit denied claims for review, monitor final outcomes, and track which claims still require action from your office.
+          </p>
+
+          <a href="submit-claims.html" class="primary-action">+ Submit Claim for Review</a>
+        </div>
+
+        <h2 class="section-title">Key Metrics</h2>
+        <div class="metrics-grid">
+          <div class="card">
+            <div class="metric-number">68%</div>
+            <h3>Final Recovery Rate</h3>
+            <p>Percentage of claims approved after final internal review and submission.</p>
+          </div>
+
+          <div class="card">
+            <div class="metric-number">124</div>
+            <h3>Total Claims Submitted</h3>
+            <p>Total denied or underpaid claims submitted into the platform.</p>
+          </div>
+
+          <div class="card">
+            <div class="metric-number">22</div>
+            <h3>Pending Final Review</h3>
+            <p>Claims still being reviewed before final submission decisions are made.</p>
+          </div>
+
+          <div class="card">
+            <div class="metric-number">$48,250</div>
+            <h3>Recovered Revenue</h3>
+            <p>Total recovered revenue from approved claim outcomes.</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Final Claim Outcomes</h2>
+        <div class="status-grid">
+          <div class="card">
+            <div class="metric-number">54</div>
+            <h3>Fully Approved</h3>
+            <p>Claims successfully approved after submission and review.</p>
+          </div>
+
+          <div class="card">
+            <div class="metric-number">18</div>
+            <h3>Partially Approved</h3>
+            <p>Claims with only part of the requested reimbursement approved.</p>
+          </div>
+
+          <div class="card">
+            <div class="metric-number">15</div>
+            <h3>Office Action Needed</h3>
+            <p>Claims your office may need to document, write off, or handle internally.</p>
+          </div>
+
+          <div class="card">
+            <div class="metric-number">22</div>
+            <h3>Pending</h3>
+            <p>Claims awaiting final internal review or external response.</p>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <h2 class="section-title" style="margin-top:0;">Claims Requiring Office Action</h2>
+          <p style="color:#64748b; margin-top:0;">
+            These are claims that did not lead to a full recovery and may require internal follow-up by your office.
+          </p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Claim ID</th>
+                <th>Patient / Account</th>
+                <th>Status</th>
+                <th>Recommended Action</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CLM-10027</td>
+                <td>Patient A / Acct 4458</td>
+                <td><span class="status-pill status-office">Office Action Needed</span></td>
+                <td>Internal documentation review</td>
+                <td>Final payer response did not support recovery.</td>
+              </tr>
+              <tr>
+                <td>CLM-10041</td>
+                <td>Patient B / Acct 7812</td>
+                <td><span class="status-pill status-partial">Partially Approved</span></td>
+                <td>Review remaining balance</td>
+                <td>Only part of the claim amount was approved.</td>
+              </tr>
+              <tr>
+                <td>CLM-10053</td>
+                <td>Patient C / Acct 9921</td>
+                <td><span class="status-pill status-office">Office Action Needed</span></td>
+                <td>Office follow-up needed</td>
+                <td>No further recovery action recommended.</td>
+              </tr>
+              <tr>
+                <td>CLM-10066</td>
+                <td>Patient D / Acct 3374</td>
+                <td><span class="status-pill status-pending">Pending</span></td>
+                <td>Await final review</td>
+                <td>Still in internal screening workflow.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
