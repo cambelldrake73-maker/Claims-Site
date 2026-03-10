@@ -18,10 +18,15 @@ if grep -q "-" "$PENDING"; then
     exit 0
 fi
 
-# if suggestions exist, convert them into tasks
+# if suggestions exist, filter them into executable tasks
 if [ -f "$SUGGESTIONS" ]; then
-    grep "-" "$SUGGESTIONS" >> "$PENDING"
-    echo "Tasks generated."
+
+    grep "^-" "$SUGGESTIONS" | \
+    grep -iE "layout|ui|css|style|spacing|dashboard|table|badge|filter|search|responsive|sidebar|button|form" \
+    >> "$PENDING"
+
+    echo "Filtered tasks generated."
+
 else
     echo "No suggestions file found."
 fi
