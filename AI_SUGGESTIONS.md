@@ -1,12 +1,9 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
-- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler and form submit logic are cut off
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in submit-claims.html
-- Add a character counter or max-length indicator beneath the Notes textarea in submit-claims.html
-- Make the `savedNotice` element fade in with a CSS transition instead of abruptly appearing
-- Add a focus ring style to all inputs, selects, and textareas across all pages for keyboard accessibility
-- Standardize border-radius values across buttons and cards since some pages use 10px and others use 12px or 14px inconsistently
-- Add a placeholder attribute to the Patient Name and Account # inputs in submit-claims.html
-- Fix the sidebar tab button in submit-claims.html which uses a raw `>` text character instead of rotating like the agreements.html version
-- Add `pointer-events: none` or a disabled visual state to the Submit button after form submission to prevent duplicate clicks
-- Add a sticky or fixed topbar option so the header remains visible when scrolling long content pages
-- Improve the mobile layout of the form rows in submit-claims.html by adding proper spacing between label and
+ERROR:
+{
+  "type": "error",
+  "error": {
+    "type": "invalid_request_error",
+    "message": "Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."
+  },
+  "request_id": "req_011CYvBnaXpCokjoq5mnne1T"
+}
