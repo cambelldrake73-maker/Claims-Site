@@ -125,3 +125,4 @@ Tue Mar 10 14:29:36 PDT 2026: Completed task - Fix the truncated JavaScript in `
 Tue Mar 10 14:30:17 PDT 2026: Completed task - Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
 Tue Mar 10 14:30:58 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:30:58 PDT 2026: Completed task - Standardize the `sidebar-tab` button arrow indicator so it rotates on pin state in `submit-claims.html` the same way `agreements.html` handles it
+Tue Mar 10 14:31:39 PDT 2026: Completed task - Add `resize: vertical` to all `textarea` elements across pages for consistent behavior
