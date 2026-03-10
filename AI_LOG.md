@@ -184,3 +184,4 @@ Tue Mar 10 14:59:22 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:59:22 PDT 2026: Completed task - Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
 Tue Mar 10 15:00:33 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 15:00:33 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+Tue Mar 10 15:08:30 PDT 2026: Completed task - Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'...)` block is cut off, missing the closing `aria-expanded` reset and Escape key handler

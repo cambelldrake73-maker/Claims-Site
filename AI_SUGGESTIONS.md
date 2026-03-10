@@ -1,13 +1,11 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'...)` block is cut off, missing the closing `aria-expanded` reset and Escape key handler
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Standardize sidebar CSS across all pages into a shared stylesheet to reduce code duplication
-- Add a smooth transition animation to the `savedNotice` element in `submit-claims.html` instead of abruptly showing it
-- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Improve the `claims.html` file which appears to be cut off mid-CSS and is missing its HTML body content
-- Add hover tooltips to collapsed sidebar nav links so users know where each link leads
-- Add active state styling to the account dropdown links to indicate the current page
-- Make the topbar sticky/fixed so it remains visible when scrolling through long content pages
-- Add a back-to-top button on longer pages like `service-agreement.html`
-- Improve mobile layout for the form rows in `submit-claims.html` by adding proper spacing between label and input on small screens
-- Add placeholder text to the Patient Name,
+- Add a visible icon or SVG to each sidebar nav link instead of the CSS dot placeholder (`::before` pseudo-element)
+- Add a transition animation to the sidebar tab arrow (`>`) so it rotates 180° when the sidebar is pinned, matching the agreements.html implementation that submit-claims.html is missing
+- Standardize sidebar CSS across all pages into a single shared stylesheet to eliminate duplicated style blocks
+- Add hover state color change to the topbar "Account" button to provide clearer interactive feedback
+- Add a character counter below the Notes textarea in submit-claims.html to guide user input length
+- Replace the plain `>` text inside `.sidebar-tab` with a proper SVG chevron icon for better visual quality
+- Add `aria-label` attributes to all form inputs in contact.html that currently rely solely on adjacent label elements
+- Fix the two-column `.row` label alignment in submit-claims.html so labels are top-aligned when the input is a textarea, not center-aligned
+- Add a loading or disabled state to the Submit button in submit-claims.html after form submission to prevent double-clicks
+- Style the `#savedNotice` element in submit-claims.html to fade in and out using a CSS transition instead of toggling `display`
+- Add a placeholder attribute to the Patient Name and Account # inputs in submit-claims.html for input

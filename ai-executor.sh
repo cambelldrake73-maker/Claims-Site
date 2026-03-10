@@ -91,7 +91,7 @@ fi
 # COMPLETE TASK
 ########################################
 
-grep -v "$TASK" "$RUNNING" > tmp && mv tmp "$RUNNING"
+grep -v -- "$TASK" "$RUNNING" > tmp && mv tmp "$RUNNING"
 echo "$TASK" >> "$COMPLETED"
 
 echo "$(date): Completed task $TASK" >> "$LOG"
