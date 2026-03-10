@@ -1,11 +1,10 @@
-- Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton` aria-expanded reset and closing brace are missing after the click-outside handler
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Make the `savedNotice` element in `submit-claims.html` auto-hide after a few seconds using a CSS transition or JS timeout
-- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Improve the sidebar tab button in `submit-claims.html` to rotate its arrow icon when pinned, matching the behavior already implemented in `agreements.html`
-- Add `focus-visible` outline styles to all interactive elements across pages for keyboard navigation visibility
-- Add a sticky or fixed topbar option so the header remains visible when scrolling long claim forms or tables
-- Standardize the `.card-head h2` font size across `submit-claims.html`, `agreements.html`, and `claims.html` since values appear inconsistent
-- Add responsive padding adjustments to `.card-body` on small screens to
+- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click', ...)` handler is cut off and missing closing braces
+- Add `aria-expanded="false"` reset inside the account menu close handler in `submit-claims.html` to match the pattern used in other pages
+- Add `title` attribute to the sidebar pin button in `submit-claims.html` to match the implementation in `agreements.html`
+- Add rotating arrow animation to the sidebar tab button in `submit-claims.html` to match the pinned state indicator in `agreements.html`
+- Add `Escape` key listener to close the account dropdown in `submit-claims.html` to match the pattern in `agreements.html`
+- Normalize sidebar CSS transition values across all pages (`submit-claims.html` uses `.26s` while others use `260ms`)
+- Add `white-space: nowrap` and `transition` properties to `.nav-link` in `submit-claims.html` to match `agreements.html` and `claims.html`
+- Add account section tab navigation (Profile, Billing, Agreements pills) to `account.html` and `billing.html` for consistency with `agreements.html`
+- Add `
