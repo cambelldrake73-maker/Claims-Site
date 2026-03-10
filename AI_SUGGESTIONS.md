@@ -1,13 +1,11 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a hover transition effect to the `.btn` elements in `submit-claims.html` for better visual feedback
-- Replace the `>` text character in the sidebar toggle button with a proper CSS arrow or SVG icon
-- Add focus-visible outline styles to all interactive elements across all pages for keyboard navigation visibility
-- Standardize the sidebar CSS across all pages into a single shared stylesheet to eliminate code duplication
-- Add a loading or disabled state style to the Submit button in `submit-claims.html` after form submission
-- Make the `savedNotice` element in `submit-claims.html` use a fade-in animation instead of abruptly appearing
-- Add consistent spacing between the account tab links in `agreements.html` on mobile viewports
-- Apply a minimum column width to the claims table in `agreements.html` to prevent text from becoming unreadably narrow
-- Add a sticky header to the topbar across all dashboard pages so it remains visible when scrolling
-- Style the `service-agreement.html` page with a back-navigation link that matches the visual style used in `contact.html`
-- Add placeholder text to
+- Add a visible icon or symbol to each sidebar nav link to improve usability when sidebar is collapsed
+- Fix `submit-claims.html` script tag which is cut off and missing closing `});` and `</script>` tags
+- Add hover transition animation to `.btn` elements in `submit-claims.html` for visual feedback
+- Add `font-size` property to `.account-button` in `submit-claims.html` to match `agreements.html`
+- Standardize sidebar transition duration across all files (`.26s` in `submit-claims.html` vs `260ms` in others)
+- Add `white-space:nowrap` to `.nav-link` in `submit-claims.html` to match `claims.html` and `agreements.html`
+- Add `justify-content:flex-start` to `.nav-link` in `submit-claims.html` to match other pages
+- Add `transition` property to `.nav-link` in `submit-claims.html` for background and color like other pages
+- Add `display:flex; align-items:center; justify-content:center; padding:0;` to `.sidebar-tab` in `submit-claims.html` to match `agreements.html`
+- Add rotating arrow animation to `.sidebar-tab span` when sidebar is pinned across all pages
+- Add `
