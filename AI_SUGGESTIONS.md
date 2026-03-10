@@ -1,11 +1,11 @@
-- Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add `aria-label` attributes to all form inputs in `submit-claims.html` to improve accessibility
-- Make the `savedNotice` element in `submit-claims.html` animate in with a fade instead of appearing instantly
-- Add a focus ring style to all `input`, `select`, and `textarea` elements across all pages for keyboard navigation visibility
-- Increase the contrast of `.nav-link::before` dot indicator as it is barely visible at `rgba(255,255,255,.55)`
-- Add `resize: vertical` to the `textarea` in `submit-claims.html` to match the behavior in `contact.html`
-- Fix the sidebar `nav-label` text on mobile in `submit-claims.html` where labels may overflow without proper wrapping styles
-- Add a bottom border or visual separator to the topbar in `submit-claims.html` to better separate it from content
-- Make the `account-button` in all pages show an active
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the closing `aria-expanded` reset and bracket
+- Add a hover transition effect to the `.btn` elements in `submit-claims.html` to match the button hover styles used elsewhere
+- Add a pin/unpin visual indicator to the sidebar tab arrow so it rotates when pinned, matching the behavior already implemented in `agreements.html` but missing in `submit-claims.html`
+- Add consistent `font-size: 14px` to the `account-button` in `submit-claims.html` to match the style in `agreements.html`
+- Make the `savedNotice` element in `submit-claims.html` vertically aligned with the action buttons
+- Add `resize: vertical` to all `textarea` elements across pages for consistent resize behavior
+- Add a focus outline style to all `input`, `select`, and `textarea` elements for consistent keyboard navigation visibility
+- Add `white-space: nowrap` to `.nav-label` in `claims.html` to prevent label text wrapping during sidebar transition
+- Add spacing between the account sub-navigation tabs in `agreements.html` on mobile viewports
+- Make the

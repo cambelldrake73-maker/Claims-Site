@@ -31,3 +31,4 @@
 - Fix truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute('aria-expanded', 'false')` and Escape key listener are missing compared to other pages
 - Add `aria-expanded` reset and Escape key handler to `submit-claims.html` account menu script to match `agreements.html` behavior
 - Add spinning/rotation transition to sidebar tab arrow in `submit-claims.html` to match `agreements.html` pinned state indicator
+- Add `display:flex; align-items:center; justify-content:center; padding:0;` to `.sidebar-tab` in `submit-claims.html` to match `agreements.html` styling
