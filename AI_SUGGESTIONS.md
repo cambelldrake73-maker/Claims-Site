@@ -1,13 +1,11 @@
-- Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
-- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
-- Add `aria-expanded` reset to `false` in the account menu close handler in submit-claims.html to match agreements.html behavior
-- Add `keydown` Escape key listener to close the account dropdown in submit-claims.html to match agreements.html behavior
-- Add transition animation to the sidebar tab arrow indicator (rotate on pin) in submit-claims.html to match agreements.html behavior
-- Increase the sidebar collapsed width from 56px to allow slightly more visual presence on desktop
-- Add a hover tooltip or title attribute to collapsed sidebar nav links to show the label text on hover
-- Add a visible active indicator (left border or accent color) to the current active nav link for better wayfinding
-- Standardize card border-radius values across all pages (14px in some files, 16px in others)
-- Add `resize: vertical` to all textarea elements for consistent resizing behavior across pages
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate submissions
-- Improve the `savedNotice` success message in submit-claims.html to auto-hide after a few seconds using a CSS transition
-- Add consistent focus
+- Add a visible icon or symbol to each sidebar nav link to improve usability when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute` and closing braces are missing after the `document.addEventListener('click')` handler
+- Add a hover transition effect to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Add `aria-label` or visible column header for the download column in the agreements table
+- Make the `saved` notice in `submit-claims.html` use a fade-in animation instead of abruptly appearing
+- Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
+- Add a sticky or fixed topbar so it remains visible when scrolling on longer pages
+- Standardize the card border-radius across all pages — `submit-claims.html` uses `16px`, `claims.html` and `agreements.html` use `14px`
+- Add a loading or disabled state to the Submit button in `submit-claims.html` after the form is submitted to prevent double submissions
+- Add a close button inside the account dropdown menu for mobile usability
+- Improve the `sidebar-tab` button in `submit-claims.html` to include the rotate animation on pin (already present in `agreements.html` but missing here)

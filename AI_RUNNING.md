@@ -49,3 +49,4 @@
 - Standardize the `sidebar-tab` button arrow indicator so it rotates 180° when pinned, matching the behavior in `agreements.html` but missing in `submit-claims.html`
 - Add hover transition effects to the table rows in `agreements.html` for better visual feedback
 - Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
+- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
