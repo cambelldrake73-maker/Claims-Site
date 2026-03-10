@@ -1,10 +1,13 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click', ...)` handler is cut off and missing closing braces
-- Add `aria-expanded="false"` reset inside the account menu close handler in `submit-claims.html` to match the pattern used in other pages
-- Add `title` attribute to the sidebar pin button in `submit-claims.html` to match the implementation in `agreements.html`
-- Add rotating arrow animation to the sidebar tab button in `submit-claims.html` to match the pinned state indicator in `agreements.html`
-- Add `Escape` key listener to close the account dropdown in `submit-claims.html` to match the pattern in `agreements.html`
-- Normalize sidebar CSS transition values across all pages (`submit-claims.html` uses `.26s` while others use `260ms`)
-- Add `white-space: nowrap` and `transition` properties to `.nav-link` in `submit-claims.html` to match `agreements.html` and `claims.html`
-- Add account section tab navigation (Profile, Billing, Agreements pills) to `account.html` and `billing.html` for consistency with `agreements.html`
-- Add `
+- Add a visible icon or symbol to each sidebar nav link so collapsed state communicates destination without hover
+- Fix `submit-claims.html` JavaScript that appears cut off mid-block, closing the account menu click-outside handler is incomplete
+- Add `aria-expanded="false"` reset inside the account menu close handler in `submit-claims.html` to match `agreements.html` pattern
+- Add Escape key listener to close account dropdown in `submit-claims.html` to match `agreements.html`
+- Add transition animation to sidebar tab arrow indicator to rotate when pinned, matching `agreements.html` behavior
+- Make form labels in `submit-claims.html` top-aligned on mobile since grid switches to single column
+- Add hover background color to dropdown links in `submit-claims.html` for visual consistency
+- Add focus-visible outline styles to all interactive elements for keyboard navigation visibility
+- Fix textarea resize handle being unconstrained in `submit-claims.html`, add `resize: vertical`
+- Add character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+- Increase sidebar collapsed width slightly on mobile or hide it entirely to avoid a 56px strip occupying full height
+- Add empty state message to claims table in `claims.html` for when no claims are present
+- Add consistent card title font sizes across `submit-claims.html`,

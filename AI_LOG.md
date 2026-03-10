@@ -138,3 +138,5 @@ Tue Mar 10 14:35:47 PDT 2026: Completed task - Add a visible icon or symbol to e
 Tue Mar 10 14:36:28 PDT 2026: Completed task - Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the closing `aria-expanded` reset and `});`
 Tue Mar 10 14:37:09 PDT 2026: Completed task - Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
 Tue Mar 10 14:37:48 PDT 2026: Completed task - Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+Tue Mar 10 14:38:29 PDT 2026: Skipped protected file design-system.css
+Tue Mar 10 14:38:29 PDT 2026: Completed task - Standardize the `sidebar-tab` toggle arrow indicator so it rotates 180° when pinned across all pages (currently missing in `submit-claims.html`)
