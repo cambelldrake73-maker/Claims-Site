@@ -1,9 +1,9 @@
-ERROR RESPONSE FROM CLAUDE:
+ERROR:
 {
   "type": "error",
   "error": {
     "type": "authentication_error",
     "message": "x-api-key header is required"
   },
-  "request_id": "req_011CYv1p56tuKsrCc7fEZDYP"
+  "request_id": "req_011CYv24DdFeMzGLfwUngbz8"
 }

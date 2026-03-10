@@ -7,8 +7,7 @@ cd "$WORKSPACE"
 
 echo "Scanning project..."
 
-PROJECT_FILES=$(find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) | head -n 40)
-
+PROJECT_FILES=$(find . -type f -name "*.html" -o -name "*.css" -o -name "*.js" | head -n 40)
 PROMPT="You are reviewing a medical claims dashboard web application.
 
 Project files:
@@ -25,21 +24,36 @@ Rules:
 
 echo "Generating AI suggestions using Claude..."
 
-RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "content-type: application/json" \
-  -d "{
-    \"model\": \"claude-sonnet-4-6\",
-    \"max_tokens\": 400,
-    \"messages\": [
-      {
-        \"role\": \"user\",
-        \"content\": \"$PROMPT\"
-      }
-    ]
-  }")
+python3 <<EOF > "$SUGGESTIONS"
+import os
+import requests
+import json
 
-echo "$RESPONSE" > raw_response.json
+api_key=os.environ.get("ANTHROPIC_API_KEY")
 
-python3 <<EOF > "$SUGGESTIONS
+prompt="""$PROMPT"""
+
+response=requests.post(
+    "https://api.anthropic.com/v1/messages",
+    headers={
+        "x-api-key": api_key,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json"
+    },
+    json={
+        "model": "claude-sonnet-4-6",
+        "max_tokens": 400,
+        "messages":[{"role":"user","content":prompt}]
+    }
+)
+
+data=response.json()
+
+if "content" in data:
+    print(data["content"][0]["text"])
+else:
+    print("ERROR:")
+    print(json.dumps(data,indent=2))
+EOF
+
+echo "Suggestions generated."
