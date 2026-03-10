@@ -17,7 +17,7 @@ RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
     "messages": [
       {
         "role": "user",
-        "content": "Analyze a web project for a medical claims dashboard and return a list of development improvements in bullet points."
+        "content": "Analyze this medical claims dashboard web project and return a concise list of actionable development tasks. Each line must start with a dash (-) and contain a single development task. Do not include headings or explanations."
       }
     ]
   }')
