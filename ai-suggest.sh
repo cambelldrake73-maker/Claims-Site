@@ -5,38 +5,41 @@ SUGGESTIONS="$WORKSPACE/AI_SUGGESTIONS.md"
 
 cd "$WORKSPACE"
 
+echo "Scanning project..."
+
+PROJECT_FILES=$(find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) | head -n 40)
+
+PROMPT="You are reviewing a medical claims dashboard web application.
+
+Project files:
+$PROJECT_FILES
+
+Return ONLY actionable development tasks.
+
+Rules:
+- Each line must start with '-'
+- No explanations
+- No headings
+- One task per line
+"
+
 echo "Generating AI suggestions using Claude..."
 
 RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "content-type: application/json" \
-  -d '{
-    "model": "claude-sonnet-4-6",
-    "max_tokens": 400,
-    "messages": [
+  -d "{
+    \"model\": \"claude-sonnet-4-6\",
+    \"max_tokens\": 400,
+    \"messages\": [
       {
-        "role": "user",
-        "content": "Analyze this medical claims dashboard web project and return a concise list of actionable development tasks. Each line must start with a dash (-) and contain a single development task. Do not include headings or explanations."
+        \"role\": \"user\",
+        \"content\": \"$PROMPT\"
       }
     ]
-  }')
+  }")
 
 echo "$RESPONSE" > raw_response.json
 
-python3 <<EOF > "$SUGGESTIONS"
-import json
-
-with open("raw_response.json") as f:
-    data = json.load(f)
-
-if "content" in data:
-    print(data["content"][0]["text"])
-else:
-    print("ERROR RESPONSE FROM CLAUDE:")
-    print(json.dumps(data, indent=2))
-EOF
-
-rm raw_response.json
-
-echo "Suggestions generated."
+python3 <<EOF > "$SUGGESTIONS
