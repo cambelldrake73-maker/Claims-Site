@@ -136,3 +136,4 @@ Tue Mar 10 14:35:04 PDT 2026: Completed task - Add a character counter or max-le
 Tue Mar 10 14:35:47 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:35:47 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
 Tue Mar 10 14:36:28 PDT 2026: Completed task - Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the closing `aria-expanded` reset and `});`
+Tue Mar 10 14:37:09 PDT 2026: Completed task - Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
