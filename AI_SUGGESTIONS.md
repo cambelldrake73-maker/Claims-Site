@@ -1,11 +1,13 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a hover state color transition to the `btn.primary` and `btn.secondary` buttons in `submit-claims.html`
-- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds using a CSS fade-out transition
-- Standardize the sidebar CSS across all pages into a single shared stylesheet to eliminate code duplication
-- Add a focus ring style to all `input`, `select`, `textarea`, and `button` elements for keyboard navigation visibility
-- Improve the mobile topbar in dashboard pages so the `h1` title truncates with ellipsis instead of wrapping or overflowing
-- Add `placeholder` attributes to the Patient Name, Account #, and Payer fields in `submit-claims.html`
-- Apply consistent `font-size` to all `input` and `select` elements across `contact.html` and `submit-claims.html`
-- Add a subtle background highlight to the active account tab in `agreements.html` to make the current section more visually distinct
-- Make the agreements table in `agreements.html` use altern
+- Add a visible icon or symbol to each sidebar nav link to improve usability when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click', ...)` handler is cut off and missing the closing `aria-expanded` reset and Escape key listener
+- Add a spinner or loading indicator to the Submit Claim button after form submission to prevent double-clicks
+- Standardize the sidebar CSS across all pages into a shared stylesheet to reduce duplication
+- Add hover and focus styles to all form inputs to improve visual feedback
+- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds
+- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+- Improve mobile layout for `claims.html` table by making columns horizontally scrollable or stacking them
+- Add a sticky topbar so it remains visible when scrolling through long content pages
+- Add active state indicator to account dropdown links to show which sub-page is currently selected
+- Add spacing or divider between the sidebar nav links and the bottom of the sidebar for better visual grouping
+- Make the sidebar pin button arrow rotate visually when pinned in `submit-claims.html` to match the behavior already implemented in `agreements.html`
+- Add a visible placeholder or empty-state
