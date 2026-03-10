@@ -1,12 +1,12 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a focus-visible outline style to all interactive elements (buttons, links, inputs) for keyboard navigation accessibility
-- Add a hover state color transition to the `btn.primary` and `btn.secondary` buttons in `submit-claims.html`
-- Add character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Make the `saved` notice in `submit-claims.html` animate in with a fade or slide transition instead of abruptly appearing
-- Fix the `claims.html` CSS which is cut off mid-rule at `.nav-link::before`
-- Standardize sidebar CSS across all pages into a shared stylesheet to eliminate duplicated style blocks
-- Add `placeholder` attributes to the Patient Name, Account #, and Payer inputs in `submit-claims.html` for better usability
-- Add a sticky or fixed topbar option so the header remains visible when scrolling long content
-- Improve the `contact.html` form layout by aligning labels above their inputs consistently using a grid or flex column layout
-- Add a loading or disabled state to the Submit button in `submit
+- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
+- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler and form submit logic are cut off
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in submit-claims.html
+- Add a character counter or max-length indicator beneath the Notes textarea in submit-claims.html
+- Make the `savedNotice` element fade in with a CSS transition instead of abruptly appearing
+- Add a focus ring style to all inputs, selects, and textareas across all pages for keyboard accessibility
+- Standardize border-radius values across buttons and cards since some pages use 10px and others use 12px or 14px inconsistently
+- Add a placeholder attribute to the Patient Name and Account # inputs in submit-claims.html
+- Fix the sidebar tab button in submit-claims.html which uses a raw `>` text character instead of rotating like the agreements.html version
+- Add `pointer-events: none` or a disabled visual state to the Submit button after form submission to prevent duplicate clicks
+- Add a sticky or fixed topbar option so the header remains visible when scrolling long content pages
+- Improve the mobile layout of the form rows in submit-claims.html by adding proper spacing between label and
