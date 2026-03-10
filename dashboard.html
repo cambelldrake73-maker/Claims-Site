@@ -10,6 +10,10 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
+    :root {
+      --sidebar-width: 250px;
+    }
+
     body {
       margin: 0;
       background: #f4f6fb;
@@ -19,13 +23,19 @@
     .layout {
       display: flex;
       min-height: 100vh;
+      align-items: stretch;
     }
 
     .sidebar {
-      width: 250px;
+      width: var(--sidebar-width);
+      flex-shrink: 0;
       background: #111827;
       color: white;
       padding: 24px 18px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
     }
 
     .sidebar h2 {
@@ -51,6 +61,7 @@
 
     .main {
       flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column;
     }
@@ -61,8 +72,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
       box-shadow: 0 2px 10px rgba(0,0,0,0.06);
       position: relative;
+      z-index: 10;
     }
 
     .topbar h1 {
@@ -117,6 +131,8 @@
 
     .content {
       padding: 28px;
+      width: 100%;
+      overflow-x: hidden;
     }
 
     .welcome-card {
@@ -197,10 +213,12 @@
       padding: 22px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.06);
       margin-top: 18px;
+      overflow: hidden;
     }
 
     table {
       width: 100%;
+      min-width: 720px;
       border-collapse: collapse;
       margin-top: 14px;
     }
@@ -250,13 +268,16 @@
       color: #b91c1c;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       .layout {
         flex-direction: column;
       }
 
       .sidebar {
         width: 100%;
+        height: auto;
+        position: static;
+        overflow: visible;
       }
 
       .topbar {
@@ -269,7 +290,41 @@
 
       table {
         display: block;
+        min-width: 0;
         overflow-x: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .sidebar {
+        padding: 18px 14px;
+      }
+
+      .sidebar h2 {
+        margin-bottom: 18px;
+      }
+
+      .sidebar a {
+        margin-bottom: 6px;
+      }
+
+      .topbar h1 {
+        font-size: 20px;
+      }
+
+      .account-menu {
+        width: 100%;
+      }
+
+      .account-button {
+        width: 100%;
+      }
+
+      .dropdown {
+        left: 0;
+        right: auto;
+        width: 100%;
+        top: 52px;
       }
     }
   </style>
@@ -292,7 +347,7 @@
         <h1>Dashboard</h1>
 
         <div class="account-menu">
-          <button class="account-button">Account ▾</button>
+          <button class="account-button">Account</button>
 
           <div class="dropdown">
             <a href="account.html">Basic Account Information</a>
@@ -422,4 +477,3 @@
 
 </body>
 </html>
-
