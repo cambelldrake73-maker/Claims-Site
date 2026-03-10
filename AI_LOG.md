@@ -111,3 +111,5 @@ Tue Mar 10 14:23:18 PDT 2026: Completed task - Add a hover tooltip showing the f
 Tue Mar 10 14:24:00 PDT 2026: Completed task - Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
 Tue Mar 10 14:24:21 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:24:21 PDT 2026: Completed task - Standardize sidebar CSS across all pages into a single shared stylesheet to reduce duplication
+Tue Mar 10 14:24:40 PDT 2026: Skipped protected file design-system.css
+Tue Mar 10 14:24:40 PDT 2026: Completed task - Add a visible icon or SVG next to each sidebar nav-link so collapsed sidebar still communicates page identity without relying solely on the dot indicator

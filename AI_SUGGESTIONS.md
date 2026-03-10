@@ -1,15 +1,11 @@
-- Add a visible icon or symbol to each sidebar nav link so navigation items are identifiable when the sidebar is collapsed
-- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler and form submit logic are cut off
-- Add a hover state color transition to the sidebar tab button to improve visual feedback
-- Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
-- Replace the plain `>` text character in the sidebar-tab button with a proper chevron SVG icon
-- Add a smooth rotation transform to the sidebar-tab arrow in submit-claims.html to match the behavior already implemented in agreements.html
-- Standardize the sidebar CSS across all pages into a shared stylesheet to reduce duplication
-- Add a placeholder loading skeleton or empty-state message to the claims table for when no claims are present
-- Add character counter below the Notes textarea in submit-claims.html to help users gauge input length
-- Make the form labels in submit-claims.html stack above inputs on medium screens before the full mobile breakpoint
-- Add visible required field indicators to form labels in submit-claims.html
-- Improve the topbar h1 font size scaling on smaller screens to prevent overflow
-- Add a sticky position to the topbar so it remains visible while scrolling through long content
-- Add row hover highlight styles to the agreements table for better readability
-- Add column sort indicators
+- Add a visible icon or SVG next to each sidebar nav-link so collapsed sidebar still communicates page identity without relying solely on the dot indicator
+- Replace the `::before` dot placeholder in collapsed sidebar with recognizable single-letter or icon abbreviations for each nav item
+- Add a smooth rotation animation to the sidebar-tab arrow in `submit-claims.html` to match the behavior already implemented in `agreements.html`
+- Fix missing `accountButton.setAttribute('aria-expanded', 'false')` reset in the `submit-claims.html` document click listener where the script appears cut off
+- Add `transition` property to `.nav-link` in `submit-claims.html` to match the hover transition already present in `agreements.html` and `claims.html`
+- Normalize sidebar CSS across all pages into a shared `sidebar.css` file to eliminate style drift between pages
+- Add active state highlight to the Agreements link in the account dropdown to indicate current page
+- Add `focus-visible` outline styles to all buttons and links for keyboard navigation visibility
+- Increase color contrast on `.nav-link` default state (`#d1d5db` on `#111827`) to meet WCAG AA requirements
+- Add a sticky or fixed topbar option so the header remains visible when scrolling long claim forms or tables
+- Add a character counter or max-length indicator
