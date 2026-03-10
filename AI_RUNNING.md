@@ -50,3 +50,4 @@
 - Add hover transition effects to the table rows in `agreements.html` for better visual feedback
 - Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
 - Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
+- Add `aria-expanded` reset to `false` in the account menu close handler in submit-claims.html to match agreements.html behavior

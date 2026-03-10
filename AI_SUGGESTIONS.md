@@ -1,11 +1,12 @@
-- Add a visible icon or symbol to each sidebar nav link to improve usability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute` and closing braces are missing after the `document.addEventListener('click')` handler
-- Add a hover transition effect to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add `aria-label` or visible column header for the download column in the agreements table
-- Make the `saved` notice in `submit-claims.html` use a fade-in animation instead of abruptly appearing
-- Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
-- Add a sticky or fixed topbar so it remains visible when scrolling on longer pages
-- Standardize the card border-radius across all pages — `submit-claims.html` uses `16px`, `claims.html` and `agreements.html` use `14px`
-- Add a loading or disabled state to the Submit button in `submit-claims.html` after the form is submitted to prevent double submissions
-- Add a close button inside the account dropdown menu for mobile usability
-- Improve the `sidebar-tab` button in `submit-claims.html` to include the rotate animation on pin (already present in `agreements.html` but missing here)
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` block is cut off and missing closing braces
+- Add a hover tooltip showing the nav link label when the sidebar is collapsed and not hovered
+- Replace the plain `>` text character in the sidebar toggle button with a proper arrow icon or chevron SVG
+- Add focus styles to all interactive elements (buttons, inputs, links) for keyboard navigation visibility
+- Standardize sidebar CSS across all pages — `submit-claims.html` uses `.26s` while other pages use `260ms` for transition timing
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Make the `saved` success notice in `submit-claims.html` auto-hide after a few seconds using a CSS transition
+- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+- Improve the `contact.html` form field layout to use consistent label-above-input spacing matching the rest of the project
+- Add a sticky or fixed topbar option so the header remains visible when scrolling long content pages
+- Add visual indication to the currently active account tab in `agreements.html` with a stronger contrast style

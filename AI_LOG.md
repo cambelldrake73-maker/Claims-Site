@@ -171,3 +171,4 @@ Tue Mar 10 14:52:05 PDT 2026: Completed task - Add hover transition effects to t
 Tue Mar 10 14:52:46 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:52:46 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
 Tue Mar 10 14:53:32 PDT 2026: Completed task - Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
+Tue Mar 10 14:54:13 PDT 2026: Completed task - Add `aria-expanded` reset to `false` in the account menu close handler in submit-claims.html to match agreements.html behavior
