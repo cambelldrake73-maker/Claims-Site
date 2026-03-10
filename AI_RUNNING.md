@@ -40,3 +40,4 @@
 - Increase the collapsed sidebar width slightly or add tooltips on nav links so users know where each link leads without expanding
 - Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates navigation options without text
 - Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
+- Add a loading/disabled state to the Submit Claim button after form submission to prevent duplicate clicks

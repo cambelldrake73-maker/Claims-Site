@@ -1,13 +1,11 @@
-- Add a visible icon or SVG to each sidebar nav link instead of the CSS dot pseudo-element placeholder
-- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
-- Add `aria-expanded="false"` reset inside the click-outside handler in submit-claims.html to match agreements.html pattern
-- Add `aria-label` attributes to all form inputs in submit-claims.html that rely solely on label elements for screen reader support
-- Add hover transition animation to `.btn` elements in submit-claims.html
-- Make the sidebar tab arrow rotate 180 degrees when pinned in submit-claims.html to match agreements.html behavior
-- Add `focus-visible` outline styles to interactive elements across all pages for keyboard navigation visibility
-- Standardize card border-radius across pages (submit-claims uses 16px, claims and agreements use 14px)
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent double submissions
-- Move the `savedNotice` confirmation message to appear above the action buttons rather than inline beside them
-- Add responsive stacking behavior to the `.actions` button row in submit-claims.html for small screens
-- Increase the sidebar collapsed width from 56px to at least 48px and ensure nav link icons remain centered when collapsed
-- Add a visible active indicator (left border
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` block is cut off and missing the closing `aria-expanded` reset and `});` statements
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Replace the plain `>` text character in the sidebar toggle button with a proper CSS arrow or SVG icon for better visual polish
+- Add `resize: vertical` to the `textarea` in `submit-claims.html` to match the same rule already applied in `contact.html`
+- Add focus styles (`outline` or `box-shadow`) to all `input`, `select`, and `textarea` elements across pages for keyboard accessibility visibility
+- Standardize the `.card-head` `h2` font size across `submit-claims.html` and `agreements.html` since they currently differ
+- Add a sticky or fixed `topbar` so it remains visible when scrolling long content pages like `submit-claims.html`
+- Add a visual separator or spacing between the sidebar navigation groups on all dashboard pages
+- Ensure the `savedNot
