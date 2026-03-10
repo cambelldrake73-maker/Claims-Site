@@ -164,3 +164,4 @@
 - Add a loading or disabled state to the Submit Claim button after the form is submitted to prevent duplicate clicks
 - Add consistent focus ring styles across all input, select, textarea, and button elements for keyboard navigation visibility
 - Add a visible icon (SVG or emoji) to each sidebar nav link to improve scanability when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` handler is cut off and missing closing braces

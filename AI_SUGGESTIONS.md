@@ -1,13 +1,11 @@
-- Add a visible icon (SVG or emoji) to each sidebar nav link to improve scanability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` handler is cut off and missing closing braces
-- Add a hover tooltip showing the nav link label when the sidebar is in collapsed state
-- Increase the sidebar collapse/expand tab button size for easier clicking on touch devices
-- Add a focus-visible outline style to all interactive elements (buttons, links, inputs) for keyboard navigation visibility
-- Add `resize: vertical` to all textarea elements for consistent resize behavior across pages
-- Add placeholder text to the Patient Name, Account #, and Payer fields in `submit-claims.html`
-- Style the `<select>` elements to match the height and appearance of the `<input>` elements more consistently
-- Add a loading/spinner state to the Submit Claim button after form submission to prevent double-clicks
-- Make the `savedNotice` success banner in `submit-claims.html` auto-hide after a few seconds using a CSS transition
-- Add a character counter below the Notes textarea in `submit-claims.html`
-- Improve mobile layout of the topbar so the page title does not overlap the Account button on small screens
-- Add `min-width` to the account dropdown so it does not
+- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` block is cut off, missing the closing `aria-expanded` reset and `});` lines
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Add `resize: vertical` to the `textarea` in `submit-claims.html` to match the contact form behavior
+- Add active/focus outline styles to all `input`, `select`, and `textarea` elements across pages for better keyboard usability
+- Make the `savedNotice` element in `submit-claims.html` auto-hide after a few seconds using a CSS fade-out transition
+- Add `min-width` to the topbar `h1` in all dashboard pages to prevent text wrapping on mid-size screens
+- Standardize border-radius values across all cards and buttons since some pages use `14px` and others use `16px`
+- Add a sticky `position: sticky; top: 0` to the topbar so it remains visible when scrolling long content pages
+- Add `overflow-y: auto` to the sidebar in collapsed state so nav items do not overflow on short viewports
+- Add

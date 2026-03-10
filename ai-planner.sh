@@ -46,6 +46,7 @@ echo "Generating tasks using ChatGPT..."
 python3 <<EOF > "$SUGGESTIONS"
 import os
 import requests
+import json
 
 api_key = os.environ.get("OPENAI_API_KEY")
 
@@ -66,7 +67,11 @@ response = requests.post(
 )
 
 data = response.json()
-print(data["choices"][0]["message"]["content"])
-EOF
 
+if "choices" in data:
+    print(data["choices"][0]["message"]["content"])
+else:
+    print("OPENAI ERROR:")
+    print(json.dumps(data, indent=2))
+EOF
 echo "Planner suggestions generated."
