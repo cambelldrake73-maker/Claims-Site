@@ -1,11 +1,14 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
-- Add a transition animation to the `savedNotice` success message instead of toggling `display:none` abruptly
-- Standardize the `sidebar-tab` button arrow indicator so it rotates on pin state in `submit-claims.html` the same way `agreements.html` handles it
-- Add `resize: vertical` to all `textarea` elements across pages for consistent behavior
-- Apply consistent `:focus` outline styles to all `input`, `select`, `textarea`, and `button` elements across all pages
-- Add hover color transition to `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Make the topbar sticky with `position: sticky; top: 0; z-index: 100` across all dashboard pages
-- Add a visible active underline or indicator to the account sub-tabs in `agreements.html` that is more prominent than just a background color change
-- Add `placeholder` attributes to the Patient Name, Account, and Payer inputs in `submit-claims
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a hover tooltip showing the full nav link label when the sidebar is in collapsed (56px) state
+- Replace the `>` text character in the sidebar toggle button with a proper SVG chevron icon
+- Add focus-visible outline styles to all interactive elements for keyboard navigation visibility
+- Add a character counter below the Notes/Message textarea fields to indicate remaining input length
+- Make the `submit-claims.html` form fields stack into single-column layout on medium screens between 900px and 1200px
+- Add a loading or disabled state to submit buttons after clicking to prevent duplicate submissions appearance
+- Add smooth transition animation to the dropdown menu appearing and disappearing
+- Standardize the card border-radius values across all pages (14px vs 16px inconsistency)
+- Add an active/current page indicator to the account dropdown links when on that page
+- Improve the placeholder text color contrast in input fields to meet readability standards
+- Add a sticky position to the topbar so it remains visible when scrolling long content pages
+- Add a visual divider or grouping between the main nav links and any secondary nav links in the sidebar
