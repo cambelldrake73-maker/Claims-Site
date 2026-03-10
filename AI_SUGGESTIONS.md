@@ -1,12 +1,10 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Increase the contrast of the `.nav-link::before` dot indicator as it is barely visible at `rgba(255,255,255,.55)`
-- Add a hover color transition effect to the primary and secondary buttons in `submit-claims.html`
-- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds
-- Add `focus` styles to all `input`, `select`, and `textarea` elements across all pages for better keyboard navigation visibility
-- Align the account dropdown chevron or arrow indicator to the account button to signal it is expandable
-- Add a smooth fade or slide transition animation to the account dropdown menu when it opens and closes
-- Fix the sidebar tab button `>` arrow so it rotates to indicate pinned state in `submit-claims.html` the same way `agreements.html` does
-- Add a thin left border or accent color highlight to the active `.nav-link` item for stronger visual indication
-- Standardize the sidebar CSS across all pages since
+- Add a visible icon or indicator next to each nav-link in the sidebar so collapsed state shows recognizable symbols instead of just a small dash
+- Fix the `submit-claims.html` script block which is cut off and missing the closing `aria-expanded` reset and closing braces
+- Add hover and focus styles to all `input`, `select`, and `textarea` fields across all pages for consistent interactive feedback
+- Make the `saved` notice in `submit-claims.html` animate in with a fade or slide transition instead of abruptly appearing
+- Add a character counter or visible max-length hint beneath the `textarea` fields in `submit-claims.html` and `contact.html`
+- Standardize border-radius values across all pages since some cards use `14px`, others use `16px`, and buttons vary between pages
+- Add `min-height: 100vh` to `.sidebar` in `claims.html` so the dark sidebar fills the full page height on short content pages
+- Apply consistent `font-size` to `label` elements across all form pages since `submit-claims.html` uses `13px` and `contact.html` uses `13px` but with different color values
+- Add a visual active indicator such as a left border or colored dot to the active `.nav-link` state beyond just background color change
+- Make the topbar `h1
