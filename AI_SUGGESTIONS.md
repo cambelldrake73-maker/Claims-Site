@@ -1,14 +1,12 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a loading/spinner state to the Submit Claim button after form submission to prevent duplicate clicks
-- Add hover transition animation to the sidebar pin tab arrow indicator to smooth the direction change
-- Standardize sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
-- Add a character counter below the Notes textarea in `submit-claims.html`
-- Improve the mobile topbar layout so the page title does not overlap the Account button on small screens
-- Add `focus` outline styles to all interactive elements for keyboard navigation visibility
-- Add a placeholder state to the claims table for when no claims have been submitted yet
-- Increase color contrast on `.nav-link` default state text (`#d1d5db` on `#111827`) to meet WCAG AA
-- Add smooth transition to the account dropdown appearing instead of instant display toggle
-- Add active/current page indicator styling to the account tabs in `agreements.html` that is more visually distinct
-- Make the `service-agreement.html` topbar sticky so navigation remains accessible while scrolling long content
-- Add print stylesheet to `service-agreement.html` to
+- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Add a loading or disabled state to the Submit Claim button after the form is submitted to prevent duplicate clicks
+- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds using a CSS transition or timeout
+- Add consistent focus ring styles across all input, select, textarea, and button elements for keyboard navigation visibility
+- Add a character counter or max-length indicator beneath the Notes textarea in `submit-claims.html`
+- Improve the `service-agreement.html` topbar layout so the brand and nav links are vertically centered and spaced evenly on small screens
+- Add placeholder text to the Patient Name, Account #, and Payer fields in `submit-claims.html` to guide user input
+- Make the agreements table in `agreements.html` display column headers that are visually distinct from row data using background color
+- Add a sticky topbar style so the topbar remains visible while scrolling on longer pages
+- Add smooth transition animation to the `.
