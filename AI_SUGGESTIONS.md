@@ -1,11 +1,10 @@
-- Add a visible icon or symbol to each sidebar nav link to improve usability when sidebar is collapsed
-- Fix `submit-claims.html` script tag which is cut off and missing closing `});` and `</script>` tags
-- Add hover transition animation to `.btn` elements in `submit-claims.html` for visual feedback
-- Add `font-size` property to `.account-button` in `submit-claims.html` to match `agreements.html`
-- Standardize sidebar transition duration across all files (`.26s` in `submit-claims.html` vs `260ms` in others)
-- Add `white-space:nowrap` to `.nav-link` in `submit-claims.html` to match `claims.html` and `agreements.html`
-- Add `justify-content:flex-start` to `.nav-link` in `submit-claims.html` to match other pages
-- Add `transition` property to `.nav-link` in `submit-claims.html` for background and color like other pages
-- Add `display:flex; align-items:center; justify-content:center; padding:0;` to `.sidebar-tab` in `submit-claims.html` to match `agreements.html`
-- Add rotating arrow animation to `.sidebar-tab span` when sidebar is pinned across all pages
-- Add `
+- Add a visible icon or symbol to each sidebar nav link so navigation items are identifiable when the sidebar is collapsed
+- Fix the truncated JavaScript in submit-claims.html where the `document.addEventListener('click', ...)` handler is cut off and missing the closing `accountButton.setAttribute` line and closing braces
+- Add `aria-expanded` reset to `'false'` inside the account menu close handler in submit-claims.html to match behavior in other pages
+- Add `Escape` key listener to close the account dropdown in submit-claims.html to match the pattern used in agreements.html
+- Add a character counter or max-length attribute to the Notes textarea in submit-claims.html
+- Make the sidebar pin tab button rotate its arrow indicator when pinned, matching the improved behavior defined in agreements.html but missing in submit-claims.html
+- Add a visible active state indicator (such as a left border or accent color) to the active nav link beyond just the background color change
+- Add hover color transition animation to nav links in submit-claims.html to match the `transition: background-color 180ms ease` defined in claims.html and agreements.html
+- Add placeholder text to the Patient Name, Account, and Payer fields in submit-claims.html for better usability
+- Make the success/saved notice in submit-claims.html auto-hide after a few seconds using

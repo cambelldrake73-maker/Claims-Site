@@ -1,32 +1,44 @@
+
 #!/bin/bash
 
 WORKSPACE="$HOME/.openclaw/workspace/claims-site"
 
-echo "AI worker starting..."
-
 cd "$WORKSPACE"
+
+LAST_HASH=""
+
+echo "AI worker starting..."
 
 while true
 do
-echo "-----------------------------------"
-echo "Syncing repo..."
 
-git fetch origin
+    echo "-----------------------------------"
+    echo "Syncing repo..."
 
-git checkout ai-dev
-git pull origin ai-dev
+    git fetch origin ai-dev >/dev/null 2>&1
+    git pull origin ai-dev >/dev/null 2>&1
 
-git merge origin/main --no-edit
-echo "Generating AI suggestions..."
-bash ai-suggest.sh
+    CURRENT_HASH=$(git rev-parse HEAD)
 
-echo "Generating AI tasks..."
-bash ai-task-maker.sh
+    if [ "$CURRENT_HASH" != "$LAST_HASH" ] || [ -s AI_PENDING.md ]; then
 
-echo "Checking for tasks..."
-bash ai-executor.sh
+        echo "Changes detected or tasks pending."
 
-echo "Sleeping 30 seconds..."
-sleep 30
+        echo "Generating AI suggestions..."
+        bash ai-suggest.sh
+
+        echo "Generating AI tasks..."
+        bash ai-task-maker.sh
+
+        echo "Executing tasks..."
+        bash ai-executor.sh
+
+        LAST_HASH=$CURRENT_HASH
+
+    else
+        echo "No repo changes. Sleeping."
+    fi
+
+    sleep 60
 
 done

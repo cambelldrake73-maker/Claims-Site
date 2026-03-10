@@ -151,3 +151,4 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
 - Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
 - Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Add a transition animation to the `savedNotice` element in `submit-claims.html` instead of an abrupt display change
