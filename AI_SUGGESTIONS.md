@@ -1,12 +1,12 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Standardize the `sidebar-tab` button arrow indicator so it rotates 180° when pinned, matching the behavior in `agreements.html` but missing in `submit-claims.html`
-- Add hover transition effects to the table rows in `agreements.html` for better visual feedback
-- Make the `savedNotice` element in `submit-claims.html` auto-hide after a few seconds using a CSS transition or short timeout
-- Add a consistent active state highlight to the account dropdown links when the current page matches the link destination
-- Improve the `contact.html` form field layout by adding consistent spacing between the label and input elements
-- Add `resize: vertical` constraint to all `textarea` elements across pages for consistent behavior
-- Apply a consistent `focus` outline style across all `input`, `select`, and `textarea` elements site-wide
-- Add a mobile hamburger menu or collapsible nav for the `Index.html` top navbar on small screens
-- Ensure the sidebar in `claims.html` has the same `
+- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` handler is cut off and missing closing braces
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Make the `savedNotice` element in `submit-claims.html` animate in with a fade instead of abruptly appearing
+- Add focus-visible outline styles to all interactive elements across pages for keyboard navigation visibility
+- Standardize the sidebar CSS across all pages — `submit-claims.html` uses slightly different transition values than `agreements.html` and `claims.html`
+- Add a loading or disabled state to the Submit button in `submit-claims.html` to prevent duplicate submissions
+- Improve the `service-agreement.html` layout with a sticky topbar so the navigation remains visible while scrolling long content
+- Add responsive styles to `agreements.html` table rows so columns stack or scroll cleanly on small screens
+- Add visual indication to the currently active account tab in the dropdown (e.g., bold or checkmark)
+- Make the `contact.html` form labels and inputs consistent in spacing with the rest of the project's form styles
+- Add a character counter
