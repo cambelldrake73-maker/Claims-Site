@@ -198,3 +198,5 @@ Tue Mar 10 15:18:00 PDT 2026: Completed task - Add consistent focus ring styles 
 Tue Mar 10 15:19:11 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 15:19:11 PDT 2026: Completed task - Add a visible icon (SVG or emoji) to each sidebar nav link to improve scanability when the sidebar is collapsed
 Tue Mar 10 15:20:21 PDT 2026: Completed task - Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` handler is cut off and missing closing braces
+Tue Mar 10 15:21:32 PDT 2026: Skipped protected file design-system.css
+Tue Mar 10 15:21:32 PDT 2026: Completed task - Add a hover tooltip showing the nav link label when the sidebar is in collapsed state

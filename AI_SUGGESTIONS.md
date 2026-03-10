@@ -1,11 +1,13 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` block is cut off, missing the closing `aria-expanded` reset and `});` lines
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add `resize: vertical` to the `textarea` in `submit-claims.html` to match the contact form behavior
-- Add active/focus outline styles to all `input`, `select`, and `textarea` elements across pages for better keyboard usability
-- Make the `savedNotice` element in `submit-claims.html` auto-hide after a few seconds using a CSS fade-out transition
-- Add `min-width` to the topbar `h1` in all dashboard pages to prevent text wrapping on mid-size screens
-- Standardize border-radius values across all cards and buttons since some pages use `14px` and others use `16px`
-- Add a sticky `position: sticky; top: 0` to the topbar so it remains visible when scrolling long content pages
-- Add `overflow-y: auto` to the sidebar in collapsed state so nav items do not overflow on short viewports
-- Add
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a hover tooltip showing the nav link label when the sidebar is in its collapsed 56px state
+- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce duplication
+- Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds
+- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+- Improve the mobile layout of the topbar in `submit-claims.html` so the heading and account button do not overlap on small screens
+- Add an active state highlight to the account dropdown links when hovered
+- Make the table in `agreements.html` columns have consistent minimum widths to prevent text wrapping awkwardly
+- Add a visible empty state message to the claims table for when no claims have been submitted
+- Align the form labels in `submit-claims.html` to the top of their row when the textarea field is
