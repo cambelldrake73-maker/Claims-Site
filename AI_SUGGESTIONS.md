@@ -5,5 +5,5 @@ ERROR RESPONSE FROM CLAUDE:
     "type": "authentication_error",
     "message": "x-api-key header is required"
   },
-  "request_id": "req_011CYv1gmK8ceLahXQQa9aDr"
+  "request_id": "req_011CYv1jCTXLjHGzBpdgRsdy"
 }
