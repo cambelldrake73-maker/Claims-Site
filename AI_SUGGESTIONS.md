@@ -1,12 +1,13 @@
-- Add a visible icon or symbol to each sidebar nav link so items are identifiable when the sidebar is collapsed
-- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off mid-function
-- Add `aria-expanded` reset to false inside the account menu close handler in submit-claims.html to match behavior in other pages
-- Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
-- Add `keydown` Escape key handler to close the account dropdown in submit-claims.html to match agreements.html behavior
-- Make the sidebar pin button arrow rotate 180 degrees when pinned in submit-claims.html to match agreements.html behavior
+- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click', ...)` block is cut off and missing closing braces
+- Add a hover state transition animation to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Add focus ring styles to all form inputs, selects, and textareas across all pages for keyboard navigation visibility
+- Add a character counter or max-length indicator beneath the Notes textarea in `submit-claims.html`
+- Make the `.saved` success notice in `submit-claims.html` fade in with a CSS transition instead of toggling display
+- Standardize the card border-radius values across all pages (`14px` in some files, `16px` in others)
 - Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Add a visible error state style for invalid form fields using CSS `:invalid` or a custom class
-- Standardize `transition` shorthand values across all pages since submit-claims.html uses `.26s` while other pages use `260ms`
-- Make the saved/success notice in submit-claims.html auto-hide after a few seconds using a CSS animation or JS timeout
-- Add a character counter or max-length indicator to the Notes textarea in submit-claims.html
-- Improve the contact form layout so the label and input are visually grouped with consistent spacing matching the claims form
+- Fix the table in `agreements.html` to be more readable on mobile by improving the responsive scroll container styling
+- Add column hover highlight styles to the agreements table for better row tracking
+- Add placeholder text to the Patient Name and Account fields in `submit-claims.html`
+- Improve the topbar in `contact.html` to match the dashboard topbar styling for visual consistency
+- Add consistent
