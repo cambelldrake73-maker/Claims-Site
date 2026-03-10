@@ -1,10 +1,13 @@
-- Add a visible icon or indicator next to each nav-link in the sidebar so collapsed state shows recognizable symbols instead of just a small dash
-- Fix the `submit-claims.html` script block which is cut off and missing the closing `aria-expanded` reset and closing braces
-- Add hover and focus styles to all `input`, `select`, and `textarea` fields across all pages for consistent interactive feedback
-- Make the `saved` notice in `submit-claims.html` animate in with a fade or slide transition instead of abruptly appearing
-- Add a character counter or visible max-length hint beneath the `textarea` fields in `submit-claims.html` and `contact.html`
-- Standardize border-radius values across all pages since some cards use `14px`, others use `16px`, and buttons vary between pages
-- Add `min-height: 100vh` to `.sidebar` in `claims.html` so the dark sidebar fills the full page height on short content pages
-- Apply consistent `font-size` to `label` elements across all form pages since `submit-claims.html` uses `13px` and `contact.html` uses `13px` but with different color values
-- Add a visual active indicator such as a left border or colored dot to the active `.nav-link` state beyond just background color change
-- Make the topbar `h1
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a hover tooltip showing the nav link label when the sidebar is in its collapsed 56px state
+- Replace the plain `>` character in the sidebar-tab button with a proper chevron icon or CSS arrow for visual consistency
+- Add a focus-visible outline style to all interactive elements across pages for keyboard navigation visibility
+- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+- Add a confirmation modal or inline warning before the Clear/reset button discards form data in `submit-claims.html`
+- Style the `savedNotice` element in `submit-claims.html` to fade out automatically after a few seconds using a CSS animation
+- Standardize the card border-radius values across all pages since some use `14px` and others use `16px`
+- Add a loading spinner or disabled state to the Submit button after form submission to prevent double submission appearance
+- Improve the `contact.html` form field spacing so labels and inputs have consistent vertical rhythm
+- Add a sticky position or visual divider to the topbar so it remains visible when content scrolls
+- Make the account
