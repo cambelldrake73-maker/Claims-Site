@@ -227,42 +227,42 @@
   <div class="signup-box">
     <h2>Create Account</h2>
 
-    <input type="text" placeholder="Full Name" />
-    <input type="text" placeholder="Organization Name" />
-    <input type="email" placeholder="Email Address" />
-    <input type="password" placeholder="Password" />
+    <form id="signupForm" action="dashboard.html">
+      <input type="text" placeholder="Full Name" required />
+      <input type="text" placeholder="Organization Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="password" placeholder="Password" required />
 
-    <p class="agreements-title">
-      By creating an account, you must review and accept the following agreements:
-    </p>
+      <p class="agreements-title">
+        By creating an account, you must review and accept the following agreements:
+      </p>
 
-    <label class="agreement-row">
-      <input type="checkbox" id="termsCheck" disabled />
-      I agree to the
-      <span class="agreement-link" onclick="openModal('terms')">Terms of Service</span>
-    </label>
+      <label class="agreement-row">
+        <input type="checkbox" id="termsCheck" disabled />
+        I agree to the
+        <span class="agreement-link" onclick="openModal('terms')">Terms of Service</span>
+      </label>
 
-    <label class="agreement-row">
-      <input type="checkbox" id="privacyCheck" disabled />
-      I agree to the
-      <span class="agreement-link" onclick="openModal('privacy')">Privacy Policy</span>
-    </label>
+      <label class="agreement-row">
+        <input type="checkbox" id="privacyCheck" disabled />
+        I agree to the
+        <span class="agreement-link" onclick="openModal('privacy')">Privacy Policy</span>
+      </label>
 
-    <label class="agreement-row">
-      <input type="checkbox" id="hipaaCheck" disabled />
-      I acknowledge the
-      <span class="agreement-link" onclick="openModal('hipaa')">HIPAA Data Handling Agreement</span>
-    </label>
+      <label class="agreement-row">
+        <input type="checkbox" id="hipaaCheck" disabled />
+        I acknowledge the
+        <span class="agreement-link" onclick="openModal('hipaa')">HIPAA Data Handling Agreement</span>
+      </label>
 
-    <label class="agreement-row">
-      <input type="checkbox" id="serviceCheck" disabled />
-      I authorize services under the
-      <span class="agreement-link" onclick="openModal('service')">Service Agreement</span>
-    </label>
+      <label class="agreement-row">
+        <input type="checkbox" id="serviceCheck" disabled />
+        I authorize services under the
+        <span class="agreement-link" onclick="openModal('service')">Service Agreement</span>
+      </label>
 
-    <button id="createAccountBtn" disabled onclick="window.location.href='dashboard.html'">
-Create Account
-</button>
+      <button id="createAccountBtn" type="submit" disabled>Create Account</button>
+    </form>
 
     <div class="login-link">
       Already have an account? <a href="login.html">Login</a>
@@ -437,6 +437,16 @@ Create Account
     checkAgreements();
     closeModal();
   }
+
+  document.getElementById("signupForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (document.getElementById("createAccountBtn").disabled) {
+      return;
+    }
+
+    window.location.href = "dashboard.html";
+  });
 
   window.onclick = function (event) {
     const modal = document.getElementById("agreementModal");
