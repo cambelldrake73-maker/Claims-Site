@@ -168,3 +168,5 @@ Tue Mar 10 14:50:46 PDT 2026: Completed task - Add a loading or disabled state t
 Tue Mar 10 14:51:27 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:51:27 PDT 2026: Completed task - Standardize the `sidebar-tab` button arrow indicator so it rotates 180° when pinned, matching the behavior in `agreements.html` but missing in `submit-claims.html`
 Tue Mar 10 14:52:05 PDT 2026: Completed task - Add hover transition effects to the table rows in `agreements.html` for better visual feedback
+Tue Mar 10 14:52:46 PDT 2026: Skipped protected file design-system.css
+Tue Mar 10 14:52:46 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed

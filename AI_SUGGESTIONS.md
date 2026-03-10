@@ -1,9 +1,13 @@
-- Fix truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute('aria-expanded', 'false')` line and closing braces for the event listeners are missing
-- Add `aria-expanded` reset on outside click in `submit-claims.html` to match the pattern used in `agreements.html`
-- Add `keydown` Escape key handler to close account dropdown in `submit-claims.html` to match `agreements.html`
-- Add spinning/rotation transition to sidebar tab arrow in `submit-claims.html` to match `agreements.html` behavior
-- Add `display:flex; align-items:center; justify-content:center; padding:0;` to `.sidebar-tab` in `submit-claims.html` to match `agreements.html`
-- Standardize sidebar transition duration across all files — `submit-claims.html` uses `.26s` while others use `260ms`
-- Add `transition: background-color 180ms ease, color 180ms ease;` to `.nav-link` in `submit-claims.html` to match other pages
-- Add `white-space:nowrap` to `.nav-link` in `submit-claims.html` to match `claims.html` and `agreements.html`
-- Add `justify-content:flex-start` to `.nav-link
+- Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
+- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
+- Add `aria-expanded` reset to `false` in the account menu close handler in submit-claims.html to match agreements.html behavior
+- Add `keydown` Escape key listener to close the account dropdown in submit-claims.html to match agreements.html behavior
+- Add transition animation to the sidebar tab arrow indicator (rotate on pin) in submit-claims.html to match agreements.html behavior
+- Increase the sidebar collapsed width from 56px to allow slightly more visual presence on desktop
+- Add a hover tooltip or title attribute to collapsed sidebar nav links to show the label text on hover
+- Add a visible active indicator (left border or accent color) to the current active nav link for better wayfinding
+- Standardize card border-radius values across all pages (14px in some files, 16px in others)
+- Add `resize: vertical` to all textarea elements for consistent resizing behavior across pages
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate submissions
+- Improve the `savedNotice` success message in submit-claims.html to auto-hide after a few seconds using a CSS transition
+- Add consistent focus
