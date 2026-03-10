@@ -7,7 +7,6 @@
 - Add a smooth rotation animation to the sidebar-tab arrow in `submit-claims.html` to match the behavior already implemented in `agreements.html`
 - Fix missing `accountButton.setAttribute('aria-expanded', 'false')` reset in the `submit-claims.html` document click listener where the script appears cut off
 - Add `transition` property to `.nav-link` in `submit-claims.html` to match the hover transition already present in `agreements.html` and `claims.html`
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
 - Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
 - Standardize the `sidebar-tab` button arrow indicator so it rotates on pin state in `submit-claims.html` the same way `agreements.html` handles it
 - Add `resize: vertical` to all `textarea` elements across pages for consistent behavior
@@ -33,7 +32,6 @@
 - Add a loading/disabled state to the Submit Claim button after form submission to prevent duplicate clicks
 - Make the `savedNotice` span in `submit-claims.html` auto-hide after a few seconds using a CSS transition or `setTimeout`
 - Add a pin/unpin visual indicator to the sidebar-tab button so users understand its toggle function (e.g., rotate arrow icon like `agreements.html` already does, but `submit-claims.html` is missing this)
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
 - Standardize the `sidebar-tab` button arrow indicator so it rotates 180° when pinned, matching the behavior in `agreements.html` but missing in `submit-claims.html`
 - Add hover transition effects to the table rows in `agreements.html` for better visual feedback
 - Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
@@ -41,6 +39,5 @@
 - Add `aria-expanded` reset to `false` in the account menu close handler in submit-claims.html to match agreements.html behavior
 - Add `keydown` Escape key listener to close the account dropdown in submit-claims.html to match agreements.html behavior
 - Add transition animation to the sidebar tab arrow indicator (rotate on pin) in submit-claims.html to match agreements.html behavior
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
 - Add a transition animation to the `savedNotice` element in `submit-claims.html` instead of an abrupt display change
 - Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication

@@ -1,12 +1,12 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add a loading or disabled state to the Submit Claim button after the form is submitted to prevent duplicate clicks
-- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds using a CSS transition or timeout
-- Add consistent focus ring styles across all input, select, textarea, and button elements for keyboard navigation visibility
-- Add a character counter or max-length indicator beneath the Notes textarea in `submit-claims.html`
-- Improve the `service-agreement.html` topbar layout so the brand and nav links are vertically centered and spaced evenly on small screens
-- Add placeholder text to the Patient Name, Account #, and Payer fields in `submit-claims.html` to guide user input
-- Make the agreements table in `agreements.html` display column headers that are visually distinct from row data using background color
-- Add a sticky topbar style so the topbar remains visible while scrolling on longer pages
-- Add smooth transition animation to the `.
+- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` block is cut off, causing the account dropdown to never close
+- Add `aria-expanded` reset to `false` inside the account menu close handler in `submit-claims.html` to match the pattern used in `agreements.html`
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Replace the plain `>` text character in the sidebar toggle button with a proper CSS arrow or SVG icon for cleaner appearance
+- Add a visible active state indicator such as a left border or accent color to the active sidebar nav link
+- Add focus-visible outline styles to all interactive elements for keyboard navigation clarity
+- Standardize the sidebar CSS across all pages since `submit-claims.html` uses `.26s` while other pages use `260ms` for transition duration
+- Add a confirmation or summary view after successful claim submission instead of only showing the small green notice text
+- Improve the `saved` notice in `submit-claims.html` by adding a fade-in animation when it appears
+- Add `resize: vertical` to all textarea elements across the project for consistent resize behavior
+- Add placeholder text to the Patient Name, Account, and
