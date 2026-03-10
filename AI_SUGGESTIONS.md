@@ -1,16 +1,11 @@
-- Add a visible icon or symbol to each sidebar nav link to improve usability when the sidebar is collapsed
-- Fix the submit-claims.html script block which is cut off and missing the closing event listener and script tag
-- Add a hover tooltip to collapsed sidebar nav links showing the page name
-- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce duplication
-- Add a character counter below the Notes textarea in submit-claims.html
-- Add focus ring styles to all input, select, and textarea elements for keyboard navigation visibility
-- Make the topbar h1 font size responsive so it does not overflow on smaller screens
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent double clicks
-- Add a visible active state indicator to the account dropdown currently open item
-- Fix the sidebar-tab button so it rotates the arrow indicator when pinned, matching the agreements.html implementation
-- Add consistent transition animations to the dropdown menu open and close states
-- Add a sticky topbar so it remains visible when scrolling down on pages with long content
-- Improve the mobile layout of the claims table by adding horizontal scroll indicators
-- Add placeholder text to the Patient Name, Account, and Payer input fields in submit-claims.html
-- Make the account-tabs nav in agreements.html scrollable horizontally on small screens
-- Add a clear visual separator between the sidebar header
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a hover transition animation to the `.btn` elements in `submit-claims.html` for better interactive feedback
+- Add a focus visible outline style to all inputs, selects, and textareas across all pages for keyboard navigation usability
+- Make the `.saved` notice in `submit-claims.html` fade in with a CSS transition instead of abruptly appearing
+- Standardize the sidebar CSS across all pages since `submit-claims.html` uses slightly different transition values than `agreements.html` and `claims.html`
+- Add `resize: vertical` to the `textarea` in `submit-claims.html` to match the `contact.html` textarea behavior
+- Add a visible active/current page indicator to the account tabs in `agreements.html` that is more visually distinct than just a background color change
+- Improve the topbar in `contact.html` to better match the dashboard topbar style used across authenticated pages
+- Add a sticky `position: sticky; top: 0` style to `.topbar` across dashboard pages so it remains visible while scrolling content
+- Add `min-width` constraints
