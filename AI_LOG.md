@@ -115,3 +115,5 @@ Tue Mar 10 14:24:40 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:24:40 PDT 2026: Completed task - Add a visible icon or SVG next to each sidebar nav-link so collapsed sidebar still communicates page identity without relying solely on the dot indicator
 Tue Mar 10 14:26:06 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:26:06 PDT 2026: Completed task - Replace the `::before` dot placeholder in collapsed sidebar with recognizable single-letter or icon abbreviations for each nav item
+Tue Mar 10 14:26:50 PDT 2026: Skipped protected file design-system.css
+Tue Mar 10 14:26:50 PDT 2026: Completed task - Add a smooth rotation animation to the sidebar-tab arrow in `submit-claims.html` to match the behavior already implemented in `agreements.html`

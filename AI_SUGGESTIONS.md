@@ -1,11 +1,11 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` block is cut off and missing closing braces
-- Add a hover state transition animation to the `.btn` elements in `submit-claims.html` for visual feedback
-- Make the `savedNotice` element in `submit-claims.html` auto-hide after a few seconds using a CSS fade-out transition
-- Add consistent `:focus` outline styles to all `input`, `select`, `textarea`, and `button` elements across all pages
-- Replace the plain `>` text character in `.sidebar-tab` with a proper arrow symbol or SVG icon for better visual polish
-- Add a smooth rotate transition to the sidebar tab arrow in `submit-claims.html` to match the behavior already present in `agreements.html`
-- Standardize the `.card-head` `h2` font size across all pages since it varies between files
-- Add `resize: vertical` restriction to all `textarea` elements across pages for consistent layout control
-- Add an active/highlighted style to the `account-tabs` links in `agreements.html` that shows on keyboard focus for accessibility
-- Fix the `contact.html` form layout so labels and inputs are visually grouped with consistent spacing matching
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a hover tooltip to collapsed sidebar nav items so users can identify links without expanding
+- Add a focus-visible outline style to all interactive elements (`input`, `select`, `button`, `a`) for keyboard navigation usability
+- Standardize sidebar CSS across all pages into a shared stylesheet to eliminate code duplication
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
+- Improve the `savedNotice` element in `submit-claims.html` to auto-hide after a few seconds using a CSS transition or JS timeout
+- Add consistent placeholder text to the Patient Name, Account #, and Payer fields in `submit-claims.html`
+- Make the `service-agreement.html` placeholder text `[Insert Date]`, `[Company Name]`, `[State]`, and `[Company Email]` visually distinct using a highlight color to indicate they are unfilled
+- Add a sticky or fixed topbar option for the dashboard pages so the header remains visible while scrolling
+- Improve mobile layout of the form rows in `submit-claims.html` so labels appear above inputs
