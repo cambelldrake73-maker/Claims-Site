@@ -1,14 +1,14 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
 - Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
 - Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Add a transition animation to the `savedNotice` element in `submit-claims.html` instead of an abrupt display change
 - Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
-- Add a character counter to the Notes textarea in `submit-claims.html`
-- Improve the sidebar pin button arrow indicator to rotate when pinned, matching the behavior already implemented in `agreements.html` but missing in `submit-claims.html`
-- Add hover tooltips to collapsed sidebar nav links showing the link label
-- Add a visible active state indicator to the account dropdown links corresponding to the current page
-- Make the topbar `h1` font size responsive so it does not overflow on small screens
-- Add a focus ring style to all interactive elements for keyboard navigation visibility
-- Add a subtle transition animation to the `saved` notice in `submit-claims.html` instead of toggling `display:none` directly
-- Improve the mobile layout of the claims form rows to add proper spacing between label and input
-- Add a consistent page title format across all HTML files
-- Add a sticky topbar so it remains visible when scrolling through long content pages
+- Add hover tooltips to collapsed sidebar nav links so users know where each link leads
+- Fix the `claims.html` file where the CSS is cut off mid-rule, leaving the page without complete styling
+- Add active state highlight to the current page link in the account tabs on `agreements.html`
+- Add a print stylesheet for `agreements.html` so agreement tables print cleanly
+- Add `focus` styles to all interactive elements across pages for keyboard navigation visibility
+- Add a mobile hamburger menu toggle for the sidebar on small screens to replace the always-expanded mobile layout
+- Improve the `contact.html` form layout by visually grouping label and input pairs with consistent spacing
+- Add a sticky topbar option so the header remains visible when scrolling on longer pages
+- Add a character counter to the Notes textarea in

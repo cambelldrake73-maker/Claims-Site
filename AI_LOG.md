@@ -175,3 +175,5 @@ Tue Mar 10 14:54:13 PDT 2026: Completed task - Add `aria-expanded` reset to `fal
 Tue Mar 10 14:54:53 PDT 2026: Completed task - Add `keydown` Escape key listener to close the account dropdown in submit-claims.html to match agreements.html behavior
 Tue Mar 10 14:55:33 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:55:33 PDT 2026: Completed task - Add transition animation to the sidebar tab arrow indicator (rotate on pin) in submit-claims.html to match agreements.html behavior
+Tue Mar 10 14:56:16 PDT 2026: Skipped protected file design-system.css
+Tue Mar 10 14:56:16 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
