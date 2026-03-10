@@ -113,3 +113,5 @@ Tue Mar 10 14:24:21 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:24:21 PDT 2026: Completed task - Standardize sidebar CSS across all pages into a single shared stylesheet to reduce duplication
 Tue Mar 10 14:24:40 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:24:40 PDT 2026: Completed task - Add a visible icon or SVG next to each sidebar nav-link so collapsed sidebar still communicates page identity without relying solely on the dot indicator
+Tue Mar 10 14:26:06 PDT 2026: Skipped protected file design-system.css
+Tue Mar 10 14:26:06 PDT 2026: Completed task - Replace the `::before` dot placeholder in collapsed sidebar with recognizable single-letter or icon abbreviations for each nav item

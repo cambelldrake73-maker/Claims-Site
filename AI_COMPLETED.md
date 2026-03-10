@@ -104,3 +104,4 @@
 - Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
 - Standardize sidebar CSS across all pages into a single shared stylesheet to reduce duplication
 - Add a visible icon or SVG next to each sidebar nav-link so collapsed sidebar still communicates page identity without relying solely on the dot indicator
+- Replace the `::before` dot placeholder in collapsed sidebar with recognizable single-letter or icon abbreviations for each nav item
