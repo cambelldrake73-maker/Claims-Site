@@ -69,3 +69,4 @@
     "message": "x-api-key header is required"
     "message": "x-api-key header is required"
     "message": "x-api-key header is required"
+    "message": "x-api-key header is required"
