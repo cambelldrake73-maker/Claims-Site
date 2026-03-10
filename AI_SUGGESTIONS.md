@@ -1,14 +1,11 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a hover tooltip showing the full nav link label when the sidebar is in collapsed (56px) state
-- Replace the `>` text character in the sidebar toggle button with a proper SVG chevron icon
-- Add focus-visible outline styles to all interactive elements for keyboard navigation visibility
-- Add a character counter below the Notes/Message textarea fields to indicate remaining input length
-- Make the `submit-claims.html` form fields stack into single-column layout on medium screens between 900px and 1200px
-- Add a loading or disabled state to submit buttons after clicking to prevent duplicate submissions appearance
-- Add smooth transition animation to the dropdown menu appearing and disappearing
-- Standardize the card border-radius values across all pages (14px vs 16px inconsistency)
-- Add an active/current page indicator to the account dropdown links when on that page
-- Improve the placeholder text color contrast in input fields to meet readability standards
-- Add a sticky position to the topbar so it remains visible when scrolling long content pages
-- Add a visual divider or grouping between the main nav links and any secondary nav links in the sidebar
+- Add a visible icon (SVG or emoji) to each `.nav-link` so the collapsed sidebar communicates navigation options without text labels
+- Fix the truncated `submit-claims.html` JavaScript — the `accountButton.setAttribute('aria-expanded', 'false')` and Escape key handler are missing, causing the dropdown to not close properly
+- Add `aria-current="page"` to the active `.nav-link` across all pages for better accessibility
+- Standardize sidebar CSS across pages — `submit-claims.html` uses `.26s` while other pages use `260ms`, creating inconsistent transitions
+- Add a hover tooltip showing the full nav label when the sidebar is collapsed so users know where each link leads
+- Add a focus-visible outline style to all interactive elements to improve keyboard navigation visibility
+- Make the `.topbar h1` font size responsive so it does not overflow on small screens
+- Add a mobile hamburger menu toggle for the sidebar since the current mobile layout just stretches the sidebar full width
+- Style the `<input type="date">` in `submit-claims.html` to be consistent cross-browser since default date pickers vary significantly
+- Add `resize: vertical` only to textareas and `resize: none` default to prevent horizontal layout breaking
+- Add a loading/disabled state style to the Submit button in `submit-claims.html` to

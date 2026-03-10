@@ -122,3 +122,4 @@ Tue Mar 10 14:28:13 PDT 2026: Completed task - Add `transition` property to `.na
 Tue Mar 10 14:28:55 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:28:55 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
 Tue Mar 10 14:29:36 PDT 2026: Completed task - Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
+Tue Mar 10 14:30:17 PDT 2026: Completed task - Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
