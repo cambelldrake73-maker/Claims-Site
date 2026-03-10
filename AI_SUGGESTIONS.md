@@ -1,13 +1,15 @@
-- Add a visible icon or symbol to each sidebar nav link so collapsed state communicates destination without hover
-- Fix submit-claims.html script block which is cut off and missing closing braces and event listeners for form submit and savedNotice display
-- Add transition animation to the savedNotice element in submit-claims.html so it fades in smoothly instead of appearing instantly
-- Standardize sidebar CSS across all pages into a single shared stylesheet to eliminate duplicated style blocks
-- Add hover state color change to the sidebar-tab button to improve affordance
-- Make the topbar h1 font size responsive so it does not overflow on small screens
-- Add focus-visible outline styles to all interactive elements for keyboard navigation visibility
-- Add placeholder text to the patient name, account number, and payer fields in submit-claims.html
-- Fix textarea resize handle in contact.html being vertically only while other pages have no resize control at all, standardize across forms
-- Add active state styling to account-tabs links with a more distinct visual treatment beyond just background color change
-- Increase color contrast on muted text using --muted variable which at #6b7280 on white fails WCAG AA for small text
-- Add a visible required field indicator such as an asterisk to labeled required inputs across all forms
-- Make the claims table in agreements.html horizontally scrollable on mobile with a visible scroll hint
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off mid-function
+- Add `aria-expanded` reset to `false` in the account menu close handler in submit-claims.html to match the pattern used in agreements.html
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Add a dismiss button to the green "Claim saved to queue" success notice in submit-claims.html
+- Add transition animation to the success notice in submit-claims.html instead of it appearing abruptly
+- Increase the sidebar collapsed width slightly on mobile or hide it entirely and replace with a hamburger menu
+- Add a sticky topbar so it remains visible when scrolling long claim forms or tables
+- Add hover tooltips to collapsed sidebar nav links showing the link label
+- Standardize the sidebar pinned arrow indicator so it rotates consistently across all pages matching the agreements.html implementation
+- Add visible focus ring styles to all interactive elements for keyboard navigation support
+- Add column sorting indicators to the agreements table headers
+- Make the agreements table rows highlight on hover for better readability
+- Add a placeholder empty state message to the claims table for when no claims are present
+- Improve the contact form label and input spacing to
