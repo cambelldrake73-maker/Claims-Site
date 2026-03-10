@@ -1,23 +1,31 @@
 #!/bin/bash
 
-cd ~/.openclaw/workspace/claims-site
+WORKSPACE="$HOME/.openclaw/workspace/claims-site"
 
 echo "AI worker starting..."
 
-git pull origin main
+cd "$WORKSPACE"
 
-echo "Running OpenClaw improvement task..."
+while true
+do
+echo "-----------------------------------"
+echo "Syncing repo..."
 
-curl -s http://127.0.0.1:18789/api/agents/main/run \
-  -H "Content-Type: application/json" \
-  -d '{
-    "prompt": "Improve the claims portal UI following AGENT_RULES.md."
-  }'
+git fetch origin
 
-echo "Saving improvements..."
+git checkout ai-dev
+git pull origin ai-dev
 
-git add .
-git commit -m "OpenClaw automated improvement"
-git push origin main
+echo "Generating AI suggestions..."
+bash ai-suggest.sh
 
-echo "AI worker finished."
+echo "Generating AI tasks..."
+bash ai-task-maker.sh
+
+echo "Checking for tasks..."
+bash ai-executor.sh
+
+echo "Sleeping 30 seconds..."
+sleep 30
+
+done

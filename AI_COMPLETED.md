@@ -1,1 +1,2 @@
 - Improve dashboard layout spacing
+- Improve dashboard layout responsiveness
