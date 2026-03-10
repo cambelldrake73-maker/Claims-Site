@@ -1,15 +1,14 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
-- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler and form submission logic are cut off
-- Add a hover state transition animation to the primary and secondary buttons across all pages for visual feedback
-- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
-- Add a character counter below the Notes/Message textarea fields to indicate remaining input length
-- Fix the contact.html form layout so labels and inputs are visually grouped with consistent spacing matching other pages
-- Add a loading spinner or disabled state to submit buttons after clicking to prevent double submissions visually
-- Add a mobile hamburger menu toggle for the sidebar on small screens since the current mobile layout collapses the sidebar oddly
-- Make the topbar sticky on scroll across all dashboard pages so navigation remains accessible
-- Add visual breadcrumb navigation below the topbar on inner pages to help orient users
-- Improve the agreements.html table responsiveness by converting it to a card-based layout on mobile instead of overflow-x scroll
-- Add an empty state message or placeholder UI for tables and lists when no data is present
-- Add consistent focus ring styles to all interactive elements for keyboard navigation visibility
-- Normalize font sizes and heading hierarchy across all pages for visual consistency
-- Add a subtle active indicator line
+- Add a visible icon or symbol to each sidebar nav link to improve usability when the sidebar is collapsed
+- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
+- Add `aria-expanded` reset to `false` in the account menu close handler in submit-claims.html to match agreements.html behavior
+- Add `keydown` Escape key listener to close the account dropdown in submit-claims.html to match agreements.html behavior
+- Add a spinning or loading state to the Submit Claim button while the form processes to provide user feedback
+- Add character counter below the Notes textarea in submit-claims.html
+- Make the `savedNotice` confirmation message auto-hide after a few seconds instead of remaining visible
+- Add a hover tooltip to collapsed sidebar nav links showing the link label
+- Standardize sidebar CSS transition duration values across all pages (submit-claims.html uses `.26s` while others use `260ms`)
+- Add active state indicator styling to account dropdown links when on the current page
+- Add smooth scroll padding to the top of the content area to prevent topbar overlap on anchor navigation
+- Make the topbar `h1` font-size responsive for smaller screens in submit-claims.html
+- Add a visible required field indicator (asterisk) to form labels in submit-claims.html
+- Add focus ring styles to form inputs and
