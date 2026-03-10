@@ -1,2 +1,3 @@
 - Improve dashboard layout spacing
 - Improve dashboard layout responsiveness
+- Improve sidebar navigation spacing
