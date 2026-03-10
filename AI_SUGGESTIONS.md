@@ -1,13 +1,14 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Standardize sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
+- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
+- Add a loading/disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Add hover and focus styles to form inputs, selects, and textareas across all pages for better interactivity feedback
+- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
 - Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Improve the `savedNotice` element in `submit-claims.html` to auto-hide after a few seconds using a CSS transition
-- Add hover tooltips to collapsed sidebar nav links showing the link label for better usability
-- Make the topbar `h1` font size responsive so it does not overflow on small screens
-- Add `focus-visible` outline styles to buttons and links for keyboard navigation visibility
-- Add an active state indicator to account dropdown links to show the current page
-- Fix the `submit-claims.html` sidebar so the `::before` dot indicator is properly centered and consistent with other pages
-- Add a sticky topbar behavior so it remains visible when scrolling through long claim forms
-- Improve the form layout on `submit-claims.html` so label and input pairs stack
+- Add smooth transition animation to the dropdown menu opening and closing
+- Replace the plain `>` text arrow in the sidebar toggle button with a proper CSS chevron icon
+- Add a visible active/current page indicator style that is more distinct than just a background color change
+- Add a mobile hamburger menu for the sidebar instead of the current collapsed behavior on small screens
+- Fix the `claims.html` file which appears to be truncated mid-CSS
+- Add proper placeholder text to the Patient Name, Account, and Payer fields in `submit-claims.html`
+- Add consistent focus-visible outline styles for keyboard navigation across all interactive elements
+- Add a sticky topbar so it remains visible while scrolling through long content pages

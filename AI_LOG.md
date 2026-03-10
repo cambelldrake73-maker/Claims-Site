@@ -159,3 +159,5 @@ Tue Mar 10 14:45:59 PDT 2026: Completed task - Add a visible icon or symbol to e
 Tue Mar 10 14:46:40 PDT 2026: Completed task - Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
 Tue Mar 10 14:47:20 PDT 2026: Completed task - Add a loading/disabled state to the Submit Claim button after form submission to prevent duplicate clicks
 Tue Mar 10 14:48:01 PDT 2026: Completed task - Make the `savedNotice` span in `submit-claims.html` auto-hide after a few seconds using a CSS transition or `setTimeout`
+Tue Mar 10 14:48:43 PDT 2026: Skipped protected file design-system.css
+Tue Mar 10 14:48:43 PDT 2026: Completed task - Add a pin/unpin visual indicator to the sidebar-tab button so users understand its toggle function (e.g., rotate arrow icon like `agreements.html` already does, but `submit-claims.html` is missing this)
