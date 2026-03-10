@@ -1,12 +1,11 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` event handler is cut off and missing the closing `aria-expanded` reset and form submit handler
-- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Add hover transition animations to the primary and secondary buttons across all pages for visual consistency
-- Add a loading or disabled state to the Submit button in `submit-claims.html` after form submission to prevent duplicate clicks
-- Add placeholder text to the Patient Name, Account #, and Payer fields in `submit-claims.html` for better usability
-- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds
-- Standardize the card border-radius across all pages since some use `14px` and others use `16px`
-- Add an active highlight to the Account dropdown links when their corresponding page is currently open
-- Add a sticky or fixed topbar on scroll so the header remains visible on longer pages like `agreements.html`
-- Improve the mobile layout of the table in `agreements.html` by replacing it with stacked card rows on small screens instead of horizontal overflow scroll
-- Add visible focus styles to all interactive
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the closing `aria-expanded` reset and `});`
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Make the `savedNotice` confirmation message auto-hide after a few seconds using a CSS transition or setTimeout
+- Standardize the `sidebar-tab` toggle arrow indicator so it rotates 180° when pinned across all pages (currently missing in `submit-claims.html`)
+- Add consistent `aria-label` attributes to all nav links across pages since the link text is inside a `.nav-label` span that is hidden by default
+- Add `focus-visible` outline styles to interactive elements (buttons, links, inputs) for keyboard navigation visibility
+- Add a visible active underline or highlight to the account dropdown links that match the current page
+- Fix the `.account-tabs` pill nav in `agreements.html` to have a clear hover state matching the active style
+- Add `placeholder` text to the Patient Name, Account #, and P
