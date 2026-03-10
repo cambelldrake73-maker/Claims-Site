@@ -7,7 +7,7 @@ cd "$WORKSPACE"
 
 echo "Scanning project..."
 
-PROJECT_FILES=$(find . -type f -name "*.html" -o -name "*.css" -o -name "*.js" | head -n 40)
+PROJECT_FILES=$(find . -type f | head -n 40)
 PROMPT="You are reviewing a medical claims dashboard web application.
 
 Project files:
