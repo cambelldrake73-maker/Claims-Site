@@ -1,11 +1,12 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add a loading or disabled state to the Submit Claim button after the form is submitted to prevent double-clicks
-- Increase the contrast of the `.nav-link::before` dot indicator as it is difficult to see at current opacity
-- Add `resize: vertical` to the `textarea` in `submit-claims.html` to match the behavior in `contact.html`
-- Add smooth `display` transition or fade-in animation to the `.saved` notice in `submit-claims.html`
-- Make the topbar sticky with `position: sticky; top: 0; z-index: 100;` across all dashboard pages so it stays visible while scrolling
-- Add a visual separator or section grouping to the sidebar nav if more links are added in the future
-- Standardize `card-head` padding across `submit-claims.html` and `agreements.html` as values differ slightly
-- Add `outline` or `focus-visible` styles to all interactive elements for keyboard navigation visibility
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a hover transition animation to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Add `aria-current="page"` to the active nav link across all pages for better accessibility
+- Make the `savedNotice` success message in `submit-claims.html` auto-hide after a few seconds using a CSS fade-out transition
+- Add a focus ring style to all `input`, `select`, and `textarea` elements to improve keyboard navigation visibility
+- Standardize border-radius values across all cards and buttons for visual consistency between pages
+- Add placeholder text to the Patient Name, Account, and Payer fields in `submit-claims.html`
+- Improve the sidebar collapse button arrow indicator in `submit-claims.html` to rotate like it does in `agreements.html`
+- Add a responsive hamburger menu or collapsible nav for mobile viewports instead of the full-width sidebar
+- Fix inconsistent padding on `.content` between pages so spacing is uniform across the dashboard
+- Add a visible active state underline or highlight to the account tabs in `agreements.html
