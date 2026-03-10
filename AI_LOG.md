@@ -156,3 +156,4 @@ Tue Mar 10 14:45:18 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:45:18 PDT 2026: Completed task - Increase the collapsed sidebar width slightly or add tooltips on nav links so users know where each link leads without expanding
 Tue Mar 10 14:45:59 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:45:59 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates navigation options without text
+Tue Mar 10 14:46:40 PDT 2026: Completed task - Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces

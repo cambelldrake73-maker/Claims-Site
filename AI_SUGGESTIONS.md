@@ -1,9 +1,13 @@
-- Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates navigation options without text
-- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
-- Add a loading/disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Make the `savedNotice` span in `submit-claims.html` auto-hide after a few seconds using a CSS transition or `setTimeout`
-- Add a pin/unpin visual indicator to the sidebar-tab button so users understand its toggle function (e.g., rotate arrow icon like `agreements.html` already does, but `submit-claims.html` is missing this)
-- Standardize the sidebar-tab CSS across all pages — `submit-claims.html` is missing `display:flex; align-items:center; justify-content:center; padding:0;` that `agreements.html` has
-- Add `focus-visible` outline styles to buttons and links for keyboard navigation visibility
-- Add a character counter or max-length hint below the Notes textarea in `submit-claims.html`
-- Apply consistent `font-size:14px` to the account button across all pages — `submit-claims.html` is missing this compared to `
+- Add a visible icon or SVG to each sidebar nav link instead of the CSS dot pseudo-element placeholder
+- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
+- Add `aria-expanded="false"` reset inside the click-outside handler in submit-claims.html to match agreements.html pattern
+- Add `aria-label` attributes to all form inputs in submit-claims.html that rely solely on label elements for screen reader support
+- Add hover transition animation to `.btn` elements in submit-claims.html
+- Make the sidebar tab arrow rotate 180 degrees when pinned in submit-claims.html to match agreements.html behavior
+- Add `focus-visible` outline styles to interactive elements across all pages for keyboard navigation visibility
+- Standardize card border-radius across pages (submit-claims uses 16px, claims and agreements use 14px)
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent double submissions
+- Move the `savedNotice` confirmation message to appear above the action buttons rather than inline beside them
+- Add responsive stacking behavior to the `.actions` button row in submit-claims.html for small screens
+- Increase the sidebar collapsed width from 56px to at least 48px and ensure nav link icons remain centered when collapsed
+- Add a visible active indicator (left border
