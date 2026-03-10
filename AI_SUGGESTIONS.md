@@ -1,11 +1,12 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` block and form submit handler are cut off and need to be completed
-- Add `aria-expanded="false"` reset inside the `submit-claims.html` account menu close handler to match behavior in other pages
-- Add `Escape` key listener to close the account dropdown in `submit-claims.html` to match `agreements.html` behavior
-- Add a character counter or max-length attribute to the Notes textarea in `submit-claims.html`
-- Replace the plain `>` text in the sidebar toggle button with a proper arrow icon or CSS chevron for better visual polish
-- Add a rotating transform to the sidebar tab arrow when the sidebar is pinned, as done in `agreements.html` but missing in `submit-claims.html`
-- Add hover styles to the submit button in `contact.html`-style consistency across all form buttons
-- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds using a CSS transition or JS timeout
-- Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
-- Normalize inconsistent border-radius values used across cards, inputs, and buttons across files
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a focus-visible outline style to all interactive elements (buttons, links, inputs) for keyboard navigation accessibility
+- Add a hover state color transition to the `btn.primary` and `btn.secondary` buttons in `submit-claims.html`
+- Add character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+- Make the `saved` notice in `submit-claims.html` animate in with a fade or slide transition instead of abruptly appearing
+- Fix the `claims.html` CSS which is cut off mid-rule at `.nav-link::before`
+- Standardize sidebar CSS across all pages into a shared stylesheet to eliminate duplicated style blocks
+- Add `placeholder` attributes to the Patient Name, Account #, and Payer inputs in `submit-claims.html` for better usability
+- Add a sticky or fixed topbar option so the header remains visible when scrolling long content
+- Improve the `contact.html` form layout by aligning labels above their inputs consistently using a grid or flex column layout
+- Add a loading or disabled state to the Submit button in `submit

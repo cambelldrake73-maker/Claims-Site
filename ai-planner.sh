@@ -42,7 +42,6 @@ EOF
 )
 
 echo "Generating tasks using ChatGPT..."
-
 python3 <<EOF > "$SUGGESTIONS"
 import os
 import requests
@@ -51,25 +50,28 @@ import json
 api_key = os.environ.get("OPENAI_API_KEY")
 
 response = requests.post(
-    "https://api.openai.com/v1/chat/completions",
+    "https://api.openai.com/v1/responses",
     headers={
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     },
     json={
         "model": "gpt-5-mini",
-        "messages": [
-            {"role": "system", "content": "You are a senior full-stack architect."},
-            {"role": "user", "content": """$PROMPT"""}
-        ],
+        "input": """$PROMPT""",
         "temperature": 0.2
     }
 )
 
 data = response.json()
 
-if "choices" in data:
-    print(data["choices"][0]["message"]["content"])
+if "output" in data:
+    text = ""
+    for item in data["output"]:
+        if "content" in item:
+            for c in item["content"]:
+                if "text" in c:
+                    text += c["text"]
+    print(text)
 else:
     print("OPENAI ERROR:")
     print(json.dumps(data, indent=2))
