@@ -1,15 +1,13 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off mid-function
-- Add `aria-expanded` reset to `false` in the account menu close handler in submit-claims.html to match the pattern used in agreements.html
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Add a dismiss button to the green "Claim saved to queue" success notice in submit-claims.html
-- Add transition animation to the success notice in submit-claims.html instead of it appearing abruptly
-- Increase the sidebar collapsed width slightly on mobile or hide it entirely and replace with a hamburger menu
-- Add a sticky topbar so it remains visible when scrolling long claim forms or tables
-- Add hover tooltips to collapsed sidebar nav links showing the link label
-- Standardize the sidebar pinned arrow indicator so it rotates consistently across all pages matching the agreements.html implementation
-- Add visible focus ring styles to all interactive elements for keyboard navigation support
-- Add column sorting indicators to the agreements table headers
-- Make the agreements table rows highlight on hover for better readability
-- Add a placeholder empty state message to the claims table for when no claims are present
-- Improve the contact form label and input spacing to
+- Add a visible icon (SVG or emoji) to each sidebar nav link to improve scanability when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` handler is cut off and missing closing braces
+- Add a hover tooltip showing the nav link label when the sidebar is in collapsed state
+- Increase the sidebar collapse/expand tab button size for easier clicking on touch devices
+- Add a focus-visible outline style to all interactive elements (buttons, links, inputs) for keyboard navigation visibility
+- Add `resize: vertical` to all textarea elements for consistent resize behavior across pages
+- Add placeholder text to the Patient Name, Account #, and Payer fields in `submit-claims.html`
+- Style the `<select>` elements to match the height and appearance of the `<input>` elements more consistently
+- Add a loading/spinner state to the Submit Claim button after form submission to prevent double-clicks
+- Make the `savedNotice` success banner in `submit-claims.html` auto-hide after a few seconds using a CSS transition
+- Add a character counter below the Notes textarea in `submit-claims.html`
+- Improve mobile layout of the topbar so the page title does not overlap the Account button on small screens
+- Add `min-width` to the account dropdown so it does not
