@@ -1,9 +1,10 @@
-- Add a visible icon or SVG to each sidebar nav link instead of the CSS dot (`::before` pseudo-element) so navigation items are recognizable when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click', ...)` handler is cut off and missing the closing `aria-expanded` reset and `});` lines
-- Add a hover background transition (`transition: background-color 180ms ease`) to `.nav-link` in `submit-claims.html` to match the smoother styling used in `agreements.html` and `claims.html`
-- Make the sidebar pin button arrow rotate 180° when pinned in `submit-claims.html` to match the behavior already implemented in `agreements.html`
-- Add `resize: vertical` to all `textarea` elements across the project for consistent resize behavior
-- Add `focus` outline styles to all `input`, `select`, `textarea`, and `button` elements for visible keyboard focus indication
-- Add responsive stacking behavior to `.actions` in `submit-claims.html` so buttons stack vertically on small screens
-- Increase the sidebar collapsed width from `56px` to something slightly wider so the nav dot indicators are more visually centered
-- Add a subtle active underline or left border accent to `.nav-link.active` to make the current page more vis
+- Add a visible icon or symbol to each sidebar nav link so collapsed state communicates page identity without text
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click', ...)` handler is cut off before closing the `accountMenu.classList.remove('open')` and `aria-expanded` reset
+- Add `aria-expanded` reset to the account menu click-outside handler in `submit-claims.html` to match the pattern in `agreements.html`
+- Add `aria-label` or `aria-current="page"` to the active nav link across all pages for screen reader clarity
+- Standardize the sidebar CSS transition duration across files (`submit-claims.html` uses `.26s` while others use `260ms`)
+- Add a hover state color transition to `.nav-link` in `submit-claims.html` to match the `180ms ease` transition defined in other files
+- Add a spinning or animated indicator to the sidebar pin tab to show pinned vs unpinned state, matching the rotate transform already defined in `agreements.html` but missing in `submit-claims.html`
+- Add `resize: vertical` to the `textarea` in `submit-claims.html` so users can resize the notes field
+- Add character counter below the notes `textarea` in `submit-claims.html`
+- Make the `

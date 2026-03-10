@@ -35,3 +35,4 @@
 - Add `font-size:14px` to `.account-button` in `submit-claims.html` to match other pages
 - Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates destination without hover
 - Fix the truncated JavaScript in submit-claims.html where the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
+- Add a loading/disabled state to the Submit Claim button after form submission to prevent double-clicks
