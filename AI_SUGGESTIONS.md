@@ -1,12 +1,9 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a hover transition animation to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add `aria-current="page"` to the active nav link across all pages for better accessibility
-- Make the `savedNotice` success message in `submit-claims.html` auto-hide after a few seconds using a CSS fade-out transition
-- Add a focus ring style to all `input`, `select`, and `textarea` elements to improve keyboard navigation visibility
-- Standardize border-radius values across all cards and buttons for visual consistency between pages
-- Add placeholder text to the Patient Name, Account, and Payer fields in `submit-claims.html`
-- Improve the sidebar collapse button arrow indicator in `submit-claims.html` to rotate like it does in `agreements.html`
-- Add a responsive hamburger menu or collapsible nav for mobile viewports instead of the full-width sidebar
-- Fix inconsistent padding on `.content` between pages so spacing is uniform across the dashboard
-- Add a visible active state underline or highlight to the account tabs in `agreements.html
+- Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates navigation options without text
+- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
+- Add a loading/disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Make the `savedNotice` span in `submit-claims.html` auto-hide after a few seconds using a CSS transition or `setTimeout`
+- Add a pin/unpin visual indicator to the sidebar-tab button so users understand its toggle function (e.g., rotate arrow icon like `agreements.html` already does, but `submit-claims.html` is missing this)
+- Standardize the sidebar-tab CSS across all pages — `submit-claims.html` is missing `display:flex; align-items:center; justify-content:center; padding:0;` that `agreements.html` has
+- Add `focus-visible` outline styles to buttons and links for keyboard navigation visibility
+- Add a character counter or max-length hint below the Notes textarea in `submit-claims.html`
+- Apply consistent `font-size:14px` to the account button across all pages — `submit-claims.html` is missing this compared to `

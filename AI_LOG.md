@@ -154,3 +154,5 @@ Tue Mar 10 14:43:57 PDT 2026: Completed task - Add a loading/disabled state to t
 Tue Mar 10 14:44:38 PDT 2026: Completed task - Add a character counter below the Notes textarea in submit-claims.html
 Tue Mar 10 14:45:18 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:45:18 PDT 2026: Completed task - Increase the collapsed sidebar width slightly or add tooltips on nav links so users know where each link leads without expanding
+Tue Mar 10 14:45:59 PDT 2026: Skipped protected file design-system.css
+Tue Mar 10 14:45:59 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates navigation options without text
