@@ -1,13 +1,14 @@
-- Add a visible icon or symbol to each sidebar nav link to improve usability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click', ...)` handler is cut off and missing the closing `aria-expanded` reset and Escape key listener
-- Add a spinner or loading indicator to the Submit Claim button after form submission to prevent double-clicks
-- Standardize the sidebar CSS across all pages into a shared stylesheet to reduce duplication
-- Add hover and focus styles to all form inputs to improve visual feedback
-- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds
-- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Improve mobile layout for `claims.html` table by making columns horizontally scrollable or stacking them
-- Add a sticky topbar so it remains visible when scrolling through long content pages
-- Add active state indicator to account dropdown links to show which sub-page is currently selected
-- Add spacing or divider between the sidebar nav links and the bottom of the sidebar for better visual grouping
-- Make the sidebar pin button arrow rotate visually when pinned in `submit-claims.html` to match the behavior already implemented in `agreements.html`
-- Add a visible placeholder or empty-state
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a loading/spinner state to the Submit Claim button after form submission to prevent duplicate clicks
+- Add hover transition animation to the sidebar pin tab arrow indicator to smooth the direction change
+- Standardize sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
+- Add a character counter below the Notes textarea in `submit-claims.html`
+- Improve the mobile topbar layout so the page title does not overlap the Account button on small screens
+- Add `focus` outline styles to all interactive elements for keyboard navigation visibility
+- Add a placeholder state to the claims table for when no claims have been submitted yet
+- Increase color contrast on `.nav-link` default state text (`#d1d5db` on `#111827`) to meet WCAG AA
+- Add smooth transition to the account dropdown appearing instead of instant display toggle
+- Add active/current page indicator styling to the account tabs in `agreements.html` that is more visually distinct
+- Make the `service-agreement.html` topbar sticky so navigation remains accessible while scrolling long content
+- Add print stylesheet to `service-agreement.html` to
