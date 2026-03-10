@@ -1,13 +1,12 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the `aria-expanded` reset and closing braces
-- Add hover and focus styles to form inputs across all pages to improve visual feedback
-- Add a loading/disabled state to the Submit Claim button after form submission to prevent double-clicks
-- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds
-- Standardize border-radius values across all pages since some use `10px` and others use `14px` or `16px` inconsistently
-- Add a sticky or fixed topbar on scroll for dashboard pages to keep navigation accessible
-- Improve the sidebar pin button with a clearer icon or tooltip label instead of just `>`
-- Add active state highlight to account dropdown links when on the current page
-- Add `aria-current="page"` to the active nav link for screen reader support
-- Fix the `claims.html` file which appears to be cut off mid-CSS and likely missing its HTML body content
-- Add smooth transition animation to the dropdown menu opening and closing
-- Improve the mobile layout of the topbar in `submit-claims.html` to prevent the title and account
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'...)` block is cut off and missing closing braces
+- Add a loading/spinner state to the Submit Claim button after form submission to prevent duplicate clicks
+- Add `aria-expanded` attribute reset in `submit-claims.html` account menu click-outside handler to match the pattern used in `agreements.html`
+- Increase the collapsed sidebar width from 56px to 64px to better accommodate nav link dot indicators
+- Add a visual active state indicator (left border accent or highlight) to the currently active sidebar nav link
+- Add smooth transition animation to the `savedNotice` element in `submit-claims.html` instead of abrupt `display` toggle
+- Standardize sidebar CSS across all pages into a shared stylesheet to reduce code duplication
+- Add hover tooltips to collapsed sidebar nav links showing the link label text
+- Fix the `claims.html` CSS which appears to be cut off mid-rule in the `.nav-link::before` block
+- Add placeholder text to the Patient Name, Account, and Payer fields in `submit-claims.html` for better usability
+- Add a currency symbol prefix display inside the Claim Amount input field for clearer context
