@@ -1,10 +1,13 @@
-- Add a visible icon (SVG or emoji) to each sidebar nav link to improve scannability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute` and closing braces after the `document.addEventListener('click')` handler are missing
-- Add `accountButton.setAttribute('aria-expanded', 'false')` to the account menu close handler in `submit-claims.html` to match the pattern used in other pages
-- Add an Escape key listener to close the account dropdown in `submit-claims.html` to match `agreements.html` behavior
-- Add a hover state color transition (`transition: background-color 180ms ease`) to `.nav-link` in `submit-claims.html` to match other pages
-- Make the `saved` / success notice in `submit-claims.html` auto-hide after a few seconds using a CSS fade-out or JS timeout
-- Add `resize: vertical` to all `textarea` elements across pages for consistent resizing behavior
-- Add `:focus` outline styles to all `input`, `select`, `textarea`, and `button` elements for keyboard accessibility visibility
-- Add a loading or disabled state to the Submit button in `submit-claims.html` while the form is being processed
-- Align the form field widths in `contact.html` labels to match
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'...)` block is cut off, missing the closing `aria-expanded` reset and Escape key handler
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Standardize sidebar CSS across all pages into a shared stylesheet to reduce code duplication
+- Add a smooth transition animation to the `savedNotice` element in `submit-claims.html` instead of abruptly showing it
+- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+- Improve the `claims.html` file which appears to be cut off mid-CSS and is missing its HTML body content
+- Add hover tooltips to collapsed sidebar nav links so users know where each link leads
+- Add active state styling to the account dropdown links to indicate the current page
+- Make the topbar sticky/fixed so it remains visible when scrolling through long content pages
+- Add a back-to-top button on longer pages like `service-agreement.html`
+- Improve mobile layout for the form rows in `submit-claims.html` by adding proper spacing between label and input on small screens
+- Add placeholder text to the Patient Name,

@@ -58,3 +58,4 @@
 - Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
 - Add a transition animation to the `savedNotice` element in `submit-claims.html` instead of an abrupt display change
 - Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
