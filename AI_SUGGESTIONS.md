@@ -1,10 +1,10 @@
-- Add a visible icon or symbol to each sidebar nav link so navigation items are identifiable when the sidebar is collapsed
-- Fix the truncated JavaScript in submit-claims.html where the `document.addEventListener('click', ...)` handler is cut off and missing the closing `accountButton.setAttribute` line and closing braces
-- Add `aria-expanded` reset to `'false'` inside the account menu close handler in submit-claims.html to match behavior in other pages
-- Add `Escape` key listener to close the account dropdown in submit-claims.html to match the pattern used in agreements.html
-- Add a character counter or max-length attribute to the Notes textarea in submit-claims.html
-- Make the sidebar pin tab button rotate its arrow indicator when pinned, matching the improved behavior defined in agreements.html but missing in submit-claims.html
-- Add a visible active state indicator (such as a left border or accent color) to the active nav link beyond just the background color change
-- Add hover color transition animation to nav links in submit-claims.html to match the `transition: background-color 180ms ease` defined in claims.html and agreements.html
-- Add placeholder text to the Patient Name, Account, and Payer fields in submit-claims.html for better usability
-- Make the success/saved notice in submit-claims.html auto-hide after a few seconds using
+- Add a visible icon (SVG or emoji) to each sidebar nav link to improve scannability when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute` and closing braces after the `document.addEventListener('click')` handler are missing
+- Add `accountButton.setAttribute('aria-expanded', 'false')` to the account menu close handler in `submit-claims.html` to match the pattern used in other pages
+- Add an Escape key listener to close the account dropdown in `submit-claims.html` to match `agreements.html` behavior
+- Add a hover state color transition (`transition: background-color 180ms ease`) to `.nav-link` in `submit-claims.html` to match other pages
+- Make the `saved` / success notice in `submit-claims.html` auto-hide after a few seconds using a CSS fade-out or JS timeout
+- Add `resize: vertical` to all `textarea` elements across pages for consistent resizing behavior
+- Add `:focus` outline styles to all `input`, `select`, `textarea`, and `button` elements for keyboard accessibility visibility
+- Add a loading or disabled state to the Submit button in `submit-claims.html` while the form is being processed
+- Align the form field widths in `contact.html` labels to match
