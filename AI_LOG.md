@@ -117,3 +117,4 @@ Tue Mar 10 14:26:06 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:26:06 PDT 2026: Completed task - Replace the `::before` dot placeholder in collapsed sidebar with recognizable single-letter or icon abbreviations for each nav item
 Tue Mar 10 14:26:50 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:26:50 PDT 2026: Completed task - Add a smooth rotation animation to the sidebar-tab arrow in `submit-claims.html` to match the behavior already implemented in `agreements.html`
+Tue Mar 10 14:27:31 PDT 2026: Completed task - Fix missing `accountButton.setAttribute('aria-expanded', 'false')` reset in the `submit-claims.html` document click listener where the script appears cut off

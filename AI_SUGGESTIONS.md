@@ -1,11 +1,13 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a hover tooltip to collapsed sidebar nav items so users can identify links without expanding
-- Add a focus-visible outline style to all interactive elements (`input`, `select`, `button`, `a`) for keyboard navigation usability
-- Standardize sidebar CSS across all pages into a shared stylesheet to eliminate code duplication
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
-- Improve the `savedNotice` element in `submit-claims.html` to auto-hide after a few seconds using a CSS transition or JS timeout
-- Add consistent placeholder text to the Patient Name, Account #, and Payer fields in `submit-claims.html`
-- Make the `service-agreement.html` placeholder text `[Insert Date]`, `[Company Name]`, `[State]`, and `[Company Email]` visually distinct using a highlight color to indicate they are unfilled
-- Add a sticky or fixed topbar option for the dashboard pages so the header remains visible while scrolling
-- Improve mobile layout of the form rows in `submit-claims.html` so labels appear above inputs
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the `aria-expanded` reset and closing braces
+- Add hover and focus styles to form inputs across all pages to improve visual feedback
+- Add a loading/disabled state to the Submit Claim button after form submission to prevent double-clicks
+- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds
+- Standardize border-radius values across all pages since some use `10px` and others use `14px` or `16px` inconsistently
+- Add a sticky or fixed topbar on scroll for dashboard pages to keep navigation accessible
+- Improve the sidebar pin button with a clearer icon or tooltip label instead of just `>`
+- Add active state highlight to account dropdown links when on the current page
+- Add `aria-current="page"` to the active nav link for screen reader support
+- Fix the `claims.html` file which appears to be cut off mid-CSS and likely missing its HTML body content
+- Add smooth transition animation to the dropdown menu opening and closing
+- Improve the mobile layout of the topbar in `submit-claims.html` to prevent the title and account
