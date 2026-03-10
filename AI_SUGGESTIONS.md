@@ -1,9 +1,12 @@
-- Fix truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute('aria-expanded', 'false')` and Escape key listener are missing compared to other pages
-- Add `aria-expanded` reset and Escape key handler to `submit-claims.html` account menu script to match `agreements.html` behavior
-- Add spinning/rotation transition to sidebar tab arrow in `submit-claims.html` to match `agreements.html` pinned state indicator
-- Add `display:flex; align-items:center; justify-content:center; padding:0;` to `.sidebar-tab` in `submit-claims.html` to match `agreements.html` styling
-- Add `font-size:14px` to `.account-button` in `submit-claims.html` to match other pages
-- Add `white-space:nowrap` and `transition` properties to `.nav-link` in `submit-claims.html` to match `claims.html` and `agreements.html`
-- Add `letter-spacing:-.02em` to `.topbar h1` in `submit-claims.html` to match `agreements.html`
-- Fix `.saved` notice in `submit-claims.html` to auto-hide after a few seconds using a CSS transition or JS timeout
-- Add `resize:vertical` to `textarea` in
+- Add a visible icon or symbol to each sidebar nav link to improve usability when the sidebar is collapsed
+- Fix the submit-claims.html script block which is cut off and missing the closing event listener, `aria-expanded` reset, and closing script tag
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in submit-claims.html
+- Add focus-visible outline styles to all interactive elements (buttons, inputs, links) for keyboard navigation visibility
+- Make the `savedNotice` confirmation message in submit-claims.html auto-hide after a few seconds using a CSS transition or JS timeout
+- Add a character counter or max-length indicator below the Notes textarea in submit-claims.html
+- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce duplication
+- Add `aria-current="page"` to the active nav link on each page for screen reader support
+- Fix the sidebar pin button arrow indicator in submit-claims.html to rotate on pinned state, matching the behavior already implemented in agreements.html
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate submissions
+- Improve the mobile layout of the topbar in submit-claims.html so the heading and account button do not overlap on small screens
+- Add a visible required field indicator (e.g. asterisk) to form labels

@@ -124,3 +124,4 @@
 - Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
 - Standardize the `sidebar-tab` toggle arrow indicator so it rotates 180° when pinned across all pages (currently missing in `submit-claims.html`)
 - Fix truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute('aria-expanded', 'false')` and Escape key listener are missing compared to other pages
+- Add `aria-expanded` reset and Escape key handler to `submit-claims.html` account menu script to match `agreements.html` behavior
