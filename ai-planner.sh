@@ -2,7 +2,7 @@
 
 WORKSPACE="$HOME/.openclaw/workspace/claims-site"
 SUGGESTIONS="$WORKSPACE/AI_SUGGESTIONS.md"
-
+PROJECT_CONTEXT=$(cat PROJECT_CONTEXT.md 2>/dev/null)
 cd "$WORKSPACE"
 
 echo "Scanning project for planning..."

@@ -15,7 +15,6 @@
 - Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
 - Add a character counter or max-length attribute to the `textarea` fields in `submit-claims.html` and `contact.html`
 - Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the closing `aria-expanded` reset and `});`
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
 - Standardize the `sidebar-tab` toggle arrow indicator so it rotates 180° when pinned across all pages (currently missing in `submit-claims.html`)
 - Fix truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute('aria-expanded', 'false')` and Escape key listener are missing compared to other pages
 - Add `aria-expanded` reset and Escape key handler to `submit-claims.html` account menu script to match `agreements.html` behavior

@@ -1,12 +1,12 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` block is cut off, causing the account dropdown to never close
-- Add `aria-expanded` reset to `false` inside the account menu close handler in `submit-claims.html` to match the pattern used in `agreements.html`
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Replace the plain `>` text character in the sidebar toggle button with a proper CSS arrow or SVG icon for cleaner appearance
-- Add a visible active state indicator such as a left border or accent color to the active sidebar nav link
-- Add focus-visible outline styles to all interactive elements for keyboard navigation clarity
-- Standardize the sidebar CSS across all pages since `submit-claims.html` uses `.26s` while other pages use `260ms` for transition duration
-- Add a confirmation or summary view after successful claim submission instead of only showing the small green notice text
-- Improve the `saved` notice in `submit-claims.html` by adding a fade-in animation when it appears
-- Add `resize: vertical` to all textarea elements across the project for consistent resize behavior
-- Add placeholder text to the Patient Name, Account, and
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` block is cut off and missing closing braces
+- Add a hover transition effect to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Add `aria-expanded` reset inside the `submit-claims.html` account menu click-outside handler to match the pattern used in `agreements.html`
+- Add keyboard `Escape` key support to close the account dropdown in `submit-claims.html` to match `agreements.html`
+- Replace the plain `>` text character in the sidebar toggle button with a proper arrow icon or CSS chevron
+- Add a smooth rotation transition to the sidebar tab arrow in `submit-claims.html` to match the behavior already in `agreements.html`
+- Add visible focus styles to all interactive elements for keyboard navigation support
+- Standardize the `card-head` heading font size across all pages for visual consistency
+- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+- Improve the `.saved` notice in `submit-claims.html` to fade in with a CSS transition instead of abruptly appearing
+- Add spacing between the label and input

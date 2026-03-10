@@ -160,3 +160,4 @@
 - Add a smooth transition animation to the `savedNotice` element in `submit-claims.html` instead of abruptly showing it
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
 - Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
