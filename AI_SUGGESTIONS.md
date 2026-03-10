@@ -1,12 +1,11 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'...)` block is cut off and missing closing braces
-- Add a loading/spinner state to the Submit Claim button after form submission to prevent duplicate clicks
-- Add `aria-expanded` attribute reset in `submit-claims.html` account menu click-outside handler to match the pattern used in `agreements.html`
-- Increase the collapsed sidebar width from 56px to 64px to better accommodate nav link dot indicators
-- Add a visual active state indicator (left border accent or highlight) to the currently active sidebar nav link
-- Add smooth transition animation to the `savedNotice` element in `submit-claims.html` instead of abrupt `display` toggle
-- Standardize sidebar CSS across all pages into a shared stylesheet to reduce code duplication
-- Add hover tooltips to collapsed sidebar nav links showing the link label text
-- Fix the `claims.html` CSS which appears to be cut off mid-rule in the `.nav-link::before` block
-- Add placeholder text to the Patient Name, Account, and Payer fields in `submit-claims.html` for better usability
-- Add a currency symbol prefix display inside the Claim Amount input field for clearer context
+- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
+- Add a transition animation to the `savedNotice` success message instead of toggling `display:none` abruptly
+- Standardize the `sidebar-tab` button arrow indicator so it rotates on pin state in `submit-claims.html` the same way `agreements.html` handles it
+- Add `resize: vertical` to all `textarea` elements across pages for consistent behavior
+- Apply consistent `:focus` outline styles to all `input`, `select`, `textarea`, and `button` elements across all pages
+- Add hover color transition to `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Make the topbar sticky with `position: sticky; top: 0; z-index: 100` across all dashboard pages
+- Add a visible active underline or indicator to the account sub-tabs in `agreements.html` that is more prominent than just a background color change
+- Add `placeholder` attributes to the Patient Name, Account, and Payer inputs in `submit-claims
