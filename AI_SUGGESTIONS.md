@@ -1,11 +1,14 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the closing `aria-expanded` reset and `});`
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
 - Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Make the `savedNotice` confirmation message auto-hide after a few seconds using a CSS transition or setTimeout
-- Standardize the `sidebar-tab` toggle arrow indicator so it rotates 180° when pinned across all pages (currently missing in `submit-claims.html`)
-- Add consistent `aria-label` attributes to all nav links across pages since the link text is inside a `.nav-label` span that is hidden by default
-- Add `focus-visible` outline styles to interactive elements (buttons, links, inputs) for keyboard navigation visibility
-- Add a visible active underline or highlight to the account dropdown links that match the current page
-- Fix the `.account-tabs` pill nav in `agreements.html` to have a clear hover state matching the active style
-- Add `placeholder` text to the Patient Name, Account #, and P
+- Make the `savedNotice` confirmation message auto-hide after a few seconds using a CSS transition or timeout
+- Add hover and focus styles to form inputs and selects for better visual feedback
+- Increase contrast on `.nav-link::before` dot indicator as it may be too subtle for some users
+- Add a visible active indicator line or accent color to the active sidebar nav link beyond just a background change
+- Fix sidebar collapse behavior on mobile so nav labels and company name do not overlap the collapsed icon state
+- Add `focus-visible` outline styles across all interactive elements for keyboard navigation accessibility
+- Add consistent spacing between the account dropdown links for better touch target sizing on mobile
+- Standardize the card border-radius values across all pages since some use `14px` and others use `16px`
+- Add a sticky or fixed topbar on scroll for dashboard pages so navigation is always accessible
+- Add an empty state message or placeholder to the claims table for when no claims exist
+- Add a character counter or max-length indicator to the Notes textarea in

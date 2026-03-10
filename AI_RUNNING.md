@@ -24,3 +24,4 @@
 - Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
 - Add a character counter or max-length attribute to the `textarea` fields in `submit-claims.html` and `contact.html`
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the closing `aria-expanded` reset and `});`

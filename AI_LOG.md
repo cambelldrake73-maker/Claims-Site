@@ -135,3 +135,4 @@ Tue Mar 10 14:34:23 PDT 2026: Completed task - Standardize the sidebar CSS acros
 Tue Mar 10 14:35:04 PDT 2026: Completed task - Add a character counter or max-length attribute to the `textarea` fields in `submit-claims.html` and `contact.html`
 Tue Mar 10 14:35:47 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:35:47 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+Tue Mar 10 14:36:28 PDT 2026: Completed task - Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the closing `aria-expanded` reset and `});`
