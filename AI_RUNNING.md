@@ -19,3 +19,4 @@
 - Standardize the `sidebar-tab` button arrow indicator so it rotates on pin state in `submit-claims.html` the same way `agreements.html` handles it
 - Add `resize: vertical` to all `textarea` elements across pages for consistent behavior
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing the closing `aria-expanded` reset and `});` statements
