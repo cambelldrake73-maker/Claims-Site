@@ -1,13 +1,12 @@
-- Add a visible icon or symbol to each sidebar nav link to improve usability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Standardize sidebar CSS across all pages into a single shared stylesheet to reduce duplication
-- Add a hover tooltip to collapsed sidebar nav links showing the link label
-- Add `transition` animation to the `.saved` notice in `submit-claims.html` so it fades in instead of appearing abruptly
-- Improve the `service-agreement.html` page by adding a sticky topbar so the navigation remains accessible while scrolling long content
-- Add responsive styles to `service-agreement.html` so padding and font sizes scale properly on mobile screens
-- Add an active state highlight to the current page link in the account tabs on `agreements.html`
-- Fix spacing inconsistency in the `contact.html` form where labels and inputs have no margin separation between stacked fields
-- Add a focus outline style to all interactive elements across pages for keyboard navigation visibility
-- Add a visual divider or grouping to the dropdown menu in the topbar to separate account links from the Log Out link
-- Make the sidebar
+- Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates destination without hover
+- Fix the truncated JavaScript in submit-claims.html where the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
+- Add a loading/disabled state to the Submit Claim button after form submission to prevent double-clicks
+- Make the `savedNotice` confirmation message in submit-claims.html auto-hide after a few seconds using a CSS fade-out transition
+- Add a character counter below the Notes textarea in submit-claims.html
+- Increase the collapsed sidebar width slightly or add tooltips on nav links so users know where each link leads without expanding
+- Add a visual active indicator (left border accent or highlight) to the active nav link in addition to the background color change
+- Make the sidebar pin button arrow rotate 180° when pinned in submit-claims.html (already done in agreements.html but missing in submit-claims.html)
+- Ensure the account dropdown closes when sidebar pin button is clicked on smaller screens
+- Standardize card border-radius across all pages (submit-claims.html uses 16px, claims.html and others vary)
+- Add `resize: vertical` to all textarea elements to match the contact.html textarea behavior
+- Add hover styles to the Clear/reset
