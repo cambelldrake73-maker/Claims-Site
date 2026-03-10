@@ -1,14 +1,12 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off mid-function
-- Add a hover tooltip showing the full nav link label when the sidebar is in its collapsed 56px state
-- Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
-- Standardize sidebar CSS across all pages into a single shared stylesheet to reduce duplication
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
-- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds
+- Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a hover state color transition to the sidebar nav links in `submit-claims.html` to match the smoother transitions used in `agreements.html` and `claims.html`
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Replace the plain `>` text character in the sidebar toggle button with a proper CSS arrow or SVG icon for consistency across all pages
+- Add a rotation transform to the sidebar tab arrow in `submit-claims.html` when pinned, matching the behavior already implemented in `agreements.html`
+- Standardize sidebar CSS across all pages into a shared stylesheet to reduce duplication
+- Add `aria-label` attributes to all nav links for improved screen reader support
 - Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Improve the mobile layout of the claims form so labels stack above inputs with consistent spacing
-- Add a sticky topbar so it remains visible when scrolling down on content-heavy pages
-- Add an active indicator style difference between current page link and hover state in the sidebar
-- Make the account dropdown keyboard-navigable with visible focus states on each dropdown item
-- Add smooth fade-in transition to the account dropdown when it opens
-- Fix the sidebar pin button arrow icon so it visually rotates when the sidebar is pinned in `submit-claims.
+- Add placeholder text to the Patient Name, Account, and Payer fields in `submit-claims.html`
+- Make the success notice in `submit-claims.html` auto-hide after a few seconds using a CSS transition
+- Add a consistent active state indicator style to sidebar
