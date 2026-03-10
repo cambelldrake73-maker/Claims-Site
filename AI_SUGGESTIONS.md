@@ -1,12 +1,13 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` block is cut off and missing closing braces
-- Add a hover tooltip showing the nav link label when the sidebar is collapsed and not hovered
-- Replace the plain `>` text character in the sidebar toggle button with a proper arrow icon or chevron SVG
-- Add focus styles to all interactive elements (buttons, inputs, links) for keyboard navigation visibility
-- Standardize sidebar CSS across all pages — `submit-claims.html` uses `.26s` while other pages use `260ms` for transition timing
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Make the `saved` success notice in `submit-claims.html` auto-hide after a few seconds using a CSS transition
-- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Improve the `contact.html` form field layout to use consistent label-above-input spacing matching the rest of the project
-- Add a sticky or fixed topbar option so the header remains visible when scrolling long content pages
-- Add visual indication to the currently active account tab in `agreements.html` with a stronger contrast style
+- Add a visible icon or indicator to each sidebar nav link so items are identifiable when the sidebar is collapsed to 56px width
+- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler and form submission logic are cut off
+- Add a hover state color transition animation to the primary and secondary buttons across all pages for visual feedback
+- Make the sidebar pin button arrow rotate 180 degrees when pinned in submit-claims.html to match the behavior already implemented in agreements.html
+- Add a character counter below the Notes textarea in submit-claims.html to indicate remaining input length
+- Standardize the card border-radius values across all pages since some use 14px and others use 16px
+- Add a loading spinner or disabled state to the Submit Claim button after form submission to prevent double clicks
+- Improve the topbar on submit-claims.html by adding a breadcrumb or subtitle below the page title for context
+- Add a visible active tab underline or pill indicator to account navigation tabs in agreements.html
+- Make the agreements table rows show a highlight on hover for better row tracking readability
+- Add padding between the form fields and the card edges in submit-claims.html on small mobile screens
+- Fix the Pending Review status badge in agreements.html to use a more visually distinct color from the Signed badge
+- Add a close button inside the account dropdown
