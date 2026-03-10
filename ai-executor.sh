@@ -29,7 +29,7 @@ fi
 echo "Executing task: $TASK"
 
 # Move task to RUNNING
-grep -v "$TASK" "$PENDING" > tmp && mv tmp "$PENDING"
+grep -v -- "$TASK" "$PENDING" > tmp && mv tmp "$PENDING"
 echo "$TASK" >> "$RUNNING"
 
 ########################################

@@ -1,13 +1,15 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a hover tooltip showing the nav link label when the sidebar is in its collapsed 56px state
-- Replace the plain `>` character in the sidebar-tab button with a proper chevron icon or CSS arrow for visual consistency
-- Add a focus-visible outline style to all interactive elements across pages for keyboard navigation visibility
-- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Add a confirmation modal or inline warning before the Clear/reset button discards form data in `submit-claims.html`
-- Style the `savedNotice` element in `submit-claims.html` to fade out automatically after a few seconds using a CSS animation
-- Standardize the card border-radius values across all pages since some use `14px` and others use `16px`
-- Add a loading spinner or disabled state to the Submit button after form submission to prevent double submission appearance
-- Improve the `contact.html` form field spacing so labels and inputs have consistent vertical rhythm
-- Add a sticky position or visual divider to the topbar so it remains visible when content scrolls
-- Make the account
+- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
+- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler and form submission logic are cut off
+- Add a hover state transition animation to the primary and secondary buttons across all pages for visual feedback
+- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
+- Add a character counter below the Notes/Message textarea fields to indicate remaining input length
+- Fix the contact.html form layout so labels and inputs are visually grouped with consistent spacing matching other pages
+- Add a loading spinner or disabled state to submit buttons after clicking to prevent double submissions visually
+- Add a mobile hamburger menu toggle for the sidebar on small screens since the current mobile layout collapses the sidebar oddly
+- Make the topbar sticky on scroll across all dashboard pages so navigation remains accessible
+- Add visual breadcrumb navigation below the topbar on inner pages to help orient users
+- Improve the agreements.html table responsiveness by converting it to a card-based layout on mobile instead of overflow-x scroll
+- Add an empty state message or placeholder UI for tables and lists when no data is present
+- Add consistent focus ring styles to all interactive elements for keyboard navigation visibility
+- Normalize font sizes and heading hierarchy across all pages for visual consistency
+- Add a subtle active indicator line
