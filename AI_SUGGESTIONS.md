@@ -1,11 +1,13 @@
-- Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates navigation options without hover
-- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` block and form submit handler are cut off and need to be completed
-- Add `aria-expanded` reset to `false` inside the account menu click-outside listener in `submit-claims.html` to match the pattern used in `agreements.html`
-- Add `keydown` Escape key handler to close the account dropdown in `submit-claims.html` to match `agreements.html`
-- Add a character counter or max-length indicator beneath the Notes textarea in `submit-claims.html`
-- Replace the plain `>` text inside `.sidebar-tab` buttons with a proper chevron SVG icon for better visual polish
-- Add a hover tooltip showing the full nav link label when the sidebar is collapsed and not hovered
-- Add a focus-visible outline style to all interactive elements (buttons, links, inputs) for keyboard navigation visibility
-- Add a loading/spinner state to the Submit Claim button while the form is being processed to prevent double submission
-- Add `placeholder` attributes to the Patient Name, Account #, and Payer fields in `submit-claims.html` for better UX guidance
-- Make the `.saved` success notice
+- Add a visible icon or symbol to each sidebar nav link so collapsed state shows meaningful indicators instead of just a dash
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` block is cut off missing closing braces
+- Add `aria-expanded="false"` reset inside the account menu close handler in `submit-claims.html` to match the pattern used in `agreements.html`
+- Add a spinning or loading state to the Submit Claim button to prevent double-clicks during form processing
+- Add character counter below the Notes textarea in `submit-claims.html`
+- Make the `savedNotice` green confirmation banner auto-hide after a few seconds using a CSS fade-out transition
+- Add hover tooltip labels to collapsed sidebar nav links so users know where each link leads
+- Fix sidebar nav links in `claims.html` which appears to have a truncated stylesheet missing closing rules
+- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce duplication
+- Add a responsive hamburger menu for the sidebar on mobile instead of forcing full-width layout
+- Ensure the `sidebar-tab` pin button rotates its arrow icon in `submit-claims.html` to match the behavior already implemented in `agreements.html`
+- Add focus-visible outline styles to interactive elements like buttons and links for keyboard navigation visibility
+- Add a subtle
