@@ -1,11 +1,13 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` block is cut off and missing the closing `aria-expanded` reset and `});` statements
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
 - Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Replace the plain `>` text character in the sidebar toggle button with a proper CSS arrow or SVG icon for better visual polish
-- Add `resize: vertical` to the `textarea` in `submit-claims.html` to match the same rule already applied in `contact.html`
-- Add focus styles (`outline` or `box-shadow`) to all `input`, `select`, and `textarea` elements across pages for keyboard accessibility visibility
-- Standardize the `.card-head` `h2` font size across `submit-claims.html` and `agreements.html` since they currently differ
-- Add a sticky or fixed `topbar` so it remains visible when scrolling long content pages like `submit-claims.html`
-- Add a visual separator or spacing between the sidebar navigation groups on all dashboard pages
-- Ensure the `savedNot
+- Standardize sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
+- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+- Improve the `savedNotice` element in `submit-claims.html` to auto-hide after a few seconds using a CSS transition
+- Add hover tooltips to collapsed sidebar nav links showing the link label for better usability
+- Make the topbar `h1` font size responsive so it does not overflow on small screens
+- Add `focus-visible` outline styles to buttons and links for keyboard navigation visibility
+- Add an active state indicator to account dropdown links to show the current page
+- Fix the `submit-claims.html` sidebar so the `::before` dot indicator is properly centered and consistent with other pages
+- Add a sticky topbar behavior so it remains visible when scrolling through long claim forms
+- Improve the form layout on `submit-claims.html` so label and input pairs stack

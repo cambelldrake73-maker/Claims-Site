@@ -136,3 +136,4 @@
 - Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates navigation options without text
 - Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
 - Add a loading/disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Make the `savedNotice` span in `submit-claims.html` auto-hide after a few seconds using a CSS transition or `setTimeout`
