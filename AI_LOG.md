@@ -164,3 +164,4 @@ Tue Mar 10 14:48:43 PDT 2026: Completed task - Add a pin/unpin visual indicator 
 Tue Mar 10 14:49:24 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:49:24 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
 Tue Mar 10 14:50:05 PDT 2026: Completed task - Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
+Tue Mar 10 14:50:46 PDT 2026: Completed task - Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
