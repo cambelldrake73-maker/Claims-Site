@@ -1,11 +1,14 @@
-- Add a visible icon (SVG or emoji) to each `.nav-link` so the collapsed sidebar communicates navigation options without text labels
-- Fix the truncated `submit-claims.html` JavaScript — the `accountButton.setAttribute('aria-expanded', 'false')` and Escape key handler are missing, causing the dropdown to not close properly
-- Add `aria-current="page"` to the active `.nav-link` across all pages for better accessibility
-- Standardize sidebar CSS across pages — `submit-claims.html` uses `.26s` while other pages use `260ms`, creating inconsistent transitions
-- Add a hover tooltip showing the full nav label when the sidebar is collapsed so users know where each link leads
-- Add a focus-visible outline style to all interactive elements to improve keyboard navigation visibility
-- Make the `.topbar h1` font size responsive so it does not overflow on small screens
-- Add a mobile hamburger menu toggle for the sidebar since the current mobile layout just stretches the sidebar full width
-- Style the `<input type="date">` in `submit-claims.html` to be consistent cross-browser since default date pickers vary significantly
-- Add `resize: vertical` only to textareas and `resize: none` default to prevent horizontal layout breaking
-- Add a loading/disabled state style to the Submit button in `submit-claims.html` to
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the account menu click-outside handler and form submit logic are cut off
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
+- Add a transition animation to the `savedNotice` confirmation badge in `submit-claims.html` instead of a hard show/hide
+- Standardize sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
+- Add hover tooltip labels to collapsed sidebar nav links so users know where each link goes
+- Add a visible active/focus ring style to all form inputs for better keyboard navigation visibility
+- Add character counter to the Notes textarea in `submit-claims.html`
+- Make the topbar sticky so it remains visible when scrolling through long claim forms or tables
+- Add a mobile hamburger menu toggle for the sidebar on small screens instead of relying on the hover expand behavior
+- Add placeholder text to the Patient Name, Account, and Payer fields in `submit-claims.html`
+- Fix the `claims.html` CSS which is cut off mid-rule and likely breaks the page layout
+- Add consistent card hover effects across all dashboard pages for visual feedback
+- Add a breadcrumb navigation component to inner pages like `agreements.html
