@@ -140,3 +140,4 @@ Tue Mar 10 14:37:09 PDT 2026: Completed task - Add a hover state color transitio
 Tue Mar 10 14:37:48 PDT 2026: Completed task - Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
 Tue Mar 10 14:38:29 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:38:29 PDT 2026: Completed task - Standardize the `sidebar-tab` toggle arrow indicator so it rotates 180° when pinned across all pages (currently missing in `submit-claims.html`)
+Tue Mar 10 14:39:08 PDT 2026: Completed task - Fix truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute('aria-expanded', 'false')` and Escape key listener are missing compared to other pages

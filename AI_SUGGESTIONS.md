@@ -1,13 +1,9 @@
-- Add a visible icon or symbol to each sidebar nav link so collapsed state communicates destination without hover
-- Fix `submit-claims.html` JavaScript that appears cut off mid-block, closing the account menu click-outside handler is incomplete
-- Add `aria-expanded="false"` reset inside the account menu close handler in `submit-claims.html` to match `agreements.html` pattern
-- Add Escape key listener to close account dropdown in `submit-claims.html` to match `agreements.html`
-- Add transition animation to sidebar tab arrow indicator to rotate when pinned, matching `agreements.html` behavior
-- Make form labels in `submit-claims.html` top-aligned on mobile since grid switches to single column
-- Add hover background color to dropdown links in `submit-claims.html` for visual consistency
-- Add focus-visible outline styles to all interactive elements for keyboard navigation visibility
-- Fix textarea resize handle being unconstrained in `submit-claims.html`, add `resize: vertical`
-- Add character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Increase sidebar collapsed width slightly on mobile or hide it entirely to avoid a 56px strip occupying full height
-- Add empty state message to claims table in `claims.html` for when no claims are present
-- Add consistent card title font sizes across `submit-claims.html`,
+- Fix truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute('aria-expanded', 'false')` and Escape key listener are missing compared to other pages
+- Add `aria-expanded` reset and Escape key handler to `submit-claims.html` account menu script to match `agreements.html` behavior
+- Add spinning/rotation transition to sidebar tab arrow in `submit-claims.html` to match `agreements.html` pinned state indicator
+- Add `display:flex; align-items:center; justify-content:center; padding:0;` to `.sidebar-tab` in `submit-claims.html` to match `agreements.html` styling
+- Add `font-size:14px` to `.account-button` in `submit-claims.html` to match other pages
+- Add `white-space:nowrap` and `transition` properties to `.nav-link` in `submit-claims.html` to match `claims.html` and `agreements.html`
+- Add `letter-spacing:-.02em` to `.topbar h1` in `submit-claims.html` to match `agreements.html`
+- Fix `.saved` notice in `submit-claims.html` to auto-hide after a few seconds using a CSS transition or JS timeout
+- Add `resize:vertical` to `textarea` in
