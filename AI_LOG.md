@@ -132,3 +132,4 @@ Tue Mar 10 14:33:01 PDT 2026: Completed task - Fix the truncated JavaScript in `
 Tue Mar 10 14:33:42 PDT 2026: Completed task - Add hover and focus styles to form inputs and selects across all pages for better interactive feedback
 Tue Mar 10 14:34:23 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:34:23 PDT 2026: Completed task - Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
+Tue Mar 10 14:35:04 PDT 2026: Completed task - Add a character counter or max-length attribute to the `textarea` fields in `submit-claims.html` and `contact.html`

@@ -1,11 +1,12 @@
-- Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
-- Fix the `submit-claims.html` script block which is cut off mid-function and missing closing braces for the account menu click-outside handler
-- Add a hover state color change to the primary and secondary buttons in `submit-claims.html`
-- Add `aria-expanded` reset to `false` in the account menu close logic in `submit-claims.html` to match `agreements.html` behavior
-- Add `keydown` Escape key handler to close the account dropdown in `submit-claims.html` to match `agreements.html`
-- Make the sidebar pin tab button rotate its arrow icon when pinned, as done in `agreements.html` but missing in `submit-claims.html`
-- Add consistent `transition` properties to nav links in `submit-claims.html` to match the smoother hover behavior in `claims.html`
-- Increase contrast on `.muted` text color `#6b7280` for better readability on light backgrounds
-- Add a focus-visible outline style to all interactive elements across pages for keyboard navigation visibility
-- Align the `saved` notice in `submit-claims.html` vertically with the action buttons so it does not shift layout
-- Add a `min-width` to the submit button in `submit-
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` event handler is cut off and missing the closing `aria-expanded` reset and form submit handler
+- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+- Add hover transition animations to the primary and secondary buttons across all pages for visual consistency
+- Add a loading or disabled state to the Submit button in `submit-claims.html` after form submission to prevent duplicate clicks
+- Add placeholder text to the Patient Name, Account #, and Payer fields in `submit-claims.html` for better usability
+- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds
+- Standardize the card border-radius across all pages since some use `14px` and others use `16px`
+- Add an active highlight to the Account dropdown links when their corresponding page is currently open
+- Add a sticky or fixed topbar on scroll so the header remains visible on longer pages like `agreements.html`
+- Improve the mobile layout of the table in `agreements.html` by replacing it with stacked card rows on small screens instead of horizontal overflow scroll
+- Add visible focus styles to all interactive
