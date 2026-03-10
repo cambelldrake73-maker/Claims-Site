@@ -1,11 +1,12 @@
-- Add a visible icon or symbol to each sidebar nav link to improve usability when sidebar is collapsed
-- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
-- Add `aria-expanded="false"` reset inside the account menu close handler in submit-claims.html to match behavior in other pages
-- Add the Escape key listener for closing the account menu dropdown in submit-claims.html to match agreements.html
-- Add transition animation to the sidebar-tab arrow span in submit-claims.html to match agreements.html pinned rotation behavior
-- Add `display:flex; align-items:center; justify-content:center; padding:0;` to `.sidebar-tab` in submit-claims.html to match agreements.html
-- Standardize sidebar transition duration across all pages (submit-claims.html uses `.26s`, other pages use `260ms`)
-- Add `white-space:nowrap` and `transition` properties to `.nav-link` in submit-claims.html to match claims.html and agreements.html
-- Add `justify-content:flex-start` to `.nav-link` in submit-claims.html to match other pages
-- Add responsive table styling (`display:block; overflow-x:auto`) to claims.html for mobile viewports
-- Add `font-size:14px` to `.
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing the closing `aria-expanded` reset and `});` statements
+- Add hover and focus styles to form inputs and selects across all pages for better interactive feedback
+- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
+- Add a character counter or max-length attribute to the `textarea` fields in `submit-claims.html` and `contact.html`
+- Make the `submit-claims.html` form fields stack in a single column on tablet-sized screens between 900px and 600px
+- Add a loading or disabled state to the Submit button after the form is submitted to prevent double submission clicks
+- Add smooth transition animation to the dropdown menu in the topbar account menu instead of an instant display toggle
+- Fix the sidebar `::before` dot indicator alignment so it visually centers correctly inside collapsed nav links
+- Add an active/current page indicator style to the account tabs in `agreements.html` that is more visually distinct than just a background color change
+- Add `focus-visible` outline styles to all buttons and links for keyboard navigation accessibility
+- Improve the `contact.html` grid layout so the form
