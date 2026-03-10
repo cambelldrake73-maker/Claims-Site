@@ -9,8 +9,13 @@ echo "Scanning project for planning..."
 
 FILES=$(find . -type f | head -n 40)
 
-PROMPT="You are the lead software architect for a medical claims dashboard.
+PROMPT="You are the lead architect for a medical claims dashboard web application.
 
+PROJECT DESIGN CONTEXT:
+$PROJECT_CONTEXT
+
+Follow the design philosophy and constraints described above when generating development tasks.
+"
 Project files:
 $FILES
 

@@ -1,12 +1,13 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` block is cut off and missing closing braces
-- Add a hover transition effect to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add `aria-expanded` reset inside the `submit-claims.html` account menu click-outside handler to match the pattern used in `agreements.html`
-- Add keyboard `Escape` key support to close the account dropdown in `submit-claims.html` to match `agreements.html`
-- Replace the plain `>` text character in the sidebar toggle button with a proper arrow icon or CSS chevron
-- Add a smooth rotation transition to the sidebar tab arrow in `submit-claims.html` to match the behavior already in `agreements.html`
-- Add visible focus styles to all interactive elements for keyboard navigation support
-- Standardize the `card-head` heading font size across all pages for visual consistency
-- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Improve the `.saved` notice in `submit-claims.html` to fade in with a CSS transition instead of abruptly appearing
-- Add spacing between the label and input
+- Add a visible icon or symbol to each sidebar nav link so collapsed state communicates destination without hover
+- Fix submit-claims.html script block which is cut off and missing closing braces and event listeners for form submit and savedNotice display
+- Add transition animation to the savedNotice element in submit-claims.html so it fades in smoothly instead of appearing instantly
+- Standardize sidebar CSS across all pages into a single shared stylesheet to eliminate duplicated style blocks
+- Add hover state color change to the sidebar-tab button to improve affordance
+- Make the topbar h1 font size responsive so it does not overflow on small screens
+- Add focus-visible outline styles to all interactive elements for keyboard navigation visibility
+- Add placeholder text to the patient name, account number, and payer fields in submit-claims.html
+- Fix textarea resize handle in contact.html being vertically only while other pages have no resize control at all, standardize across forms
+- Add active state styling to account-tabs links with a more distinct visual treatment beyond just background color change
+- Increase color contrast on muted text using --muted variable which at #6b7280 on white fails WCAG AA for small text
+- Add a visible required field indicator such as an asterisk to labeled required inputs across all forms
+- Make the claims table in agreements.html horizontally scrollable on mobile with a visible scroll hint
