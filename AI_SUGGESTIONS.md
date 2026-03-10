@@ -1,13 +1,11 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation usability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click', ...)` block is cut off and missing closing braces
-- Add a hover state transition animation to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add focus ring styles to all form inputs, selects, and textareas across all pages for keyboard navigation visibility
-- Add a character counter or max-length indicator beneath the Notes textarea in `submit-claims.html`
-- Make the `.saved` success notice in `submit-claims.html` fade in with a CSS transition instead of toggling display
-- Standardize the card border-radius values across all pages (`14px` in some files, `16px` in others)
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Fix the table in `agreements.html` to be more readable on mobile by improving the responsive scroll container styling
-- Add column hover highlight styles to the agreements table for better row tracking
-- Add placeholder text to the Patient Name and Account fields in `submit-claims.html`
-- Improve the topbar in `contact.html` to match the dashboard topbar styling for visual consistency
-- Add consistent
+- Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
+- Fix the `submit-claims.html` script block which is cut off mid-function and missing closing braces for the account menu click-outside handler
+- Add a hover state color change to the primary and secondary buttons in `submit-claims.html`
+- Add `aria-expanded` reset to `false` in the account menu close logic in `submit-claims.html` to match `agreements.html` behavior
+- Add `keydown` Escape key handler to close the account dropdown in `submit-claims.html` to match `agreements.html`
+- Make the sidebar pin tab button rotate its arrow icon when pinned, as done in `agreements.html` but missing in `submit-claims.html`
+- Add consistent `transition` properties to nav links in `submit-claims.html` to match the smoother hover behavior in `claims.html`
+- Increase contrast on `.muted` text color `#6b7280` for better readability on light backgrounds
+- Add a focus-visible outline style to all interactive elements across pages for keyboard navigation visibility
+- Align the `saved` notice in `submit-claims.html` vertically with the action buttons so it does not shift layout
+- Add a `min-width` to the submit button in `submit-

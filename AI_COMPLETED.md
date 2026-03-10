@@ -116,3 +116,4 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
 - Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing the closing `aria-expanded` reset and `});` statements
 - Add hover and focus styles to form inputs and selects across all pages for better interactive feedback
+- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
