@@ -1,13 +1,11 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a hover tooltip showing the nav link label when the sidebar is in its collapsed 56px state
-- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce duplication
-- Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds
-- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Improve the mobile layout of the topbar in `submit-claims.html` so the heading and account button do not overlap on small screens
-- Add an active state highlight to the account dropdown links when hovered
-- Make the table in `agreements.html` columns have consistent minimum widths to prevent text wrapping awkwardly
-- Add a visible empty state message to the claims table for when no claims have been submitted
-- Align the form labels in `submit-claims.html` to the top of their row when the textarea field is
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing the closing `aria-expanded` reset and event listeners
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Add a pin/unpin visual indicator change to the `sidebar-tab` arrow button in `submit-claims.html` to match the rotation behavior already implemented in `agreements.html`
+- Increase the `sidebar-tab` button click target size for easier interaction on touch devices
+- Add focus-visible outline styles to all interactive elements across all pages for keyboard navigation visibility
+- Apply consistent `letter-spacing: -.02em` to all `.topbar h1` headings across pages to match `agreements.html` styling
+- Add `resize: vertical` to all `textarea` elements across pages for consistent resizing behavior
+- Add a character counter or max-length hint below the Notes `textarea` in `submit-claims.html`
+- Add `min-height: 100vh` to the `.content` area in `agreements.html` to prevent short-page layout gaps
+- Make the `saved` notice in `submit-claims.html`
