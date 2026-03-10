@@ -1,14 +1,11 @@
-- Add a visible icon or symbol to each sidebar nav link to improve usability when the sidebar is collapsed
-- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
-- Add `aria-expanded` reset to `false` in the account menu close handler in submit-claims.html to match agreements.html behavior
-- Add `keydown` Escape key listener to close the account dropdown in submit-claims.html to match agreements.html behavior
-- Add a spinning or loading state to the Submit Claim button while the form processes to provide user feedback
-- Add character counter below the Notes textarea in submit-claims.html
-- Make the `savedNotice` confirmation message auto-hide after a few seconds instead of remaining visible
-- Add a hover tooltip to collapsed sidebar nav links showing the link label
-- Standardize sidebar CSS transition duration values across all pages (submit-claims.html uses `.26s` while others use `260ms`)
-- Add active state indicator styling to account dropdown links when on the current page
-- Add smooth scroll padding to the top of the content area to prevent topbar overlap on anchor navigation
-- Make the topbar `h1` font-size responsive for smaller screens in submit-claims.html
-- Add a visible required field indicator (asterisk) to form labels in submit-claims.html
-- Add focus ring styles to form inputs and
+- Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates navigation options without hover
+- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` block and form submit handler are cut off and need to be completed
+- Add `aria-expanded` reset to `false` inside the account menu click-outside listener in `submit-claims.html` to match the pattern used in `agreements.html`
+- Add `keydown` Escape key handler to close the account dropdown in `submit-claims.html` to match `agreements.html`
+- Add a character counter or max-length indicator beneath the Notes textarea in `submit-claims.html`
+- Replace the plain `>` text inside `.sidebar-tab` buttons with a proper chevron SVG icon for better visual polish
+- Add a hover tooltip showing the full nav link label when the sidebar is collapsed and not hovered
+- Add a focus-visible outline style to all interactive elements (buttons, links, inputs) for keyboard navigation visibility
+- Add a loading/spinner state to the Submit Claim button while the form is being processed to prevent double submission
+- Add `placeholder` attributes to the Patient Name, Account #, and Payer fields in `submit-claims.html` for better UX guidance
+- Make the `.saved` success notice
