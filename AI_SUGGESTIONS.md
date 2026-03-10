@@ -1,11 +1,11 @@
-- Add a visible icon or SVG to each sidebar nav link instead of the CSS dot placeholder (`::before` pseudo-element)
-- Add a transition animation to the sidebar tab arrow (`>`) so it rotates 180° when the sidebar is pinned, matching the agreements.html implementation that submit-claims.html is missing
-- Standardize sidebar CSS across all pages into a single shared stylesheet to eliminate duplicated style blocks
-- Add hover state color change to the topbar "Account" button to provide clearer interactive feedback
-- Add a character counter below the Notes textarea in submit-claims.html to guide user input length
-- Replace the plain `>` text inside `.sidebar-tab` with a proper SVG chevron icon for better visual quality
-- Add `aria-label` attributes to all form inputs in contact.html that currently rely solely on adjacent label elements
-- Fix the two-column `.row` label alignment in submit-claims.html so labels are top-aligned when the input is a textarea, not center-aligned
-- Add a loading or disabled state to the Submit button in submit-claims.html after form submission to prevent double-clicks
-- Style the `#savedNotice` element in submit-claims.html to fade in and out using a CSS transition instead of toggling `display`
-- Add a placeholder attribute to the Patient Name and Account # inputs in submit-claims.html for input
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a hover state color transition to the `btn.primary` and `btn.secondary` buttons in `submit-claims.html`
+- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds using a CSS fade-out transition
+- Standardize the sidebar CSS across all pages into a single shared stylesheet to eliminate code duplication
+- Add a focus ring style to all `input`, `select`, `textarea`, and `button` elements for keyboard navigation visibility
+- Improve the mobile topbar in dashboard pages so the `h1` title truncates with ellipsis instead of wrapping or overflowing
+- Add `placeholder` attributes to the Patient Name, Account #, and Payer fields in `submit-claims.html`
+- Apply consistent `font-size` to all `input` and `select` elements across `contact.html` and `submit-claims.html`
+- Add a subtle background highlight to the active account tab in `agreements.html` to make the current section more visually distinct
+- Make the agreements table in `agreements.html` use altern

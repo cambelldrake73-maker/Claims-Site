@@ -26,7 +26,6 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
 - Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the closing `aria-expanded` reset and `});`
 - Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
 - Standardize the `sidebar-tab` toggle arrow indicator so it rotates 180° when pinned across all pages (currently missing in `submit-claims.html`)
 - Fix truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute('aria-expanded', 'false')` and Escape key listener are missing compared to other pages
 - Add `aria-expanded` reset and Escape key handler to `submit-claims.html` account menu script to match `agreements.html` behavior
@@ -45,7 +44,6 @@
 - Add a pin/unpin visual indicator to the sidebar-tab button so users understand its toggle function (e.g., rotate arrow icon like `agreements.html` already does, but `submit-claims.html` is missing this)
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
 - Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
 - Standardize the `sidebar-tab` button arrow indicator so it rotates 180° when pinned, matching the behavior in `agreements.html` but missing in `submit-claims.html`
 - Add hover transition effects to the table rows in `agreements.html` for better visual feedback
 - Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
@@ -55,7 +53,6 @@
 - Add transition animation to the sidebar tab arrow indicator (rotate on pin) in submit-claims.html to match agreements.html behavior
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
 - Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
 - Add a transition animation to the `savedNotice` element in `submit-claims.html` instead of an abrupt display change
 - Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
