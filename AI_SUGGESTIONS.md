@@ -1,12 +1,11 @@
-- Add a visible icon or symbol to each sidebar nav link to improve usability when the sidebar is collapsed
-- Fix the submit-claims.html script block which is cut off and missing the closing event listener, `aria-expanded` reset, and closing script tag
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in submit-claims.html
-- Add focus-visible outline styles to all interactive elements (buttons, inputs, links) for keyboard navigation visibility
-- Make the `savedNotice` confirmation message in submit-claims.html auto-hide after a few seconds using a CSS transition or JS timeout
-- Add a character counter or max-length indicator below the Notes textarea in submit-claims.html
-- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce duplication
-- Add `aria-current="page"` to the active nav link on each page for screen reader support
-- Fix the sidebar pin button arrow indicator in submit-claims.html to rotate on pinned state, matching the behavior already implemented in agreements.html
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate submissions
-- Improve the mobile layout of the topbar in submit-claims.html so the heading and account button do not overlap on small screens
-- Add a visible required field indicator (e.g. asterisk) to form labels
+- Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Add `aria-label` attributes to all form inputs in `submit-claims.html` to improve accessibility
+- Make the `savedNotice` element in `submit-claims.html` animate in with a fade instead of appearing instantly
+- Add a focus ring style to all `input`, `select`, and `textarea` elements across all pages for keyboard navigation visibility
+- Increase the contrast of `.nav-link::before` dot indicator as it is barely visible at `rgba(255,255,255,.55)`
+- Add `resize: vertical` to the `textarea` in `submit-claims.html` to match the behavior in `contact.html`
+- Fix the sidebar `nav-label` text on mobile in `submit-claims.html` where labels may overflow without proper wrapping styles
+- Add a bottom border or visual separator to the topbar in `submit-claims.html` to better separate it from content
+- Make the `account-button` in all pages show an active
