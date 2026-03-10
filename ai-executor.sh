@@ -5,58 +5,102 @@ WORKSPACE="$HOME/.openclaw/workspace/claims-site"
 PENDING="$WORKSPACE/AI_PENDING.md"
 RUNNING="$WORKSPACE/AI_RUNNING.md"
 COMPLETED="$WORKSPACE/AI_COMPLETED.md"
-PLAN="$WORKSPACE/AI_PLAN.md"
 LOG="$WORKSPACE/AI_LOG.md"
+PROTECTED="$WORKSPACE/PROTECTED_FILES.md"
 
 cd "$WORKSPACE"
 
 echo "Checking for tasks..."
 
-TASK=$(grep -v "#" "$PENDING" | head -n 1)
+# Ensure files exist
+touch "$PENDING"
+touch "$RUNNING"
+touch "$COMPLETED"
+touch "$LOG"
+
+# Get next task
+TASK=$(grep "-" "$PENDING" | head -n 1)
 
 if [ -z "$TASK" ]; then
     echo "No tasks found."
     exit 0
 fi
 
-echo "Starting task: $TASK"
+echo "Executing task: $TASK"
 
-# remove from pending
-sed -i '' "/$TASK/d" "$PENDING"
-
-# move to running
+# Move task to RUNNING
+grep -v "$TASK" "$PENDING" > tmp && mv tmp "$PENDING"
 echo "$TASK" >> "$RUNNING"
 
-echo "Generating plan..."
+########################################
+# PROTECTED FILE CHECK
+########################################
 
-echo "" >> "$PLAN"
-echo "Task: $TASK" >> "$PLAN"
-echo "- Analyze project structure" >> "$PLAN"
-echo "- Identify files to modify" >> "$PLAN"
-echo "- Apply safe improvement" >> "$PLAN"
-echo "" >> "$PLAN"
+is_protected() {
+    TARGET=$1
 
-# SAFE TEST ACTION
-if echo "$TASK" | grep -iq "dashboard"; then
+    if [ -f "$PROTECTED" ]; then
+        while read LINE
+        do
+            if [[ "$TARGET" == *"$LINE"* ]]; then
+                return 0
+            fi
+        done < "$PROTECTED"
+    fi
 
-    echo "AI modifying dashboard..."
+    return 1
+}
 
-    echo "" >> dashboard.html
-    echo "<!-- AI improvement: dashboard spacing -->" >> dashboard.html
-    echo "<style> .panel{margin-bottom:30px;} </style>" >> dashboard.html
+########################################
+# SIMPLE EXECUTION ENGINE
+########################################
+
+# Example: improve dashboard spacing
+if [[ "$TASK" == *"dashboard"* ]]; then
+
+    TARGET="dashboard.html"
+
+    if is_protected "$TARGET"; then
+        echo "Skipping protected file: $TARGET"
+        echo "$(date): Skipped protected file $TARGET" >> "$LOG"
+    else
+        echo "<!-- AI layout improvement -->" >> "$TARGET"
+        echo "$(date): Updated $TARGET for layout improvement" >> "$LOG"
+    fi
 
 fi
 
-echo "Logging work..."
+
+# Example: sidebar improvements
+if [[ "$TASK" == *"sidebar"* ]]; then
+
+    TARGET="design-system.css"
+
+    if is_protected "$TARGET"; then
+        echo "Skipping protected file: $TARGET"
+        echo "$(date): Skipped protected file $TARGET" >> "$LOG"
+    else
+        echo "/* AI sidebar improvement */" >> "$TARGET"
+        echo "$(date): Updated sidebar styles" >> "$LOG"
+    fi
+
+fi
+
+
+########################################
+# COMPLETE TASK
+########################################
+
+grep -v "$TASK" "$RUNNING" > tmp && mv tmp "$RUNNING"
+echo "$TASK" >> "$COMPLETED"
 
 echo "$(date): Completed task $TASK" >> "$LOG"
 
-sleep 2
-
-sed -i '' "/$TASK/d" "$RUNNING"
-echo "$TASK" >> "$COMPLETED"
+########################################
+# COMMIT
+########################################
 
 git add .
-git commit -m "AI task completed: $TASK" 2>/dev/null
+git commit -m "AI task completed: $TASK" >/dev/null 2>&1
 
 echo "Task completed."

@@ -16,6 +16,7 @@ git fetch origin
 git checkout ai-dev
 git pull origin ai-dev
 
+git merge origin/main --no-edit
 echo "Generating AI suggestions..."
 bash ai-suggest.sh
 

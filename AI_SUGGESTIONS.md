@@ -1,9 +1,14 @@
-ERROR:
-{
-  "type": "error",
-  "error": {
-    "type": "authentication_error",
-    "message": "x-api-key header is required"
-  },
-  "request_id": "req_011CYv47Xsg6LgMyYzBGMCLu"
-}
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off mid-function
+- Add a hover tooltip showing the full nav link label when the sidebar is in its collapsed 56px state
+- Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
+- Standardize sidebar CSS across all pages into a single shared stylesheet to reduce duplication
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
+- Make the `savedNotice` confirmation message in `submit-claims.html` auto-hide after a few seconds
+- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+- Improve the mobile layout of the claims form so labels stack above inputs with consistent spacing
+- Add a sticky topbar so it remains visible when scrolling down on content-heavy pages
+- Add an active indicator style difference between current page link and hover state in the sidebar
+- Make the account dropdown keyboard-navigable with visible focus states on each dropdown item
+- Add smooth fade-in transition to the account dropdown when it opens
+- Fix the sidebar pin button arrow icon so it visually rotates when the sidebar is pinned in `submit-claims.

@@ -9,23 +9,24 @@ cd "$WORKSPACE"
 
 echo "Generating AI tasks..."
 
-# ensure pending exists
 touch "$PENDING"
 
-# if pending already has tasks, do nothing
+# If tasks already exist, do nothing
 if grep -q "-" "$PENDING"; then
     echo "Task queue already populated."
     exit 0
 fi
 
-# if suggestions exist, filter them into executable tasks
+# Generate tasks from suggestions
 if [ -f "$SUGGESTIONS" ]; then
 
     grep "^-" "$SUGGESTIONS" | \
-    grep -iE "layout|ui|css|style|spacing|dashboard|table|badge|filter|search|responsive|sidebar|button|form" \
-    >> "$PENDING"
+    grep -vi "error" | \
+    grep -vi "api" | \
+    grep -vi "message" | \
+    head -n 5 >> "$PENDING"
 
-    echo "Filtered tasks generated."
+    echo "Tasks generated."
 
 else
     echo "No suggestions file found."
