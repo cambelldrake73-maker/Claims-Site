@@ -1,10 +1,11 @@
-- Add a visible icon or symbol to each sidebar nav link so collapsed state communicates page identity without text
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click', ...)` handler is cut off before closing the `accountMenu.classList.remove('open')` and `aria-expanded` reset
-- Add `aria-expanded` reset to the account menu click-outside handler in `submit-claims.html` to match the pattern in `agreements.html`
-- Add `aria-label` or `aria-current="page"` to the active nav link across all pages for screen reader clarity
-- Standardize the sidebar CSS transition duration across files (`submit-claims.html` uses `.26s` while others use `260ms`)
-- Add a hover state color transition to `.nav-link` in `submit-claims.html` to match the `180ms ease` transition defined in other files
-- Add a spinning or animated indicator to the sidebar pin tab to show pinned vs unpinned state, matching the rotate transform already defined in `agreements.html` but missing in `submit-claims.html`
-- Add `resize: vertical` to the `textarea` in `submit-claims.html` so users can resize the notes field
-- Add character counter below the notes `textarea` in `submit-claims.html`
-- Make the `
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
+- Add a loading or disabled state to the Submit Claim button after the form is submitted to prevent double-clicks
+- Increase the contrast of the `.nav-link::before` dot indicator as it is difficult to see at current opacity
+- Add `resize: vertical` to the `textarea` in `submit-claims.html` to match the behavior in `contact.html`
+- Add smooth `display` transition or fade-in animation to the `.saved` notice in `submit-claims.html`
+- Make the topbar sticky with `position: sticky; top: 0; z-index: 100;` across all dashboard pages so it stays visible while scrolling
+- Add a visual separator or section grouping to the sidebar nav if more links are added in the future
+- Standardize `card-head` padding across `submit-claims.html` and `agreements.html` as values differ slightly
+- Add `outline` or `focus-visible` styles to all interactive elements for keyboard navigation visibility
