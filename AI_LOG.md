@@ -161,3 +161,5 @@ Tue Mar 10 14:47:20 PDT 2026: Completed task - Add a loading/disabled state to t
 Tue Mar 10 14:48:01 PDT 2026: Completed task - Make the `savedNotice` span in `submit-claims.html` auto-hide after a few seconds using a CSS transition or `setTimeout`
 Tue Mar 10 14:48:43 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:48:43 PDT 2026: Completed task - Add a pin/unpin visual indicator to the sidebar-tab button so users understand its toggle function (e.g., rotate arrow icon like `agreements.html` already does, but `submit-claims.html` is missing this)
+Tue Mar 10 14:49:24 PDT 2026: Skipped protected file design-system.css
+Tue Mar 10 14:49:24 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed

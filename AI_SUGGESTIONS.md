@@ -1,14 +1,12 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
 - Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a loading/disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Add hover and focus styles to form inputs, selects, and textareas across all pages for better interactivity feedback
-- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
-- Add a character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Add smooth transition animation to the dropdown menu opening and closing
-- Replace the plain `>` text arrow in the sidebar toggle button with a proper CSS chevron icon
-- Add a visible active/current page indicator style that is more distinct than just a background color change
-- Add a mobile hamburger menu for the sidebar instead of the current collapsed behavior on small screens
-- Fix the `claims.html` file which appears to be truncated mid-CSS
-- Add proper placeholder text to the Patient Name, Account, and Payer fields in `submit-claims.html`
-- Add consistent focus-visible outline styles for keyboard navigation across all interactive elements
-- Add a sticky topbar so it remains visible while scrolling through long content pages
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Standardize the `sidebar-tab` button arrow indicator so it rotates 180° when pinned, matching the behavior in `agreements.html` but missing in `submit-claims.html`
+- Add hover transition effects to the table rows in `agreements.html` for better visual feedback
+- Make the `savedNotice` element in `submit-claims.html` auto-hide after a few seconds using a CSS transition or short timeout
+- Add a consistent active state highlight to the account dropdown links when the current page matches the link destination
+- Improve the `contact.html` form field layout by adding consistent spacing between the label and input elements
+- Add `resize: vertical` constraint to all `textarea` elements across pages for consistent behavior
+- Apply a consistent `focus` outline style across all `input`, `select`, and `textarea` elements site-wide
+- Add a mobile hamburger menu or collapsible nav for the `Index.html` top navbar on small screens
+- Ensure the sidebar in `claims.html` has the same `
