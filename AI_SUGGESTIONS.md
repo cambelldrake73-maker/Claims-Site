@@ -1,12 +1,9 @@
-- Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates destination without hover
-- Fix the truncated JavaScript in submit-claims.html where the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
-- Add a loading/disabled state to the Submit Claim button after form submission to prevent double-clicks
-- Make the `savedNotice` confirmation message in submit-claims.html auto-hide after a few seconds using a CSS fade-out transition
-- Add a character counter below the Notes textarea in submit-claims.html
-- Increase the collapsed sidebar width slightly or add tooltips on nav links so users know where each link leads without expanding
-- Add a visual active indicator (left border accent or highlight) to the active nav link in addition to the background color change
-- Make the sidebar pin button arrow rotate 180° when pinned in submit-claims.html (already done in agreements.html but missing in submit-claims.html)
-- Ensure the account dropdown closes when sidebar pin button is clicked on smaller screens
-- Standardize card border-radius across all pages (submit-claims.html uses 16px, claims.html and others vary)
-- Add `resize: vertical` to all textarea elements to match the contact.html textarea behavior
-- Add hover styles to the Clear/reset
+- Add a visible icon or SVG to each sidebar nav link instead of the CSS dot (`::before` pseudo-element) so navigation items are recognizable when the sidebar is collapsed
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click', ...)` handler is cut off and missing the closing `aria-expanded` reset and `});` lines
+- Add a hover background transition (`transition: background-color 180ms ease`) to `.nav-link` in `submit-claims.html` to match the smoother styling used in `agreements.html` and `claims.html`
+- Make the sidebar pin button arrow rotate 180° when pinned in `submit-claims.html` to match the behavior already implemented in `agreements.html`
+- Add `resize: vertical` to all `textarea` elements across the project for consistent resize behavior
+- Add `focus` outline styles to all `input`, `select`, `textarea`, and `button` elements for visible keyboard focus indication
+- Add responsive stacking behavior to `.actions` in `submit-claims.html` so buttons stack vertically on small screens
+- Increase the sidebar collapsed width from `56px` to something slightly wider so the nav dot indicators are more visually centered
+- Add a subtle active underline or left border accent to `.nav-link.active` to make the current page more vis

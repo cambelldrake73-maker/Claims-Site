@@ -149,3 +149,4 @@ Tue Mar 10 14:41:12 PDT 2026: Completed task - Add `display:flex; align-items:ce
 Tue Mar 10 14:41:53 PDT 2026: Completed task - Add `font-size:14px` to `.account-button` in `submit-claims.html` to match other pages
 Tue Mar 10 14:42:35 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:42:35 PDT 2026: Completed task - Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates destination without hover
+Tue Mar 10 14:43:17 PDT 2026: Completed task - Fix the truncated JavaScript in submit-claims.html where the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
