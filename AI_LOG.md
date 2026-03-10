@@ -167,3 +167,4 @@ Tue Mar 10 14:50:05 PDT 2026: Completed task - Fix the truncated JavaScript in `
 Tue Mar 10 14:50:46 PDT 2026: Completed task - Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
 Tue Mar 10 14:51:27 PDT 2026: Skipped protected file design-system.css
 Tue Mar 10 14:51:27 PDT 2026: Completed task - Standardize the `sidebar-tab` button arrow indicator so it rotates 180° when pinned, matching the behavior in `agreements.html` but missing in `submit-claims.html`
+Tue Mar 10 14:52:05 PDT 2026: Completed task - Add hover transition effects to the table rows in `agreements.html` for better visual feedback

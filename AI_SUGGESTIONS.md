@@ -1,11 +1,9 @@
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
-- Add a hover transition animation to the `.btn` elements in `submit-claims.html` for better interactive feedback
-- Add a focus visible outline style to all inputs, selects, and textareas across all pages for keyboard navigation usability
-- Make the `.saved` notice in `submit-claims.html` fade in with a CSS transition instead of abruptly appearing
-- Standardize the sidebar CSS across all pages since `submit-claims.html` uses slightly different transition values than `agreements.html` and `claims.html`
-- Add `resize: vertical` to the `textarea` in `submit-claims.html` to match the `contact.html` textarea behavior
-- Add a visible active/current page indicator to the account tabs in `agreements.html` that is more visually distinct than just a background color change
-- Improve the topbar in `contact.html` to better match the dashboard topbar style used across authenticated pages
-- Add a sticky `position: sticky; top: 0` style to `.topbar` across dashboard pages so it remains visible while scrolling content
-- Add `min-width` constraints
+- Fix truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute('aria-expanded', 'false')` line and closing braces for the event listeners are missing
+- Add `aria-expanded` reset on outside click in `submit-claims.html` to match the pattern used in `agreements.html`
+- Add `keydown` Escape key handler to close account dropdown in `submit-claims.html` to match `agreements.html`
+- Add spinning/rotation transition to sidebar tab arrow in `submit-claims.html` to match `agreements.html` behavior
+- Add `display:flex; align-items:center; justify-content:center; padding:0;` to `.sidebar-tab` in `submit-claims.html` to match `agreements.html`
+- Standardize sidebar transition duration across all files — `submit-claims.html` uses `.26s` while others use `260ms`
+- Add `transition: background-color 180ms ease, color 180ms ease;` to `.nav-link` in `submit-claims.html` to match other pages
+- Add `white-space:nowrap` to `.nav-link` in `submit-claims.html` to match `claims.html` and `agreements.html`
+- Add `justify-content:flex-start` to `.nav-link
