@@ -1,14 +1,13 @@
 - Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Add a transition animation to the `savedNotice` element in `submit-claims.html` instead of an abrupt display change
-- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
-- Add hover tooltips to collapsed sidebar nav links so users know where each link leads
-- Fix the `claims.html` file where the CSS is cut off mid-rule, leaving the page without complete styling
-- Add active state highlight to the current page link in the account tabs on `agreements.html`
-- Add a print stylesheet for `agreements.html` so agreement tables print cleanly
-- Add `focus` styles to all interactive elements across pages for keyboard navigation visibility
-- Add a mobile hamburger menu toggle for the sidebar on small screens to replace the always-expanded mobile layout
-- Improve the `contact.html` form layout by visually grouping label and input pairs with consistent spacing
-- Add a sticky topbar option so the header remains visible when scrolling on longer pages
-- Add a character counter to the Notes textarea in
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add a hover transition effect to the `.btn` elements in `submit-claims.html` for better visual feedback
+- Replace the `>` text character in the sidebar toggle button with a proper CSS arrow or SVG icon
+- Add focus-visible outline styles to all interactive elements across all pages for keyboard navigation visibility
+- Standardize the sidebar CSS across all pages into a single shared stylesheet to eliminate code duplication
+- Add a loading or disabled state style to the Submit button in `submit-claims.html` after form submission
+- Make the `savedNotice` element in `submit-claims.html` use a fade-in animation instead of abruptly appearing
+- Add consistent spacing between the account tab links in `agreements.html` on mobile viewports
+- Apply a minimum column width to the claims table in `agreements.html` to prevent text from becoming unreadably narrow
+- Add a sticky header to the topbar across all dashboard pages so it remains visible when scrolling
+- Style the `service-agreement.html` page with a back-navigation link that matches the visual style used in `contact.html`
+- Add placeholder text to
