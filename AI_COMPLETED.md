@@ -218,3 +218,4 @@
 - Test task B
 - Add authentication middleware
 - Add login API endpoint
+- Add migration scripts
