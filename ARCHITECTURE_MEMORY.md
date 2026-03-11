@@ -27,3 +27,4 @@
 ## System
 - Planner → Architect → Executor pipeline active
 - Worker automation loop active
+- - Add RBAC permission checks
