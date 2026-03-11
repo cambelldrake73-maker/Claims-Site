@@ -80,7 +80,19 @@ else
     echo "No repo changes."
 fi
 
-echo "Sleeping 15 minutes..."
-sleep 900
+echo "Executing task batch..."
+
+for i in {1..10}
+do
+    if [ -s "$WORKSPACE/AI_PENDING.md" ]; then
+        bash "$WORKSPACE/ai-executor.sh"
+    else
+        echo "No tasks remaining."
+        break
+    fi
+done
+
+echo "Sleeping 3 minutes..."
+sleep 180
 
 done
