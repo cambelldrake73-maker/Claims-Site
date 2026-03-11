@@ -203,3 +203,4 @@
 - Implement JWT signing utility
 - Create monitoring service folder
 - Implement monitoring system
+- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary

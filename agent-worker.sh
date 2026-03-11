@@ -24,7 +24,10 @@ git pull origin ai-dev >/dev/null 2>&1
 
 CURRENT_HASH=$(git rev-parse HEAD)
 
-# Reset AI counter if new day
+# ---------------------------
+# RESET AI LIMIT DAILY
+# ---------------------------
+
 TODAY=$(date +%F)
 
 if [ -f "$AI_DATE_FILE" ]; then
@@ -44,13 +47,13 @@ AI_CALLS=$(cat "$AI_COUNTER_FILE" 2>/dev/null || echo 0)
 # TASK EXECUTION FIRST
 # ---------------------------
 
-if [ -s AI_PENDING.md ]; then
+if [ -s "$WORKSPACE/AI_PENDING.md" ]; then
 
     echo "Tasks already queued — executing without AI."
-    bash ai-executor.sh
+    bash "$WORKSPACE/ai-executor.sh"
 
 # ---------------------------
-# GENERATE NEW TASKS
+# GENERATE TASKS IF REPO CHANGED
 # ---------------------------
 
 elif [ "$CURRENT_HASH" != "$LAST_HASH" ]; then
@@ -62,13 +65,16 @@ elif [ "$CURRENT_HASH" != "$LAST_HASH" ]; then
     else
 
         echo "Running AI planner..."
-        bash ai-planner.sh || echo "Planner failed"
+        bash "$WORKSPACE/ai-planner.sh" || echo "Planner failed"
 
-        echo "Running AI suggestions..."
-        bash ai-suggest.sh || echo "Suggest failed"
+        echo "Running AI planner..."
+        bash "$WORKSPACE/ai-planner.sh" || echo "Planner failed"
 
         echo "Generating tasks..."
-        bash ai-task-maker.sh
+        bash "$WORKSPACE/ai-task-maker.sh"
+
+        echo "Generating tasks..."
+        bash "$WORKSPACE/ai-task-maker.sh"
 
         echo $((AI_CALLS+1)) > "$AI_COUNTER_FILE"
 
@@ -76,17 +82,35 @@ elif [ "$CURRENT_HASH" != "$LAST_HASH" ]; then
 
     LAST_HASH=$CURRENT_HASH
 
+# ---------------------------
+# FALLBACK ARCHITECTURE TASKS
+# ---------------------------
+
 else
+
     echo "No repo changes."
 
     if [ ! -s "$WORKSPACE/AI_PENDING.md" ]; then
         echo "Queue empty — generating architecture tasks..."
 
-        bash "$WORKSPACE/ai-planner.sh"
-        bash "$WORKSPACE/ai-architect.sh"
+        if [ "$AI_CALLS" -ge "$MAX_AI_CALLS_PER_DAY" ]; then
+            echo "Daily AI limit reached — skipping architecture planner."
+        else
 
+            bash "$WORKSPACE/ai-planner.sh"
+            bash "$WORKSPACE/ai-architect.sh"
+
+            echo $((AI_CALLS+1)) > "$AI_COUNTER_FILE"
+
+        fi
     fi
+
 fi
+
+# ---------------------------
+# EXECUTE TASK BATCH
+# ---------------------------
+
 echo "Executing task batch..."
 
 for i in {1..10}
