@@ -194,3 +194,4 @@
 - Add authentication middleware
 - Add login API endpoint
 - Add migration scripts
+- Add RBAC permission checks
