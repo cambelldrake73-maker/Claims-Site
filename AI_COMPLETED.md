@@ -243,3 +243,4 @@
 - Create auth service folder
 - Implement JWT signing utility
 - Add authentication middleware
+- Add login API endpoint
