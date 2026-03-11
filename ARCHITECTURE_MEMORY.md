@@ -67,3 +67,5 @@ Add authentication middleware
 - Auth system implemented
 Add RBAC permission checks
 Create auth service folder
+- Auth system implemented
+Implement JWT signing utility
