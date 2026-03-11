@@ -250,3 +250,4 @@
 - Add authentication middleware
 - Add document access logging
 - Add login API endpoint
+- Add migration scripts

@@ -1,4 +1,3 @@
-- Add migration scripts
 - Add RBAC permission checks
 - Create auth service folder
 - Create database schema file
