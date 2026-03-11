@@ -95,3 +95,4 @@ Claim Recovery Analytics
 
 Human approval is required before claim submission.
 Add authentication middleware
+- Auth system implemented
