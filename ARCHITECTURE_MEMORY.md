@@ -52,3 +52,4 @@ Create auth service folder
 - Auth system implemented
 Implement JWT signing utility
 Add authentication middleware
+- Auth system implemented
