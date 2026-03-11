@@ -39,3 +39,4 @@ Implement JWT signing utility
 - Monitoring system introduced
 Add authentication middleware
 - Auth system implemented
+Add RBAC permission checks
