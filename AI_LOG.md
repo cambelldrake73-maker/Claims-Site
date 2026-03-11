@@ -211,3 +211,4 @@ Tue Mar 10 15:28:09 PDT 2026: Completed task - Add a hover state color transitio
 Tue Mar 10 15:29:10 PDT 2026: Completed task - Add character counter or max-length indicator to the Notes textarea in `submit-claims.html`
 Tue Mar 10 21:21:55 PDT 2026: Completed task - Create a database schema and migration scripts (Postgres recommended) for claims, claim_events, users, roles, audit_logs (immutable), documents_metadata, payers, invoices, and report_jobs.
 Tue Mar 10 21:36:56 PDT 2026: Completed task - Implement authentication using OAuth2 / OpenID Connect with short-lived JWTs and refresh tokens; store refresh tokens securely and enforce secure cookie flags.
+Tue Mar 10 21:51:56 PDT 2026: Completed task - Implement an append-only audit logging system that records actor, action, resource, timestamp, and before/after state; persist audit logs in a write-optimized store (separate DB table/index).
