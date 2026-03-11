@@ -231,3 +231,4 @@
 - Add login API endpoint
 - Add RBAC permission checks
 - Create auth service folder
+- Implement JWT signing utility
