@@ -14,6 +14,10 @@ do
 
 LOWER=$(echo "$TASK" | tr '[:upper:]' '[:lower:]')
 
+# Skip duplicate tasks
+if grep -Fxq -- "$TASK" "$PENDING"; then
+    continue
+fi
 # AUTH / SECURITY
 if [[ "$LOWER" == *"auth"* ]] || [[ "$LOWER" == *"oauth"* ]] || [[ "$LOWER" == *"rbac"* ]]; then
 

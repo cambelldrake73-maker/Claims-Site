@@ -84,7 +84,18 @@ $DEV_MEMORY
 
 Architecture memory:
 $ARCH_MEMORY
+Evaluate the architecture memory and identify missing critical systems.
 
+Prioritize improvements in this order:
+
+1. Security and compliance
+2. Reliability and fault tolerance
+3. Scalability and architecture
+4. Observability and monitoring
+5. Performance optimization
+6. Developer productivity
+
+Focus on the highest priority missing systems first.
 Your job is to propose **major architectural improvements** for the system.
 Use the architecture memory to detect missing systems.
 
@@ -103,7 +114,7 @@ Focus on architecture gaps such as:
 Do not repeat systems already listed in the architecture memory.
 Generate EXACTLY 3 architecture tasks.
 
-These must be **large, high-impact engineering improvements** that a senior software engineer or system architect would recommend.
+These must be **large, high-impact engineering improvements** that a senior software engineer or system architect would reccomend.
 
 Focus on:
 
