@@ -1,2 +1,1 @@
-- Create auth service folder
 - Implement JWT signing utility
