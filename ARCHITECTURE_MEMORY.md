@@ -43,3 +43,4 @@ Add RBAC permission checks
 Create auth service folder
 - Auth system implemented
 Create database schema file
+- Database schema system implemented
