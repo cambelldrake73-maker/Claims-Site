@@ -4,7 +4,11 @@ WORKSPACE="$HOME/.openclaw/workspace/claims-site"
 SUGGESTIONS="$WORKSPACE/AI_SUGGESTIONS.md"
 
 cd "$WORKSPACE"
+
+# ---------------------------
 # DAILY API LIMIT CONTROL
+# ---------------------------
+
 LIMIT_FILE="$WORKSPACE/.daily_api_calls"
 TODAY=$(date +%Y-%m-%d)
 
@@ -16,12 +20,12 @@ else
     COUNT=0
 fi
 
-# Reset counter each day
+# Reset daily counter
 if [ "$TODAY" != "$LAST_DAY" ]; then
     COUNT=0
 fi
 
-# Max 10 calls per day (~$1 safety margin)
+# Max planner calls per day
 if [ "$COUNT" -ge 10 ]; then
     echo "Daily AI limit reached. Skipping planner."
     exit 0
@@ -30,23 +34,20 @@ fi
 COUNT=$((COUNT+1))
 echo "$TODAY" > "$LIMIT_FILE"
 echo "$COUNT" >> "$LIMIT_FILE"
+
 echo "Scanning project for planning..."
 
-# Collect sample project files
-FILES=$(find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) | head -n 15)
+# ---------------------------
+# LOAD CONTEXT FILES
+# ---------------------------
 
-CONTEXT=""
-
-for FILE in $FILES
-do
-  CONTENT=$(head -n 60 "$FILE" 2>/dev/null)
-  CONTEXT="$CONTEXT\n\nFILE: $FILE\n$CONTENT"
-done
-
-# Load context files
 PROJECT_CONTEXT=$(cat PROJECT_CONTEXT.md 2>/dev/null)
 DEV_MEMORY=$(cat DEV_MEMORY.md 2>/dev/null)
 ARCH_MEMORY=$(cat ARCHITECTURE_MEMORY.md 2>/dev/null)
+
+# ---------------------------
+# BUILD SIMPLE SITE MAP
+# ---------------------------
 
 echo "Building site map..."
 
@@ -59,7 +60,6 @@ do
     LINKS=$(grep -oE 'href="[^"]+"' "$FILE" 2>/dev/null | sed 's/href="//g' | sed 's/"//g')
 
     STRUCTURE="$STRUCTURE
-
 PAGE: $FILE
 LINKS TO:"
 
@@ -70,8 +70,12 @@ LINKS TO:"
     done
 done
 
+# ---------------------------
+# BUILD PROMPT
+# ---------------------------
+
 PROMPT=$(cat <<EOF
-You are the lead software architect for a production medical claims dashboard system.
+You are the lead software architect for a production medical claim recovery platform.
 
 Site structure:
 $STRUCTURE
@@ -84,51 +88,28 @@ $DEV_MEMORY
 
 Architecture memory:
 $ARCH_MEMORY
+
 Evaluate the architecture memory and identify missing critical systems.
 
-Prioritize improvements in this order:
+This system processes denied medical claims and prepares them for resubmission through clearinghouses.
+
+Architecture priorities:
 
 1. Security and compliance
 2. Reliability and fault tolerance
-3. Scalability and architecture
+3. Scalability and system architecture
 4. Observability and monitoring
 5. Performance optimization
 6. Developer productivity
 
-Focus on the highest priority missing systems first.
-Your job is to propose **major architectural improvements** for the system.
-Use the architecture memory to detect missing systems.
+Focus on backend systems required for:
 
-Identify important infrastructure that is not yet implemented.
-
-Focus on architecture gaps such as:
-
-- monitoring
-- observability
-- rate limiting
-- caching
-- API gateway
-- deployment pipelines
-- analytics infrastructure
-
-Do not repeat systems already listed in the architecture memory.
-Generate EXACTLY 3 architecture tasks.
-
-These must be **large, high-impact engineering improvements** that a senior software engineer or system architect would reccomend.
-
-Focus on:
-
-- backend architecture
-- database design
-- scalability
-- security
-- system reliability
-- workflow automation
-- developer infrastructure
-- CI/CD
-- API design
-- data pipelines
-- observability
+- claim parsing
+- denial intelligence
+- claim normalization
+- clearinghouse integration
+- claim review workflows
+- medical claim data pipelines
 
 Avoid:
 
@@ -139,11 +120,9 @@ Avoid:
 - cosmetic improvements
 - small HTML changes
 
-Do not repeat ideas that appear in Development History.
-
 Rules:
 
-- Output EXACTLY 3 tasks
+- Output EXACTLY 3 architecture tasks
 - Each task must start with "-"
 - One task per line
 - No explanations
@@ -151,11 +130,16 @@ Rules:
 
 EOF
 )
+
+# ---------------------------
+# CALL OPENAI API
+# ---------------------------
+
 echo "Generating tasks using ChatGPT..."
+
 python3 <<EOF > "$SUGGESTIONS"
 import os
 import requests
-import json
 import sys
 
 prompt = """$PROMPT"""
@@ -175,7 +159,7 @@ response = requests.post(
     json={
         "model": "gpt-5-mini",
         "input": prompt,
-        "max_output_tokens": 1500
+        "max_output_tokens": 1200
     },
     timeout=60
 )
@@ -193,4 +177,5 @@ if "output" in data:
 
 print(text.strip())
 EOF
+
 echo "Planner suggestions generated."

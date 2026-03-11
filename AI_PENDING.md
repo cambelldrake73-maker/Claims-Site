@@ -1,0 +1,12 @@
+- Add document access logging
+- Add login API endpoint
+- Add migration scripts
+- Add RBAC permission checks
+- Create auth service folder
+- Create database schema file
+- Create document proxy API endpoint
+- Define claim_events table structure
+- Define claims table structure
+- Define patients table structure
+- Implement JWT signing utility
+- Implement signed URL generation
