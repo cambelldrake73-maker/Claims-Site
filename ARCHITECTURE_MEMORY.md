@@ -59,3 +59,4 @@ Create auth service folder
 Implement JWT signing utility
 Add authentication middleware
 - Auth system implemented
+Add RBAC permission checks
