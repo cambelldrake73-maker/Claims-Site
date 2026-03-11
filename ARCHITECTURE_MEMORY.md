@@ -27,4 +27,5 @@
 ## System
 - Planner → Architect → Executor pipeline active
 - Worker automation loop active
-- - Add RBAC permission checks
+RBAC permission checks implemented
+Create auth service folder

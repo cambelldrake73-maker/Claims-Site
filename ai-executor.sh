@@ -81,8 +81,7 @@ if [[ "$LOWER" == *"auth"* ]] || \
    [[ "$LOWER" == *"job"* ]] || \
    [[ "$LOWER" == *"document proxy"* ]]; then
 
-echo "- $TASK" >> "$WORKSPACE/ARCHITECTURE_MEMORY.md"
-
+echo "$TASK" | sed 's/^- //' >> "$WORKSPACE/ARCHITECTURE_MEMORY.md"
 fi
 
 # Example: sidebar improvements
