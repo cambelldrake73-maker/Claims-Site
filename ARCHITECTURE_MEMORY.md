@@ -38,3 +38,4 @@ Create database schema file
 Implement JWT signing utility
 - Monitoring system introduced
 Add authentication middleware
+- Auth system implemented
