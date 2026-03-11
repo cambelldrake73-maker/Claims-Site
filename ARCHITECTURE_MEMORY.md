@@ -29,3 +29,4 @@
 - Worker automation loop active
 RBAC permission checks implemented
 Create auth service folder
+Create database schema file

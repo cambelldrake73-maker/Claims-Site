@@ -86,7 +86,21 @@ Architecture memory:
 $ARCH_MEMORY
 
 Your job is to propose **major architectural improvements** for the system.
+Use the architecture memory to detect missing systems.
 
+Identify important infrastructure that is not yet implemented.
+
+Focus on architecture gaps such as:
+
+- monitoring
+- observability
+- rate limiting
+- caching
+- API gateway
+- deployment pipelines
+- analytics infrastructure
+
+Do not repeat systems already listed in the architecture memory.
 Generate EXACTLY 3 architecture tasks.
 
 These must be **large, high-impact engineering improvements** that a senior software engineer or system architect would recommend.
