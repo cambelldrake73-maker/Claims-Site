@@ -47,3 +47,4 @@ Create database schema file
 Implement JWT signing utility
 Add authentication middleware
 - Auth system implemented
+Add RBAC permission checks
