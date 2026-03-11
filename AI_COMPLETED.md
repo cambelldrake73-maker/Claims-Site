@@ -226,3 +226,4 @@
 - Define claims table structure
 - Define patients table structure
 - Implement JWT signing utility
+- Implement centralized secrets and key management: deploy a KMS/HSM-backed secrets store with envelope encryption for PHI, automated key rotation and rotation policies, tenant-scoped keys, strict access controls, audit logging of key usage, and integration with CI/CD to remove hardcoded secrets (HIPAA-compliant encryption-at-rest and in-transit posture).
