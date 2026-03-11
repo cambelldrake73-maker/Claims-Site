@@ -176,3 +176,4 @@
 - Create a database schema and migration scripts (Postgres recommended) for claims, claim_events, users, roles, audit_logs (immutable), documents_metadata, payers, invoices, and report_jobs.
 - Implement authentication using OAuth2 / OpenID Connect with short-lived JWTs and refresh tokens; store refresh tokens securely and enforce secure cookie flags.
 - Implement an append-only audit logging system that records actor, action, resource, timestamp, and before/after state; persist audit logs in a write-optimized store (separate DB table/index).
+- Create a secure document access microservice that issues signed, time-limited URLs for files in protected directories and logs every access without modifying the files.
