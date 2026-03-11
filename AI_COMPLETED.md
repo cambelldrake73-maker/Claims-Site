@@ -181,3 +181,4 @@
 - Create auth service folder
 - Add login API endpoint
 - Implement JWT signing utility
+- Add authentication middleware
