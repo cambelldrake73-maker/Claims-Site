@@ -50,4 +50,7 @@ fi
 
 done < "$SUGGESTIONS"
 
+# Remove duplicate tasks
+sort -u "$PENDING" -o "$PENDING"
+
 echo "Architecture tasks decomposed."

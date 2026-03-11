@@ -1,5 +1,4 @@
 
-- Implement JWT signing utility
 - Add authentication middleware
 - Add RBAC permission checks
 - Create database schema file
@@ -8,7 +7,6 @@
 - Define claim_events table structure
 - Add migration scripts
 - Create auth service folder
-- Implement JWT signing utility
 - Add authentication middleware
 - Add RBAC permission checks
 - Create database schema file
