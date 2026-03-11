@@ -257,3 +257,4 @@
 - Create document proxy API endpoint
 - Define claim_events table structure
 - Define claims table structure
+- Define patients table structure
