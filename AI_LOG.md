@@ -264,3 +264,4 @@ Wed Mar 11 15:26:09 PDT 2026: Completed task - Define patients table structure
 Wed Mar 11 15:26:09 PDT 2026: Completed task - Implement JWT signing utility
 Wed Mar 11 15:29:47 PDT 2026: Completed task - Implement centralized secrets and key management: deploy a KMS/HSM-backed secrets store with envelope encryption for PHI, automated key rotation and rotation policies, tenant-scoped keys, strict access controls, audit logging of key usage, and integration with CI/CD to remove hardcoded secrets (HIPAA-compliant encryption-at-rest and in-transit posture).
 Wed Mar 11 15:36:08 PDT 2026: Completed task - Add authentication middleware
+Wed Mar 11 15:36:09 PDT 2026: Completed task - Add login API endpoint

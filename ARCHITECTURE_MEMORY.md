@@ -46,3 +46,4 @@ Create database schema file
 - Database schema system implemented
 Implement JWT signing utility
 Add authentication middleware
+- Auth system implemented
