@@ -19,8 +19,7 @@ touch "$COMPLETED"
 touch "$LOG"
 
 # Get next task
-TASK=$(grep "-" "$PENDING" | head -n 1)
-
+TASK=$(grep -E "^- " "$PENDING" | head -n 1)
 if [ -z "$TASK" ]; then
     echo "No tasks found."
     exit 0
@@ -28,10 +27,11 @@ fi
 
 echo "Executing task: $TASK"
 
-# Move task to RUNNING
-grep -v -- "$TASK" "$PENDING" > tmp && mv tmp "$PENDING"
-echo "$TASK" >> "$RUNNING"
+# Remove first line safely
+sed -i '' '1d' "$PENDING"
 
+# Move task to RUNNING
+echo "$TASK" >> "$RUNNING"
 ########################################
 # PROTECTED FILE CHECK
 ########################################
