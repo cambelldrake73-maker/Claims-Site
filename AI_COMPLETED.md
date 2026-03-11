@@ -249,3 +249,4 @@
 - Implement JWT signing utility
 - Add authentication middleware
 - Add document access logging
+- Add login API endpoint
