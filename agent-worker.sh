@@ -78,8 +78,15 @@ elif [ "$CURRENT_HASH" != "$LAST_HASH" ]; then
 
 else
     echo "No repo changes."
-fi
 
+    if [ ! -s "$WORKSPACE/AI_PENDING.md" ]; then
+        echo "Queue empty — generating architecture tasks..."
+
+        bash "$WORKSPACE/ai-planner.sh"
+        bash "$WORKSPACE/ai-architect.sh"
+
+    fi
+fi
 echo "Executing task batch..."
 
 for i in {1..10}

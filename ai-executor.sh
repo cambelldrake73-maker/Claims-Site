@@ -117,3 +117,23 @@ git add .
 git commit -m "AI task completed: $TASK" >/dev/null 2>&1
 
 echo "Task completed."
+# Update architecture memory
+if [[ "$TASK" == *"auth"* ]] || [[ "$TASK" == *"authentication"* ]]; then
+    echo "- Auth system implemented" >> "$WORKSPACE/ARCHITECTURE_MEMORY.md"
+fi
+
+if [[ "$TASK" == *"jwt"* ]]; then
+    echo "- JWT signing system implemented" >> "$WORKSPACE/ARCHITECTURE_MEMORY.md"
+fi
+
+if [[ "$TASK" == *"database"* ]] || [[ "$TASK" == *"schema"* ]]; then
+    echo "- Database schema system implemented" >> "$WORKSPACE/ARCHITECTURE_MEMORY.md"
+fi
+
+if [[ "$TASK" == *"monitor"* ]]; then
+    echo "- Monitoring system introduced" >> "$WORKSPACE/ARCHITECTURE_MEMORY.md"
+fi
+
+if [[ "$TASK" == *"queue"* ]] || [[ "$TASK" == *"job"* ]]; then
+    echo "- Background job system implemented" >> "$WORKSPACE/ARCHITECTURE_MEMORY.md"
+fi
