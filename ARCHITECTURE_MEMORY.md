@@ -30,3 +30,4 @@
 RBAC permission checks implemented
 Create auth service folder
 Create database schema file
+Implement JWT signing utility
