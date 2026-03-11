@@ -193,3 +193,4 @@
 - Implement JWT signing utility
 - Add authentication middleware
 - Add login API endpoint
+- Add migration scripts
