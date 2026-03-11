@@ -46,6 +46,7 @@ done
 # Load context files
 PROJECT_CONTEXT=$(cat PROJECT_CONTEXT.md 2>/dev/null)
 DEV_MEMORY=$(cat DEV_MEMORY.md 2>/dev/null)
+ARCH_MEMORY=$(cat ARCHITECTURE_MEMORY.md 2>/dev/null)
 
 echo "Building site map..."
 
@@ -80,6 +81,9 @@ $PROJECT_CONTEXT
 
 Development history:
 $DEV_MEMORY
+
+Architecture memory:
+$ARCH_MEMORY
 
 Your job is to propose **major architectural improvements** for the system.
 

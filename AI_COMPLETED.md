@@ -182,3 +182,4 @@
 - Add login API endpoint
 - Implement JWT signing utility
 - Add authentication middleware
+- Add login API endpoint
