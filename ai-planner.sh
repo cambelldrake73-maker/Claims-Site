@@ -4,7 +4,32 @@ WORKSPACE="$HOME/.openclaw/workspace/claims-site"
 SUGGESTIONS="$WORKSPACE/AI_SUGGESTIONS.md"
 
 cd "$WORKSPACE"
+# DAILY API LIMIT CONTROL
+LIMIT_FILE="$WORKSPACE/.daily_api_calls"
+TODAY=$(date +%Y-%m-%d)
 
+if [ -f "$LIMIT_FILE" ]; then
+    LAST_DAY=$(head -n 1 "$LIMIT_FILE")
+    COUNT=$(tail -n 1 "$LIMIT_FILE")
+else
+    LAST_DAY=""
+    COUNT=0
+fi
+
+# Reset counter each day
+if [ "$TODAY" != "$LAST_DAY" ]; then
+    COUNT=0
+fi
+
+# Max 10 calls per day (~$1 safety margin)
+if [ "$COUNT" -ge 10 ]; then
+    echo "Daily AI limit reached. Skipping planner."
+    exit 0
+fi
+
+COUNT=$((COUNT+1))
+echo "$TODAY" > "$LIMIT_FILE"
+echo "$COUNT" >> "$LIMIT_FILE"
 echo "Scanning project for planning..."
 
 # Collect sample project files
@@ -56,37 +81,47 @@ $PROJECT_CONTEXT
 Development history:
 $DEV_MEMORY
 
-Generate advanced engineering tasks that improve:
+Your job is to propose **major architectural improvements** for the system.
 
-- system architecture
-- backend structure
+Generate EXACTLY 3 architecture tasks.
+
+These must be **large, high-impact engineering improvements** that a senior software engineer or system architect would recommend.
+
+Focus on:
+
+- backend architecture
+- database design
 - scalability
-- performance
 - security
-- maintainability
-- developer workflow
-- automation
-- data architecture
+- system reliability
+- workflow automation
+- developer infrastructure
+- CI/CD
+- API design
+- data pipelines
+- observability
 
-DO NOT suggest:
+Avoid:
 
 - CSS tweaks
+- UI adjustments
 - icon changes
-- spacing adjustments
-- small HTML fixes
-- cosmetic UI improvements
+- spacing fixes
+- cosmetic improvements
+- small HTML changes
 
-Assume a junior developer agent will execute these tasks automatically.
-
-Only produce tasks that a senior software engineer would recommend.
+Do not repeat ideas that appear in Development History.
 
 Rules:
+
+- Output EXACTLY 3 tasks
 - Each task must start with "-"
 - One task per line
 - No explanations
+- Do not output anything except the tasks
+
 EOF
 )
-
 echo "Generating tasks using ChatGPT..."
 python3 <<EOF > "$SUGGESTIONS"
 import os

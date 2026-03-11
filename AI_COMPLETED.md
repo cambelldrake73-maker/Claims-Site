@@ -174,3 +174,4 @@
 - Add a hover state color transition to the `btn.primary` and `btn.secondary` buttons in `submit-claims.html`
 - Add character counter or max-length indicator to the Notes textarea in `submit-claims.html`
 - Create a database schema and migration scripts (Postgres recommended) for claims, claim_events, users, roles, audit_logs (immutable), documents_metadata, payers, invoices, and report_jobs.
+- Implement authentication using OAuth2 / OpenID Connect with short-lived JWTs and refresh tokens; store refresh tokens securely and enforce secure cookie flags.
