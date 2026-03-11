@@ -209,3 +209,4 @@ Tue Mar 10 15:26:06 PDT 2026: Completed task - Fix the truncated JavaScript in `
 Tue Mar 10 15:27:07 PDT 2026: Completed task - Add a focus-visible outline style to all interactive elements (buttons, links, inputs) for keyboard navigation accessibility
 Tue Mar 10 15:28:09 PDT 2026: Completed task - Add a hover state color transition to the `btn.primary` and `btn.secondary` buttons in `submit-claims.html`
 Tue Mar 10 15:29:10 PDT 2026: Completed task - Add character counter or max-length indicator to the Notes textarea in `submit-claims.html`
+Tue Mar 10 21:21:55 PDT 2026: Completed task - Create a database schema and migration scripts (Postgres recommended) for claims, claim_events, users, roles, audit_logs (immutable), documents_metadata, payers, invoices, and report_jobs.

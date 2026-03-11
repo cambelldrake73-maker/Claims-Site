@@ -7,7 +7,7 @@ cd "$WORKSPACE"
 
 echo "Scanning project for planning..."
 
-# Collect some project files
+# Collect sample project files
 FILES=$(find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) | head -n 15)
 
 CONTEXT=""
@@ -18,26 +18,72 @@ do
   CONTEXT="$CONTEXT\n\nFILE: $FILE\n$CONTENT"
 done
 
-# Load project context if present
+# Load context files
 PROJECT_CONTEXT=$(cat PROJECT_CONTEXT.md 2>/dev/null)
+DEV_MEMORY=$(cat DEV_MEMORY.md 2>/dev/null)
+
+echo "Building site map..."
+
+SITE_MAP=$(find . -name "*.html" -type f ! -path "./.git/*" | head -n 30)
+
+STRUCTURE=""
+
+for FILE in $SITE_MAP
+do
+    LINKS=$(grep -oE 'href="[^"]+"' "$FILE" 2>/dev/null | sed 's/href="//g' | sed 's/"//g')
+
+    STRUCTURE="$STRUCTURE
+
+PAGE: $FILE
+LINKS TO:"
+
+    for LINK in $LINKS
+    do
+        STRUCTURE="$STRUCTURE
+  -> $LINK"
+    done
+done
 
 PROMPT=$(cat <<EOF
-You are the lead software architect for a medical claims dashboard application.
+You are the lead software architect for a production medical claims dashboard system.
 
-PROJECT CONTEXT:
+Site structure:
+$STRUCTURE
+
+Project context:
 $PROJECT_CONTEXT
 
-Below are code snippets from the repository:
+Development history:
+$DEV_MEMORY
 
-$CONTEXT
+Generate advanced engineering tasks that improve:
 
-Generate actionable development tasks to improve the project.
+- system architecture
+- backend structure
+- scalability
+- performance
+- security
+- maintainability
+- developer workflow
+- automation
+- data architecture
+
+DO NOT suggest:
+
+- CSS tweaks
+- icon changes
+- spacing adjustments
+- small HTML fixes
+- cosmetic UI improvements
+
+Assume a junior developer agent will execute these tasks automatically.
+
+Only produce tasks that a senior software engineer would recommend.
 
 Rules:
 - Each task must start with "-"
-- No headings
-- No explanations
 - One task per line
+- No explanations
 EOF
 )
 
@@ -46,8 +92,15 @@ python3 <<EOF > "$SUGGESTIONS"
 import os
 import requests
 import json
+import sys
+
+prompt = """$PROMPT"""
 
 api_key = os.environ.get("OPENAI_API_KEY")
+
+if not api_key:
+    print("OPENAI ERROR: API key missing")
+    sys.exit(1)
 
 response = requests.post(
     "https://api.openai.com/v1/responses",
@@ -57,23 +110,23 @@ response = requests.post(
     },
     json={
         "model": "gpt-5-mini",
-        "input": """$PROMPT""",
-        "temperature": 0.2
-    }
+        "input": prompt,
+        "max_output_tokens": 1500
+    },
+    timeout=60
 )
 
 data = response.json()
 
+text = ""
+
 if "output" in data:
-    text = ""
     for item in data["output"]:
-        if "content" in item:
-            for c in item["content"]:
-                if "text" in c:
-                    text += c["text"]
-    print(text)
-else:
-    print("OPENAI ERROR:")
-    print(json.dumps(data, indent=2))
+        if item.get("type") == "message":
+            for content in item.get("content", []):
+                if content.get("type") == "output_text":
+                    text += content.get("text", "")
+
+print(text.strip())
 EOF
 echo "Planner suggestions generated."

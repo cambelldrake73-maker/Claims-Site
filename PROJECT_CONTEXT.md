@@ -1,13 +1,16 @@
-# Medical Claims Dashboard – Project Context
-
+AI ROLE: Senior software architect responsible for improving the system design of this product.
 ## Product Purpose
+
+
 This system is a medical billing and claims management dashboard designed to help clinics recover revenue from denied insurance claims.
 
 The platform should prioritize:
+
 - clarity
-- speed of workflow
+- fast workflows
 - financial insights
 - HIPAA safety
+- operational efficiency for billing teams
 
 ---
 
@@ -21,16 +24,17 @@ The UI should feel:
 
 Design inspiration:
 
-- Stripe dashboard
+- Stripe Dashboard
 - Linear
 - Vercel
-- modern SaaS analytics
+- modern SaaS analytics tools
 
 Avoid:
 
 - clutter
 - overly bright colors
 - complex navigation
+- unnecessary UI elements
 
 ---
 
@@ -38,9 +42,9 @@ Avoid:
 
 All pages follow this structure:
 
-Sidebar navigation (collapsible)
-Top header with account / notifications
-Main content area
+Sidebar navigation (collapsible)  
+Top header with account / notifications  
+Main content area  
 
 Sidebar width:
 - expanded: 240px
@@ -54,17 +58,19 @@ Navigation icons must always remain visible when collapsed.
 
 Use consistent reusable components:
 
-Cards
-Tables
-Status badges
-Charts
-Forms
+Cards  
+Tables  
+Status badges  
+Charts  
+Forms  
 
 Design system file:
 
 design-system.css
 
-All new styling should go here.
+All styling changes should be centralized in this file.
+
+Avoid creating inline styles or duplicate component styles.
 
 ---
 
@@ -72,40 +78,136 @@ All new styling should go here.
 
 Claim lifecycle:
 
-Submitted
-Pending
-Approved
-Denied
-Appealed
-Recovered
+Submitted  
+Pending  
+Approved  
+Denied  
+Appealed  
+Recovered  
 
 The dashboard should visualize:
 
 - denial rates
 - recovered revenue
 - aging claims
+- claim lifecycle timelines
+
+Analytics should help billing teams quickly identify revenue opportunities.
+
+---
+
+## Architecture Direction
+
+The current application is a static HTML + JavaScript dashboard.
+
+Future architecture should move toward:
+
+- modular UI components
+- reusable UI patterns
+- shared design system
+- centralized JavaScript logic
+- improved data flow between pages
+
+Long term the system may evolve toward:
+
+- backend APIs
+- server-side authentication
+- structured data models
+- modular frontend architecture
+
+AI should generate tasks that move the system toward a maintainable architecture.
 
 ---
 
 ## Security Constraints
 
-The AI must never modify:
+The AI must never modify or access files in:
 
-reports-files/
-claims-pdfs/
-agreements-files/
+reports-files/  
+claims-pdfs/  
+agreements-files/  
 invoices/
 
-These contain financial or HIPAA data.
+These contain financial or HIPAA-protected information.
+
+The AI may modify the **UI or structure surrounding these files**, but must never edit the files themselves.
+
+---
+
+## Engineering Priorities
+
+The AI should prioritize tasks that improve:
+
+- maintainability
+- modular architecture
+- code reuse
+- system performance
+- scalability
+- workflow efficiency
+- security
+
+Avoid tasks that only provide small cosmetic improvements.
 
 ---
 
 ## AI Development Rules
 
-AI should prioritize:
+The AI should behave like a **senior software engineer reviewing the project**.
 
-- UI improvements
-- workflow improvements
-- analytics dashboards
-- navigation usability
-- form validation
+Only generate tasks that improve:
+
+- architecture
+- usability of workflows
+- analytics and reporting
+- maintainability
+- navigation clarity
+- developer automation
+
+Do NOT generate tasks that involve:
+
+- minor CSS tweaks
+- simple spacing changes
+- trivial color changes
+- minor HTML formatting fixes
+---
+
+## Primary User Workflow
+
+The primary user of this system is a medical billing employee responsible for recovering revenue from denied or unpaid insurance claims.
+
+Typical workflow:
+
+1. Review dashboard
+   - check denied claims
+   - review aging claims
+   - identify revenue recovery opportunities
+
+2. Open claims list
+   - filter by denial status
+   - filter by payer
+   - filter by aging time
+
+3. Review individual claim
+   - check denial reason
+   - verify patient information
+   - verify billing codes
+
+4. Take action
+   - submit corrected claim
+   - appeal denial
+   - contact payer
+   - track follow-up status
+
+5. Track outcomes
+   - claim approved
+   - claim recovered
+   - patient balance generated
+
+The system should optimize for:
+
+- fast claim review
+- fast denial identification
+- clear financial visibility
+- minimal navigation friction
+
+AI improvements should prioritize making this workflow faster and clearer.
