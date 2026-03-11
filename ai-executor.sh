@@ -1,5 +1,5 @@
 #!/bin/bash
-
+exec 2>/dev/null
 WORKSPACE="$HOME/.openclaw/workspace/claims-site"
 
 PENDING="$WORKSPACE/AI_PENDING.md"
