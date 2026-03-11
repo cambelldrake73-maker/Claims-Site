@@ -192,3 +192,4 @@
 - Define patients table structure
 - Implement JWT signing utility
 - Add authentication middleware
+- Add login API endpoint
