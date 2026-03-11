@@ -69,7 +69,21 @@ if [[ "$TASK" == *"dashboard"* ]]; then
     fi
 
 fi
+# Update architecture memory for major system tasks
+LOWER=$(echo "$TASK" | tr '[:upper:]' '[:lower:]')
 
+if [[ "$LOWER" == *"auth"* ]] || \
+   [[ "$LOWER" == *"jwt"* ]] || \
+   [[ "$LOWER" == *"rbac"* ]] || \
+   [[ "$LOWER" == *"database"* ]] || \
+   [[ "$LOWER" == *"schema"* ]] || \
+   [[ "$LOWER" == *"queue"* ]] || \
+   [[ "$LOWER" == *"job"* ]] || \
+   [[ "$LOWER" == *"document proxy"* ]]; then
+
+echo "- $TASK" >> "$WORKSPACE/ARCHITECTURE_MEMORY.md"
+
+fi
 
 # Example: sidebar improvements
 if [[ "$TASK" == *"sidebar"* ]]; then
