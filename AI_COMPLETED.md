@@ -279,3 +279,4 @@
 - Implement a resilient Clearinghouse Integration & Submission Service (transactional adapter pattern with sandbox/production adapters, submission queue with DLQ and exponential backoff, KMS-backed encryption for in-transit/at-rest, immutable audit trails, per-submission distributed tracing/OpenTelemetry, and SLA/health monitoring)
 - Add denial code reference table
 - Create claim ingestion service folder
+- Create claim review dashboard API
