@@ -299,3 +299,4 @@
 - Implement background worker service
 - Implement claim normalization pipeline
 - Implement EDI 837 claim formatter
+- Implement JWT signing utility

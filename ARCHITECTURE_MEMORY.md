@@ -141,3 +141,4 @@ Create auth service folder
 - Auth system implemented
 Create jobs processing folder
 - Background job system implemented
+Implement JWT signing utility
