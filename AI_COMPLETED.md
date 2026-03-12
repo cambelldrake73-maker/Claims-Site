@@ -268,3 +268,4 @@
 - Implement claim normalization pipeline
 - Implement EDI 837 claim formatter
 - Implement JWT signing utility
+- Design and implement a resilient asynchronous claim processing pipeline: centralized job queue with idempotent workers, dead-letter queues, exponential-backoff retries, distributed tracing, per-job metrics, automated horizontal scaling, and end-to-end claim lifecycle event tracing.
