@@ -1,4 +1,3 @@
-- Create claim review dashboard API
 - Create jobs processing folder
 - Implement background worker service
 - Implement claim normalization pipeline
