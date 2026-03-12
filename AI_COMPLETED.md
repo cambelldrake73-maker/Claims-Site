@@ -259,3 +259,4 @@
 - Define claims table structure
 - Define patients table structure
 - Add authentication middleware
+- Add denial code reference table

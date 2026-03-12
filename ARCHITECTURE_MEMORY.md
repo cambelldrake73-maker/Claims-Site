@@ -103,3 +103,4 @@ Create database schema file
 - Database schema system implemented
 Create document proxy API endpoint
 Add authentication middleware
+- Auth system implemented
