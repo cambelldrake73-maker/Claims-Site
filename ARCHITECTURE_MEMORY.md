@@ -104,3 +104,4 @@ Create database schema file
 Create document proxy API endpoint
 Add authentication middleware
 - Auth system implemented
+Add RBAC permission checks

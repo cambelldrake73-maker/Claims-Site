@@ -261,3 +261,4 @@
 - Add authentication middleware
 - Add denial code reference table
 - Add login API endpoint
+- Add RBAC permission checks
