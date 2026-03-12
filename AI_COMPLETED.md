@@ -324,3 +324,4 @@
 - Create claim review dashboard API
 - Implement claim event lifecycle tracking
 - Implement claim ingestion API endpoint
+- Implement claim normalization pipeline
