@@ -140,3 +140,4 @@ Add RBAC permission checks
 Create auth service folder
 - Auth system implemented
 Create jobs processing folder
+- Background job system implemented
