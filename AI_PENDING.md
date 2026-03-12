@@ -1,4 +1,3 @@
-- Create document proxy API endpoint
 - Implement claim normalization pipeline
 - Implement EDI 837 claim formatter
 - Implement JWT signing utility

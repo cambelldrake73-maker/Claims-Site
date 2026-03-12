@@ -147,3 +147,4 @@ Add authentication middleware
 Add RBAC permission checks
 Create auth service folder
 - Auth system implemented
+Create document proxy API endpoint
