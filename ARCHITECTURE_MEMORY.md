@@ -136,3 +136,4 @@ Build a Clearinghouse Integration Gateway: transactional adapter pattern (sandbo
 - Background job system implemented
 Add authentication middleware
 - Auth system implemented
+Add RBAC permission checks

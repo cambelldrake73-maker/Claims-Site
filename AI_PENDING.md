@@ -1,4 +1,3 @@
-- Add RBAC permission checks
 - Configure Redis connection
 - Create auth service folder
 - Create claim ingestion service folder
