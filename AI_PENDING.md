@@ -1,4 +1,3 @@
-- Implement claim parsing adapters (EDI, CSV, API)
 - Implement claim validation and schema enforcement
 - Implement denial correction suggestion engine
 - Implement EDI 837 claim formatter
