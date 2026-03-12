@@ -283,3 +283,4 @@
 - Implement claim normalization pipeline
 - Implement EDI 837 claim formatter
 - Design and implement a dedicated Claim Parsing Microservice: pluggable parsers for common claim formats, strict schema validation, idempotent processing, and unit/integration tests.  
+- Create a Claim Normalization Service and canonical data model: versioned normalization rules, transformers for disparate payer formats, and a mapping repository with automated tests.  

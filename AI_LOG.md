@@ -321,3 +321,4 @@ Thu Mar 12 00:09:29 PDT 2026: Completed task - Create claim review dashboard API
 Thu Mar 12 00:09:29 PDT 2026: Completed task - Implement claim normalization pipeline
 Thu Mar 12 00:09:29 PDT 2026: Completed task - Implement EDI 837 claim formatter
 Thu Mar 12 00:13:34 PDT 2026: Completed task - Design and implement a dedicated Claim Parsing Microservice: pluggable parsers for common claim formats, strict schema validation, idempotent processing, and unit/integration tests.  
+Thu Mar 12 00:13:34 PDT 2026: Completed task - Create a Claim Normalization Service and canonical data model: versioned normalization rules, transformers for disparate payer formats, and a mapping repository with automated tests.  
