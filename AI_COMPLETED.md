@@ -309,3 +309,4 @@
 - Create claim ingestion service folder
 - Create claim review dashboard API
 - Create document proxy API endpoint
+- Implement claim normalization pipeline
