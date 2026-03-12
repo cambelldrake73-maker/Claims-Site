@@ -149,3 +149,4 @@ Create auth service folder
 - Auth system implemented
 Create document proxy API endpoint
 Implement JWT signing utility
+Implement claim validation and schema enforcement
