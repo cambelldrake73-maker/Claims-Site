@@ -282,3 +282,4 @@
 - Create claim review dashboard API
 - Implement claim normalization pipeline
 - Implement EDI 837 claim formatter
+- Design and implement a dedicated Claim Parsing Microservice: pluggable parsers for common claim formats, strict schema validation, idempotent processing, and unit/integration tests.  
