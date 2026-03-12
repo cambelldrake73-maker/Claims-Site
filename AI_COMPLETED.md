@@ -301,3 +301,4 @@
 - Implement EDI 837 claim formatter
 - Implement JWT signing utility
 - Add authentication middleware
+- Add denial code reference table
