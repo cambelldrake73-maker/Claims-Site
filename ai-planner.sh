@@ -44,7 +44,7 @@ echo "Scanning project for planning..."
 PROJECT_CONTEXT=$(cat PROJECT_CONTEXT.md 2>/dev/null)
 DEV_MEMORY=$(cat DEV_MEMORY.md 2>/dev/null)
 ARCH_MEMORY=$(cat ARCHITECTURE_MEMORY.md 2>/dev/null)
-
+DENIAL_MEMORY=$(cat DENIAL_KNOWLEDGE_BASE.md 2>/dev/null)
 # ---------------------------
 # BUILD SIMPLE SITE MAP
 # ---------------------------

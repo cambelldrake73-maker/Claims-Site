@@ -12,7 +12,8 @@ echo "Breaking architecture tasks into dev tasks..."
 while IFS= read -r TASK
 do
 
-LOWER=$(echo "$TASK" | tr '[:upper:]' '[:lower:]')
+
+LOWER=$(echo "$TASK" | sed 's/^- *//' | tr '[:upper:]' '[:lower:]')
 
 # Skip duplicate tasks
 if grep -Fxq -- "$TASK" "$PENDING"; then
@@ -27,8 +28,16 @@ echo "- Implement JWT signing utility" >> "$PENDING"
 echo "- Add authentication middleware" >> "$PENDING"
 echo "- Add RBAC permission checks" >> "$PENDING"
 
+# CLAIM PROCESSING
+elif [[ "$LOWER" == *"claim"* ]] || [[ "$LOWER" == *"clearinghouse"* ]] || [[ "$LOWER" == *"denial"* ]] || [[ "$LOWER" == *"parsing"* ]] || [[ "$LOWER" == *"ingestion"* ]] || [[ "$LOWER" == *"integration"* ]] || [[ "$LOWER" == *"intelligence"* ]] || [[ "$LOWER" == *"edi"* ]]; then
+
+echo "- Create claim ingestion service folder" >> "$PENDING"
+echo "- Implement claim normalization pipeline" >> "$PENDING"
+echo "- Add denial code reference table" >> "$PENDING"
+echo "- Implement EDI 837 claim formatter" >> "$PENDING"
+echo "- Create claim review dashboard API" >> "$PENDING"
 # DATABASE
-elif [[ "$LOWER" == *"data"* ]] || [[ "$LOWER" == *"database"* ]] || [[ "$LOWER" == *"model"* ]]; then
+elif [[ "$LOWER" == *"claim"* ]] || [[ "$LOWER" == *"clearinghouse"* ]] || [[ "$LOWER" == *"edi"* ]] || [[ "$LOWER" == *"denial"* ]] || [[ "$LOWER" == *"parsing"* ]] || [[ "$LOWER" == *"ingestion"* ]]; then
 
 echo "- Create database schema file" >> "$PENDING"
 echo "- Define claims table structure" >> "$PENDING"
