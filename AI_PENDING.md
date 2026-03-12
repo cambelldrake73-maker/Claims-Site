@@ -1,1 +1,0 @@
-- Implement EDI 837 claim formatter

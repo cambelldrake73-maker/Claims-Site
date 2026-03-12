@@ -281,3 +281,4 @@
 - Create claim ingestion service folder
 - Create claim review dashboard API
 - Implement claim normalization pipeline
+- Implement EDI 837 claim formatter
