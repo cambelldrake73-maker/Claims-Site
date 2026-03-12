@@ -1,4 +1,3 @@
-- Add document access logging
 - Add login API endpoint
 - Add RBAC permission checks
 - Create auth service folder

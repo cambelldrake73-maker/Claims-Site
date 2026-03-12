@@ -302,3 +302,4 @@
 - Implement JWT signing utility
 - Add authentication middleware
 - Add denial code reference table
+- Add document access logging
