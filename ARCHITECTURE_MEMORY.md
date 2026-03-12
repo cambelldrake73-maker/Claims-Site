@@ -130,3 +130,4 @@ Implement a resilient Clearinghouse Integration & Submission Service (transactio
 - Background job system implemented
 Design and implement a dedicated Claim Parsing Microservice: pluggable parsers for common claim formats, strict schema validation, idempotent processing, and unit/integration tests.  
 - Database schema system implemented
+Implement an EDI 837 Formatter & Validator microservice: X12 837 generation, schema/segment validation, automated test harness and sandbox mode for verifier clearinghouse integrations.  
