@@ -1,2 +1,1 @@
-- Implement JWT signing utility
 - Implement signed URL generation
