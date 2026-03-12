@@ -144,3 +144,4 @@ Create jobs processing folder
 Implement JWT signing utility
 Add authentication middleware
 - Auth system implemented
+Add RBAC permission checks

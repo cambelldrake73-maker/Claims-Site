@@ -304,3 +304,4 @@
 - Add denial code reference table
 - Add document access logging
 - Add login API endpoint
+- Add RBAC permission checks

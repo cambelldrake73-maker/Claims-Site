@@ -1,4 +1,3 @@
-- Add RBAC permission checks
 - Create auth service folder
 - Create claim ingestion service folder
 - Create claim review dashboard API
