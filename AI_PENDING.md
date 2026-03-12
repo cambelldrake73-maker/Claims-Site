@@ -1,1 +1,0 @@
-- Build a Clearinghouse Integration Gateway: transactional adapter pattern (sandbox/prod adapters), submission queue with retries/DLQ, idempotency keys, and per-submission audit/logging.  
