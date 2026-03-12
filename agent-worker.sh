@@ -113,7 +113,7 @@ fi
 
 echo "Executing task batch..."
 
-for i in {1..10}
+for i in {1..20}
 do
     if [ -s "$WORKSPACE/AI_PENDING.md" ]; then
         bash "$WORKSPACE/ai-executor.sh"

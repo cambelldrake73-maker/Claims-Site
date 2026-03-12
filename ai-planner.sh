@@ -122,7 +122,7 @@ Avoid:
 
 Rules:
 
-- Output EXACTLY 3 architecture tasks
+- Output EXACTLY 15 architecture tasks
 - Each task must start with "-"
 - One task per line
 - No explanations

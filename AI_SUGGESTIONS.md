@@ -1,3 +1,4 @@
-- Design and implement a modular Claim Parsing & Normalization microservice (schema-driven parsers, canonical claim model, validation layer, extensible rule-mapping engine, streaming ingest with idempotency, comprehensive unit/integration tests, and a migration path from static HTML data to API-driven payloads)
-- Build a Denial Intelligence & Correction Platform (feature store + rules engine + ML models for root-cause classification, automated correction candidate generator, human-in-loop review API, retraining pipelines, explainability/logging, and metrics to surface highest-impact recovery opportunities)
-- Implement a resilient Clearinghouse Integration & Submission Service (transactional adapter pattern with sandbox/production adapters, submission queue with DLQ and exponential backoff, KMS-backed encryption for in-transit/at-rest, immutable audit trails, per-submission distributed tracing/OpenTelemetry, and SLA/health monitoring)
+- Implement a canonical, versioned Claim domain schema and migration plan covering normalized claim fields, denial codes, events, provenance, and backwards-compatible changes.
+- Build a resilient, idempotent claim ingestion & parsing microservice with pluggable parsers (PDF/EDI/CSV), strict schema validation, structured error classification, and per-file ingest tracing.
+- Implement a Denial Intelligence Service combining a rule-engine and ML pipeline to map denial codes to recovery actions, estimated recoverable revenue, and suggested corrections.
+- Implement an asynchronous, event-driven claim processing backbone

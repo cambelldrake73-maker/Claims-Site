@@ -211,3 +211,30 @@ The system should optimize for:
 - minimal navigation friction
 
 AI improvements should prioritize making this workflow faster and clearer.
+CORE PRODUCT GOAL
+
+This system is a medical claim recovery platform.
+
+Primary workflow:
+
+1. Clinics upload denied insurance claims
+2. System parses claims and denial codes
+3. System identifies recoverable revenue
+4. System suggests claim corrections
+5. Human reviewer audits the correction
+6. Approved claims are formatted into EDI 837
+7. Claims are submitted to clearinghouses
+8. Claim status and reimbursements are tracked
+
+System priorities:
+
+- claim ingestion pipeline
+- denial code intelligence
+- claim normalization
+- clearinghouse integration (EDI 837)
+- human review dashboard
+- claim audit logging
+- secure PHI handling
+
+Avoid building cosmetic UI improvements unless required.
+Focus on backend claim processing systems.

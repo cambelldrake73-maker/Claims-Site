@@ -16,3 +16,8 @@ invoices
 reports-files
 agreements-files
 claims-pdfs
+
+ai-planner.sh
+ai-architect.sh
+openclaw-supervisor.sh
+.daily_api_calls
