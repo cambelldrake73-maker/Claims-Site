@@ -1,4 +1,3 @@
-- Add denial code reference table
 - Create claim ingestion service folder
 - Create claim review dashboard API
 - Implement claim event lifecycle tracking
