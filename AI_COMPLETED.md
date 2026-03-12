@@ -270,3 +270,4 @@
 - Implement JWT signing utility
 - Design and implement a resilient asynchronous claim processing pipeline: centralized job queue with idempotent workers, dead-letter queues, exponential-backoff retries, distributed tracing, per-job metrics, automated horizontal scaling, and end-to-end claim lifecycle event tracing.
 - Implement a secure Clearinghouse Integration & Compliance layer: EDI (837) validator/formatter, multi-adapter transactional gateway with sandbox test harness, KMS-backed encryption (at-rest/in-transit) and key rotation, strict RBAC/audit trails for submissions, and submission SLA monitoring/alerting.
+- Build an automated CI test harness and contract-testing pipeline: end-to-end integration tests for the claims parsing→correction→submission flow using synthetic HIPAA-safe data, adapter contract tests for clearinghouse/document/invoice proxies, and gated release pipelines to prevent regressions
