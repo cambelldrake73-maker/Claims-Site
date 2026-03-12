@@ -135,3 +135,4 @@ Implement an EDI 837 Formatter & Validator microservice: X12 837 generation, sch
 Build a Clearinghouse Integration Gateway: transactional adapter pattern (sandbox/prod adapters), submission queue with retries/DLQ, idempotency keys, and per-submission audit/logging.  
 - Background job system implemented
 Add authentication middleware
+- Auth system implemented
