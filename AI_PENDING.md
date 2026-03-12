@@ -1,0 +1,10 @@
+- Add denial code reference table
+- Create claim ingestion service folder
+- Create claim review dashboard API
+- Implement claim event lifecycle tracking
+- Implement claim ingestion API endpoint
+- Implement claim normalization pipeline
+- Implement claim parsing adapters (EDI, CSV, API)
+- Implement claim validation and schema enforcement
+- Implement denial correction suggestion engine
+- Implement EDI 837 claim formatter
