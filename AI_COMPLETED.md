@@ -265,3 +265,4 @@
 - Create auth service folder
 - Create claim ingestion service folder
 - Create claim review dashboard API
+- Implement claim normalization pipeline
