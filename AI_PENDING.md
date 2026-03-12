@@ -1,0 +1,12 @@
+- Add denial code reference table
+- Add document access logging
+- Add login API endpoint
+- Add RBAC permission checks
+- Create auth service folder
+- Create claim ingestion service folder
+- Create claim review dashboard API
+- Create document proxy API endpoint
+- Implement claim normalization pipeline
+- Implement EDI 837 claim formatter
+- Implement JWT signing utility
+- Implement signed URL generation

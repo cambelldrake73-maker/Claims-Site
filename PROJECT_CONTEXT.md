@@ -238,3 +238,31 @@ System priorities:
 
 Avoid building cosmetic UI improvements unless required.
 Focus on backend claim processing systems.
+BUSINESS OBJECTIVE
+
+The goal of this platform is to recover revenue from denied insurance claims for clinics.
+
+The system should prioritize building features that support the following workflow:
+
+1. Clinics upload denied claims
+2. The system parses claim data and denial codes
+3. The system identifies recoverable claims
+4. The system suggests claim corrections
+5. A human reviewer approves or edits corrections
+6. Claims are formatted into EDI 837 format
+7. Claims are prepared for clearinghouse submission
+8. The system tracks recovered revenue
+
+This product should function like "TurboTax for denied medical claims".
+
+The platform should prioritize backend claim processing systems over cosmetic UI improvements.
+
+Important systems include:
+- claim ingestion
+- claim parsing
+- claim normalization
+- denial code intelligence
+- claim correction suggestion engine
+- human review workflow
+- EDI 837 formatter
+- clearinghouse integration

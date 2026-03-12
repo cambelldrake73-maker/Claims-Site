@@ -142,3 +142,4 @@ Create auth service folder
 Create jobs processing folder
 - Background job system implemented
 Implement JWT signing utility
+Add authentication middleware

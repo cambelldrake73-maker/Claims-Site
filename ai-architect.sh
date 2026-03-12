@@ -4,7 +4,7 @@ WORKSPACE="$HOME/.openclaw/workspace/claims-site"
 
 SUGGESTIONS="$WORKSPACE/AI_SUGGESTIONS.md"
 PENDING="$WORKSPACE/AI_PENDING.md"
-
+COMPLETED="$WORKSPACE/AI_COMPLETED.md"
 cd "$WORKSPACE"
 
 echo "Breaking architecture tasks into dev tasks..."
@@ -14,9 +14,13 @@ do
 
 
 LOWER=$(echo "$TASK" | sed 's/^- *//' | tr '[:upper:]' '[:lower:]')
-
-# Skip duplicate tasks
+# Skip duplicate tasks already queued
 if grep -Fxq -- "$TASK" "$PENDING"; then
+    continue
+fi
+
+# Skip tasks already completed
+if grep -Fxq -- "$TASK" "$COMPLETED"; then
     continue
 fi
 # AUTH / SECURITY
