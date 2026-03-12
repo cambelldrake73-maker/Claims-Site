@@ -105,3 +105,4 @@ Create document proxy API endpoint
 Add authentication middleware
 - Auth system implemented
 Add RBAC permission checks
+Create auth service folder
