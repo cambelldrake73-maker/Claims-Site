@@ -112,3 +112,4 @@ Design and implement a resilient asynchronous claim processing pipeline: central
 - Background job system implemented
 Implement a secure Clearinghouse Integration & Compliance layer: EDI (837) validator/formatter, multi-adapter transactional gateway with sandbox test harness, KMS-backed encryption (at-rest/in-transit) and key rotation, strict RBAC/audit trails for submissions, and submission SLA monitoring/alerting.
 - Monitoring system introduced
+Implement a resilient, idempotent asynchronous claim processing pipeline: central durable job queue (Redis/NSQ/SQS), idempotent worker patterns, dead-letter queues, exponential-backoff retries, per-job metrics, distributed tracing (OpenTelemetry), structured tracing/span propagation, DLQ alerting, and automated horizontal scaling rules.  
