@@ -118,16 +118,37 @@ Avoid:
 - icon changes
 - spacing fixes
 - cosmetic improvements
-- small HTML changes
+- visual layout improvements
+- sidebar changes
+- hover effects
+- color changes
+- typography changes
+- accessibility tweaks unless security related
+- minor HTML fixes
+- trivial front-end improvements
+
+Prioritize backend architecture work in this order:
+
+1. Security and authentication systems
+2. Database schema and canonical claim data models
+3. Claim ingestion and parsing pipelines
+4. Denial intelligence and claim correction systems
+5. Clearinghouse integrations (EDI 837 formatting and submission)
+6. Document security and PHI access control
+7. Distributed job queues and background processing
+8. Observability, tracing, and monitoring systems
+9. Scaling infrastructure
+10. Analytics and reporting pipelines
 
 Rules:
 
-- Output EXACTLY 15 architecture tasks
-- Each task must start with "-"
-- One task per line
+- Generate EXACTLY 6 architecture tasks
+- Each task must represent a major backend system improvement
+- Do NOT generate UI, CSS, layout, or front-end tasks
+- Do NOT repeat systems already present in Architecture Memory
+- Output only the tasks
+- Each task must start with "- "
 - No explanations
-- Do not output anything except the tasks
-
 EOF
 )
 
@@ -156,24 +177,35 @@ response = requests.post(
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     },
-    json={
-        "model": "gpt-5-mini",
-        "input": prompt,
-        "max_output_tokens": 1200
-    },
+json={
+    "model": "gpt-5-mini",
+    "input": [
+        {
+            "role": "user",
+            "content": prompt
+        }
+    ],
+    "text": {"format": {"type": "text"}},
+    "reasoning": {"effort": "minimal"},
+    "max_output_tokens": 200
+},
     timeout=60
 )
-
 data = response.json()
 
 text = ""
 
+# Extract text output from Responses API
 if "output" in data:
     for item in data["output"]:
         if item.get("type") == "message":
             for content in item.get("content", []):
                 if content.get("type") == "output_text":
                     text += content.get("text", "")
+
+# Fallback for other formats
+if not text:
+    text = data.get("output_text", "")
 
 print(text.strip())
 EOF
