@@ -1,9 +1,15 @@
-- Design and implement a dedicated Claim Parsing Microservice: pluggable parsers for common claim formats, strict schema validation, idempotent processing, and unit/integration tests.  
-- Build a Denial Intelligence Engine: centralized denial-code taxonomy, rule-driven mapping to corrective actions, analytics API, and a training pipeline for ML-driven denial classification.  
-- Create a Claim Normalization Service and canonical data model: versioned normalization rules, transformers for disparate payer formats, and a mapping repository with automated tests.  
-- Implement a Claim Correction Suggestion Engine: generate proposed edits with confidence scores, human-in-the-loop review workflow, and immutable audit trail for all suggestions.  
-- Implement an EDI 837 Formatter & Validator microservice: X12 837 generation, schema/segment validation, automated test harness and sandbox mode for verifier clearinghouse integrations.  
-- Build a Clearinghouse Integration Gateway: transactional adapter pattern (sandbox/prod adapters), submission queue with retries/DLQ, idempotency keys, and per-submission audit/logging.  
-- Introduce a centralized Backend API Layer with OpenAPI specs: REST/GraphQL gateway, uniform input validation, rate limiting, pagination, and contract tests for downstream consumers.  
-- Harden Authentication & Authorization: integrate enterprise SSO/MFA, refresh token lifecycle, fine-grained RBAC enforcement across services, and automated permission audits.  
-- Implement a production-grade Persistence & Migration strategy: normalized DB schema for claims/patients/events, indexing/partitioning
+- Implement a centralized, versioned Backend API Gateway (OpenAPI-first) providing authentication, rate limiting, request validation, and unified routing for all microservices.  
+- Build a Claim Parsing Microservice with pluggable parsers, strict schema validation, idempotent processing, and unit/integration tests; accept queued uploads and emit normalized claim events.  
+- Develop a Denial Intelligence Engine (rules + ML inference) that normalizes denial codes to a canonical ontology, scores recoverability, and provides explainable correction suggestions with a feedback loop from reviewers.  
+- Create a Claim Normalization Service that transforms diverse claim formats into a canonical claim model, exposes transformation adapters per payer, and versioned mapping rules.  
+- Implement an EDI 837 Formatter & Validator microservice with X12 schema validation, sandbox/production modes, test harness and automated generation of idempotency keys and validation reports.  
+- Build a Clearinghouse Integration Gateway using a transactional adapter pattern with durable submission queue, DLQ, exponential backoff, idempotency enforcement, and per-submission audit trails.  
+- Design and deploy a secure Document Proxy & Storage Service that issues short-lived signed URLs, enforces KMS-backed encryption at rest, logs accesses, and prevents direct edits to protected directories.  
+- Implement a resilient job orchestration and worker framework: durable queue (Redis/SQS), idempotent workers, DLQs, retry policies with backoff, per-job metrics, and horizontal scaling rules.  
+- Instrument distributed tracing (OpenTelemetry) across HTTP APIs, background jobs, and clearinghouse submissions to enable end-to-end request/claim lifecycle tracing and performance diagnostics.  
+- Establish centralized observability: metrics collection, dashboards, and alerting (Prometheus/Grafana or equivalent) for SLOs, error budgets, queue/backlog health, and throughput.  
+- Implement structured, tamper-evident audit logging for all PHI-related events (ingest, parse, edit, submission) with immutable storage, retention policies, and searchable indices for compliance investigations.  
+- Integrate enterprise-grade secrets and key management: KMS for encryption keys, automated secret rotation, least-privilege access controls, and audit logging of key access.  
+- Create a contract-based CI test suite for clearinghouse adapters and EDI outputs including fixture-driven contract tests, fuzzing for edge cases, and automated sandbox integration tests.  
+- Enforce RBAC/ABAC at the API Gateway and service layer with attribute-based policies, scoped tokens, and mandatory admin approval workflows for high-risk operations (submissions, key access).  
+- Define and publish a canonical data model and schema registry (JSON Schema/Avro) for claims, denials, patients, invoices, and events; enforce schema validation in all services and use registry for versioning and migrations.

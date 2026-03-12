@@ -1,0 +1,12 @@
+- Add denial code reference table
+- Add login API endpoint
+- Add RBAC permission checks
+- Configure Redis connection
+- Create auth service folder
+- Create claim ingestion service folder
+- Create claim review dashboard API
+- Create jobs processing folder
+- Implement background worker service
+- Implement claim normalization pipeline
+- Implement EDI 837 claim formatter
+- Implement JWT signing utility
