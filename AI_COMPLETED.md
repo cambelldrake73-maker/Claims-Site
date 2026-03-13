@@ -439,3 +439,4 @@
 - Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
 - Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
 - Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
+- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
