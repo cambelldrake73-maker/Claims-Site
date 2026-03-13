@@ -929,3 +929,4 @@
 - implement approval_queue_service
 - implement edi_formatter
 - implement upload_gateway
+- implement claim_bundle_validator

@@ -1,4 +1,3 @@
-- implement claim_bundle_validator
 - implement canonical_claim_schema
 - implement payer_rule_engine
 - implement denial_reason_classifier
