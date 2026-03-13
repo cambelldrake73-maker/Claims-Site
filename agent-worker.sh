@@ -57,26 +57,30 @@ if [ -s "$WORKSPACE/AI_PENDING.md" ]; then
 # ---------------------------
 
 elif [ "$CURRENT_HASH" != "$LAST_HASH" ]; then
-    
+
     echo "Repo changed — checking AI limits..."
-    
+
+    # Refresh counter before checking limit
+    AI_CALLS=$(tail -n 1 "$AI_COUNTER_FILE" 2>/dev/null || echo 0)
+
     if [ "$AI_CALLS" -ge "$MAX_AI_CALLS_PER_DAY" ]; then
         echo "Daily AI limit reached — skipping AI generation."
     else
 
         echo "Running AI planner..."
         bash "$WORKSPACE/ai-planner.sh" || echo "Planner failed"
-            
+
         echo "Generating tasks..."
         bash "$WORKSPACE/ai-task-maker.sh"
 
-        DATE=$(date +%Y-%m-%d) 
+        DATE=$(date +%Y-%m-%d)
         NEW_COUNT=$((AI_CALLS+1))
         echo -e "$DATE\n$NEW_COUNT" > "$AI_COUNTER_FILE"
 
     fi
 
     LAST_HASH=$CURRENT_HASH
+
 # ---------------------------
 # FALLBACK ARCHITECTURE TASKS
 # ---------------------------
