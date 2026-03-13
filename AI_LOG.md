@@ -428,3 +428,4 @@ Thu Mar 12 20:49:31 PDT 2026: Completed task - Implement End-to-End Encryption f
 Thu Mar 12 20:49:31 PDT 2026: Completed task - Create a Data Access Governance service that enforces field-level RBAC policies and generates policy evaluation logs for PHI access requests
 Thu Mar 12 20:52:50 PDT 2026: Completed task - Implement a Token Revocation Service with distributed blacklist propagation for immediate JWT invalidation (not already implemented).
 Thu Mar 12 20:52:50 PDT 2026: Completed task - Design and deploy a Secrets Management integration (HashiCorp Vault or cloud secrets) with automated secret rotation and audit hooks (not already implemented).
+Thu Mar 12 20:52:50 PDT 2026: Completed task - Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning and compatibility checks (not already implemented).

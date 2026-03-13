@@ -197,3 +197,4 @@ Implement End-to-End Encryption for queued claim payloads using envelope encrypt
 - Background job system implemented
 Create a Data Access Governance service that enforces field-level RBAC policies and generates policy evaluation logs for PHI access requests
 Implement a Token Revocation Service with distributed blacklist propagation for immediate JWT invalidation (not already implemented).
+Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning and compatibility checks (not already implemented).
