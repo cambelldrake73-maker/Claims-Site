@@ -851,3 +851,4 @@ Implement end-to-end encrypted job payload handling for the job queue system whe
 Design and build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
 - Database schema system implemented
 Create a Centralized Niche Router Authorization Adapter that enforces niche-specific RBAC and consent checks before routing uploads into healthcare pipelines.
+Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (new standalone implementation).
