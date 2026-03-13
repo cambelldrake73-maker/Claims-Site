@@ -218,3 +218,4 @@ Build an Automated Data Quality & Schema Validation pipeline: nightly profiling,
 Implement Multi-Region Data Replication and Disaster Recovery architecture for critical claim databases with automated failover playbooks
 - Database schema system implemented
 Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints.
+Implement Per-Field Access Control middleware that enforces field-level RBAC at the service layer with evaluation logs and policy decision caching.
