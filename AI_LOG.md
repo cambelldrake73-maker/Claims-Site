@@ -634,3 +634,4 @@ Fri Mar 13 00:28:26 PDT 2026: Completed task - Implement Per-Field Access Contro
 Fri Mar 13 00:28:26 PDT 2026: Completed task - Create a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
 Fri Mar 13 00:28:26 PDT 2026: Completed task - Integrate a Policy Engine service (OPA/Rego) with lifecycle management for dynamic authorization rules used by submissions, exports, reviewer access, and sensitive actions.
 Fri Mar 13 00:28:26 PDT 2026: Completed task - Implement end-to-end encrypted job payload handling for the job queue system using envelope encryption decrypted only by authorized worker instances with key rotation and attestation.
+Fri Mar 13 00:28:26 PDT 2026: Completed task - Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
