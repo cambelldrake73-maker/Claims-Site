@@ -674,3 +674,4 @@
 - Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
 - Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
 - Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
+- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
