@@ -1,16 +1,16 @@
-# Architecture Memory
 
-schema_registry
+# Architecture Memory
+access_control
+audit_log_service
+claim_ingestion
 claim_normalization
 claim_replay
-claim_ingestion
 clearinghouse_gateway
-policy_engine
-token_revocation
-access_control
 consent_service
-audit_log_service
-job_queue
-parser_router
 document_proxy
+job_queue
 observability
+parser_router
+policy_engine
+schema_registry
+token_revocation
