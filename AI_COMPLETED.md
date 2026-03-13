@@ -537,3 +537,4 @@
 - Implement role and permission models
 - Implement signed URL generation
 - Build a Token Revocation Service with distributed blacklist propagation and immediate JWT invalidation endpoints.
+- Create a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls.
