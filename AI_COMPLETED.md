@@ -406,3 +406,4 @@
 - Develop a Per-Job Observability Dashboard backend: aggregated metrics, SLA monitoring, retry/DLQ stats, and automatic incident creation hooks for failing claim jobs.
 - Build an Automated Data Quality & Schema Validation pipeline: nightly profiling, anomaly detection on canonical claim fields, and alerting for schema drift.
 - Implement Multi-Region Data Replication and Disaster Recovery architecture for critical claim databases with automated failover playbooks
+- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints.

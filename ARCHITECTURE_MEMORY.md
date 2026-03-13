@@ -216,3 +216,5 @@ Develop a Per-Job Observability Dashboard backend: aggregated metrics, SLA monit
 Build an Automated Data Quality & Schema Validation pipeline: nightly profiling, anomaly detection on canonical claim fields, and alerting for schema drift.
 - Database schema system implemented
 Implement Multi-Region Data Replication and Disaster Recovery architecture for critical claim databases with automated failover playbooks
+- Database schema system implemented
+Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints.
