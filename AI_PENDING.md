@@ -1,2 +1,1 @@
-- implement approval_queue_service
 - implement edi_formatter
