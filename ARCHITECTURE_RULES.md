@@ -1,23 +1,109 @@
-# Platform Architecture Rules
-Medical Claim Recovery Platform
+# Platform Architecture Contract
 
-This system analyzes denied medical claims and prepares them for corrected resubmission.
+Platform goal:
+Build a modular AI-assisted revenue recovery platform capable of operating across multiple industry niches.
 
-The system must remain modular, secure, and compliant with HIPAA.
+The platform must remain modular, secure, and compliant with relevant regulatory frameworks (HIPAA for healthcare).
+
+---------------------------------
+
+PLATFORM CORE
+
+These systems must remain independent of any niche.
+
+Core responsibilities:
+- authentication
+- job orchestration
+- file ingestion
+- rule engine
+- observability
+- audit logging
+- security
+- distributed tracing
+
+Core services include:
+- Authentication Service
+- Policy Engine
+- Job Queue
+- Observability Service
+- Audit Log Service
+
+---------------------------------
+
+NICHE FRAMEWORK
+
+The platform must support multiple niches (industries).
+
+Examples:
+- healthcare
+- insurance
+- financial billing
+- logistics
+- regulatory compliance
+
+Each processing job must run within a **selected niche context**.
+
+The niche context determines:
+- schemas
+- code systems
+- validation rules
+- parsing logic
+- correction logic
+
+The platform core must remain **niche-agnostic**.
+
+---------------------------------
+
+NICHE ROUTER
+
+All uploaded data must pass through a Niche Router.
+
+Responsibilities:
+- determine the niche selected by the user
+- load niche schemas
+- load niche code systems
+- load niche rule engine
+- route jobs to correct processing pipeline
+
+---------------------------------
+
+NICHE MODULE STRUCTURE
+
+Each niche must be implemented as a modular component.
+
+Example structure:
+
+sectors/
+   healthcare/
+      schemas/
+      code_sets/
+      parsers/
+      rules/
+
+   insurance/
+      schemas/
+      code_sets/
+      rules/
+
+   finance/
+      schemas/
+      code_sets/
+      rules/
 
 ---------------------------------
 
 CORE PLATFORM DOMAINS
 
 1. Claim Ingestion
+
 Handles incoming claim files and claim bundles.
 
 Responsibilities:
-- File upload
-- Claim parsing
-- Claim normalization
-- Schema validation
-- Deduplication
+- file upload
+- claim parsing
+- claim normalization
+- schema validation
+- deduplication
 
 Primary services:
 - Parser Router
@@ -27,13 +113,14 @@ Primary services:
 ---------------------------------
 
 2. Claim Intelligence
+
 Understands denial reasons and suggests corrections.
 
 Responsibilities:
-- Denial code knowledgebase
-- Correction suggestion engine
+- denial code knowledgebase
+- correction suggestion engine
 - ML recoverability scoring
-- Claim enrichment
+- claim enrichment
 
 Primary services:
 - Denial Knowledgebase
@@ -83,7 +170,7 @@ Protects PHI and enforces policy.
 
 Responsibilities:
 - RBAC
-- field level access
+- field-level access
 - audit logging
 - encryption
 - consent enforcement
@@ -114,6 +201,25 @@ Primary services:
 
 ---------------------------------
 
+JOB PROCESSING FLOW
+
+User selects niche before uploading data.
+
+Processing pipeline:
+
+User upload
+→ Niche Router
+→ Schema validation
+→ Code lookup
+→ Rule engine
+→ AI correction suggestions
+→ Human review
+→ Submission
+→ Lifecycle tracking
+→ Revenue recovery reporting
+
+---------------------------------
+
 ARCHITECTURE RULES
 
 - Each new system must belong to one domain.
@@ -123,6 +229,9 @@ ARCHITECTURE RULES
 - The Schema Registry is the single source of truth for claim data models.
 - Security systems must integrate with the Policy Engine.
 - All PHI access must be auditable.
+- Platform core must remain niche-agnostic.
+- Domain-specific logic must exist inside niche modules.
+- Code systems must be separated by niche.
 
 ---------------------------------
 
@@ -137,5 +246,17 @@ The final platform should:
 5. Allow human review.
 6. Submit corrected claims to clearinghouses.
 7. Track claim lifecycle and revenue recovery.
+8. Support additional industries using niche modules.
 
 ---------------------------------
+
+INITIAL NICHE
+
+Healthcare is the first supported niche.
+
+Healthcare modules include:
+- claim schemas
+- denial codes
+- CPT/ICD code systems
+- EDI parsing
+- claim correction rules
