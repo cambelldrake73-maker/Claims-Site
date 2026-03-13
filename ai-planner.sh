@@ -83,6 +83,9 @@ $STRUCTURE
 Project context:
 $PROJECT_CONTEXT
 
+Architecture rules:
+$(cat "$WORKSPACE/ARCHITECTURE_RULES.md")
+
 Development history:
 $DEV_MEMORY
 

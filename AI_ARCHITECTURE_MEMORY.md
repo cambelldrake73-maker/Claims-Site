@@ -2,7 +2,9 @@
 
 Systems implemented:
 Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning and compatibility checks (not already implemented).
+Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
 Build a Claim Normalization microservice to transform parsed claims into a canonical schema with field-level provenance and validation.
+Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
 Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas.
 Build a Claims Ingestion Orchestrator microservice that accepts uploaded claim bundles, performs schema routing, enqueues parsing jobs, and returns idempotency keys.
 Build a Clearinghouse Integration Gateway: transactional adapter pattern (sandbox/prod adapters), submission queue with retries/DLQ, idempotency keys, and per-submission audit/logging.  
@@ -33,6 +35,7 @@ Design and implement a Claim Lineage & Provenance service that tracks per-field 
 Design and implement a dedicated Claim Parsing Microservice: pluggable parsers for common claim formats, strict schema validation, idempotent processing, and unit/integration tests.  
 Design and implement a resilient asynchronous claim processing pipeline: centralized job queue with idempotent workers, dead-letter queues, exponential-backoff retries, distributed tracing, per-job metrics, automated horizontal scaling, and end-to-end claim lifecycle event tracing.
 Design and implement a Secrets & Key Management service for rotating KMS-backed keys, envelope encryption orchestration, and limited-scope key access policies for microservices.
+Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
 Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints.
 Develop a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas (with versioning and compatibility checks) used by parsers and normalization services.
 Develop a Claim Enrichment service to augment claims with external data (payer databases, provider NPI lookup, patient demographics) via secure connectors.
@@ -45,6 +48,7 @@ Implement a Data Access Audit Trail service that records all PHI read/write oper
 Implement a Data Access Governance service that centralizes policy evaluation and produces immutable policy decision logs for all PHI reads.
 Implement a dedicated Denial Code Knowledge Base service with versioned taxonomy, mapping rules, confidence scores, and update webhook support.
 Implement a Denial Code Knowledgebase microservice: curated, versioned denial code mappings, payer-specific rules, and confidence scoring for correction suggestions.
+Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
 Implement a Pluggable Parser Framework (microservice) supporting PDFs, X12, CSV, and HL7 input formats with per-parser validation and parser sandboxing.
 Implement a resilient Clearinghouse Integration & Submission Service (transactional adapter pattern with sandbox/production adapters, submission queue with DLQ and exponential backoff, KMS-backed encryption for in-transit/at-rest, immutable audit trails, per-submission distributed tracing/OpenTelemetry, and SLA/health monitoring)
 Implement a resilient, idempotent asynchronous claim processing pipeline: central durable job queue (Redis/NSQ/SQS), idempotent worker patterns, dead-letter queues, exponential-backoff retries, per-job metrics, distributed tracing (OpenTelemetry), structured tracing/span propagation, DLQ alerting, and automated horizontal scaling rules.  
@@ -64,3 +68,4 @@ Implement End-to-End Encryption for queued claim payloads using envelope encrypt
 Implement job queue retry logic
 Implement Per-Field Access Control (field-level RBAC) enforcement service that intercepts DB reads and enforces policy evaluation logs (distinct from general Data Access Governance).
 Implement Per-Field Access Control middleware that enforces field-level RBAC at the service layer with evaluation logs and policy decision caching.
+Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
