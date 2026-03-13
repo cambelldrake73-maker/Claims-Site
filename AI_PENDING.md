@@ -1,4 +1,3 @@
-- Implement background worker service
 - Implement claim event lifecycle tracking
 - Implement claim ingestion API endpoint
 - Implement claim normalization pipeline

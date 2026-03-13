@@ -167,3 +167,4 @@ Create document proxy API endpoint
 Create jobs processing folder
 - Background job system implemented
 Implement authentication service configuration
+- Auth system implemented
