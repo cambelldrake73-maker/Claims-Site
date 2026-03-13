@@ -332,3 +332,4 @@
 - Add audit logging for authentication events
 - Add authentication middleware
 - Add claim processing unit tests
+- Add denial code reference table
