@@ -1,4 +1,3 @@
-- implement payer_rule_engine service
 - implement performance_reporting service
 - implement revenue_recovery_analytics service
 - implement review_queue_api service
