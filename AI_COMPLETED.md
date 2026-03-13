@@ -338,3 +338,4 @@
 - Add job processing metrics and monitoring
 - Add login API endpoint
 - Add RBAC permission checks
+- Add worker health check endpoint
