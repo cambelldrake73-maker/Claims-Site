@@ -382,3 +382,5 @@ Build a Claim Replay & Incident Debugging service that can re-run a claim throug
 Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
 - Background job system implemented
 Add audit logging for authentication events
+- Auth system implemented
+Add authentication middleware
