@@ -86,6 +86,9 @@ $PROJECT_CONTEXT
 Architecture rules:
 $(cat "$WORKSPACE/ARCHITECTURE_RULES.md")
 
+Service registry:
+$(cat "$WORKSPACE/SERVICE_REGISTRY.md")
+
 Development history:
 $DEV_MEMORY
 
