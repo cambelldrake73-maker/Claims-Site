@@ -180,3 +180,4 @@ Build a Claim Normalization microservice to transform parsed claims into a canon
 Develop a Claim Enrichment service to augment claims with external data (payer databases, provider NPI lookup, patient demographics) via secure connectors.
 - Database schema system implemented
 Implement Per-Field Encryption for PHI in the database using envelope encryption and KMS-backed keys with access controls and audit logging.
+- Database schema system implemented
