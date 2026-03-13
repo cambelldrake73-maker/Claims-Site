@@ -1,25 +1,29 @@
-- Implement a Per-Request Authorization Gatekeeper service that enforces RBAC, attribute-based access control (ABAC), and token-scoped permissions for all backend APIs (distinct from existing auth middleware).
-- Design and implement a Secrets & Key Management service for rotating KMS-backed keys, envelope encryption orchestration, and limited-scope key access policies for microservices.
-- Build a PHI-aware Column-Level Encryption layer in the database access service with transparent encryption/decryption hooks and strict key usage logs.
-- Create a Secure Document Proxy microservice (separate from file storage) that issues short-lived, audited access tokens and enforces fine-grained access rules for PDF/claim document retrieval.
-- Implement a Data Access Audit Trail service that records all PHI read/write operations with immutable logs and support for retention/querying for compliance audits.
-- Develop a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas (with versioning and compatibility checks) used by parsers and normalization services.
-- Build a Claim Ingestion API Gateway with idempotency keys, multipart upload support, input validation, and routing to parsing jobs (distinct from existing ingestion orchestrator).
-- Implement a Pluggable Parser Runner service that loads parser plugins in sandboxes, enforces timeouts/resource limits, and provides structured parse outputs to downstream services.
-- Create a Claim Normalization Validator service that enforces canonical models, per-field provenance metadata, and automated correction suggestions for schema violations.
-- Develop a Denial Code Intelligence microservice that maps denial codes to structured reasons, recovery likelihood scores, suggested remediations, and historical success metrics.
-- Implement a Claim Correction Suggestion Engine that generates prioritized correction actions (code adjustments, missing modifiers, documentation requests) with explainable rules and ML augmentation.
-- Build an Approval Workflow Engine for human reviewer actions: proposals, edit histories, multi-step approvals, and immutable audit events integrated with claim lifecycle events.
-- Create an EDI 837 Generation Service with deterministic, testable X12 837 assembly, validation, and signature of generated documents (separate microservice from formatter already listed).
-- Implement a Clearinghouse Adapter Broker supporting multiple vendor adapters, per-adapter transactional guarantees, sandbox/prod modes, and idempotency keys for submissions.
-- Develop a Submission Orchestrator that manages submission state machines, retries with backoff, DLQ handling, and reconciliation of clearinghouse acknowledgements.
-- Build a Claims Reconciliation Service that ingests acknowledgements/ERA/835 files, matches to submissions, reconciles payments, and emits recovery events to the ledger.
-- Implement an Event Bus & Stream Processing layer (Kafka or equivalent) for claim lifecycle events, enrichment pipelines, and cross-service integration with partitioning and retention policies.
-- Create a Worker Fleet Autoscaler and orchestration service for background job workers that uses metrics to scale parsers, normalizers, and submission workers safely.
-- Implement an End-to-End Idempotency & Retry Framework used by all job processors to guarantee exactly-once semantic where possible and safe deduplication otherwise.
-- Build a Distributed Tracing and Correlation service integration (OpenTelemetry collector + trace storage) with automatic trace propagation across parsers, workers, and clearinghouse adapters.
-- Develop a Per-Field Data Provenance Tracker that records origin, transform history, timestamps and service identifiers for every canonical claim field.
-- Implement a Clinical & Payer Lookup Enrichment service that securely queries external registries (NPI, payer rules, CPT crosswalks) with caching, rate-limits, and auditable access.
-- Create a Rule Management & Policy Engine for denial handling and correction rules allowing non-developers to author, test, and deploy rule sets with canary rollouts.
-- Build a Batched Bulk Processing API and pipeline for high-volume clinic uploads with chunked processing, checkpointing, and bulk correction suggestion summarization.
--
+- Implement a Token Revocation Service for JWTs with immediate blacklist support and distributed cache propagation
+- Design and deploy a Secrets Management integration (HashiCorp Vault or AWS Secrets Manager) for service credentials and database passwords with automatic rotation
+- Build a Multi-Factor Authentication (MFA) enforcement microservice for sensitive admin actions and export operations
+- Implement End-to-End Encryption for queued claim payloads using envelope encryption and worker-side decryption keys
+- Create a Data Access Governance service that enforces field-level RBAC policies and generates policy evaluation logs for PHI access requests
+- Design and implement a Versioned Canonical Claim Schema registry (separate from the central schema registry) with compatibility checks and migration tooling
+- Build a Claim Ingestion Gatekeeper that validates idempotency keys, enforces rate limits per-client, and issues ingestion receipts
+- Develop a High-Throughput Pluggable Parser Framework with per-parser sandboxing, hot-reload, and parser-level metrics/tracing
+- Implement a Denial Code Knowledge Base service with change history, mapping rules, and a query API for the Denial Intelligence engine
+- Build a Machine Learning Feature Store and pipeline for training denial-prediction and recoverability models from canonical claim data and events
+- Create a Claim Correction Suggestion Engine (backend) that integrates deterministic rules with ML model outputs and exposes a suggestions API
+- Design and implement an Audit-First Claim Review Workflow API with immutable event records, reviewer actions, and approval branching
+- Implement an Idempotent EDI 837 Generation Service with template versioning, segment validation, and per-transaction idempotency keys
+- Build a Clearinghouse Submission Coordinator that handles transactional submission, response reconciliation, retries, and DLQ routing
+- Create a Submission Sandbox Adapter with simulator endpoints for clearinghouse testing, response fuzzing, and backpressure simulation
+- Implement Per-Field Transparent Encryption at the data access layer with KMS-derived keys, access logs, and query-time decryption controls
+- Build a Document Access Proxy service that issues short-lived signed URLs and enforces fine-grained permissions and access auditing for PDFs
+- Create a Distributed Locking and Deduplication service to prevent double-submission and race conditions across workers and microservices
+- Implement a Claims Event Sourcing Store for immutable event streams, replayability, and support for rebuilding derived views and analytics
+- Design and deploy an Observability Platform with OpenTelemetry instrumentation, centralized traces, structured logs, and per-job span propagation
+- Implement a Dynamic Backpressure and Autoscaling controller for worker pools based on queue depth, SLOs, and downstream clearinghouse health
+- Build a Cost-Aware Job Prioritization system that ranks background claim jobs by expected recoverable revenue and SLA, used by the dispatcher
+- Create a Compliance Reporting Pipeline that produces immutable, queryable export artifacts for HIPAA audits and regulatory requests
+- Implement a Fine-Grained Retention Policy Engine that automatically enforces PHI retention/deletion rules per clinic, claim age, and legal hold flags
+- Build a Cross-Service Correlation ID propagation framework and middleware to ensure traceability across ingestion, parsing, correction, and submission services
+- Design and implement Chaos Testing harness for background job workers and clearinghouse adapters to verify resilience and DLQ behavior
+- Create a Sandbox Data Generator that synthesizes realistic but de-identified claim data for testing parsers, correction engine, and EDI formatter
+- Implement a Secure Bulk Export Service with presigned, time-limited bundles and enforced approval workflows for financial exports
+- Build an SLA and Alerting Manager that tracks claim lifecycle SLAs (e.g., review time, submission time) and integrates with on-call/incident systems

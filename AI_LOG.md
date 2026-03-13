@@ -421,3 +421,4 @@ Thu Mar 12 20:32:36 PDT 2026: Completed task - Build a PHI-aware Column-Level En
 Thu Mar 12 20:32:36 PDT 2026: Completed task - Create a Secure Document Proxy microservice (separate from file storage) that issues short-lived, audited access tokens and enforces fine-grained access rules for PDF/claim document retrieval.
 Thu Mar 12 20:32:37 PDT 2026: Completed task - Implement a Data Access Audit Trail service that records all PHI read/write operations with immutable logs and support for retention/querying for compliance audits.
 Thu Mar 12 20:32:37 PDT 2026: Completed task - Develop a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas (with versioning and compatibility checks) used by parsers and normalization services.
+Thu Mar 12 20:49:31 PDT 2026: Completed task - Implement a Token Revocation Service for JWTs with immediate blacklist support and distributed cache propagation

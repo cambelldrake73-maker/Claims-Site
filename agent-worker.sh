@@ -57,22 +57,16 @@ if [ -s "$WORKSPACE/AI_PENDING.md" ]; then
 # ---------------------------
 
 elif [ "$CURRENT_HASH" != "$LAST_HASH" ]; then
-
+    
     echo "Repo changed — checking AI limits..."
-
+    
     if [ "$AI_CALLS" -ge "$MAX_AI_CALLS_PER_DAY" ]; then
         echo "Daily AI limit reached — skipping AI generation."
     else
 
         echo "Running AI planner..."
         bash "$WORKSPACE/ai-planner.sh" || echo "Planner failed"
-
-        echo "Running AI planner..."
-        bash "$WORKSPACE/ai-planner.sh" || echo "Planner failed"
-
-        echo "Generating tasks..."
-        bash "$WORKSPACE/ai-task-maker.sh"
-
+            
         echo "Generating tasks..."
         bash "$WORKSPACE/ai-task-maker.sh"
 
@@ -81,7 +75,6 @@ elif [ "$CURRENT_HASH" != "$LAST_HASH" ]; then
     fi
 
     LAST_HASH=$CURRENT_HASH
-
 # ---------------------------
 # FALLBACK ARCHITECTURE TASKS
 # ---------------------------
@@ -93,7 +86,7 @@ else
     QUEUE_SIZE=$(wc -l < "$WORKSPACE/AI_PENDING.md")
 
     if [ "$QUEUE_SIZE" -lt 10 ]; then
-        echo "Queue empty — generating architecture tasks..."
+        echo "Queue low ($QUEUE_SIZE tasks) — generating architecture tasks..."
 
         if [ "$AI_CALLS" -ge "$MAX_AI_CALLS_PER_DAY" ]; then
             echo "Daily AI limit reached — skipping architecture planner."
