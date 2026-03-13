@@ -579,3 +579,4 @@
 - Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not present in memory).
 - Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and a pub/sub schema rollout mechanism (new standalone implementation).
 - Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (separate from general Data Access Governance).
+- Create a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, and consent audit trails with revocation support.
