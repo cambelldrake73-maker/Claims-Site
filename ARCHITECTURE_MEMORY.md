@@ -416,3 +416,5 @@ Implement end-to-end encrypted job payloads for the job queue where payloads are
 - Auth system implemented
 - Background job system implemented
 Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas.
+- Database schema system implemented
+Create a Claim Normalization microservice: transforms parsed claims into canonical schema with per-field provenance and validation hooks.

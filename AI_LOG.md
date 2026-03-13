@@ -587,3 +587,4 @@ Fri Mar 13 00:09:02 PDT 2026: Completed task - Develop a Consent & Data Access A
 Fri Mar 13 00:09:02 PDT 2026: Completed task - Integrate a Policy Engine (OPA/Rego) service for dynamic authorization rules used by sensitive actions (exports, submissions, reviewer access).
 Fri Mar 13 00:09:02 PDT 2026: Completed task - Implement end-to-end encrypted job payloads for the job queue where payloads are envelope-encrypted and only authorized workers can decrypt.
 Fri Mar 13 00:09:02 PDT 2026: Completed task - Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas.
+Fri Mar 13 00:09:02 PDT 2026: Completed task - Create a Claim Normalization microservice: transforms parsed claims into canonical schema with per-field provenance and validation hooks.

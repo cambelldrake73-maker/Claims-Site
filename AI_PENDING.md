@@ -1,1 +1,0 @@
-- Create a Claim Normalization microservice: transforms parsed claims into canonical schema with per-field provenance and validation hooks.
