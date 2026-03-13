@@ -1,3 +1,2 @@
-- Implement end-to-end encrypted job payload handling for the job queue system using envelope encryption decrypted only by authorized worker instances with key rotation and attestation.
 - Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
 - Develop a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and schema migration tooling (standalone implementation).
