@@ -380,3 +380,4 @@
 - Develop a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas (with versioning and compatibility checks) used by parsers and normalization services.
 - Implement a Token Revocation Service for JWTs with immediate blacklist support and distributed cache propagation
 - Design and deploy a Secrets Management integration (HashiCorp Vault or AWS Secrets Manager) for service credentials and database passwords with automatic rotation
+- Build a Multi-Factor Authentication (MFA) enforcement microservice for sensitive admin actions and export operations
