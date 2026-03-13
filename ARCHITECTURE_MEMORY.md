@@ -185,3 +185,5 @@ Build a Claims Ingestion Orchestrator microservice that accepts uploaded claim b
 - Database schema system implemented
 - Background job system implemented
 Build a PHI-aware Column-Level Encryption layer in the database access service with transparent encryption/decryption hooks and strict key usage logs.
+- Database schema system implemented
+Create a Secure Document Proxy microservice (separate from file storage) that issues short-lived, audited access tokens and enforces fine-grained access rules for PDF/claim document retrieval.

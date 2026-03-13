@@ -375,3 +375,4 @@
 - Implement a Pluggable Parser Framework (microservice) supporting PDFs, X12, CSV, and HL7 input formats with per-parser validation and parser sandboxing.
 - Design and implement a Secrets & Key Management service for rotating KMS-backed keys, envelope encryption orchestration, and limited-scope key access policies for microservices.
 - Build a PHI-aware Column-Level Encryption layer in the database access service with transparent encryption/decryption hooks and strict key usage logs.
+- Create a Secure Document Proxy microservice (separate from file storage) that issues short-lived, audited access tokens and enforces fine-grained access rules for PDF/claim document retrieval.
