@@ -1,4 +1,3 @@
-- Add document access logging
 - Add document audit logging
 - Add job processing metrics and monitoring
 - Add login API endpoint
