@@ -40,3 +40,4 @@
 - Add transition animation to the sidebar tab arrow indicator (rotate on pin) in submit-claims.html to match agreements.html behavior
 - Add a transition animation to the `savedNotice` element in `submit-claims.html` instead of an abrupt display change
 - Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
+- implement upload_gateway
