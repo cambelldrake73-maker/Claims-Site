@@ -582,3 +582,4 @@ Fri Mar 13 00:05:49 PDT 2026: Completed task - Implement role and permission mod
 Fri Mar 13 00:05:49 PDT 2026: Completed task - Implement signed URL generation
 Fri Mar 13 00:09:02 PDT 2026: Completed task - Build a Token Revocation Service with distributed blacklist propagation and immediate JWT invalidation endpoints.
 Fri Mar 13 00:09:02 PDT 2026: Completed task - Create a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls.
+Fri Mar 13 00:09:02 PDT 2026: Completed task - Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and audit logs.
