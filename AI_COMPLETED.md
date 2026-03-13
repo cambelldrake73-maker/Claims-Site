@@ -869,3 +869,4 @@
 - create correction_suggestion_engine and review_workflow_service: generate suggested corrections, manage human review queues, provide approval_queue_service integration, and persist change events to claim_replay and audit_log_service.
 - develop parser_router service to detect file types (edi/837, pdf bundles, csv), dispatch to niche parsers in sectors/healthcare, and emit normalized claim drafts into claim_normalization; integrate with schema_registry and job_queue.
 - implement # platform build roadmap service
+- implement ------------------------------------------------ service
