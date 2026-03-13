@@ -366,3 +366,4 @@
 - Implement a dedicated Denial Code Knowledge Base service with versioned taxonomy, mapping rules, confidence scores, and update webhook support.
 - Build a Claim Normalization microservice to transform parsed claims into a canonical schema with field-level provenance and validation.
 - Create a Pluggable Parser Framework for claim ingestion supporting PDF/OCR, EDI 837, CSV, and payer-specific XML with parser registry and unit tests.
+- Develop a Claim Enrichment service to augment claims with external data (payer databases, provider NPI lookup, patient demographics) via secure connectors.

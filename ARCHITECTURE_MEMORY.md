@@ -177,3 +177,4 @@ Implement job queue retry logic
 Implement JWT signing utility
 Build a Claim Normalization microservice to transform parsed claims into a canonical schema with field-level provenance and validation.
 - Database schema system implemented
+Develop a Claim Enrichment service to augment claims with external data (payer databases, provider NPI lookup, patient demographics) via secure connectors.
