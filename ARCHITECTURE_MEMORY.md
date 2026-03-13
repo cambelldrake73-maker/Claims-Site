@@ -169,3 +169,5 @@ Create jobs processing folder
 Implement authentication service configuration
 - Auth system implemented
 Implement claim validation and schema enforcement
+- Database schema system implemented
+Implement dead letter queue handling
