@@ -1,4 +1,3 @@
-- Implement document storage metadata model
 - Implement EDI 837 claim formatter
 - Implement job queue retry logic
 - Implement JWT signing utility
