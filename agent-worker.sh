@@ -41,8 +41,8 @@ if [ "$TODAY" != "$LAST_DATE" ]; then
     echo "$TODAY" > "$AI_DATE_FILE"
 fi
 
-AI_CALLS=$(tail -n 1 "$AI_COUNTER_FILE" 2>/dev/null || echo 0)
-
+AI_CALLS=$(tail -n 1 "$AI_COUNTER_FILE" 2>/dev/null | tr -dc '0-9')
+[ -z "$AI_CALLS" ] && AI_CALLS=0
 # ---------------------------
 # TASK EXECUTION FIRST
 # ---------------------------
@@ -61,8 +61,8 @@ elif [ "$CURRENT_HASH" != "$LAST_HASH" ]; then
     echo "Repo changed — checking AI limits..."
 
     # Refresh counter before checking limit
-    AI_CALLS=$(tail -n 1 "$AI_COUNTER_FILE" 2>/dev/null || echo 0)
-
+    AI_CALLS=$(tail -n 1 "$AI_COUNTER_FILE" 2>/dev/null | tr -dc '0-9')
+    [ -z "$AI_CALLS" ] && AI_CALLS=0
     if [ "$AI_CALLS" -ge "$MAX_AI_CALLS_PER_DAY" ]; then
         echo "Daily AI limit reached — skipping AI generation."
     else

@@ -863,3 +863,4 @@
 - build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
 - build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
 - build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
+- build denial_intelligence_engine (denial_reason_classifier + recoverability_scoring_model) as a backend microservice that consumes normalized claims, enriches them with denial code knowledgebase, and emits correction suggestions to correction_suggestion_engine.

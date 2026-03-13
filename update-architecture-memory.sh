@@ -51,5 +51,7 @@ awk '{
 
 # Remove duplicates
 sort -u "$MEMORY" -o "$MEMORY"
-
+# Sync architecture memory with roadmap naming
+grep -Fx -f "$WORKSPACE/BUILD_PLAN.md" "$MEMORY" > "$MEMORY.tmp"
+mv "$MEMORY.tmp" "$MEMORY"
 echo "Architecture memory updated."

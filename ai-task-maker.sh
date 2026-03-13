@@ -4,6 +4,8 @@ WORKSPACE="$HOME/.openclaw/workspace/claims-site"
 
 SUGGESTIONS="$WORKSPACE/AI_SUGGESTIONS.md"
 PENDING="$WORKSPACE/AI_PENDING.md"
+COMPLETED="$WORKSPACE/AI_COMPLETED.md"
+ARCH_MEMORY="$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"
 
 cd "$WORKSPACE"
 
@@ -19,6 +21,7 @@ fi
 
 # Generate tasks from suggestions
 if [ -f "$SUGGESTIONS" ]; then
+
     grep "^-" "$SUGGESTIONS" | \
     sed 's/^- *//' | \
     tr '[:upper:]' '[:lower:]' | \
@@ -27,11 +30,17 @@ if [ -f "$SUGGESTIONS" ]; then
         if [ -f "$COMPLETED" ]; then
             sed 's/^- *//' "$COMPLETED" | tr '[:upper:]' '[:lower:]'
         fi
-) | \
-head -n 5 | \
-sed 's/^/- /' >> "$PENDING"
-    
+        if [ -f "$ARCH_MEMORY" ]; then
+            cat "$ARCH_MEMORY"
+        fi
+    ) | \
+    head -n 8 | \
+    sed 's/^/- /' >> "$PENDING"
+
     echo "Tasks generated."
+
+    # Clear suggestions so they aren't reused
+    > "$SUGGESTIONS"
 
 else
     echo "No suggestions file found."

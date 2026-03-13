@@ -86,6 +86,9 @@ $PROJECT_CONTEXT
 Architecture rules:
 $(cat "$WORKSPACE/ARCHITECTURE_RULES.md")
 
+Platform build roadmap:
+$(cat "$WORKSPACE/BUILD_PLAN.md")
+
 Service registry:
 $(cat "$WORKSPACE/SERVICE_REGISTRY.md")
 
@@ -155,6 +158,13 @@ Rules:
 - Output only the tasks
 - Each task must start with "- "
 - No explanations
+
+When generating architecture tasks:
+
+1. Follow the build roadmap sequentially.
+2. Identify the next missing system in the roadmap.
+3. Do not generate systems already listed in Architecture Memory.
+4. Ensure new systems integrate with the Service Registry.
 EOF
 )
 # ---------------------------
