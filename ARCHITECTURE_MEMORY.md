@@ -806,3 +806,4 @@ Implement end-to-end encrypted job payload handling for the job queue system whe
 Design and implement a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
 - Database schema system implemented
 Build a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation).
+- Database schema system implemented
