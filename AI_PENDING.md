@@ -1,1 +1,0 @@
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
