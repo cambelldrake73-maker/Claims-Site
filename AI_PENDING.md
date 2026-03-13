@@ -1,3 +1,2 @@
-- Build a Pluggable Parser Sandbox Runner to execute and version parsers in isolated containers with resource limits and plugin lifecycle management.
 - Implement a Correction Suggestion Audit Trail service that stores proposed corrections, model inputs, and reviewer decisions for compliance and model retraining.
 - Build an ML Feature Store and Batch Scoring Service for recoverability scoring with feature lineage, versioning, and offline/online access.
