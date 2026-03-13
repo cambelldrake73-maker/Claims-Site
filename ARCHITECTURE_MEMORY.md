@@ -389,3 +389,4 @@ Add job processing metrics and monitoring
 - Monitoring system introduced
 - Background job system implemented
 Add RBAC permission checks
+Create auth service folder
