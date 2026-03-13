@@ -522,3 +522,4 @@
 - Implement authentication service configuration
 - Implement background worker service
 - Implement claim event lifecycle tracking
+- Implement claim ingestion API endpoint
