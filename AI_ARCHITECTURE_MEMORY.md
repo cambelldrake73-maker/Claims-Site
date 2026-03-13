@@ -1,6 +1,7 @@
 # Architecture Memory
 
 Systems implemented:
+Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (standalone implementation).
 Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (standalone service not already implemented).
 Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning and compatibility checks (not already implemented).
 Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
@@ -24,6 +25,7 @@ Create a Claim Replay and Incident Debugging service that can re-run a claim thr
 Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
 Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with full audit trails.
 Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, time-limited PHI access approvals, and consent audit trails.
+Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, time-limited PHI access approvals, and full audit trails.
 Create a Consent & Data Access Authorization service to manage clinic consents, data sharing scopes, and time-limited PHI access approvals.
 Create a Data Access Governance service that enforces field-level RBAC policies and generates policy evaluation logs for PHI access requests
 Create a Secure Audit Trail Service that captures immutable, tamper-evident logs for claim lifecycle events, access to PHI, and clearinghouse submissions (WORM storage + signed entries).
@@ -47,6 +49,7 @@ Design and implement a Token Revocation Service with immediate distributed black
 Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints.
 Develop a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas (with versioning and compatibility checks) used by parsers and normalization services.
 Develop a Claim Enrichment service to augment claims with external data (payer databases, provider NPI lookup, patient demographics) via secure connectors.
+Develop a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (new standalone implementation).
 Develop a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with full audit trails.
 Develop a Policy Engine for dynamic authorization rules (Rego/OPA integration) to evaluate sensitive actions (exports, reviewer access, clearinghouse submissions).
 Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
@@ -65,6 +68,7 @@ Implement a resilient, idempotent asynchronous claim processing pipeline: centra
 Implement a secure Clearinghouse Integration & Compliance layer: EDI (837) validator/formatter, multi-adapter transactional gateway with sandbox test harness, KMS-backed encryption (at-rest/in-transit) and key rotation, strict RBAC/audit trails for submissions, and submission SLA monitoring/alerting.
 Implement a Token Revocation Service for JWTs with immediate blacklist support and distributed cache propagation
 Implement a Token Revocation Service with distributed blacklist propagation for immediate JWT invalidation (not already implemented).
+Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWTs (distinct from existing notes).
 Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation (distinct implementation from listed items).
 Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct implementation from those logged).
 Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct implementation not in memory).
@@ -76,16 +80,19 @@ Implement dead letter queue handling
 Implement denial correction suggestion engine
 Implement EDI 837 claim formatter
 Implement End-to-End Distributed Tracing and Correlation service integration (OpenTelemetry full-trace pipeline, span propagation across jobs and microservices) with trace retention and sampling policies.
+Implement end-to-end encrypted job payload handling for the queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with rotation.
 Implement end-to-end encrypted job payloads for the job queue where payloads are envelope-encrypted and only authorized workers can decrypt.
 Implement end-to-end encrypted job payloads for the queue system with worker-side key access control and rotation separate from general envelope encryption.
 Implement End-to-End Encryption for queued claim payloads using envelope encryption and worker-side decryption keys
 Implement job queue retry logic
 Implement Per-Field Access Control (field-level RBAC) enforcement service that intercepts DB reads and enforces policy evaluation logs (distinct from general Data Access Governance).
 Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and audit logs.
+Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and immutable evaluation logs.
 Implement Per-Field Access Control middleware that enforces field-level RBAC at the service layer with evaluation logs and policy decision caching.
 Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
 Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with policy decision caching and audit logs (distinct from general Data Access Governance).
 Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with policy decision caching and immutable evaluation logs (distinct from general Data Access Governance).
 Integrate a Policy Engine (OPA/Rego) service for dynamic authorization rules used by sensitive actions (exports, submissions, reviewer access).
+Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management for dynamic authorization rules used by sensitive actions.
 Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
 Integrate an external Policy Engine (OPA/Rego) service for dynamic authorization rules used by submissions, exports, and sensitive-data actions.
