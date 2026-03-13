@@ -808,3 +808,4 @@ Fri Mar 13 06:36:03 PDT 2026: Completed task - Build a Token Revocation Service 
 Fri Mar 13 06:36:03 PDT 2026: Completed task - Create a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout.
 Fri Mar 13 06:36:03 PDT 2026: Completed task - Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (standalone implementation).
 Fri Mar 13 06:36:03 PDT 2026: Completed task - Develop a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
+Fri Mar 13 06:36:03 PDT 2026: Completed task - Integrate a Policy Engine service (OPA/Rego) with policy lifecycle management for dynamic authorization rules used by submissions, exports, and sensitive actions.
