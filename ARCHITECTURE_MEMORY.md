@@ -209,3 +209,5 @@ Create a Claim Replay and Incident Debugging service that can re-run a claim thr
 - Database schema system implemented
 Build a Secure Document Access Broker service issuing short-lived signed URLs/tokens, with field-level masking and request-level audit for any PDF/document fetches (distinct from document proxy already implemented).
 Implement End-to-End Distributed Tracing and Correlation service integration (OpenTelemetry full-trace pipeline, span propagation across jobs and microservices) with trace retention and sampling policies.
+- Background job system implemented
+Develop a Per-Job Observability Dashboard backend: aggregated metrics, SLA monitoring, retry/DLQ stats, and automatic incident creation hooks for failing claim jobs.
