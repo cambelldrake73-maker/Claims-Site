@@ -1,2 +1,1 @@
-- Build an Automated Data Quality & Schema Validation pipeline: nightly profiling, anomaly detection on canonical claim fields, and alerting for schema drift.
 - Implement Multi-Region Data Replication and Disaster Recovery architecture for critical claim databases with automated failover playbooks
