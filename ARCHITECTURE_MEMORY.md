@@ -207,3 +207,4 @@ Implement end-to-end encrypted job payloads for the queue system with worker-sid
 - Background job system implemented
 Create a Claim Replay and Incident Debugging service that can re-run a claim through parsing/normalization/correction pipeline in a sandbox with versioned schema and test harness.
 - Database schema system implemented
+Build a Secure Document Access Broker service issuing short-lived signed URLs/tokens, with field-level masking and request-level audit for any PDF/document fetches (distinct from document proxy already implemented).
