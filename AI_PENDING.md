@@ -1,4 +1,3 @@
-- implement payer_denial_trends service
 - implement payer_rule_engine service
 - implement performance_reporting service
 - implement revenue_recovery_analytics service
