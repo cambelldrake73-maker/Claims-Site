@@ -870,3 +870,4 @@
 - develop parser_router service to detect file types (edi/837, pdf bundles, csv), dispatch to niche parsers in sectors/healthcare, and emit normalized claim drafts into claim_normalization; integrate with schema_registry and job_queue.
 - implement # platform build roadmap service
 - implement ------------------------------------------------ service
+- implement access_control service
