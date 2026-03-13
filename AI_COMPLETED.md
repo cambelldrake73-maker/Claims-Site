@@ -363,3 +363,4 @@
 - Implement refresh token support
 - Implement role and permission models
 - Implement signed URL generation
+- Implement a dedicated Denial Code Knowledge Base service with versioned taxonomy, mapping rules, confidence scores, and update webhook support.

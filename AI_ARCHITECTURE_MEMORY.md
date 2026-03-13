@@ -18,7 +18,10 @@ Implement a resilient Clearinghouse Integration & Submission Service (transactio
 Implement a resilient, idempotent asynchronous claim processing pipeline: central durable job queue (Redis/NSQ/SQS), idempotent worker patterns, dead-letter queues, exponential-backoff retries, per-job metrics, distributed tracing (OpenTelemetry), structured tracing/span propagation, DLQ alerting, and automated horizontal scaling rules.  
 Implement a secure Clearinghouse Integration & Compliance layer: EDI (837) validator/formatter, multi-adapter transactional gateway with sandbox test harness, KMS-backed encryption (at-rest/in-transit) and key rotation, strict RBAC/audit trails for submissions, and submission SLA monitoring/alerting.
 Implement an EDI 837 Formatter & Validator microservice: X12 837 generation, schema/segment validation, automated test harness and sandbox mode for verifier clearinghouse integrations.  
+Implement authentication service configuration
 Implement background worker service
 Implement claim normalization pipeline
+Implement dead letter queue handling
 Implement denial correction suggestion engine
 Implement EDI 837 claim formatter
+Implement job queue retry logic

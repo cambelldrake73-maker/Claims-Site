@@ -1,25 +1,28 @@
-- Implement a Secrets Management Service using HashiCorp Vault (or cloud-native equivalent) for managing API keys, DB credentials, and KMS keys with automated rotation and access policies.
-- Design and implement a Key Management Service (KMS) integration for envelope encryption of PHI, including key rotation, access auditing, and role-based key policies.
-- Build a Fine-Grained RBAC Audit Broker that emits immutable audit events for all access/changes to claims, patient records, and submission actions to the audit logging system.
-- Create a Data Access Proxy layer that enforces row-level and column-level PHI masking rules based on user roles and purpose-of-access before returning any claim data to services.
-- Design and implement a Multi-Tenant Data Partitioning strategy for clinics (logical partitioning, tenant IDs, tenant-aware queries, and migration plan).
-- Implement a Canonical Claim Data Model service (normalized DB schema + JSON schema definitions) with versioning and migration tooling for claim, event, patient, provider, and payer entities.
-- Build a Strong Database Migration and Versioning Pipeline (migration tooling, schema-change reviews, backward-compatible migrations, and rollback capability).
-- Implement End-to-End Idempotency Service for ingestion and clearinghouse submissions (idempotency keys, de-duplication store, TTL policies).
-- Create a Reliable Ingestion API Gateway with validation, schema enforcement, rate limiting, and per-tenant quotas for claim uploads and document attachments.
-- Implement a Pluggable Claim Parser Framework as a backend microservice with parser plugins, schema mapping, configurable pipelines, and unit/integration test harness.
-- Build a Denial Code Intelligence Engine backend: canonical denial code catalog, mapping rules, severity scoring, and enrichment APIs for downstream services.
-- Implement a Claim Normalization Service that applies normalization rules, payer-specific transforms, and canonicalization pipelines with provenance metadata.
-- Create a Rule-Based Claim Correction Suggestion Engine backend that generates correction suggestions, confidence scores, and suggested EDI edits using deterministic rules.
-- Implement a Machine Learning Inference Service for denial prediction and recovery likelihood scoring, with model management, A/B testing, and feature store integration.
-- Build a Human Review Workflow Service (server-side): task assignment, work queues, audit trails, handoff, SLA enforcement, and reviewer action APIs.
-- Implement an Immutable Claim Event Store (append-only) to track every state transition, reviewer action, correction suggestion, and submission attempt for compliance and replay.
-- Create a Transactional EDI 837 Formatter microservice with schema validation, segment-level validation, test harness, and sandbox mode (separate from completed EDI service memory).
-- Build a Clearinghouse Adapter Gateway service supporting multiple adapters (test/sandbox/prod), submission batching, transactional retries, and adapter-level metrics.
-- Implement a Secure Document Proxy and Access Service for serving PHI documents via signed URLs with short TTLs, access checks, and access logs (keeping protected files unchanged).
-- Create a Submission Orchestration Service that coordinates EDI generation, idempotency checks, adapter selection, and transaction lifecycles with compensating actions on failure.
-- Implement a Distributed Job Orchestration and Workflow Engine (durable workflows) to model multi-step claim pipelines, track state, support retries, and visualize flows.
-- Build a Dead-Letter and Replay System for failed ingestion, parsing, correction, and submission jobs, with tooling for safe manual reprocessing and root-cause metadata.
-- Integrate OpenTelemetry-based Distributed Tracing across backend microservices, including clear tracing for claim lifecycle events and clearinghouse submissions.
-- Implement Per-Job and Per-Tenant Metrics and Alerting dashboards (latency, failure rates, throughput, recovery dollars) with automated anomaly detection.
-- Design and deploy a Cost-Aware Horizontal Scaling strategy for workers and adapters (auto-scaling rules, backpressure, and priority-based scaling for high-value claims).
+- Implement a dedicated Denial Code Knowledge Base service with versioned taxonomy, mapping rules, confidence scores, and update webhook support.
+- Build a Claim Normalization microservice to transform parsed claims into a canonical schema with field-level provenance and validation.
+- Create a Pluggable Parser Framework for claim ingestion supporting PDF/OCR, EDI 837, CSV, and payer-specific XML with parser registry and unit tests.
+- Develop a Claim Enrichment service to augment claims with external data (payer databases, provider NPI lookup, patient demographics) via secure connectors.
+- Implement a Claim Correction Suggestion Engine using rule-based transforms and ML model hooks that produce suggested edits with explainability metadata.
+- Build an Idempotency & Deduplication Service that generates global claim idempotency keys and deduplicates uploads across tenants and ingestion pipelines.
+- Create a Secure Document Metadata Service that stores PHI metadata, access policies, and signed URL issuance without storing raw file contents in the application DB.
+- Implement Fine-Grained PHI Access Control middleware (attribute-based access control) integrated with RBAC to enforce field-level permissions and audit.
+- Design an Immutable Claim Event Store capturing every lifecycle event (ingestion, parse, suggestion, user edit, submission) with append-only storage and tamper-evident hashes.
+- Build a Claims Audit Trail Service that exposes read-only, time-ordered audit logs for compliance, with export capabilities and retention policy management.
+- Implement a Transactional Submission Orchestrator to coordinate multi-step EDI submissions with two-phase commit semantics, rollback, and compensating actions.
+- Create a Submission Idempotency and Retry Coordinator that manages clearinghouse submission state, retries with backoff, and DLQ promotion for manual review.
+- Develop a Clearinghouse Response Processor to parse acknowledgements/ERAs (835/277) and reconcile claim status automatically into the canonical model.
+- Implement an Appeals Workflow Microservice to manage multi-step appeal creation, templated appeals, follow-up reminders, and escalation rules.
+- Build a Policy Engine for business rules (e.g., eligibility for auto-appeal, financial thresholds) with dynamic rule updates and versioning.
+- Create a Claims Workqueue Service that supports prioritized, claim-level task queues for human reviewers with lock/leasing semantics and SLA enforcement.
+- Implement a Reviewer Assignment & Audit Service that auto-assigns claims to reviewers based on skill, workload, and audit sampling rules.
+- Develop a Corrections Approval Workflow API supporting staged approvals, inline edits, diffing, and immutable approval records.
+- Build a Sandbox Mode for EDI Formatter & Clearinghouse Adapters to validate end-to-end submissions without hitting production clearinghouses.
+- Implement a Schema Registry and Validation Service for all claim-related JSON schemas, with backward-compatibility checks and CI integration.
+- Create a Data Retention & Purge Service that enforces HIPAA retention rules, safe deletion procedures, and secure shredding of PHI per tenant policy.
+- Implement Cross-Tenant Billing & Reconciliation Service to calculate fees, recovered revenue splits, and generate invoice-ready records for finance systems.
+- Build an Observability Platform integration layer: centralized telemetry exporter for traces, metrics, and logs with tenant/claim tagging.
+- Create End-to-End Distributed Tracing for claim lifecycle flows (ingestion → parsing → suggestion → submission) with trace sampling strategies.
+- Implement a Secret Management & Key Rotation Service for clearinghouse credentials, API keys, and KMS integration with automated rotation and access logs.
+- Develop a Feature Flag & Canary Deployment Service for safe rollout of parsing rules, correction models, and clearinghouse adapters per tenant.
+- Build a Scalable Job Scheduler for batch analytics jobs (denial trend recalculations, aging recalcs) with dependency graph handling and resource quotas.
+- Implement a Data Warehousing ETL pipeline to export normalized claim, event, and financial data into analytics stores with PII
