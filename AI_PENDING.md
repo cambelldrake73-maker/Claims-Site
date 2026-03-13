@@ -1,1 +1,0 @@
-- Design and implement a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
