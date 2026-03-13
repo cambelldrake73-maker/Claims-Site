@@ -1,6 +1,5 @@
-# Architecture Memory
 
-Systems implemented:
+# Architecture Memory
 Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and a pub/sub schema rollout mechanism (new standalone implementation).
 Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
 Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout.
@@ -126,3 +125,4 @@ Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle mana
 Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
 Integrate an external Policy Engine (OPA/Rego) service for dynamic authorization rules used by submissions, exports, and sensitive-data actions.
 Integrate an external Policy Engine service (OPA/Rego) with policy lifecycle management and a policy evaluation cache used by submission, export, and reviewer access flows.
+Systems implemented:
