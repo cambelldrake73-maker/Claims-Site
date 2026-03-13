@@ -340,3 +340,4 @@
 - Add RBAC permission checks
 - Add worker health check endpoint
 - Configure Redis connection
+- Create auth service folder
