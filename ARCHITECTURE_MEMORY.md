@@ -12,3 +12,4 @@
 - Auth system implemented
 - Database schema system implemented
 - Background job system implemented
+- Monitoring system introduced
