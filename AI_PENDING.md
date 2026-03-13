@@ -1,4 +1,3 @@
-- Integrate an external Policy Engine (OPA/Rego) service for dynamic authorization rules used by submissions, exports, and sensitive-data actions.
 - Implement end-to-end encrypted job payloads for the queuing system where payloads are envelope-encrypted and decrypted only by authorized worker instances (separate implementation from general envelope encryption).
 - Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
 - Implement a Centralized Correction Suggestion Audit service to record suggestion provenance, model-versioning metadata, reviewer edits, and immutable approval trails.
