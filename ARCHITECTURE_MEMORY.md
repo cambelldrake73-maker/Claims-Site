@@ -875,3 +875,4 @@ build a token revocation service with immediate distributed blacklist propagatio
 build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
 - Database schema system implemented
 build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
+- Database schema system implemented
