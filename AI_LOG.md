@@ -952,3 +952,4 @@ Fri Mar 13 09:16:08 PDT 2026: Completed task - implement review_workflow_service
 Fri Mar 13 09:16:08 PDT 2026: Completed task - implement system_health_monitor service
 Fri Mar 13 09:18:05 PDT 2026: Completed task - implement upload_gateway service
 Fri Mar 13 09:33:03 PDT 2026: Completed task - build a correction suggestion engine and review workflow service pair (correction_suggestion_engine + review_workflow_service) that generate suggested corrections, score them, enqueue human review tasks into job_queue, and record decisions in audit_log_service.
+Fri Mar 13 09:33:03 PDT 2026: Completed task - build a schema registry service (single source of truth) for canonical_claim_schema, supporting versioned healthcare claim schemas, schema validation apis, and integration points for parser_router and claim_normalization.

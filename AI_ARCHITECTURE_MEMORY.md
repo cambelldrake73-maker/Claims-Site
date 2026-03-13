@@ -17,3 +17,4 @@ recoverability_scoring_model
 schema_registry
 token_revocation
 build a correction suggestion engine and review workflow service pair (correction_suggestion_engine + review_workflow_service) that generate suggested corrections, score them, enqueue human review tasks into job_queue, and record decisions in audit_log_service.
+build a schema registry service (single source of truth) for canonical_claim_schema, supporting versioned healthcare claim schemas, schema validation apis, and integration points for parser_router and claim_normalization.
