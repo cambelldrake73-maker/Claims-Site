@@ -1,0 +1,22 @@
+- Design and deploy a Secrets Management integration (HashiCorp Vault or cloud secrets) with automated secret rotation and audit hooks (not already implemented).
+- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning and compatibility checks (not already implemented).
+- Implement Per-Field Access Control (field-level RBAC) enforcement service that intercepts DB reads and enforces policy evaluation logs (distinct from general Data Access Governance).
+- Create a Consent & Data Access Authorization service to manage clinic consents, data sharing scopes, and time-limited PHI access approvals.
+- Develop a Policy Engine for dynamic authorization rules (Rego/OPA integration) to evaluate sensitive actions (exports, reviewer access, clearinghouse submissions).
+- Implement end-to-end encrypted job payloads for the queue system with worker-side key access control and rotation separate from general envelope encryption.
+- Build a Secure Audit Log Service with immutable append-only storage (WORM), tamper-evident hashing, and retention policies for all PHI access and submission events.
+- Design and implement a Claim Lineage & Provenance service that tracks per-field provenance, transformation steps, and user approvals across the claim lifecycle.
+- Create a Claim Replay and Incident Debugging service that can re-run a claim through parsing/normalization/correction pipeline in a sandbox with versioned schema and test harness.
+- Implement a Denial Code Knowledgebase microservice: curated, versioned denial code mappings, payer-specific rules, and confidence scoring for correction suggestions.
+- Build a Correction Suggestion Orchestrator that consolidates signals from denial knowledgebase, historical fixes, and ML models to propose actionable claim edits with provenance.
+- Develop an ML Model Serving platform for denial prediction and recoverability scoring with A/B testing, feature store integration, and model explainability hooks.
+- Create an Idempotency & Deduplication Service for inbound claim bundles that generates and verifies idempotency keys across distributed ingestion points.
+- Implement a Pluggable Parser Router that routes incoming files to appropriate parser plugins (PDF OCR, EDI 837/835, CSV, JSON) with metadata-based routing and parser health checks.
+- Design a Payer Connector Framework with per-payer adapters, sandbox/prod toggles, rate-limiting, and retry semantics for external payer lookups and eligibility checks.
+- Implement a Transactional Clearinghouse Submission Orchestrator that coordinates EDI 837 submission, tracks transactional states, supports transactional rollback semantics, and stores immutable submission artifacts.
+- Build a Secure Document Access Broker service issuing short-lived signed URLs/tokens, with field-level masking and request-level audit for any PDF/document fetches (distinct from document proxy already implemented).
+- Create a Secure Data Export Service that enforces policy, anonymization/de-identification templates, and multi-approval flows before producing PHI-containing exports.
+- Implement End-to-End Distributed Tracing and Correlation service integration (OpenTelemetry full-trace pipeline, span propagation across jobs and microservices) with trace retention and sampling policies.
+- Develop a Per-Job Observability Dashboard backend: aggregated metrics, SLA monitoring, retry/DLQ stats, and automatic incident creation hooks for failing claim jobs.
+- Build an Automated Data Quality & Schema Validation pipeline: nightly profiling, anomaly detection on canonical claim fields, and alerting for schema drift.
+- Implement Multi-Region Data Replication and Disaster Recovery architecture for critical claim databases with automated failover playbooks

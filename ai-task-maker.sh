@@ -24,8 +24,8 @@ if [ -f "$SUGGESTIONS" ]; then
     grep -vi "error" | \
     grep -vi "api" | \
     grep -vi "message" | \
-    head -n 5 >> "$PENDING"
-
+    head -n 50 >> "$PENDING"
+    
     echo "Tasks generated."
 
 else
