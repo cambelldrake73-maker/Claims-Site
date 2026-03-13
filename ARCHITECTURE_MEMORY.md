@@ -402,3 +402,4 @@ Implement claim validation and schema enforcement
 - Database schema system implemented
 Implement dead letter queue handling
 - Background job system implemented
+Implement job queue retry logic

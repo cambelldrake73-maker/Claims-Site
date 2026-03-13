@@ -1,4 +1,3 @@
-- Implement job queue retry logic
 - Implement JWT signing utility
 - Implement refresh token support
 - Implement role and permission models
