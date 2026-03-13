@@ -204,3 +204,4 @@ Create a Consent & Data Access Authorization service to manage clinic consents, 
 Develop a Policy Engine for dynamic authorization rules (Rego/OPA integration) to evaluate sensitive actions (exports, reviewer access, clearinghouse submissions).
 - Auth system implemented
 Implement end-to-end encrypted job payloads for the queue system with worker-side key access control and rotation separate from general envelope encryption.
+- Background job system implemented

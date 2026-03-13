@@ -1,4 +1,3 @@
-- Build a Secure Audit Log Service with immutable append-only storage (WORM), tamper-evident hashing, and retention policies for all PHI access and submission events.
 - Design and implement a Claim Lineage & Provenance service that tracks per-field provenance, transformation steps, and user approvals across the claim lifecycle.
 - Create a Claim Replay and Incident Debugging service that can re-run a claim through parsing/normalization/correction pipeline in a sandbox with versioned schema and test harness.
 - Implement a Denial Code Knowledgebase microservice: curated, versioned denial code mappings, payer-specific rules, and confidence scoring for correction suggestions.
