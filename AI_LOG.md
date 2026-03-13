@@ -630,3 +630,4 @@ Fri Mar 13 00:25:13 PDT 2026: Completed task - Design and implement a Claim Repl
 Fri Mar 13 00:25:13 PDT 2026: Completed task - Build a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and schema migration tooling (standalone).
 Fri Mar 13 00:28:26 PDT 2026: Completed task - Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (distinct from existing notes).
 Fri Mar 13 00:28:26 PDT 2026: Completed task - Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout.
+Fri Mar 13 00:28:26 PDT 2026: Completed task - Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and immutable evaluation logs.
