@@ -1,3 +1,2 @@
-- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation (distinct implementation).
 - Design and build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
 - Create a Centralized Niche Router Authorization Adapter that enforces niche-specific RBAC and consent checks before routing uploads into healthcare pipelines.

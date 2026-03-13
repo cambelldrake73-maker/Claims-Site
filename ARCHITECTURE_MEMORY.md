@@ -844,3 +844,5 @@ Build a Centralized Schema Registry microservice with versioning, compatibility 
 Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (distinct from general Data Access Governance).
 Develop a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
 Integrate an external Policy Engine service (OPA/Rego) with policy lifecycle management for dynamic authorization rules used by submissions, exports, and sensitive actions.
+- Auth system implemented
+Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation (distinct implementation).
