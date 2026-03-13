@@ -814,3 +814,4 @@ Fri Mar 13 06:36:04 PDT 2026: Completed task - Design and implement a Claim Repl
 Fri Mar 13 06:36:04 PDT 2026: Completed task - Build a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation).
 Fri Mar 13 06:39:16 PDT 2026: Completed task - Implement a Centralized Claim Signature & Provenance Service that cryptographically signs canonical claims and records immutable provenance metadata for audit and replay.
 Fri Mar 13 06:39:16 PDT 2026: Completed task - Build a Niche Router Authorization Adapter to enforce niche-specific RBAC and consent checks before routing uploads to healthcare pipelines.
+Fri Mar 13 06:39:16 PDT 2026: Completed task - Design and implement a Versioned Schema Migration Service that applies and validates schema changes across the Centralized Schema Registry and downstream services.
