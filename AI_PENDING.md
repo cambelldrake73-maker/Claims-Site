@@ -1,4 +1,3 @@
-- Build a Niche Router Authorization Adapter to enforce niche-specific RBAC and consent checks before routing uploads to healthcare pipelines.
 - Design and implement a Versioned Schema Migration Service that applies and validates schema changes across the Centralized Schema Registry and downstream services.
 - Create a Claim Deduplication Service using fingerprinting and fuzzy matching with an idempotency index to prevent duplicate processing across uploads.
 - Implement a High-Throughput Ingestion Gateway with pre-ingest validation, upload streaming, chunked upload support, and signed idempotency keys.

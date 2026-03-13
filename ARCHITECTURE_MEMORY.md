@@ -807,3 +807,4 @@ Design and implement a Claim Replay & Incident Debugging service that can re-run
 - Database schema system implemented
 Build a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation).
 - Database schema system implemented
+Build a Niche Router Authorization Adapter to enforce niche-specific RBAC and consent checks before routing uploads to healthcare pipelines.

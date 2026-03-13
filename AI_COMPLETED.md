@@ -769,3 +769,4 @@
 - Design and implement a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
 - Build a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation).
 - Implement a Centralized Claim Signature & Provenance Service that cryptographically signs canonical claims and records immutable provenance metadata for audit and replay.
+- Build a Niche Router Authorization Adapter to enforce niche-specific RBAC and consent checks before routing uploads to healthcare pipelines.
