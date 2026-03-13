@@ -329,3 +329,4 @@
 - Implement claim validation and schema enforcement
 - Implement denial correction suggestion engine
 - Implement EDI 837 claim formatter
+- Add audit logging for authentication events

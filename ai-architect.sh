@@ -14,6 +14,11 @@ do
 
 
 LOWER=$(echo "$TASK" | sed 's/^- *//' | tr '[:upper:]' '[:lower:]')
+
+# Skip systems already implemented
+if grep -Fqi "$LOWER" "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"; then
+    continue
+fi
 # Skip duplicate tasks already queued
 if grep -Fxq -- "$TASK" "$PENDING"; then
     continue

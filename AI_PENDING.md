@@ -1,0 +1,33 @@
+- Add authentication middleware
+- Add claim processing unit tests
+- Add denial code reference table
+- Add document access logging
+- Add document audit logging
+- Add job processing metrics and monitoring
+- Add login API endpoint
+- Add RBAC permission checks
+- Add worker health check endpoint
+- Configure Redis connection
+- Create auth service folder
+- Create authentication unit tests
+- Create claim ingestion service folder
+- Create claim review dashboard API
+- Create document proxy API endpoint
+- Create jobs processing folder
+- Implement authentication service configuration
+- Implement background worker service
+- Implement claim event lifecycle tracking
+- Implement claim ingestion API endpoint
+- Implement claim normalization pipeline
+- Implement claim parsing adapters (EDI, CSV, API)
+- Implement claim validation and schema enforcement
+- Implement dead letter queue handling
+- Implement denial correction suggestion engine
+- Implement document permission checks
+- Implement document storage metadata model
+- Implement EDI 837 claim formatter
+- Implement job queue retry logic
+- Implement JWT signing utility
+- Implement refresh token support
+- Implement role and permission models
+- Implement signed URL generation

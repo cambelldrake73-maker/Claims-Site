@@ -151,3 +151,4 @@ Create document proxy API endpoint
 Implement JWT signing utility
 Implement claim validation and schema enforcement
 - Database schema system implemented
+Add audit logging for authentication events

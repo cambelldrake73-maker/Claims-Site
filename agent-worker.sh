@@ -119,6 +119,7 @@ do
         bash "$WORKSPACE/ai-executor.sh"
     else
         echo "No tasks remaining."
+        bash ~/.openclaw/workspace/claims-site/update-architecture-memory.sh
         break
     fi
 done

@@ -89,8 +89,8 @@ $DEV_MEMORY
 Architecture memory:
 $ARCH_MEMORY
 
-Evaluate the architecture memory and identify missing critical systems.
-
+Evaluate the architecture memory and ONLY propose backend systems that are NOT already implemented.
+Do not repeat any systems listed in the architecture memory.
 This system processes denied medical claims and prepares them for resubmission through clearinghouses.
 
 Architecture priorities:
@@ -142,7 +142,7 @@ Prioritize backend architecture work in this order:
 
 Rules:
 
-- Generate EXACTLY 6 architecture tasks
+- Generate EXACTLY 30 architecture tasks
 - Each task must represent a major backend system improvement
 - Do NOT generate UI, CSS, layout, or front-end tasks
 - Do NOT repeat systems already present in Architecture Memory
@@ -187,7 +187,7 @@ json={
     ],
     "text": {"format": {"type": "text"}},
     "reasoning": {"effort": "minimal"},
-    "max_output_tokens": 200
+    "max_output_tokens": 800
 },
     timeout=60
 )
