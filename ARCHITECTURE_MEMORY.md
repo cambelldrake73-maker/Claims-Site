@@ -879,3 +879,4 @@ build a claim replay & incident debugging service that can re-run claims through
 build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
 - Database schema system implemented
 build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
+- JWT signing system implemented

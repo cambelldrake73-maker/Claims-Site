@@ -17,7 +17,7 @@ LOWER=$(echo "$TASK" | sed 's/^- *//' | tr '[:upper:]' '[:lower:]')
 ARCH_MEMORY="$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"
 
 # Skip architecture systems already implemented
-if [ -f "$ARCH_MEMORY" ] && grep -Fqi "$LOWER" "$ARCH_MEMORY"; then
+if [ -f "$ARCH_MEMORY" ] && grep -qi "$(echo "$LOWER" | tr ' ' '_')" "$ARCH_MEMORY"; then
     echo "Skipping implemented system: $TASK"
     continue
 fi

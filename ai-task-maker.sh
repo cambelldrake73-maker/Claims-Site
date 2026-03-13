@@ -19,16 +19,17 @@ fi
 
 # Generate tasks from suggestions
 if [ -f "$SUGGESTIONS" ]; then
-
     grep "^-" "$SUGGESTIONS" | \
     sed 's/^- *//' | \
     tr '[:upper:]' '[:lower:]' | \
     sort -u | \
     grep -Fvxf <(
-    sed 's/^- *//' "$COMPLETED" | tr '[:upper:]' '[:lower:]'
-    ) | \
-    head -n 5 | \
-    sed 's/^/- /' >> "$PENDING"
+        if [ -f "$COMPLETED" ]; then
+            sed 's/^- *//' "$COMPLETED" | tr '[:upper:]' '[:lower:]'
+        fi
+) | \
+head -n 5 | \
+sed 's/^/- /' >> "$PENDING"
     
     echo "Tasks generated."
 

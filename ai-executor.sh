@@ -20,10 +20,28 @@ touch "$LOG"
 
 # Get next task
 TASK=$(grep -E "^- " "$PENDING" | head -n 1)
+
 if [ -z "$TASK" ]; then
     echo "No tasks found."
     exit 0
 fi
+
+########################################
+# ARCHITECTURE GUARD
+########################################
+
+TASK_NORMALIZED=$(echo "$TASK" | sed 's/^- *//' | tr '[:upper:]' '[:lower:]')
+
+if grep -qi "$(echo "$TASK_NORMALIZED" | tr ' ' '_')" "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"; then
+    echo "Architecture already implemented. Skipping task."
+
+    sed -i '' '1d' "$PENDING"
+    exit 0
+fi
+
+########################################
+# EXECUTION START
+########################################
 
 echo "Executing task: $TASK"
 
@@ -81,7 +99,7 @@ if [[ "$LOWER" == *"auth"* ]] || \
    [[ "$LOWER" == *"job"* ]] || \
    [[ "$LOWER" == *"document proxy"* ]]; then
 
-echo "$TASK" | sed 's/^- //' >> "$WORKSPACE/ARCHITECTURE_MEMORY.md"
+echo "$TASK" | sed 's/^- //' >> "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"
 fi
 
 # Example: sidebar improvements
