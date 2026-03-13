@@ -348,3 +348,4 @@
 - Create jobs processing folder
 - Implement authentication service configuration
 - Implement background worker service
+- Implement claim event lifecycle tracking
