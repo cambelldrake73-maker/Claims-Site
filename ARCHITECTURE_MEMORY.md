@@ -206,3 +206,4 @@ Develop a Policy Engine for dynamic authorization rules (Rego/OPA integration) t
 Implement end-to-end encrypted job payloads for the queue system with worker-side key access control and rotation separate from general envelope encryption.
 - Background job system implemented
 Create a Claim Replay and Incident Debugging service that can re-run a claim through parsing/normalization/correction pipeline in a sandbox with versioned schema and test harness.
+- Database schema system implemented
