@@ -71,8 +71,7 @@ elif [ "$CURRENT_HASH" != "$LAST_HASH" ]; then
         bash "$WORKSPACE/ai-planner.sh" || echo "Planner failed"
 
         echo "Generating tasks..."
-        bash "$WORKSPACE/ai-task-maker.sh"
-
+        python3 "$WORKSPACE/ai-task-maker.py"
         DATE=$(date +%Y-%m-%d)
         NEW_COUNT=$((AI_CALLS+1))
         echo -e "$DATE\n$NEW_COUNT" > "$AI_COUNTER_FILE"
