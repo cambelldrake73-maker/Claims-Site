@@ -582,3 +582,4 @@
 - Create a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, and consent audit trails with revocation support.
 - Integrate an external Policy Engine service (OPA/Rego) with policy lifecycle management and a policy evaluation cache used by submission, export, and reviewer access flows.
 - Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
+- Design and implement a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
