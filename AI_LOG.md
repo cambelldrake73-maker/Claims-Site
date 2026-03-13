@@ -585,3 +585,4 @@ Fri Mar 13 00:09:02 PDT 2026: Completed task - Create a Centralized Schema Regis
 Fri Mar 13 00:09:02 PDT 2026: Completed task - Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and audit logs.
 Fri Mar 13 00:09:02 PDT 2026: Completed task - Develop a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with full audit trails.
 Fri Mar 13 00:09:02 PDT 2026: Completed task - Integrate a Policy Engine (OPA/Rego) service for dynamic authorization rules used by sensitive actions (exports, submissions, reviewer access).
+Fri Mar 13 00:09:02 PDT 2026: Completed task - Implement end-to-end encrypted job payloads for the job queue where payloads are envelope-encrypted and only authorized workers can decrypt.
