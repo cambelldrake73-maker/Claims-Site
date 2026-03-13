@@ -422,3 +422,4 @@ Thu Mar 12 20:32:36 PDT 2026: Completed task - Create a Secure Document Proxy mi
 Thu Mar 12 20:32:37 PDT 2026: Completed task - Implement a Data Access Audit Trail service that records all PHI read/write operations with immutable logs and support for retention/querying for compliance audits.
 Thu Mar 12 20:32:37 PDT 2026: Completed task - Develop a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas (with versioning and compatibility checks) used by parsers and normalization services.
 Thu Mar 12 20:49:31 PDT 2026: Completed task - Implement a Token Revocation Service for JWTs with immediate blacklist support and distributed cache propagation
+Thu Mar 12 20:49:31 PDT 2026: Completed task - Design and deploy a Secrets Management integration (HashiCorp Vault or AWS Secrets Manager) for service credentials and database passwords with automatic rotation
