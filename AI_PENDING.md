@@ -1,1 +1,0 @@
-- implement a production-grade authentication service with oauth2/oidc support, token issuance, refresh/revocation endpoints, and integration with the policy engine and token_revocation service in the service registry

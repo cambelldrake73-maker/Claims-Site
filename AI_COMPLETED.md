@@ -878,3 +878,4 @@
 - develop a parser router service that selects niche-specific parsers, invokes healthcare parsers for edi/x12/pdf extraction, normalizes outputs against the schema registry, and forwards normalized claims to claim_normalization and claim_ingestion services
 - establish a clearinghouse adapter framework and edi formatter service that consumes approved corrected claims, renders edi 837 payloads, manages payer connectors, submission retries, and reports submissions to clearinghouse_gateway and submission_status_tracker services
 - implement a claim normalization service that applies canonical mapping rules, deduplication logic, and enrichment primitives (patient/payer matching), exposing apis for claim_replay and downstream denial intelligence services
+- implement a production-grade authentication service with oauth2/oidc support, token issuance, refresh/revocation endpoints, and integration with the policy engine and token_revocation service in the service registry
