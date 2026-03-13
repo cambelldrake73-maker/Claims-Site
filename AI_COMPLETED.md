@@ -515,3 +515,4 @@
 - Configure Redis connection
 - Create auth service folder
 - Create authentication unit tests
+- Create claim ingestion service folder

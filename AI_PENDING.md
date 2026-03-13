@@ -1,4 +1,3 @@
-- Create claim ingestion service folder
 - Create claim review dashboard API
 - Create document proxy API endpoint
 - Create jobs processing folder
