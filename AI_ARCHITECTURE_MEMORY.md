@@ -22,3 +22,4 @@ schema_registry
 token_revocation
 build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
 build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
+build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
