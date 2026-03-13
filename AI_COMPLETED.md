@@ -914,3 +914,4 @@
 - integrate a clearinghouse adapter framework and edi formatter service that convert approved corrections into edi 837, manage payer_connector configurations, handle submission retries, and report status updates to submission_status_tracker and claim_replay.
 - implement upload_gateway
 - implement claim_bundle_validator
+- implement canonical_claim_schema
