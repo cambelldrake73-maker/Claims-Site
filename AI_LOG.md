@@ -431,3 +431,4 @@ Thu Mar 12 20:52:50 PDT 2026: Completed task - Design and deploy a Secrets Manag
 Thu Mar 12 20:52:50 PDT 2026: Completed task - Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning and compatibility checks (not already implemented).
 Thu Mar 12 20:52:50 PDT 2026: Completed task - Implement Per-Field Access Control (field-level RBAC) enforcement service that intercepts DB reads and enforces policy evaluation logs (distinct from general Data Access Governance).
 Thu Mar 12 20:52:50 PDT 2026: Completed task - Create a Consent & Data Access Authorization service to manage clinic consents, data sharing scopes, and time-limited PHI access approvals.
+Thu Mar 12 20:52:50 PDT 2026: Completed task - Develop a Policy Engine for dynamic authorization rules (Rego/OPA integration) to evaluate sensitive actions (exports, reviewer access, clearinghouse submissions).
