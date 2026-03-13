@@ -20,7 +20,16 @@ touch "$LOG"
 
 # Get next task
 TASK=$(grep -E "^- " "$PENDING" | head -n 1)
+########################################
+# COMPLETION GUARD
+########################################
 
+# Skip task if already completed
+if grep -Fxq "$TASK" "$COMPLETED"; then
+    echo "Task already completed — skipping."
+    sed -i '' '1d' "$PENDING"
+    exit 0
+fi
 if [ -z "$TASK" ]; then
     echo "No tasks found."
     exit 0
