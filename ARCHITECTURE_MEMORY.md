@@ -182,3 +182,5 @@ Develop a Claim Enrichment service to augment claims with external data (payer d
 Implement Per-Field Encryption for PHI in the database using envelope encryption and KMS-backed keys with access controls and audit logging.
 - Database schema system implemented
 Build a Claims Ingestion Orchestrator microservice that accepts uploaded claim bundles, performs schema routing, enqueues parsing jobs, and returns idempotency keys.
+- Database schema system implemented
+- Background job system implemented
