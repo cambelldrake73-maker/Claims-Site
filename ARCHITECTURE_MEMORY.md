@@ -500,3 +500,4 @@ Build a Claim Replay & Incident Debugging service that can re-run claims through
 Develop a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and schema migration tooling (standalone implementation).
 - Database schema system implemented
 Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not present in memory)
+Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub schema rollout
