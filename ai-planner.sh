@@ -154,14 +154,46 @@ Rules:
 - No explanations
 EOF
 )
+# ---------------------------
+# ROADMAP PRIORITY SYSTEM
+# ---------------------------
 
+BUILD_PLAN="$WORKSPACE/BUILD_PLAN.md"
+ARCH_MEMORY_FILE="$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"
+
+if [ -f "$BUILD_PLAN" ]; then
+
+    echo "Checking roadmap for missing systems..."
+
+    while read LINE
+    do
+        SYSTEM=$(echo "$LINE" | tr '[:upper:]' '[:lower:]')
+
+        # Skip stage headers
+        if [[ "$SYSTEM" == stage* ]]; then
+            continue
+        fi
+
+        # Skip empty lines
+        if [ -z "$SYSTEM" ]; then
+            continue
+        fi
+
+        # If system not in architecture memory, add suggestion
+        if ! grep -q "$SYSTEM" "$ARCH_MEMORY_FILE" 2>/dev/null; then
+            echo "- Implement $SYSTEM service" >> "$SUGGESTIONS"
+        fi
+
+    done < "$BUILD_PLAN"
+
+fi
 # ---------------------------
 # CALL OPENAI API
 # ---------------------------
 
 echo "Generating tasks using ChatGPT..."
 
-python3 <<EOF > "$SUGGESTIONS"
+python3 <<EOF >> "$SUGGESTIONS"
 import os
 import requests
 import sys
