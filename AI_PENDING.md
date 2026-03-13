@@ -1,2 +1,1 @@
-- Implement a Data Access Governance service that centralizes policy evaluation and produces immutable policy decision logs for all PHI reads.
 - Create a Secure Document Access Broker that issues short-lived signed tokens for document fetches and supports fine-grained masking rules per-role.
