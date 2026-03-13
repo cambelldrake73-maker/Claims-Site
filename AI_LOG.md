@@ -815,3 +815,4 @@ Fri Mar 13 06:36:04 PDT 2026: Completed task - Build a Claim Normalization micro
 Fri Mar 13 06:39:16 PDT 2026: Completed task - Implement a Centralized Claim Signature & Provenance Service that cryptographically signs canonical claims and records immutable provenance metadata for audit and replay.
 Fri Mar 13 06:39:16 PDT 2026: Completed task - Build a Niche Router Authorization Adapter to enforce niche-specific RBAC and consent checks before routing uploads to healthcare pipelines.
 Fri Mar 13 06:39:16 PDT 2026: Completed task - Design and implement a Versioned Schema Migration Service that applies and validates schema changes across the Centralized Schema Registry and downstream services.
+Fri Mar 13 06:39:16 PDT 2026: Completed task - Create a Claim Deduplication Service using fingerprinting and fuzzy matching with an idempotency index to prevent duplicate processing across uploads.
