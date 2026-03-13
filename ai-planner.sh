@@ -145,7 +145,7 @@ Prioritize backend architecture work in this order:
 
 Rules:
 
-- Generate EXACTLY 30 architecture tasks
+- Generate EXACTLY 8 architecture tasks
 - Each task must represent a major backend system improvement
 - Do NOT generate UI, CSS, layout, or front-end tasks
 - Do NOT repeat systems already present in Architecture Memory
