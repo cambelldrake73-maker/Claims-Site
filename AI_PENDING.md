@@ -1,3 +1,2 @@
-- implement denial_reason_classifier service
 - implement document_viewer_api service
 - implement edi_formatter service
