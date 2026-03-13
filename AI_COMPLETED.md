@@ -370,3 +370,4 @@
 - Implement a Claim Correction Suggestion Engine using rule-based transforms and ML model hooks that produce suggested edits with explainability metadata.
 - Implement Per-Field Encryption for PHI in the database using envelope encryption and KMS-backed keys with access controls and audit logging.
 - Create a Secure Audit Trail Service that captures immutable, tamper-evident logs for claim lifecycle events, access to PHI, and clearinghouse submissions (WORM storage + signed entries).
+- Develop a Token Exchange & Session Management service to support short-lived service tokens, refresh flows, and session revocation for integrations and workers.
