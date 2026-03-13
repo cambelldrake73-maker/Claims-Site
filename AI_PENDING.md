@@ -1,4 +1,3 @@
-- Implement claim event lifecycle tracking
 - Implement claim ingestion API endpoint
 - Implement claim normalization pipeline
 - Implement claim parsing adapters (EDI, CSV, API)
