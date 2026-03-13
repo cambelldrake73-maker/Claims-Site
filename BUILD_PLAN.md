@@ -1,4 +1,4 @@
-STAGE 1 — PLATFORM CORE
+STAGE 1 PLATFORM CORE
 schema_registry
 job_queue
 authentication
@@ -6,37 +6,37 @@ policy_engine
 audit_log_service
 observability
 
-STAGE 2 — CLAIM INGESTION
+STAGE 2 CLAIM INGESTION
 claim_ingestion
 parser_router
 schema_validation
 claim_normalization
 claim_deduplication
 
-STAGE 3 — CLAIM INTELLIGENCE
+STAGE 3 CLAIM INTELLIGENCE
 denial_knowledgebase
 correction_engine
 claim_enrichment
 ml_scoring
 
-STAGE 4 — CLAIM LIFECYCLE
+STAGE 4 CLAIM LIFECYCLE
 claim_event_store
 claim_replay
 claim_orchestrator
 
-STAGE 5 — CLEARINGHOUSE
+STAGE 5 CLEARINGHOUSE
 edi_formatter
 clearinghouse_gateway
 payer_connectors
 retry_manager
 
-STAGE 6 — SECURITY
+STAGE 6 SECURITY
 access_control
 consent_service
 token_revocation
 encryption_services
 
-STAGE 7 — HUMAN REVIEW
+STAGE 7 HUMAN REVIEW
 review_queue
 review_interface
 audit_reporting
