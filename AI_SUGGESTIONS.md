@@ -1,26 +1,25 @@
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
+- Implement a Token Revocation Service with distributed blacklist propagation and immediate JWT invalidation endpoints (distinct implementation from items in memory).
+- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and API (ensure this is a new standalone registry).
 - Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
+- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with auditable trails.
+- Develop a Policy Engine integration (OPA/Rego) service for dynamic authorization rules used by submissions, exports, reviewer access, and sensitive-data actions.
+- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct from general envelope encryption).
 - Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Create an Automated Data Quality & Schema Validation pipeline that profiles canonical claim fields nightly, detects anomalies, and alerts on schema drift.
-- Implement Multi-Region Data Replication and Disaster Recovery automation for critical claim databases with RPO/RTO targets and automated failover playbooks.
-- Design and implement a Secrets Management integration layer (HashiCorp Vault / AWS Secrets Manager) for service credentials, DB passwords, and key rotation orchestration.
-- Build a Token Exchange & Short-Lived Credentials service for inter-service calls (mTLS + short-lived tokens) to minimize long-lived credentials usage.
-- Implement a Rate Limiting & Abuse Protection gateway service for ingestion endpoints to protect parsing and normalization pipelines from bursts and malicious clients.
-- Design and implement a Structured Audit Trail Service that normalizes, indexes, and retains immutable audit records for all claim lifecycle events and sensitive PHI accesses with retention policies.
-- Create a Data Access Governance enforcement service that evaluates data access requests, enforces field-level masking, and emits policy evaluation logs for compliance reviews.
-- Implement a Background Job Cost & Resource Accounting service that tracks compute/cost per job, enabling cost-based autoscaling and chargeback reporting for clinics.
-- Build a Claim Ingestion Idempotency & Deduplication service to deduplicate uploads across clinics using semantic hashing and idempotency keys with configurable collision policies.
-- Implement a Streaming Change Data Capture (CDC) pipeline for claim and patient DB updates into the analytics and observability stack (Kafka/CDC connector) with schema evolution handling.
-- Design and implement an Event Sourcing façade for critical claim lifecycle events to enable reproducible state reconstructions and simplified auditability.
-- Build a High-Throughput Parquet/OLAP export pipeline for analytics that converts canonical claim events and snapshots into partitioned Parquet datasets for downstream BI.
-- Implement a Denial Code Knowledge Graph service that models relationships between denial codes, payers, procedures, and successful fixes to drive correction recommendations.
-- Design and implement a Correction Suggestion Engine service that uses rules + ML models trained on historical recoveries to propose claim edits with confidence scores and provenance.
-- Create a Reviewer Workflow Orchestration service that manages human review queues, claim handoffs, reviewer assignments, SLAs, and escalation policies.
-- Implement an EDI 837 Simulation & Validation sandbox service with variant profiles per clearinghouse, automated validation reports, and segment-level error explanations.
-- Build a Clearinghouse Adapter Orchestrator service that supports transactional adapter plugins, sandbox/prod switching, per-adapter retries, and idempotency across submissions.
--
+- Design and implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
+- Create a Centralized Denial Knowledgebase microservice with versioned denial code sets, mapping rules, context examples, confidence scoring, and API for correction engines.
+- Implement a Correction Suggestion Engine microservice (rule-driven + ML inference) with explanation traces, provenance, and human-review feedback loop storage.
+- Build a Claim Normalization microservice that transforms parsed claims into the canonical schema with field-level provenance, validation, and transformation pipelines.
+- Develop a Pluggable Parser Router service that loads parsers based on niche/router decisions, supports EDI X12 and PDF/structured bundles, and returns normalized claim candidates.
+- Implement a Schema-Driven Validation Service that uses the Schema Registry to validate claims, return structured validation errors, and produce automated remediation hints.
+- Create an Idempotent Ingestion Orchestrator API that accepts claim bundles, issues idempotency keys, enqueues parse jobs, and returns deterministic job handles.
+- Build a Niche Router service that selects niche context (healthcare, insurance, finance), loads niche modules, and routes jobs to appropriate parsers and rule engines.
+- Implement a Denial Recoverability Scoring service (ML + rule hybrid) that scores claims for recoverable revenue and exposes explainable features to reviewers.
+- Create a Claim Lineage & Provenance Service that stores immutable lineage metadata for each transform step, operator, model version, and timestamp for every claim.
+- Develop an EDI 837 Formatter & Validator microservice with X12 segment/loop generation, schema validation, test harness, and deterministic idempotency key usage.
+- Build a Clearinghouse Submission Orchestrator service that manages transactional submission, retries, DLQ handling, and multi-adapter connectors with sandbox/prod modes (distinct from previously implemented clearinghouse components).
+- Implement a Payer Connector Framework that abstracts payer-specific endpoints, authentication, request/response adapters, and error normalization.
+- Create a Secure Document Access Broker service issuing short-lived signed URLs/tokens with field-level masking, request-level audit, and fetch-rate limiting for PHI documents.
+- Implement Per-Field Encryption and Transparent Decryption Hooks in the data access layer using KMS-backed keys, with access logs and key-usage auditing.
+- Build a Consent-Aware Export Service that enforces consent scopes, performs sensitive-field masking, and emits export audit events for regulatory proof.
+- Develop an Automated Schema Migration & Compatibility Tooling service that runs compatibility checks, test replays, and staged migrations across the Schema Registry and consumers.
+- Implement a Claims Replay Test Harness that runs historical
