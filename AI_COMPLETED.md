@@ -514,3 +514,4 @@
 - Add worker health check endpoint
 - Configure Redis connection
 - Create auth service folder
+- Create authentication unit tests
