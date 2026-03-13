@@ -417,3 +417,4 @@ Thu Mar 12 20:27:52 PDT 2026: Completed task - Develop a Token Exchange & Sessio
 Thu Mar 12 20:27:52 PDT 2026: Completed task - Build a Claims Ingestion Orchestrator microservice that accepts uploaded claim bundles, performs schema routing, enqueues parsing jobs, and returns idempotency keys.
 Thu Mar 12 20:27:52 PDT 2026: Completed task - Implement a Pluggable Parser Framework (microservice) supporting PDFs, X12, CSV, and HL7 input formats with per-parser validation and parser sandboxing.
 Thu Mar 12 20:32:36 PDT 2026: Completed task - Design and implement a Secrets & Key Management service for rotating KMS-backed keys, envelope encryption orchestration, and limited-scope key access policies for microservices.
+Thu Mar 12 20:32:36 PDT 2026: Completed task - Build a PHI-aware Column-Level Encryption layer in the database access service with transparent encryption/decryption hooks and strict key usage logs.

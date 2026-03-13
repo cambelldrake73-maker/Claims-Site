@@ -184,3 +184,4 @@ Implement Per-Field Encryption for PHI in the database using envelope encryption
 Build a Claims Ingestion Orchestrator microservice that accepts uploaded claim bundles, performs schema routing, enqueues parsing jobs, and returns idempotency keys.
 - Database schema system implemented
 - Background job system implemented
+Build a PHI-aware Column-Level Encryption layer in the database access service with transparent encryption/decryption hooks and strict key usage logs.
