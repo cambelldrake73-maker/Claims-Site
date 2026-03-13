@@ -504,3 +504,4 @@ Build a Centralized Schema Registry microservice for canonical claim, patient, p
 - Database schema system implemented
 Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs
 Create a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails
+Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management for dynamic authorization used by sensitive actions (submissions, exports, reviewer access)
