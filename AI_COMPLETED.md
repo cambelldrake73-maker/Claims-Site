@@ -357,3 +357,4 @@
 - Implement denial correction suggestion engine
 - Implement document permission checks
 - Implement document storage metadata model
+- Implement EDI 837 claim formatter
