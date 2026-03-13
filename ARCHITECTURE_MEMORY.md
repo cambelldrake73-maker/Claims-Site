@@ -405,3 +405,4 @@ Implement dead letter queue handling
 Implement job queue retry logic
 - Background job system implemented
 Implement JWT signing utility
+Build a Token Revocation Service with distributed blacklist propagation and immediate JWT invalidation endpoints.

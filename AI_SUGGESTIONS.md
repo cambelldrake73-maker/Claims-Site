@@ -1,25 +1,29 @@
-- Implement a Token Revocation Service with distributed blacklist propagation and immediate JWT invalidation endpoints (distinct implementation from items in memory).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and API (ensure this is a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with auditable trails.
-- Develop a Policy Engine integration (OPA/Rego) service for dynamic authorization rules used by submissions, exports, reviewer access, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Create a Centralized Denial Knowledgebase microservice with versioned denial code sets, mapping rules, context examples, confidence scoring, and API for correction engines.
-- Implement a Correction Suggestion Engine microservice (rule-driven + ML inference) with explanation traces, provenance, and human-review feedback loop storage.
-- Build a Claim Normalization microservice that transforms parsed claims into the canonical schema with field-level provenance, validation, and transformation pipelines.
-- Develop a Pluggable Parser Router service that loads parsers based on niche/router decisions, supports EDI X12 and PDF/structured bundles, and returns normalized claim candidates.
-- Implement a Schema-Driven Validation Service that uses the Schema Registry to validate claims, return structured validation errors, and produce automated remediation hints.
-- Create an Idempotent Ingestion Orchestrator API that accepts claim bundles, issues idempotency keys, enqueues parse jobs, and returns deterministic job handles.
-- Build a Niche Router service that selects niche context (healthcare, insurance, finance), loads niche modules, and routes jobs to appropriate parsers and rule engines.
-- Implement a Denial Recoverability Scoring service (ML + rule hybrid) that scores claims for recoverable revenue and exposes explainable features to reviewers.
-- Create a Claim Lineage & Provenance Service that stores immutable lineage metadata for each transform step, operator, model version, and timestamp for every claim.
-- Develop an EDI 837 Formatter & Validator microservice with X12 segment/loop generation, schema validation, test harness, and deterministic idempotency key usage.
-- Build a Clearinghouse Submission Orchestrator service that manages transactional submission, retries, DLQ handling, and multi-adapter connectors with sandbox/prod modes (distinct from previously implemented clearinghouse components).
-- Implement a Payer Connector Framework that abstracts payer-specific endpoints, authentication, request/response adapters, and error normalization.
-- Create a Secure Document Access Broker service issuing short-lived signed URLs/tokens with field-level masking, request-level audit, and fetch-rate limiting for PHI documents.
-- Implement Per-Field Encryption and Transparent Decryption Hooks in the data access layer using KMS-backed keys, with access logs and key-usage auditing.
-- Build a Consent-Aware Export Service that enforces consent scopes, performs sensitive-field masking, and emits export audit events for regulatory proof.
-- Develop an Automated Schema Migration & Compatibility Tooling service that runs compatibility checks, test replays, and staged migrations across the Schema Registry and consumers.
-- Implement a Claims Replay Test Harness that runs historical
+- Design and implement a Centralized Secrets Management service (Vault integration) with automated rotation for DB credentials, API keys, and clearinghouse certificates.
+- Build a Token Revocation Service with distributed blacklist propagation and immediate JWT invalidation endpoints.
+- Create a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls.
+- Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and audit logs.
+- Develop a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with full audit trails.
+- Integrate a Policy Engine (OPA/Rego) service for dynamic authorization rules used by sensitive actions (exports, submissions, reviewer access).
+- Implement end-to-end encrypted job payloads for the job queue where payloads are envelope-encrypted and only authorized workers can decrypt.
+- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas.
+- Create a Claim Normalization microservice: transforms parsed claims into canonical schema with per-field provenance and validation hooks.
+- Implement a Claim Parsing Microservice framework supporting pluggable parsers (X12, PDF OCR, CSV) with schema validation and idempotent processing.
+- Develop a Denial Knowledgebase service: structured storage of denial codes, mappings, payer-specific rules, and versioned metadata.
+- Build a Correction Suggestion Engine service that uses rules + ML models to propose claim corrections and confidence scores.
+- Create an ML Model Serving platform (model registry + runtime) for recoverability scoring and correction suggestion models with A/B testing support.
+- Implement a Claim Enrichment service that augments claims with external lookups (NPI registries, payer directories, demographic enrichment) via secure connectors.
+- Design a Clearinghouse Submission Orchestrator service that manages transactional submission lifecycle, idempotency keys, and multi-adapter routing.
+- Build an EDI 837 Formatter & Validator microservice that generates X12 837 payloads, validates segments, and exposes sandbox/prod modes.
+- Implement a Payer Connector Framework to manage payer-specific adapters, mapping rules, and retry semantics for both submissions and status queries.
+- Create a Secure Document Access Broker that issues short-lived signed URLs/tokens with masking, access rules, and request-level audit for PDF/document fetches.
+- Implement Field-Level Encryption hooks in the data access layer with KMS-backed key management and access logs for PHI fields.
+- Build a Claim Event Store service that persists immutable claim lifecycle events, supports event-sourcing queries, and enables replay.
+- Implement a Claim Processing Orchestrator (workflow engine) to coordinate multi-step claim jobs (parse → normalize → suggest → review → format → submit) with state machine transitions.
+- Create a Job Queue Observability and DLQ Management service that aggregates per-job metrics, DLQ alerts, and automated remediation playbooks.
+- Implement Distributed Tracing integration (OpenTelemetry) across all backend services with standardized trace propagation and trace sampling policies.
+- Build a Per-Job Observability Dashboard backend that aggregates job metrics, retry/DLQ stats, SLA violations, and exposes incident hooks.
+- Design and implement an Idempotency & Deduplication Service for uploads and submissions with global idempotency keys and TTL policies.
+- Create a Secure Audit Log Service that captures immutable, queryable audit trails for PHI access, submissions, and policy decisions with retention controls.
+- Implement a Rate-Limited Clearinghouse Sandbox Gateway for load-testing submissions and validating EDI payloads without production side-effects.
+- Build an Automated Data Quality & Schema Drift Detection pipeline that profiles canonical claim fields, detects anomalies, and alerts on schema drift.
+- Design a Multi-Region Database Replication

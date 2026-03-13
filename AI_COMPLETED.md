@@ -536,3 +536,4 @@
 - Implement refresh token support
 - Implement role and permission models
 - Implement signed URL generation
+- Build a Token Revocation Service with distributed blacklist propagation and immediate JWT invalidation endpoints.
