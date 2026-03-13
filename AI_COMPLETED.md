@@ -331,3 +331,4 @@
 - Implement EDI 837 claim formatter
 - Add audit logging for authentication events
 - Add authentication middleware
+- Add claim processing unit tests
