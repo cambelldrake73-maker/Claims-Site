@@ -176,3 +176,4 @@ Implement job queue retry logic
 - Background job system implemented
 Implement JWT signing utility
 Build a Claim Normalization microservice to transform parsed claims into a canonical schema with field-level provenance and validation.
+- Database schema system implemented
