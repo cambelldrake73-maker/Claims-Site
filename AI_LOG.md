@@ -435,3 +435,4 @@ Thu Mar 12 20:52:50 PDT 2026: Completed task - Develop a Policy Engine for dynam
 Thu Mar 12 20:52:50 PDT 2026: Completed task - Implement end-to-end encrypted job payloads for the queue system with worker-side key access control and rotation separate from general envelope encryption.
 Thu Mar 12 20:52:50 PDT 2026: Completed task - Build a Secure Audit Log Service with immutable append-only storage (WORM), tamper-evident hashing, and retention policies for all PHI access and submission events.
 Thu Mar 12 20:52:50 PDT 2026: Completed task - Design and implement a Claim Lineage & Provenance service that tracks per-field provenance, transformation steps, and user approvals across the claim lifecycle.
+Thu Mar 12 20:52:50 PDT 2026: Completed task - Create a Claim Replay and Incident Debugging service that can re-run a claim through parsing/normalization/correction pipeline in a sandbox with versioned schema and test harness.
