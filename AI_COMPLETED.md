@@ -396,3 +396,4 @@
 - Implement a Denial Code Knowledgebase microservice: curated, versioned denial code mappings, payer-specific rules, and confidence scoring for correction suggestions.
 - Build a Correction Suggestion Orchestrator that consolidates signals from denial knowledgebase, historical fixes, and ML models to propose actionable claim edits with provenance.
 - Develop an ML Model Serving platform for denial prediction and recoverability scoring with A/B testing, feature store integration, and model explainability hooks.
+- Create an Idempotency & Deduplication Service for inbound claim bundles that generates and verifies idempotency keys across distributed ingestion points.
