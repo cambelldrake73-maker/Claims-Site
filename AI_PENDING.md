@@ -1,4 +1,3 @@
-- Implement JWT signing utility
 - Implement refresh token support
 - Implement role and permission models
 - Implement signed URL generation
