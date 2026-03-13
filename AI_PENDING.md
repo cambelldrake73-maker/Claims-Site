@@ -1,1 +1,0 @@
-- Create a Centralized Niche Router Authorization Adapter that enforces niche-specific RBAC and consent checks before routing uploads into healthcare pipelines.
