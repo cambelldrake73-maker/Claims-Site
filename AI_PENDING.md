@@ -1,4 +1,3 @@
-- Integrate a Policy Engine (OPA/Rego) service for dynamic authorization rules used by sensitive actions (exports, submissions, reviewer access).
 - Implement end-to-end encrypted job payloads for the job queue where payloads are envelope-encrypted and only authorized workers can decrypt.
 - Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas.
 - Create a Claim Normalization microservice: transforms parsed claims into canonical schema with per-field provenance and validation hooks.
