@@ -413,3 +413,6 @@ Develop a Consent & Data Access Authorization microservice to manage clinic cons
 Integrate a Policy Engine (OPA/Rego) service for dynamic authorization rules used by sensitive actions (exports, submissions, reviewer access).
 - Auth system implemented
 Implement end-to-end encrypted job payloads for the job queue where payloads are envelope-encrypted and only authorized workers can decrypt.
+- Auth system implemented
+- Background job system implemented
+Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas.
