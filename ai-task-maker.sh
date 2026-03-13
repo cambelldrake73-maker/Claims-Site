@@ -1,54 +1,68 @@
 #!/bin/bash
+python3 <<'PY'
+from pathlib import Path
+import re
 
-WORKSPACE="$HOME/.openclaw/workspace/claims-site"
+workspace = Path.home() / ".openclaw" / "workspace" / "claims-site"
+suggestions = workspace / "AI_SUGGESTIONS.md"
+pending = workspace / "AI_PENDING.md"
+completed = workspace / "AI_COMPLETED.md"
+arch_memory = workspace / "AI_ARCHITECTURE_MEMORY.md"
+registry = workspace / "SERVICE_REGISTRY.md"
 
-SUGGESTIONS="$WORKSPACE/AI_SUGGESTIONS.md"
-PENDING="$WORKSPACE/AI_PENDING.md"
-COMPLETED="$WORKSPACE/AI_COMPLETED.md"
-ARCH_MEMORY="$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"
+print("Generating AI tasks...")
 
-cd "$WORKSPACE"
+for p in [suggestions, pending, completed, arch_memory]:
+    p.touch(exist_ok=True)
 
-echo "Generating AI tasks..."
+pending_text = pending.read_text()
+if re.search(r"^-", pending_text, flags=re.M):
+    print("Task queue already populated.")
+    raise SystemExit(0)
 
-touch "$PENDING"
-touch "$COMPLETED"
-touch "$ARCH_MEMORY"
+def normalize(text: str) -> str:
+    text = text.lower().replace("_", " ").replace("-", " ")
+    text = re.sub(r"[^a-z0-9 ]", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
 
-# If tasks already exist, do nothing
-if grep -q "^-" "$PENDING"; then
-    echo "Task queue already populated."
-    exit 0
-fi
+implemented = set()
+for line in arch_memory.read_text().splitlines():
+    line = normalize(line)
+    if line:
+        implemented.add(line)
 
-TMP_FILTER="$WORKSPACE/.ai_task_filter.tmp"
+for line in completed.read_text().splitlines():
+    line = normalize(line)
+    if line:
+        implemented.add(line)
 
-{
-    if [ -f "$COMPLETED" ]; then
-        sed 's/^- *//' "$COMPLETED" | tr '[:upper:]' '[:lower:]'
-    fi
-    if [ -f "$ARCH_MEMORY" ]; then
-        cat "$ARCH_MEMORY"
-    fi
-} | sort -u > "$TMP_FILTER"
+registry_services = []
+for line in registry.read_text().splitlines():
+    raw = line.strip()
+    if not raw or raw.startswith("#") or "---" in raw:
+        continue
+    svc = normalize(raw)
+    if re.fullmatch(r"[a-z0-9 ]+", svc):
+        registry_services.append((raw.strip(), svc))
 
-# Generate tasks from suggestions
-if [ -f "$SUGGESTIONS" ]; then
+suggestion_text = normalize(suggestions.read_text())
 
-    grep "^-" "$SUGGESTIONS" | \
-    sed 's/^- *//' | \
-    tr '[:upper:]' '[:lower:]' | \
-    sort -u | \
-    grep -Fvxf "$TMP_FILTER" | \
-    head -n 8 | \
-    sed 's/^/- /' >> "$PENDING"
+matches = []
+for raw, svc in registry_services:
+    if svc in implemented:
+        continue
+    if svc and svc in suggestion_text:
+        matches.append(f"- implement {raw.strip()}")
 
-    echo "Tasks generated."
+seen = set()
+final = []
+for m in matches:
+    if m not in seen:
+        seen.add(m)
+        final.append(m)
 
-    > "$SUGGESTIONS"
-
-else
-    echo "No suggestions file found."
-fi
-
-rm -f "$TMP_FILTER"
+pending.write_text("\n".join(final[:8]) + ("\n" if final[:8] else ""))
+print("Tasks generated.")
+suggestions.write_text("")
+PY
