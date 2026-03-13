@@ -160,3 +160,5 @@ Add job processing metrics and monitoring
 - Background job system implemented
 Add RBAC permission checks
 Create auth service folder
+- Auth system implemented
+Create authentication unit tests
