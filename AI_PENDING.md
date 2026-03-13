@@ -1,1 +1,0 @@
-- Create a Secure Document Access Broker that issues short-lived signed tokens for document fetches and supports fine-grained masking rules per-role.
