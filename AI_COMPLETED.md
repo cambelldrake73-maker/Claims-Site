@@ -871,3 +871,4 @@
 - implement # platform build roadmap service
 - implement ------------------------------------------------ service
 - implement access_control service
+- build a denial intelligence engine including a denial knowledgebase and recoverability scoring microservice that subscribes to normalized claims, annotates denial reasons, suggests corrections, and integrates with correction_suggestion_engine and ml model serving endpoints

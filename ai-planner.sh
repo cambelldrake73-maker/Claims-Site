@@ -179,26 +179,29 @@ if [ -f "$BUILD_PLAN" ]; then
     echo "Checking roadmap for missing systems..."
 
     while read LINE
-    do
-        SYSTEM=$(echo "$LINE" | tr '[:upper:]' '[:lower:]')
+do
+    SYSTEM=$(echo "$LINE" | tr '[:upper:]' '[:lower:]' | xargs)
 
-        # Skip stage headers
-        if [[ "$SYSTEM" == stage* ]]; then
-            continue
-        fi
+    # Skip empty lines
+    if [ -z "$SYSTEM" ]; then
+        continue
+    fi
 
-        # Skip empty lines
-        if [ -z "$SYSTEM" ]; then
-            continue
-        fi
+    # Skip section headers and separators
+    if [[ "$SYSTEM" == \#* ]] || [[ "$SYSTEM" == *"layer"* ]] || [[ "$SYSTEM" == *"pipeline"* ]] || [[ "$SYSTEM" == *"observability"* ]] || [[ "$SYSTEM" == *"analytics"* && "$SYSTEM" != *"_"* ]] || [[ "$SYSTEM" == *"foundation"* ]] || [[ "$SYSTEM" == *"denial intelligence"* ]] || [[ "$SYSTEM" == *"correction"* ]] || [[ "$SYSTEM" == *"submission"* ]] || [[ "$SYSTEM" == *"frontend"* ]] || [[ "$SYSTEM" == "------------------------------------------------" ]]; then
+        continue
+    fi
 
-        # If system not in architecture memory, add suggestion
-        if ! grep -q "$SYSTEM" "$ARCH_MEMORY_FILE" 2>/dev/null; then
-            echo "- Implement $SYSTEM service" >> "$SUGGESTIONS"
-        fi
+    # Only allow canonical system names
+    if ! [[ "$SYSTEM" =~ ^[a-z0-9_]+$ ]]; then
+        continue
+    fi
 
-    done < "$BUILD_PLAN"
+    if ! grep -qx "$SYSTEM" "$ARCH_MEMORY_FILE" 2>/dev/null; then
+        echo "- Implement $SYSTEM service" >> "$SUGGESTIONS"
+    fi
 
+done < "$BUILD_PLAN"
 fi
 # ---------------------------
 # CALL OPENAI API
