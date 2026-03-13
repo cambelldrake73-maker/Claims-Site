@@ -452,3 +452,4 @@ Thu Mar 12 20:55:51 PDT 2026: Completed task - Implement Multi-Region Data Repli
 Thu Mar 12 20:56:50 PDT 2026: Completed task - Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints.
 Thu Mar 12 20:56:50 PDT 2026: Completed task - Implement Per-Field Access Control middleware that enforces field-level RBAC at the service layer with evaluation logs and policy decision caching.
 Thu Mar 12 20:56:50 PDT 2026: Completed task - Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
+Thu Mar 12 20:56:50 PDT 2026: Completed task - Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
