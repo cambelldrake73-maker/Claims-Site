@@ -394,3 +394,4 @@
 - Design and implement a Claim Lineage & Provenance service that tracks per-field provenance, transformation steps, and user approvals across the claim lifecycle.
 - Create a Claim Replay and Incident Debugging service that can re-run a claim through parsing/normalization/correction pipeline in a sandbox with versioned schema and test harness.
 - Implement a Denial Code Knowledgebase microservice: curated, versioned denial code mappings, payer-specific rules, and confidence scoring for correction suggestions.
+- Build a Correction Suggestion Orchestrator that consolidates signals from denial knowledgebase, historical fixes, and ML models to propose actionable claim edits with provenance.
