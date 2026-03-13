@@ -1,2 +1,1 @@
-- Implement role and permission models
 - Implement signed URL generation
