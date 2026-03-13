@@ -227,3 +227,4 @@ Implement end-to-end encrypted job payloads for the queuing system where payload
 - Background job system implemented
 Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas.
 - Database schema system implemented
+Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
