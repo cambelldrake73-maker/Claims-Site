@@ -504,3 +504,4 @@
 - Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
 - Add audit logging for authentication events
 - Add authentication middleware
+- Add claim processing unit tests
