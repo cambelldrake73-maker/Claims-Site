@@ -865,3 +865,4 @@
 - build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
 - build denial_intelligence_engine (denial_reason_classifier + recoverability_scoring_model) as a backend microservice that consumes normalized claims, enriches them with denial code knowledgebase, and emits correction suggestions to correction_suggestion_engine.
 - build schema_registry as a centralized service (api + versioned store) for canonical_claim_schema and niche-specific schemas; include schema validation endpoints and integration points for parser_router and claim_ingestion.
+- create claim_ingestion api and upload_gateway: secure file upload endpoints (multipart + streaming), inbound validation, immediate enqueueing to job_queue, and hooks to document_proxy for storage.
