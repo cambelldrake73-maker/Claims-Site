@@ -8,7 +8,7 @@ LAST_HASH=""
 
 # --- AI usage controls ---
 MAX_AI_CALLS_PER_DAY=20
-AI_COUNTER_FILE=".ai_daily_count"
+AI_COUNTER_FILE="$WORKSPACE/.daily_api_calls"
 AI_DATE_FILE=".ai_daily_date"
 
 echo "AI worker starting..."
@@ -41,7 +41,7 @@ if [ "$TODAY" != "$LAST_DATE" ]; then
     echo "$TODAY" > "$AI_DATE_FILE"
 fi
 
-AI_CALLS=$(cat "$AI_COUNTER_FILE" 2>/dev/null || echo 0)
+AI_CALLS=$(tail -n 1 "$AI_COUNTER_FILE" 2>/dev/null || echo 0)
 
 # ---------------------------
 # TASK EXECUTION FIRST
@@ -70,7 +70,9 @@ elif [ "$CURRENT_HASH" != "$LAST_HASH" ]; then
         echo "Generating tasks..."
         bash "$WORKSPACE/ai-task-maker.sh"
 
-        echo $((AI_CALLS+1)) > "$AI_COUNTER_FILE"
+        DATE=$(date +%Y-%m-%d) 
+        NEW_COUNT=$((AI_CALLS+1))
+        echo -e "$DATE\n$NEW_COUNT" > "$AI_COUNTER_FILE"
 
     fi
 
