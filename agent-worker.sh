@@ -85,7 +85,7 @@ else
 
     echo "No repo changes."
 
-    QUEUE_SIZE=$(wc -l < "$WORKSPACE/AI_PENDING.md")
+QUEUE_SIZE=$(grep -c "^-" "$WORKSPACE/AI_PENDING.md" 2>/dev/null || echo 0)
 
     if [ "$QUEUE_SIZE" -lt 10 ]; then
         echo "Queue low ($QUEUE_SIZE tasks) — generating architecture tasks..."
