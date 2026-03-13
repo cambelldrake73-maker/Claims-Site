@@ -1,4 +1,3 @@
-- develop a parser router service that dispatches uploaded claim documents to niche-specific parsers, integrates with the schema registry, and emits normalized claims into the claim_normalization pipeline.
 - implement a hardened authentication service with rbac, token lifecycle management, and integration hooks for the policy engine and token revocation service (ensure service exposes well-defined apis and integrates with audit_log_service).
 - implement claim normalization service to transform parsed outputs to the canonical_claim_schema, perform deduplication hooks, and publish normalized claim events to the claim_replay and claim_ingestion services.
 - integrate a clearinghouse adapter framework and edi formatter service that convert approved corrections into edi 837, manage payer_connector configurations, handle submission retries, and report status updates to submission_status_tracker and claim_replay.
