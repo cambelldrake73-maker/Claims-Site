@@ -520,3 +520,4 @@
 - Create document proxy API endpoint
 - Create jobs processing folder
 - Implement authentication service configuration
+- Implement background worker service
