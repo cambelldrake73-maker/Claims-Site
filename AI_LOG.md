@@ -458,3 +458,4 @@ Thu Mar 12 20:56:50 PDT 2026: Completed task - Build a Claim Replay & Incident D
 Thu Mar 12 20:56:50 PDT 2026: Completed task - Implement a Data Access Governance service that centralizes policy evaluation and produces immutable policy decision logs for all PHI reads.
 Thu Mar 12 20:56:50 PDT 2026: Completed task - Create a Secure Document Access Broker that issues short-lived signed tokens for document fetches and supports fine-grained masking rules per-role.
 Thu Mar 12 21:00:03 PDT 2026: Completed task - Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
+Thu Mar 12 21:00:03 PDT 2026: Completed task - Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).

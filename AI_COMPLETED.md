@@ -415,3 +415,4 @@
 - Implement a Data Access Governance service that centralizes policy evaluation and produces immutable policy decision logs for all PHI reads.
 - Create a Secure Document Access Broker that issues short-lived signed tokens for document fetches and supports fine-grained masking rules per-role.
 - Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
+- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
