@@ -384,3 +384,4 @@
 - Implement End-to-End Encryption for queued claim payloads using envelope encryption and worker-side decryption keys
 - Create a Data Access Governance service that enforces field-level RBAC policies and generates policy evaluation logs for PHI access requests
 - Implement a Token Revocation Service with distributed blacklist propagation for immediate JWT invalidation (not already implemented).
+- Design and deploy a Secrets Management integration (HashiCorp Vault or cloud secrets) with automated secret rotation and audit hooks (not already implemented).
