@@ -811,3 +811,5 @@ Build a Niche Router Authorization Adapter to enforce niche-specific RBAC and co
 Design and implement a Versioned Schema Migration Service that applies and validates schema changes across the Centralized Schema Registry and downstream services.
 - Database schema system implemented
 Implement a Centralized Schema Registry microservice with versioning, compatibility checks, access controls, and pub/sub schema rollout (standalone implementation not present in memory)
+- Database schema system implemented
+Build a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not present in memory)

@@ -821,3 +821,4 @@ Fri Mar 13 06:39:16 PDT 2026: Completed task - Build a Pluggable Parser Sandbox 
 Fri Mar 13 06:39:16 PDT 2026: Completed task - Implement a Correction Suggestion Audit Trail service that stores proposed corrections, model inputs, and reviewer decisions for compliance and model retraining.
 Fri Mar 13 06:39:16 PDT 2026: Completed task - Build an ML Feature Store and Batch Scoring Service for recoverability scoring with feature lineage, versioning, and offline/online access.
 Fri Mar 13 06:42:28 PDT 2026: Completed task - Implement a Centralized Schema Registry microservice with versioning, compatibility checks, access controls, and pub/sub schema rollout (standalone implementation not present in memory)
+Fri Mar 13 06:42:28 PDT 2026: Completed task - Build a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not present in memory)
