@@ -90,7 +90,9 @@ else
 
     echo "No repo changes."
 
-    if [ ! -s "$WORKSPACE/AI_PENDING.md" ]; then
+    QUEUE_SIZE=$(wc -l < "$WORKSPACE/AI_PENDING.md")
+
+    if [ "$QUEUE_SIZE" -lt 10 ]; then
         echo "Queue empty — generating architecture tasks..."
 
         if [ "$AI_CALLS" -ge "$MAX_AI_CALLS_PER_DAY" ]; then
