@@ -162,3 +162,4 @@ Add RBAC permission checks
 Create auth service folder
 - Auth system implemented
 Create authentication unit tests
+- Auth system implemented
