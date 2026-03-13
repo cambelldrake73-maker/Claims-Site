@@ -200,3 +200,4 @@ Implement a Token Revocation Service with distributed blacklist propagation for 
 Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning and compatibility checks (not already implemented).
 - Database schema system implemented
 Implement Per-Field Access Control (field-level RBAC) enforcement service that intercepts DB reads and enforces policy evaluation logs (distinct from general Data Access Governance).
+Create a Consent & Data Access Authorization service to manage clinic consents, data sharing scopes, and time-limited PHI access approvals.

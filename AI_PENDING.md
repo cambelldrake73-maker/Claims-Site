@@ -1,4 +1,3 @@
-- Create a Consent & Data Access Authorization service to manage clinic consents, data sharing scopes, and time-limited PHI access approvals.
 - Develop a Policy Engine for dynamic authorization rules (Rego/OPA integration) to evaluate sensitive actions (exports, reviewer access, clearinghouse submissions).
 - Implement end-to-end encrypted job payloads for the queue system with worker-side key access control and rotation separate from general envelope encryption.
 - Build a Secure Audit Log Service with immutable append-only storage (WORM), tamper-evident hashing, and retention policies for all PHI access and submission events.
