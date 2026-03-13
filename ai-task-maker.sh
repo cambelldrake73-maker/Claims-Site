@@ -12,7 +12,7 @@ echo "Generating AI tasks..."
 touch "$PENDING"
 
 # If tasks already exist, do nothing
-if grep -q "-" "$PENDING"; then
+if grep -q "^-" "$PENDING"; then
     echo "Task queue already populated."
     exit 0
 fi
@@ -21,10 +21,14 @@ fi
 if [ -f "$SUGGESTIONS" ]; then
 
     grep "^-" "$SUGGESTIONS" | \
-    grep -vi "error" | \
-    grep -vi "api" | \
-    grep -vi "message" | \
-    head -n 8 >> "$PENDING"
+    sed 's/^- *//' | \
+    tr '[:upper:]' '[:lower:]' | \
+    sort -u | \
+    grep -Fvxf <(
+    sed 's/^- *//' "$COMPLETED" | tr '[:upper:]' '[:lower:]'
+    ) | \
+    head -n 5 | \
+    sed 's/^/- /' >> "$PENDING"
     
     echo "Tasks generated."
 
