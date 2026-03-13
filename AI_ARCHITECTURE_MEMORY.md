@@ -20,3 +20,4 @@ build a correction suggestion engine and review workflow service pair (correctio
 build a schema registry service (single source of truth) for canonical_claim_schema, supporting versioned healthcare claim schemas, schema validation apis, and integration points for parser_router and claim_normalization.
 create a claim ingestion api with secure upload_gateway endpoints, authenticated multipart uploads, upload validation, and connection to document_proxy and document_storage (no modifications to protected file directories).
 develop a parser router service that dispatches uploaded claim documents to niche-specific parsers, integrates with the schema registry, and emits normalized claims into the claim_normalization pipeline.
+implement a hardened authentication service with rbac, token lifecycle management, and integration hooks for the policy engine and token revocation service (ensure service exposes well-defined apis and integrates with audit_log_service).
