@@ -12,13 +12,16 @@ echo "Breaking architecture tasks into dev tasks..."
 while IFS= read -r TASK
 do
 
-
 LOWER=$(echo "$TASK" | sed 's/^- *//' | tr '[:upper:]' '[:lower:]')
 
-# Skip systems already implemented
-if grep -Fqi "$LOWER" "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"; then
+ARCH_MEMORY="$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"
+
+# Skip architecture systems already implemented
+if [ -f "$ARCH_MEMORY" ] && grep -Fqi "$LOWER" "$ARCH_MEMORY"; then
+    echo "Skipping implemented system: $TASK"
     continue
 fi
+
 # Skip duplicate tasks already queued
 if grep -Fxq -- "$TASK" "$PENDING"; then
     continue
@@ -28,6 +31,7 @@ fi
 if grep -Fxq -- "$TASK" "$COMPLETED"; then
     continue
 fi
+
 # AUTH / SECURITY
 if [[ "$LOWER" == *"auth"* ]] || [[ "$LOWER" == *"oauth"* ]] || [[ "$LOWER" == *"rbac"* ]]; then
 

@@ -373,3 +373,4 @@
 - Develop a Token Exchange & Session Management service to support short-lived service tokens, refresh flows, and session revocation for integrations and workers.
 - Build a Claims Ingestion Orchestrator microservice that accepts uploaded claim bundles, performs schema routing, enqueues parsing jobs, and returns idempotency keys.
 - Implement a Pluggable Parser Framework (microservice) supporting PDFs, X12, CSV, and HL7 input formats with per-parser validation and parser sandboxing.
+- Design and implement a Secrets & Key Management service for rotating KMS-backed keys, envelope encryption orchestration, and limited-scope key access policies for microservices.
