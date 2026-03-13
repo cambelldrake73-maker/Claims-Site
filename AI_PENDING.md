@@ -1,4 +1,3 @@
-- implement claims_dashboard_ui service
 - implement denial_analysis_ui service
 - implement denial_reason_classifier service
 - implement document_viewer_api service
