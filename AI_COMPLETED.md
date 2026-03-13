@@ -507,3 +507,4 @@
 - Add claim processing unit tests
 - Add denial code reference table
 - Add document access logging
+- Add document audit logging
