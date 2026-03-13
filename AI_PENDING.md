@@ -1,3 +1,2 @@
-- implement review_queue_api service
 - implement review_workflow_service service
 - implement system_health_monitor service
