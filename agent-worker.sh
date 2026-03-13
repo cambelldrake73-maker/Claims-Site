@@ -96,9 +96,10 @@ QUEUE_SIZE=$(grep -c "^-" "$WORKSPACE/AI_PENDING.md" 2>/dev/null || echo 0)
 
             bash "$WORKSPACE/ai-planner.sh"
             bash "$WORKSPACE/ai-architect.sh"
-
-            echo $((AI_CALLS+1)) > "$AI_COUNTER_FILE"
-
+ 
+            DATE=$(date +%Y-%m-%d)
+            NEW_COUNT=$((AI_CALLS+1))
+            echo -e "$DATE\n$NEW_COUNT" > "$AI_COUNTER_FILE"
         fi
     fi
 
