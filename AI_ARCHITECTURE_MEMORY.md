@@ -13,8 +13,11 @@ Build a PHI-aware Column-Level Encryption layer in the database access service w
 Build a Secure Audit Log Service with immutable append-only storage (WORM), tamper-evident hashing, and retention policies for all PHI access and submission events.
 Build a secure Clearinghouse Integration & Compliance microservice: EDI (837) validator/formatter, multi-adapter transactional gateway with sandbox/test harness, KMS-backed encryption for at-rest/in-transit payloads, strict RBAC and immutable submission audit trails, submission retry/rollback semantics, and SLA/health monitoring.  
 Build a Secure Document Access Broker service issuing short-lived signed URLs/tokens, with field-level masking and request-level audit for any PDF/document fetches (distinct from document proxy already implemented).
+Build a Token Revocation Service with distributed blacklist propagation and immediate JWT invalidation endpoints.
 Build an automated CI test harness and contract-testing pipeline: end-to-end integration tests for the claims parsing→correction→submission flow using synthetic HIPAA-safe data, adapter contract tests for clearinghouse/document/invoice proxies, and gated release pipelines to prevent regressions
 Build an Automated Data Quality & Schema Validation pipeline: nightly profiling, anomaly detection on canonical claim fields, and alerting for schema drift.
+Create a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls.
+Create a Claim Normalization microservice: transforms parsed claims into canonical schema with per-field provenance and validation hooks.
 Create a Claim Normalization Service and canonical data model: versioned normalization rules, transformers for disparate payer formats, and a mapping repository with automated tests.  
 Create a Claim Replay and Incident Debugging service that can re-run a claim through parsing/normalization/correction pipeline in a sandbox with versioned schema and test harness.
 Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
@@ -39,6 +42,7 @@ Design and implement a Token Revocation Service with immediate distributed black
 Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints.
 Develop a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas (with versioning and compatibility checks) used by parsers and normalization services.
 Develop a Claim Enrichment service to augment claims with external data (payer databases, provider NPI lookup, patient demographics) via secure connectors.
+Develop a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with full audit trails.
 Develop a Policy Engine for dynamic authorization rules (Rego/OPA integration) to evaluate sensitive actions (exports, reviewer access, clearinghouse submissions).
 Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
 Develop a Token Exchange & Session Management service to support short-lived service tokens, refresh flows, and session revocation for integrations and workers.
@@ -63,9 +67,12 @@ Implement dead letter queue handling
 Implement denial correction suggestion engine
 Implement EDI 837 claim formatter
 Implement End-to-End Distributed Tracing and Correlation service integration (OpenTelemetry full-trace pipeline, span propagation across jobs and microservices) with trace retention and sampling policies.
+Implement end-to-end encrypted job payloads for the job queue where payloads are envelope-encrypted and only authorized workers can decrypt.
 Implement end-to-end encrypted job payloads for the queue system with worker-side key access control and rotation separate from general envelope encryption.
 Implement End-to-End Encryption for queued claim payloads using envelope encryption and worker-side decryption keys
 Implement job queue retry logic
 Implement Per-Field Access Control (field-level RBAC) enforcement service that intercepts DB reads and enforces policy evaluation logs (distinct from general Data Access Governance).
+Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and audit logs.
 Implement Per-Field Access Control middleware that enforces field-level RBAC at the service layer with evaluation logs and policy decision caching.
 Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
+Integrate a Policy Engine (OPA/Rego) service for dynamic authorization rules used by sensitive actions (exports, submissions, reviewer access).
