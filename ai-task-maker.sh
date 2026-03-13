@@ -1,7 +1,8 @@
-#!/bin/bash
-python3 <<'PY'
+#!/usr/bin/env python3
+
 from pathlib import Path
 import re
+import sys
 
 workspace = Path.home() / ".openclaw" / "workspace" / "claims-site"
 suggestions = workspace / "AI_SUGGESTIONS.md"
@@ -12,13 +13,13 @@ registry = workspace / "SERVICE_REGISTRY.md"
 
 print("Generating AI tasks...")
 
-for p in [suggestions, pending, completed, arch_memory]:
+for p in [suggestions, pending, completed, arch_memory, registry]:
     p.touch(exist_ok=True)
 
 pending_text = pending.read_text()
 if re.search(r"^-", pending_text, flags=re.M):
     print("Task queue already populated.")
-    raise SystemExit(0)
+    sys.exit(0)
 
 def normalize(text: str) -> str:
     text = text.lower().replace("_", " ").replace("-", " ")
@@ -27,6 +28,7 @@ def normalize(text: str) -> str:
     return text
 
 implemented = set()
+
 for line in arch_memory.read_text().splitlines():
     line = normalize(line)
     if line:
@@ -43,8 +45,8 @@ for line in registry.read_text().splitlines():
     if not raw or raw.startswith("#") or "---" in raw:
         continue
     svc = normalize(raw)
-    if re.fullmatch(r"[a-z0-9 ]+", svc):
-        registry_services.append((raw.strip(), svc))
+    if svc:
+        registry_services.append((raw, svc))
 
 suggestion_text = normalize(suggestions.read_text())
 
@@ -52,17 +54,17 @@ matches = []
 for raw, svc in registry_services:
     if svc in implemented:
         continue
-    if svc and svc in suggestion_text:
-        matches.append(f"- implement {raw.strip()}")
+    if svc in suggestion_text:
+        matches.append(f"- implement {raw}")
 
 seen = set()
 final = []
-for m in matches:
-    if m not in seen:
-        seen.add(m)
-        final.append(m)
+for item in matches:
+    if item not in seen:
+        seen.add(item)
+        final.append(item)
 
 pending.write_text("\n".join(final[:8]) + ("\n" if final[:8] else ""))
 print("Tasks generated.")
+
 suggestions.write_text("")
-PY

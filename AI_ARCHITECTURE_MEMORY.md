@@ -16,5 +16,4 @@ policy_engine
 recoverability_scoring_model
 schema_registry
 token_revocation
-implement canonical_claim_schema
 implement approval_queue_service
