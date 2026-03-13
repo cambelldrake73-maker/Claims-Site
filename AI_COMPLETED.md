@@ -810,3 +810,4 @@
 - Create a Centralized Niche Router Authorization Adapter that enforces niche-specific RBAC and consent checks before routing uploads into healthcare pipelines.
 - build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
 - build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
+- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
