@@ -1,4 +1,3 @@
-- Implement a Pluggable Parser Router that routes incoming files to appropriate parser plugins (PDF OCR, EDI 837/835, CSV, JSON) with metadata-based routing and parser health checks.
 - Design a Payer Connector Framework with per-payer adapters, sandbox/prod toggles, rate-limiting, and retry semantics for external payer lookups and eligibility checks.
 - Implement a Transactional Clearinghouse Submission Orchestrator that coordinates EDI 837 submission, tracks transactional states, supports transactional rollback semantics, and stores immutable submission artifacts.
 - Build a Secure Document Access Broker service issuing short-lived signed URLs/tokens, with field-level masking and request-level audit for any PDF/document fetches (distinct from document proxy already implemented).
