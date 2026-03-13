@@ -589,3 +589,4 @@ Fri Mar 13 00:09:02 PDT 2026: Completed task - Implement end-to-end encrypted jo
 Fri Mar 13 00:09:02 PDT 2026: Completed task - Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas.
 Fri Mar 13 00:09:02 PDT 2026: Completed task - Create a Claim Normalization microservice: transforms parsed claims into canonical schema with per-field provenance and validation hooks.
 Fri Mar 13 00:12:15 PDT 2026: Completed task - Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation (distinct implementation from listed items).
+Fri Mar 13 00:12:15 PDT 2026: Completed task - Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (standalone service not already implemented).
