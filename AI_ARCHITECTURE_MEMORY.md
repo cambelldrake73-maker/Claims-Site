@@ -38,6 +38,7 @@ Create monitoring service folder
 Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
 Design and deploy a Secrets Management integration (HashiCorp Vault or AWS Secrets Manager) for service credentials and database passwords with automatic rotation
 Design and implement a Claim Lineage & Provenance service that tracks per-field provenance, transformation steps, and user approvals across the claim lifecycle.
+Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and schema migration tooling (separate implementation).
 Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and schema migration tooling.
 Design and implement a dedicated Claim Parsing Microservice: pluggable parsers for common claim formats, strict schema validation, idempotent processing, and unit/integration tests.  
 Design and implement a resilient asynchronous claim processing pipeline: centralized job queue with idempotent workers, dead-letter queues, exponential-backoff retries, distributed tracing, per-job metrics, automated horizontal scaling, and end-to-end claim lifecycle event tracing.
@@ -66,6 +67,7 @@ Implement a Token Revocation Service for JWTs with immediate blacklist support a
 Implement a Token Revocation Service with distributed blacklist propagation for immediate JWT invalidation (not already implemented).
 Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation (distinct implementation from listed items).
 Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct implementation from those logged).
+Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct implementation not in memory).
 Implement an EDI 837 Formatter & Validator microservice: X12 837 generation, schema/segment validation, automated test harness and sandbox mode for verifier clearinghouse integrations.  
 Implement authentication service configuration
 Implement background worker service
