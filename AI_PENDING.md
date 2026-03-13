@@ -1,0 +1,7 @@
+- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (standalone service not already implemented).
+- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with policy decision caching and immutable evaluation logs (distinct from general Data Access Governance).
+- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, time-limited PHI access approvals, and consent audit trails.
+- Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
+- Implement end-to-end encrypted job payloads for the queuing system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation.
+- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
+- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and schema migration tooling.

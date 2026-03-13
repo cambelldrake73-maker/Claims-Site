@@ -1,6 +1,7 @@
 # Architecture Memory
 
 Systems implemented:
+Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (standalone service not already implemented).
 Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning and compatibility checks (not already implemented).
 Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
 Build a Claim Normalization microservice to transform parsed claims into a canonical schema with field-level provenance and validation.
@@ -21,6 +22,7 @@ Create a Claim Normalization microservice: transforms parsed claims into canonic
 Create a Claim Normalization Service and canonical data model: versioned normalization rules, transformers for disparate payer formats, and a mapping repository with automated tests.  
 Create a Claim Replay and Incident Debugging service that can re-run a claim through parsing/normalization/correction pipeline in a sandbox with versioned schema and test harness.
 Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
+Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with full audit trails.
 Create a Consent & Data Access Authorization service to manage clinic consents, data sharing scopes, and time-limited PHI access approvals.
 Create a Data Access Governance service that enforces field-level RBAC policies and generates policy evaluation logs for PHI access requests
 Create a Secure Audit Trail Service that captures immutable, tamper-evident logs for claim lifecycle events, access to PHI, and clearinghouse submissions (WORM storage + signed entries).
@@ -46,6 +48,7 @@ Develop a Consent & Data Access Authorization microservice to manage clinic cons
 Develop a Policy Engine for dynamic authorization rules (Rego/OPA integration) to evaluate sensitive actions (exports, reviewer access, clearinghouse submissions).
 Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
 Develop a Token Exchange & Session Management service to support short-lived service tokens, refresh flows, and session revocation for integrations and workers.
+Implement a Centralized Correction Suggestion Audit service to record suggestion provenance, model-versioning metadata, reviewer edits, and immutable approval trails.
 Implement a Claim Correction Suggestion Engine using rule-based transforms and ML model hooks that produce suggested edits with explainability metadata.
 Implement a Claim Correction Suggestion Engine: generate proposed edits with confidence scores, human-in-the-loop review workflow, and immutable audit trail for all suggestions.  
 Implement a Data Access Audit Trail service that records all PHI read/write operations with immutable logs and support for retention/querying for compliance audits.
@@ -59,6 +62,7 @@ Implement a resilient, idempotent asynchronous claim processing pipeline: centra
 Implement a secure Clearinghouse Integration & Compliance layer: EDI (837) validator/formatter, multi-adapter transactional gateway with sandbox test harness, KMS-backed encryption (at-rest/in-transit) and key rotation, strict RBAC/audit trails for submissions, and submission SLA monitoring/alerting.
 Implement a Token Revocation Service for JWTs with immediate blacklist support and distributed cache propagation
 Implement a Token Revocation Service with distributed blacklist propagation for immediate JWT invalidation (not already implemented).
+Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation (distinct implementation from listed items).
 Implement an EDI 837 Formatter & Validator microservice: X12 837 generation, schema/segment validation, automated test harness and sandbox mode for verifier clearinghouse integrations.  
 Implement authentication service configuration
 Implement background worker service
@@ -75,4 +79,6 @@ Implement Per-Field Access Control (field-level RBAC) enforcement service that i
 Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and audit logs.
 Implement Per-Field Access Control middleware that enforces field-level RBAC at the service layer with evaluation logs and policy decision caching.
 Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
+Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with policy decision caching and audit logs (distinct from general Data Access Governance).
 Integrate a Policy Engine (OPA/Rego) service for dynamic authorization rules used by sensitive actions (exports, submissions, reviewer access).
+Integrate an external Policy Engine (OPA/Rego) service for dynamic authorization rules used by submissions, exports, and sensitive-data actions.
