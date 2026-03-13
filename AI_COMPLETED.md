@@ -884,3 +884,4 @@
 - implement approval_queue_service service
 - implement audit_log_service service
 - implement authentication_service service
+- implement canonical_claim_schema service
