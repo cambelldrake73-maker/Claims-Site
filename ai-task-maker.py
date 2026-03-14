@@ -49,13 +49,16 @@ for line in registry.read_text().splitlines():
         registry_services.append((raw, svc))
 
 suggestion_text = normalize(suggestions.read_text())
-
 matches = []
+added_services = set()
+
 for raw, svc in registry_services:
-    if canon(svc) in implemented:
+    if svc in implemented:
         continue
-    if canon(svc) in suggestion_text:
+
+    if svc in suggestion_text and svc not in added_services:
         matches.append(f"- implement {raw}")
+        added_services.add(svc)
 seen = set()
 final = []
 for item in matches:

@@ -1,8 +1,8 @@
-- implement claim_submission_gateway
-- implement submission_status_tracker
 - implement claims_dashboard_api
 - implement review_queue_api
 - implement document_viewer_api
 - implement analytics_api
 - implement claims_dashboard_ui
 - implement claim_review_ui
+- implement denial_analysis_ui
+- implement analytics_dashboard_ui
