@@ -17,3 +17,4 @@ recoverability_scoring_model
 schema_registry
 token_revocation
 upload gateway
+claim bundle validator
