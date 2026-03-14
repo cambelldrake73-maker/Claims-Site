@@ -1779,3 +1779,4 @@
 - implement review_queue_api
 - implement upload_gateway
 - implement claim_bundle_validator
+- implement canonical_claim_schema
