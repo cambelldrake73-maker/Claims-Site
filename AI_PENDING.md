@@ -1,4 +1,3 @@
-- implement review_workflow_service
 - implement approval_queue_service
 - implement edi_formatter
 - implement submission_status_tracker
