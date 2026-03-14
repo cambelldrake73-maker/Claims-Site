@@ -18,3 +18,5 @@ schema_registry
 token_revocation
 upload gateway
 claim bundle validator
+implement canonical_claim_schema
+canonical claim schema
