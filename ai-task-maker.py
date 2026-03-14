@@ -27,18 +27,17 @@ def normalize(text: str) -> str:
     text = re.sub(r"\s+", " ", text).strip()
     return text
 implemented = set()
-
-def canon(x):
-    x = normalize(x)
-    x = x.replace("implement ", "")
-    return x.strip()
+completed_services = set()
 
 for line in arch_memory.read_text().splitlines():
-    implemented.add(canon(line))
+    line = normalize(line)
+    if line:
+        implemented.add(line)
 
 for line in completed.read_text().splitlines():
-    implemented.add(canon(line))
-
+    line = normalize(line)
+    if line:
+        completed_services.add(line)
 registry_services = []
 for line in registry.read_text().splitlines():
     raw = line.strip()
@@ -53,9 +52,12 @@ matches = []
 added_services = set()
 
 for raw, svc in registry_services:
+
     if svc in implemented:
         continue
 
+    if svc in completed_services:
+        continue
     if svc in suggestion_text and svc not in added_services:
         matches.append(f"- implement {raw}")
         added_services.add(svc)

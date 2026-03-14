@@ -1,8 +1,8 @@
-- implement claims_dashboard_api
-- implement review_queue_api
-- implement document_viewer_api
-- implement analytics_api
-- implement claims_dashboard_ui
-- implement claim_review_ui
-- implement denial_analysis_ui
-- implement analytics_dashboard_ui
+- implement upload_gateway
+- implement claim_bundle_validator
+- implement canonical_claim_schema
+- implement payer_rule_engine
+- implement denial_reason_classifier
+- implement review_workflow_service
+- implement approval_queue_service
+- implement edi_formatter
