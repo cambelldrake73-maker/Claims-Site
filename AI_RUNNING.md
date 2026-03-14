@@ -14,3 +14,4 @@
 - implement canonical_claim_schema
 - implement canonical_claim_schema
 - implement canonical_claim_schema
+- implement canonical_claim_schema
