@@ -138,15 +138,14 @@ echo "$TASK" >> "$COMPLETED"
 # RECORD SERVICE IMPLEMENTATION
 ########################################
 
-SERVICE=$(echo "$TASK" | sed 's/^- *implement *//' | tr '[:upper:]' '[:lower:]' | tr -d '\r')
+SERVICE=$(echo "$TASK" | sed 's/^- *implement *//' | tr '[:upper:]' '[:lower:]')
+SERVICE=$(echo "$SERVICE" | sed 's/_/ /g')
 
 if [ -n "$SERVICE" ]; then
     if ! grep -qx "$SERVICE" "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"; then
         echo "$SERVICE" >> "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"
     fi
 fi
-
-echo "$(date): Completed task $TASK" >> "$LOG"
 ########################################
 # COMMIT
 ########################################
