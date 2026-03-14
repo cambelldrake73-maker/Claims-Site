@@ -1,4 +1,3 @@
-- implement edi_formatter
 - implement submission_status_tracker
 - implement claims_dashboard_api
 - implement review_queue_api
