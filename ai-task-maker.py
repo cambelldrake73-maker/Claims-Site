@@ -16,11 +16,11 @@ print("Generating AI tasks...")
 for p in [suggestions, pending, completed, arch_memory, registry]:
     p.touch(exist_ok=True)
 
-pending_text = pending.read_text()
-if re.search(r"^-", pending_text, flags=re.M):
-    print("Task queue already populated.")
-    sys.exit(0)
-
+for line in pending.read_text().splitlines():
+    line = normalize(line)
+    line = line.replace("implement ", "")
+    if line:
+        queued.add(line)
 def normalize(text: str) -> str:
     text = text.lower().replace("_", " ").replace("-", " ")
     text = re.sub(r"[^a-z0-9 ]", "", text)
