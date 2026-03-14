@@ -13,6 +13,7 @@ touch "$MEMORY"
 grep -Ei "service|engine|pipeline|microservice|gateway|formatter|queue|schema|model|router|adapter|authentication|ingestion|review|analytics|tracing|monitor" "$COMPLETED" | \
 sed 's/^- *//' | \
 tr '[:upper:]' '[:lower:]' | \
+tr '_' ' '
 sed 's/[^a-z0-9 ]//g' | \
 awk '
 {
