@@ -1,3 +1,2 @@
-- implement schema_registry
 - implement claim_ingestion_api
 - implement upload_gateway
