@@ -39,15 +39,14 @@ fi
 # ARCHITECTURE GUARD
 ########################################
 
-TASK_NORMALIZED=$(echo "$TASK" | sed 's/^- *//' | tr '[:upper:]' '[:lower:]')
+SERVICE_CHECK=$(echo "$TASK" | sed 's/^- *implement *//' | tr '[:upper:]' '[:lower:]' | sed 's/_/ /g')
 
-if grep -qi "$(echo "$TASK_NORMALIZED" | tr ' ' '_')" "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"; then
+if grep -qx "$SERVICE_CHECK" "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"; then
     echo "Architecture already implemented. Skipping task."
 
     sed -i '' '1d' "$PENDING"
     exit 0
 fi
-
 ########################################
 # EXECUTION START
 ########################################
