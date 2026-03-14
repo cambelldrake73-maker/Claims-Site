@@ -1727,3 +1727,4 @@
 - implement upload_gateway
 - implement upload_gateway
 - implement upload_gateway
+- implement claim_bundle_validator

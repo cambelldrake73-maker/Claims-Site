@@ -447,3 +447,4 @@ authentication_service
 claim_normalization
 clearinghouse_adapter_framework
 upload gateway
+claim bundle validator
