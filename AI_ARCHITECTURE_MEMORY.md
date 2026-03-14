@@ -446,3 +446,4 @@ schema_registry
 authentication_service
 claim_normalization
 clearinghouse_adapter_framework
+upload_gateway

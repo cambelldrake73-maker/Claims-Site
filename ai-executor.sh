@@ -134,8 +134,19 @@ fi
 grep -v -- "$TASK" "$RUNNING" > tmp && mv tmp "$RUNNING"
 echo "$TASK" >> "$COMPLETED"
 
-echo "$(date): Completed task $TASK" >> "$LOG"
+########################################
+# RECORD SERVICE IMPLEMENTATION
+########################################
 
+SERVICE=$(echo "$TASK" | sed 's/^- *implement *//' | tr '[:upper:]' '[:lower:]' | tr -d '\r')
+
+if [ -n "$SERVICE" ]; then
+    if ! grep -qx "$SERVICE" "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"; then
+        echo "$SERVICE" >> "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"
+    fi
+fi
+
+echo "$(date): Completed task $TASK" >> "$LOG"
 ########################################
 # COMMIT
 ########################################
