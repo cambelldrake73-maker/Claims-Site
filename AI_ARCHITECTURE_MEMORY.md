@@ -1,8 +1,6 @@
 access_control
 audit_log_service
 authentication_service
-canonical claim schema
-claim bundle validator
 claim_deduplication
 claim_enrichment
 claim_ingestion_api
@@ -12,7 +10,6 @@ correction_suggestion_engine
 denial_intelligence_engine
 distributed_tracing
 document_storage
-implement canonical_claim_schema
 job_queue
 parser_router
 policy_engine
@@ -20,13 +17,3 @@ recoverability_scoring_model
 schema_registry
 token_revocation
 upload gateway
-payer rule engine
-denial reason classifier
-review workflow service
-implement approval_queue_service
-approval queue service
-edi formatter
-submission status tracker
-claims dashboard api
-implement review_queue_api
-review queue api
