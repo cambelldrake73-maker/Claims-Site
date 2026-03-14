@@ -1778,3 +1778,4 @@
 - implement claims_dashboard_api
 - implement review_queue_api
 - implement upload_gateway
+- implement claim_bundle_validator
