@@ -27,6 +27,12 @@ def normalize(text: str) -> str:
     text = re.sub(r"\s+", " ", text).strip()
     return text
 implemented = set()
+queued = set()
+
+for line in pending.read_text().splitlines():
+    line = normalize(line)
+    if line:
+        queued.add(line)
 completed_services = set()
 
 for line in arch_memory.read_text().splitlines():
@@ -56,6 +62,8 @@ for raw, svc in registry_services:
     if svc in implemented:
         continue
 
+    if svc in queued:
+        continue
     if svc in suggestion_text and svc not in added:
         matches.append(f"- implement {raw}")
         added.add(svc)

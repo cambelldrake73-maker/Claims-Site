@@ -448,3 +448,5 @@ claim_normalization
 clearinghouse_adapter_framework
 upload_gateway
 claim_bundle_validator
+implement canonical_claim_schema
+canonical_claim_schema

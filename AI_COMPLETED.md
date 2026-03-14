@@ -1667,3 +1667,4 @@
 - implement claim_bundle_validator
 - implement claim_bundle_validator
 - implement claim_bundle_validator
+- implement canonical_claim_schema
