@@ -34,17 +34,16 @@ if [ -z "$TASK" ]; then
     echo "No tasks found."
     exit 0
 fi
-
-########################################
 # ARCHITECTURE GUARD
 ########################################
-
 SERVICE_CHECK=$(echo "$TASK" | sed 's/^- *implement *//' | tr '[:upper:]' '[:lower:]' | sed 's/_/ /g')
 
 if grep -qx "$SERVICE_CHECK" "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"; then
-    echo "Architecture already implemented. Skipping task."
+    echo "Architecture already implemented. Removing duplicate task."
 
-    sed -i '' '1d' "$PENDING"
+    # Remove ALL duplicates of this task from queue
+    grep -v -F "$TASK" "$PENDING" > tmp && mv tmp "$PENDING"
+
     exit 0
 fi
 ########################################
@@ -132,18 +131,22 @@ fi
 
 grep -v -- "$TASK" "$RUNNING" > tmp && mv tmp "$RUNNING"
 echo "$TASK" >> "$COMPLETED"
-
 ########################################
 # RECORD SERVICE IMPLEMENTATION
 ########################################
 
-SERVICE=$(echo "$TASK" | sed 's/^- *implement *//' | tr '[:upper:]' '[:lower:]')
-SERVICE=$(echo "$SERVICE" | sed 's/_/ /g')
+# Only record services for "implement" tasks
+if [[ "$TASK" == "- implement "* ]]; then
 
-if [ -n "$SERVICE" ]; then
-    if ! grep -qx "$SERVICE" "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"; then
-        echo "$SERVICE" >> "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"
+    SERVICE=$(echo "$TASK" | sed 's/^- *implement *//' | tr '[:upper:]' '[:lower:]')
+    SERVICE=$(echo "$SERVICE" | sed 's/_/ /g')
+
+    if [ -n "$SERVICE" ]; then
+        if ! grep -qx "$SERVICE" "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"; then
+            echo "$SERVICE" >> "$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"
+        fi
     fi
+
 fi
 ########################################
 # COMMIT
