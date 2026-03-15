@@ -1810,3 +1810,4 @@
 - implement claim_ingestion_api
 - implement upload_gateway
 - implement authentication_service
+- implement token_revocation
