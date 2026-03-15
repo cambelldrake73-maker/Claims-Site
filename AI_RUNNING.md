@@ -1,1 +1,1 @@
-- Create a new service folder services/parser_router with Node.js/TypeScript scaffold (index.ts, types.ts, logger.ts) and implement a Router class that exposes routeClaimBundle(bundle: ParsedBundle): Promise<RouterResult> with unit tests.
+- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.

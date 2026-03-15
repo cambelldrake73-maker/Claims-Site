@@ -66,20 +66,21 @@ is_protected() {
     if [ -f "$PROTECTED" ]; then
         while IFS= read -r LINE
         do
-            # skip empty lines and comments
+            # ignore blank lines and comments
             if [ -z "$LINE" ] || [[ "$LINE" == \#* ]]; then
                 continue
             fi
 
-            if [[ "$TARGET" == *"$LINE"* ]]; then
+            # only match real path segments
+            if [[ "$TARGET" == */"$LINE"/* ]] || [[ "$TARGET" == */"$LINE" ]]; then
                 return 0
             fi
+
         done < "$PROTECTED"
     fi
 
     return 1
 }
-
 ########################################
 # SIMPLE EXECUTION ENGINE
 ########################################
