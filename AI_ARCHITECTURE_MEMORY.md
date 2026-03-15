@@ -40,3 +40,4 @@ submission_status_tracker
 system_health_monitor
 token_revocation
 upload_gateway
+Add schema files for canonical_claim_schema under schemas/canonical_claim_schema.json and a TypeScript interface schemas/canonical_claim_schema.ts; include field-level types for patient, provider, claimItems, denialCodes, originalPayerResponse, and provenance metadata, and add a JSON Schema validator wrapper in libs/validators/canonicalValidator.js that other services can import.

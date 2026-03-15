@@ -1818,3 +1818,4 @@
 - implement claim_ingestion_api
 - implement upload_gateway
 - Create a new service folder services/parser_router with an index.js (or .ts) scaffold that exposes a parseClaimBundle(bundleId) async function, plus an API contract file services/parser_router/contracts.md describing input (raw files list, mime types, uploaderId, niche) and output (parsedClaimRecords array with sourceDocumentIds), and add unit-test stubs.
+- Add schema files for canonical_claim_schema under schemas/canonical_claim_schema.json and a TypeScript interface schemas/canonical_claim_schema.ts; include field-level types for patient, provider, claimItems, denialCodes, originalPayerResponse, and provenance metadata, and add a JSON Schema validator wrapper in libs/validators/canonicalValidator.js that other services can import.
