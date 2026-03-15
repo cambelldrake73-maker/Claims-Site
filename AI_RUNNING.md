@@ -1,4 +1,1 @@
-- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
-- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
-- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
-- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
+- Create a new folder services/parser_router/ and add a TypeScript/Python (match project stack) scaffold: index, router.ts (or .py), interface IParserInput, IParserOutput, and unit-test stub. Add route scaffolded function parseBundle(bundleId: string): Promise<IParserOutput>.

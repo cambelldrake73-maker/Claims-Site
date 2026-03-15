@@ -1842,3 +1842,5 @@ Sun Mar 15 15:53:36 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/cl
 Sun Mar 15 15:53:36 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/services/claim_ingestion_api/Dockerfile
 Sun Mar 15 15:53:36 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/services/claim_ingestion_api/README.md
 Sun Mar 15 15:53:36 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/tests/claim_ingestion_api.test.js
+Sun Mar 15 15:54:54 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
+Sun Mar 15 15:54:54 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
