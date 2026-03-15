@@ -97,112 +97,58 @@ $DEV_MEMORY
 
 Architecture memory:
 $ARCH_MEMORY
-
-Evaluate the architecture memory and ONLY propose backend systems that are NOT already implemented.
-Do not repeat any systems listed in the architecture memory.
+Evaluate the architecture memory and propose ONLY concrete backend implementation tasks for systems that are not fully built yet.
+Do not repeat systems listed in the architecture memory unless you are proposing a missing subcomponent or integration for that system.
 This system processes denied medical claims and prepares them for resubmission through clearinghouses.
 
-Architecture priorities:
-
-1. Security and compliance
-2. Reliability and fault tolerance
-3. Scalability and system architecture
-4. Observability and monitoring
-5. Performance optimization
-6. Developer productivity
-
-Focus on backend systems required for:
-
-- claim parsing
-- denial intelligence
-- claim normalization
-- clearinghouse integration
-- claim review workflows
-- medical claim data pipelines
+Focus on actionable build tasks such as:
+- create service folders
+- add route scaffolds
+- add schema files
+- add validators
+- add queue models
+- add worker modules
+- add adapter interfaces
+- wire one service into another
+- add persistence models
+- add API contracts
 
 Avoid:
-
 - CSS tweaks
 - UI adjustments
-- icon changes
+- icons
 - spacing fixes
 - cosmetic improvements
-- visual layout improvements
+- layout changes
 - sidebar changes
 - hover effects
-- color changes
 - typography changes
-- accessibility tweaks unless security related
-- minor HTML fixes
-- trivial front-end improvements
-
-Prioritize backend architecture work in this order:
-
-1. Security and authentication systems
-2. Database schema and canonical claim data models
-3. Claim ingestion and parsing pipelines
-4. Denial intelligence and claim correction systems
-5. Clearinghouse integrations (EDI 837 formatting and submission)
-6. Document security and PHI access control
-7. Distributed job queues and background processing
-8. Observability, tracing, and monitoring systems
-9. Scaling infrastructure
-10. Analytics and reporting pipelines
+- trivial front-end tasks
 
 Rules:
 
-- Generate EXACTLY 8 architecture tasks
-- Each task must represent a major backend system improvement
-- Do NOT generate UI, CSS, layout, or front-end tasks
-- Do NOT repeat systems already present in Architecture Memory
+- Generate EXACTLY 8 tasks
+- Each task must be specific and immediately buildable
+- Do NOT output vague placeholder tasks like:
+  - implement payer_rule_engine
+  - implement review_workflow_service
+  - implement edi_formatter
+- Prefer tasks like:
+  - Create payer_rule_engine service folder and base module scaffold
+  - Add payer rule config schema and validation model
+  - Create review_workflow_service queue state model
+  - Add submission_status_tracker persistence schema
+  - Add claims_dashboard_api route scaffold and response contract
+  - Wire parser_router output into claim_normalization entrypoint
+- Do NOT repeat tasks already completed or already present in architecture memory
 - Output only the tasks
 - Each task must start with "- "
 - No explanations
 
-When generating architecture tasks:
-
-1. Follow the build roadmap sequentially.
-2. Identify the next missing system in the roadmap.
-3. Do not generate systems already listed in Architecture Memory.
-4. Ensure new systems integrate with the Service Registry.
+Follow the build roadmap sequentially, but break large systems into real implementation subtasks.
+Ensure new tasks align with the service registry and current repository structure.
 EOF
 )
-# ---------------------------
-# ROADMAP PRIORITY SYSTEM
-# ---------------------------
-
-BUILD_PLAN="$WORKSPACE/BUILD_PLAN.md"
-ARCH_MEMORY_FILE="$WORKSPACE/AI_ARCHITECTURE_MEMORY.md"
-
-if [ -f "$BUILD_PLAN" ]; then
-
-    echo "Checking roadmap for missing systems..."
-
-    while read LINE
-do
-    SYSTEM=$(echo "$LINE" | tr '[:upper:]' '[:lower:]' | xargs)
-
-    # Skip empty lines
-    if [ -z "$SYSTEM" ]; then
-        continue
-    fi
-
-    # Skip section headers and separators
-    if [[ "$SYSTEM" == \#* ]] || [[ "$SYSTEM" == *"layer"* ]] || [[ "$SYSTEM" == *"pipeline"* ]] || [[ "$SYSTEM" == *"observability"* ]] || [[ "$SYSTEM" == *"analytics"* && "$SYSTEM" != *"_"* ]] || [[ "$SYSTEM" == *"foundation"* ]] || [[ "$SYSTEM" == *"denial intelligence"* ]] || [[ "$SYSTEM" == *"correction"* ]] || [[ "$SYSTEM" == *"submission"* ]] || [[ "$SYSTEM" == *"frontend"* ]] || [[ "$SYSTEM" == "------------------------------------------------" ]]; then
-        continue
-    fi
-
-    # Only allow canonical system names
-    if ! [[ "$SYSTEM" =~ ^[a-z0-9_]+$ ]]; then
-        continue
-    fi
-
-    if ! grep -qx "$SYSTEM" "$ARCH_MEMORY_FILE" 2>/dev/null; then
-        echo "- Implement $SYSTEM service" >> "$SUGGESTIONS"
-    fi
-
-done < "$BUILD_PLAN"
-fi
 # ---------------------------
 # CALL OPENAI API
 # ---------------------------

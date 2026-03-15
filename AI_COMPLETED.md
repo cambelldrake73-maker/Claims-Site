@@ -1817,3 +1817,4 @@
 - implement schema_registry
 - implement claim_ingestion_api
 - implement upload_gateway
+- Create a new service folder services/parser_router with an index.js (or .ts) scaffold that exposes a parseClaimBundle(bundleId) async function, plus an API contract file services/parser_router/contracts.md describing input (raw files list, mime types, uploaderId, niche) and output (parsedClaimRecords array with sourceDocumentIds), and add unit-test stubs.
