@@ -1,1 +1,1 @@
-- Create a new service folder services/parser_router/ and add an Express-style route scaffold POST /parse that accepts uploaded claim bundles (multipart/form-data), validates presence of niche header, and enqueues a ParseJob to job_queue; include OpenAPI YAML stub file services/parser_router/openapi.yaml.
+- Create a new service folder services/parser_router with Node.js/TypeScript scaffold (index.ts, types.ts, logger.ts) and implement a Router class that exposes routeClaimBundle(bundle: ParsedBundle): Promise<RouterResult> with unit tests.

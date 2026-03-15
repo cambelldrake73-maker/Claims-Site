@@ -60,13 +60,17 @@ echo "$TASK" >> "$RUNNING"
 ########################################
 # PROTECTED FILE CHECK
 ########################################
-
 is_protected() {
-    TARGET=$1
+    TARGET="$1"
 
     if [ -f "$PROTECTED" ]; then
-        while read LINE
+        while IFS= read -r LINE
         do
+            # skip empty lines and comments
+            if [ -z "$LINE" ] || [[ "$LINE" == \#* ]]; then
+                continue
+            fi
+
             if [[ "$TARGET" == *"$LINE"* ]]; then
                 return 0
             fi
