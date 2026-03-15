@@ -1789,3 +1789,7 @@ Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.opencl
 Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/db/migrations/2026_03_create_claim_fingerprints.sql
 Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/job_queue/workers/claim_ingest_worker.js
 Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/tests/integration/parser_to_normalization.test.js
+Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/denial_intelligence_engine/knowledgebase/loaders.js
+Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/denial_intelligence_engine/classifier/api.js
+Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/denial_intelligence_engine/rules/denial_rules.js
+Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/denial_intelligence_engine/fixtures/denial_codes_sample.csv
