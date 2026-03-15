@@ -1844,3 +1844,4 @@
 - Create a new service folder services/parser_router with Node.js/TypeScript scaffold (index.ts, types.ts, logger.ts) and implement a Router class that exposes routeClaimBundle(bundle: ParsedBundle): Promise<RouterResult> with unit tests.
 - Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
 - Add parser_router module at services/parser_router/index.js that exposes route processParsed(fileBundle) and a plugin interface; include parser plugin loader (filesystem-based) and a TypeScript interface file for parser plugins in sectors/healthcare/parsers/.
+- Add canonical_claim_schema to schemas/canonical_claim.v1.json and implement a JSON Schema validator utility services/schema_registry/validator.js; wire validator into claim_ingestion_api to validate parsed claims before enqueueing.

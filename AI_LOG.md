@@ -1803,3 +1803,6 @@ Sun Mar 15 15:46:27 PDT 2026: Skipped protected file /Users/cambelldrake/.opencl
 Sun Mar 15 15:46:27 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
 Sun Mar 15 15:50:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
 Sun Mar 15 15:50:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
+Sun Mar 15 15:50:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/schemas/canonical_claim_schema.json
+Sun Mar 15 15:50:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/schemas/canonical_claim_schema.ts
+Sun Mar 15 15:50:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/libs/validators/canonicalValidator.js
