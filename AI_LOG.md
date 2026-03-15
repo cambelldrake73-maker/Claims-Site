@@ -1926,3 +1926,5 @@ Sun Mar 15 16:01:11 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/cl
 Sun Mar 15 16:01:11 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/services/edi_formatter/edi_formatter.js
 Sun Mar 15 16:04:21 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
 Sun Mar 15 16:04:21 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
+Sun Mar 15 16:04:21 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/claim_normalization/normalize.js
+Sun Mar 15 16:04:21 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/configs/normalization-mapping.yaml
