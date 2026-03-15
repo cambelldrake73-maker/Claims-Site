@@ -1821,3 +1821,6 @@ Sun Mar 15 15:50:02 PDT 2026: Skipped protected file /Users/cambelldrake/.opencl
 Sun Mar 15 15:50:02 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/interface.js
 Sun Mar 15 15:50:02 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/rules_adapter.js
 Sun Mar 15 15:50:02 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/contract.json
+Sun Mar 15 15:50:02 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/clearinghouse_adapter_framework/adapters/abstract_adapter.js
+Sun Mar 15 15:50:02 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/clearinghouse_adapter_framework/adapters/mock_clearinghouse_adapter.js
+Sun Mar 15 15:50:02 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/edi_formatter/edi_formatter.js
