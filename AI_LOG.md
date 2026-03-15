@@ -1775,3 +1775,7 @@ Fri Mar 13 20:32:06 PDT 2026: Completed task - implement payer_rule_engine
 Fri Mar 13 20:32:06 PDT 2026: Completed task - implement payer_rule_engine
 Fri Mar 13 20:32:07 PDT 2026: Completed task - implement payer_rule_engine
 Fri Mar 13 21:09:37 PDT 2026: Skipped protected file dashboard.html
+Sun Mar 15 15:44:20 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
+Sun Mar 15 15:44:20 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
+Sun Mar 15 15:44:20 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/job_queue/workers/claim_ingest_worker.js
+Sun Mar 15 15:44:20 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/tests/integration/parser_to_normalization.test.js

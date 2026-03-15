@@ -80,7 +80,7 @@ is_protected() {
 # SIMPLE EXECUTION ENGINE
 ########################################
 
-mkdir -p services schemas libs db/migrations tests/integration contracts config workers adapters models
+mkdir -p services schemas libs db/migrations tests/integration contracts config configs workers adapters models clients
 
 LOWER=$(echo "$TASK" | tr '[:upper:]' '[:lower:]')
 
@@ -105,44 +105,18 @@ create_file_if_missing() {
     fi
 }
 
-append_if_missing() {
-    TARGET="$1"
-    CONTENT="$2"
-
-    DIRNAME=$(dirname "$TARGET")
-    mkdir -p "$DIRNAME"
-
-    if is_protected "$TARGET"; then
-        echo "Skipping protected file: $TARGET"
-        echo "$(date): Skipped protected file $TARGET" >> "$LOG"
-        return
-    fi
-
-    touch "$TARGET"
-
-    if ! grep -Fqx "$CONTENT" "$TARGET" 2>/dev/null; then
-        printf "%s\n" "$CONTENT" >> "$TARGET"
-        echo "$(date): Appended to $TARGET" >> "$LOG"
-    else
-        echo "$(date): Already present in $TARGET" >> "$LOG"
-    fi
-}
-
 # ---------------------------
-# CREATE TASKS
+# PARSER ROUTER
 # ---------------------------
-
-if [[ "$LOWER" == create* ]]; then
-
-    if [[ "$TASK" == *"services/parser_router"* ]]; then
-        create_file_if_missing "$WORKSPACE/services/parser_router/index.js" \
+if [[ "$LOWER" == *"parser_router"* ]] || [[ "$LOWER" == *"parser router"* ]]; then
+    create_file_if_missing "$WORKSPACE/services/parser_router/index.js" \
 "module.exports = {
   async parseClaimBundle(bundleId) {
     throw new Error('parseClaimBundle not implemented yet');
   }
 };"
 
-        create_file_if_missing "$WORKSPACE/services/parser_router/contracts.md" \
+    create_file_if_missing "$WORKSPACE/services/parser_router/contracts.md" \
 "# Parser Router Contract
 
 Input:
@@ -155,71 +129,13 @@ Output:
 - parsedClaimRecords array
 - sourceDocumentIds
 "
-    fi
-
-    if [[ "$TASK" == *"services/claim_deduplication/deduper.js"* ]]; then
-        create_file_if_missing "$WORKSPACE/services/claim_deduplication/deduper.js" \
-"module.exports = {
-  async deduplicateClaim(canonicalClaim) {
-    return { isDuplicate: false, existingClaimId: null };
-  }
-};"
-    fi
-
-    if [[ "$TASK" == *"services/correction_suggestion_engine/interface.js"* ]]; then
-        create_file_if_missing "$WORKSPACE/services/correction_suggestion_engine/interface.js" \
-"module.exports = {
-  suggestCorrections(canonicalClaim, denialClassification) {
-    return [];
-  }
-};"
-
-        create_file_if_missing "$WORKSPACE/services/correction_suggestion_engine/rules_adapter.js" \
-"module.exports = {
-  suggestCorrections(canonicalClaim, denialClassification) {
-    return [];
-  }
-};"
-
-        create_file_if_missing "$WORKSPACE/services/correction_suggestion_engine/contract.json" \
-'{
-  "type": "object",
-  "properties": {
-    "field": {"type": "string"},
-    "suggestedValue": {},
-    "confidence": {"type": "number"},
-    "rationale": {"type": "string"}
-  }
-}'
-    fi
-
-    if [[ "$TASK" == *"services/clearinghouse_adapter_framework"* ]]; then
-        create_file_if_missing "$WORKSPACE/services/clearinghouse_adapter_framework/adapters/abstract_adapter.js" \
-"class AbstractAdapter {
-  async submitClaim(formattedEdi, metadata) {
-    throw new Error('submitClaim not implemented');
-  }
-}
-module.exports = AbstractAdapter;"
-
-        create_file_if_missing "$WORKSPACE/services/clearinghouse_adapter_framework/adapters/mock_clearinghouse_adapter.js" \
-"module.exports = {
-  async submitClaim(formattedEdi, metadata) {
-    return { submissionId: 'mock-submission-id', status: 'accepted' };
-  }
-};"
-    fi
-
 fi
 
 # ---------------------------
-# ADD TASKS
+# CANONICAL CLAIM SCHEMA
 # ---------------------------
-
-if [[ "$LOWER" == add* ]]; then
-
-    if [[ "$TASK" == *"canonical_claim_schema"* ]]; then
-        create_file_if_missing "$WORKSPACE/schemas/canonical_claim_schema.json" \
+if [[ "$LOWER" == *"canonical_claim_schema"* ]] || [[ "$LOWER" == *"canonical claim schema"* ]]; then
+    create_file_if_missing "$WORKSPACE/schemas/canonical_claim_schema.json" \
 '{
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "CanonicalClaimSchema",
@@ -234,7 +150,7 @@ if [[ "$LOWER" == add* ]]; then
   }
 }'
 
-        create_file_if_missing "$WORKSPACE/schemas/canonical_claim_schema.ts" \
+    create_file_if_missing "$WORKSPACE/schemas/canonical_claim_schema.ts" \
 "export interface CanonicalClaimSchema {
   patient?: Record<string, unknown>;
   provider?: Record<string, unknown>;
@@ -244,52 +160,19 @@ if [[ "$LOWER" == add* ]]; then
   provenance?: Record<string, unknown>;
 }"
 
-        create_file_if_missing "$WORKSPACE/libs/validators/canonicalValidator.js" \
-"const fs = require('fs');
-
-function validate(schemaName, payload) {
+    create_file_if_missing "$WORKSPACE/libs/validators/canonicalValidator.js" \
+"function validate(schemaName, payload) {
   return { valid: true, errors: [] };
 }
 
 module.exports = { validate };"
-    fi
-
-    if [[ "$TASK" == *"db/migrations/20260315_create_claims_table.sql"* ]]; then
-        create_file_if_missing "$WORKSPACE/db/migrations/20260315_create_claims_table.sql" \
-"CREATE TABLE IF NOT EXISTS claims (
-  canonical_id TEXT PRIMARY KEY,
-  source_id TEXT,
-  patient_hash TEXT,
-  status TEXT,
-  last_event_id TEXT,
-  recoverability_score NUMERIC
-);"
-
-        create_file_if_missing "$WORKSPACE/models/Claim.js" \
-"module.exports = class Claim {
-  constructor(fields = {}) {
-    Object.assign(this, fields);
-  }
-};"
-
-        create_file_if_missing "$WORKSPACE/services/claim_repo.js" \
-"module.exports = {
-  async create(data) { return data; },
-  async update(id, data) { return { id, ...data }; },
-  async get(id) { return { id }; }
-};"
-    fi
-
 fi
 
 # ---------------------------
-# IMPLEMENT TASKS
+# CLAIM NORMALIZATION
 # ---------------------------
-
-if [[ "$LOWER" == implement* ]]; then
-
-    if [[ "$TASK" == *"claim_normalization"* ]]; then
-        create_file_if_missing "$WORKSPACE/services/claim_normalization/normalize.js" \
+if [[ "$LOWER" == *"claim_normalization"* ]] || [[ "$LOWER" == *"claim normalization"* ]]; then
+    create_file_if_missing "$WORKSPACE/services/claim_normalization/normalize.js" \
 "const { validate } = require('../../libs/validators/canonicalValidator');
 
 async function normalizeParsedRecord(parsedRecord) {
@@ -300,52 +183,148 @@ async function normalizeParsedRecord(parsedRecord) {
 
 module.exports = { normalizeParsedRecord };"
 
-        create_file_if_missing "$WORKSPACE/configs/normalization-mapping.yaml" \
+    create_file_if_missing "$WORKSPACE/configs/normalization-mapping.yaml" \
 "mappings:
   patient_id: patient.id
   provider_id: provider.id
   denial_code: denialCodes[]"
-    fi
+fi
 
-    if [[ "$TASK" == *"denial_intelligence_engine"* ]]; then
-        create_file_if_missing "$WORKSPACE/services/denial_intelligence_engine/knowledgebase/loaders.js" \
+# ---------------------------
+# CLAIM DEDUPLICATION
+# ---------------------------
+if [[ "$LOWER" == *"claim_deduplication"* ]] || [[ "$LOWER" == *"claim deduplication"* ]] || [[ "$LOWER" == *"deduper.js"* ]]; then
+    create_file_if_missing "$WORKSPACE/services/claim_deduplication/deduper.js" \
+"module.exports = {
+  async deduplicateClaim(canonicalClaim) {
+    return { isDuplicate: false, existingClaimId: null };
+  }
+};"
+
+    create_file_if_missing "$WORKSPACE/db/migrations/2026_03_create_claim_fingerprints.sql" \
+"CREATE TABLE IF NOT EXISTS claim_fingerprints (
+  fingerprint TEXT PRIMARY KEY,
+  canonical_claim_id TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);"
+fi
+
+# ---------------------------
+# CLAIMS PERSISTENCE
+# ---------------------------
+if [[ "$LOWER" == *"create_claims_table.sql"* ]] || [[ "$LOWER" == *"persistence model for claims"* ]] || [[ "$LOWER" == *"models/claim.js"* ]]; then
+    create_file_if_missing "$WORKSPACE/db/migrations/20260315_create_claims_table.sql" \
+"CREATE TABLE IF NOT EXISTS claims (
+  canonical_id TEXT PRIMARY KEY,
+  source_id TEXT,
+  patient_hash TEXT,
+  status TEXT,
+  last_event_id TEXT,
+  recoverability_score NUMERIC
+);"
+
+    create_file_if_missing "$WORKSPACE/models/Claim.js" \
+"module.exports = class Claim {
+  constructor(fields = {}) {
+    Object.assign(this, fields);
+  }
+};"
+
+    create_file_if_missing "$WORKSPACE/services/claim_repo.js" \
+"module.exports = {
+  async create(data) { return data; },
+  async update(id, data) { return { id, ...data }; },
+  async get(id) { return { id }; }
+};"
+fi
+
+# ---------------------------
+# DENIAL INTELLIGENCE
+# ---------------------------
+if [[ "$LOWER" == *"denial_intelligence_engine"* ]] || [[ "$LOWER" == *"denial intelligence engine"* ]] || [[ "$LOWER" == *"denial_reason_classifier"* ]] || [[ "$LOWER" == *"denial reason classifier"* ]]; then
+    create_file_if_missing "$WORKSPACE/services/denial_intelligence_engine/knowledgebase/loaders.js" \
 "module.exports = {
   async loadDenialCodes() {
     return [];
   }
 };"
 
-        create_file_if_missing "$WORKSPACE/services/denial_intelligence_engine/classifier/api.js" \
+    create_file_if_missing "$WORKSPACE/services/denial_intelligence_engine/classifier/api.js" \
 "module.exports = {
   classifyDenial(denialCode, context = {}) {
     return { category: 'unknown', recoverabilityScore: 0.0, suggestedCorrectionTypes: [] };
   }
 };"
 
-        create_file_if_missing "$WORKSPACE/services/denial_intelligence_engine/rules/denial_rules.js" \
+    create_file_if_missing "$WORKSPACE/services/denial_intelligence_engine/rules/denial_rules.js" \
 "module.exports = [];"
 
-        create_file_if_missing "$WORKSPACE/services/denial_intelligence_engine/fixtures/denial_codes_sample.csv" \
+    create_file_if_missing "$WORKSPACE/services/denial_intelligence_engine/fixtures/denial_codes_sample.csv" \
 "code,category,recoverabilityScore
 CO-16,missing_information,0.8"
-    fi
+fi
 
-    if [[ "$TASK" == *"edi_formatter"* ]]; then
-        create_file_if_missing "$WORKSPACE/services/edi_formatter/edi_formatter.js" \
+# ---------------------------
+# CORRECTION SUGGESTION ENGINE
+# ---------------------------
+if [[ "$LOWER" == *"correction_suggestion_engine"* ]] || [[ "$LOWER" == *"correction suggestion engine"* ]]; then
+    create_file_if_missing "$WORKSPACE/services/correction_suggestion_engine/interface.js" \
+"module.exports = {
+  suggestCorrections(canonicalClaim, denialClassification) {
+    return [];
+  }
+};"
+
+    create_file_if_missing "$WORKSPACE/services/correction_suggestion_engine/rules_adapter.js" \
+"module.exports = {
+  suggestCorrections(canonicalClaim, denialClassification) {
+    return [];
+  }
+};"
+
+    create_file_if_missing "$WORKSPACE/services/correction_suggestion_engine/contract.json" \
+'{
+  "type": "object",
+  "properties": {
+    "field": {"type": "string"},
+    "suggestedValue": {},
+    "confidence": {"type": "number"},
+    "rationale": {"type": "string"}
+  }
+}'
+fi
+
+# ---------------------------
+# CLEARINGHOUSE + EDI FORMATTER
+# ---------------------------
+if [[ "$LOWER" == *"clearinghouse_adapter_framework"* ]] || [[ "$LOWER" == *"clearinghouse adapter framework"* ]] || [[ "$LOWER" == *"edi_formatter"* ]] || [[ "$LOWER" == *"edi formatter"* ]]; then
+    create_file_if_missing "$WORKSPACE/services/clearinghouse_adapter_framework/adapters/abstract_adapter.js" \
+"class AbstractAdapter {
+  async submitClaim(formattedEdi, metadata) {
+    throw new Error('submitClaim not implemented');
+  }
+}
+module.exports = AbstractAdapter;"
+
+    create_file_if_missing "$WORKSPACE/services/clearinghouse_adapter_framework/adapters/mock_clearinghouse_adapter.js" \
+"module.exports = {
+  async submitClaim(formattedEdi, metadata) {
+    return { submissionId: 'mock-submission-id', status: 'accepted' };
+  }
+};"
+
+    create_file_if_missing "$WORKSPACE/services/edi_formatter/edi_formatter.js" \
 "module.exports = {
   formatTo837(canonicalClaim, options = {}) {
     return { segments: ['ISA','GS','ST','SE','GE','IEA'], claim: canonicalClaim, options };
   }
 };"
-    fi
-
 fi
 
 # ---------------------------
-# WIRE TASKS
+# JOB QUEUE / ORCHESTRATION / WIRE TASKS
 # ---------------------------
-
-if [[ "$LOWER" == wire* ]]; then
+if [[ "$LOWER" == wire* ]] || [[ "$LOWER" == *"job orchestration"* ]] || [[ "$LOWER" == *"claim_ingest_worker.js"* ]] || [[ "$LOWER" == *"job_queue"* ]] || [[ "$LOWER" == *"job queue"* ]]; then
     create_file_if_missing "$WORKSPACE/services/job_queue/workers/claim_ingest_worker.js" \
 "const { normalizeParsedRecord } = require('../../claim_normalization/normalize');
 
