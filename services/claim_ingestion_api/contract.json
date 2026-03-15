@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "bundleId": { "type": "string" },
+    "source": { "type": "string" },
+    "niche": { "type": "string" }
+  },
+  "required": ["bundleId"]
+}

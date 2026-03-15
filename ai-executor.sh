@@ -62,6 +62,7 @@ echo "$TASK" >> "$RUNNING"
 ########################################
 is_protected() {
     TARGET="$1"
+    REL_TARGET="${TARGET#$WORKSPACE/}"
 
     if [ -f "$PROTECTED" ]; then
         while IFS= read -r LINE
@@ -71,11 +72,10 @@ is_protected() {
                 continue
             fi
 
-            # only match real path segments
-            if [[ "$TARGET" == */"$LINE"/* ]] || [[ "$TARGET" == */"$LINE" ]]; then
+            # compare only relative paths inside the workspace
+            if [[ "$REL_TARGET" == "$LINE" ]] || [[ "$REL_TARGET" == "$LINE/"* ]]; then
                 return 0
             fi
-
         done < "$PROTECTED"
     fi
 

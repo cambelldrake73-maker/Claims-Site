@@ -1852,3 +1852,4 @@
 - Add clearinghouse_adapter_framework adapter interface in adapters/clearinghouse/adapter_interface.ts and implement a sandbox adapter adapters/clearinghouse/sandbox_adapter.ts that accepts EDI 837 payloads, a submission_status_tracker persistence schema (schemas/submissions.sql), and a mock submission worker workers/clearinghouse_submit_worker.ts that writes submission events to submission_status_tracker.
 - Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
 - Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
+- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
