@@ -1,1 +1,2 @@
 - Create services/document_storage module with persistence model documents table (id, owner_id, path, s3_key, mime_type, checksum, encrypted boolean, created_at) and API function storeDocument(fileMeta) that returns document id; do not modify protected directories.
+- Create services/document_storage module with persistence model documents table (id, owner_id, path, s3_key, mime_type, checksum, encrypted boolean, created_at) and API function storeDocument(fileMeta) that returns document id; do not modify protected directories.

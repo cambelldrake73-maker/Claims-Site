@@ -1956,3 +1956,8 @@ Sun Mar 15 16:04:22 PDT 2026: Exists already /Users/cambelldrake/.openclaw/works
 Sun Mar 15 16:04:22 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/configs/normalization-mapping.yaml
 Sun Mar 15 16:04:22 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/job_queue/workers/claim_ingest_worker.js
 Sun Mar 15 16:04:22 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/tests/integration/parser_to_normalization.test.js
+Sun Mar 15 16:20:42 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/services/document_storage/index.js
+Sun Mar 15 16:20:42 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/db/migrations/20260316_create_documents_table.sql
+Sun Mar 15 16:20:42 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/models/Document.js
+Sun Mar 15 16:20:42 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/services/document_storage/README.md
+Sun Mar 15 16:20:42 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/tests/document_storage.test.js

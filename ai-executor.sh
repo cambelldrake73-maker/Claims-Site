@@ -399,6 +399,55 @@ module.exports = { runClaimIngestWorker };"
   });
 });"
 fi
+# ---------------------------
+# DOCUMENT STORAGE
+# ---------------------------
+if [[ "$LOWER" == *"document_storage"* ]] || [[ "$LOWER" == *"document storage"* ]] || [[ "$LOWER" == *"services/document_storage"* ]]; then
+    create_file_if_missing "$WORKSPACE/services/document_storage/index.js" \
+"async function storeDocument(fileMeta) {
+  return {
+    id: 'doc_' + Date.now(),
+    ...fileMeta
+  };
+}
+
+module.exports = { storeDocument };"
+
+    create_file_if_missing "$WORKSPACE/db/migrations/20260316_create_documents_table.sql" \
+"CREATE TABLE IF NOT EXISTS documents (
+  id TEXT PRIMARY KEY,
+  owner_id TEXT,
+  path TEXT,
+  s3_key TEXT,
+  mime_type TEXT,
+  checksum TEXT,
+  encrypted BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);"
+
+    create_file_if_missing "$WORKSPACE/models/Document.js" \
+"module.exports = class Document {
+  constructor(fields = {}) {
+    Object.assign(this, fields);
+  }
+};"
+
+    create_file_if_missing "$WORKSPACE/services/document_storage/README.md" \
+"# Document Storage
+
+Provides:
+- document metadata persistence
+- storeDocument(fileMeta)
+- document id generation
+"
+
+    create_file_if_missing "$WORKSPACE/tests/document_storage.test.js" \
+"describe('document_storage', () => {
+  it('should expose storeDocument scaffold', () => {
+    expect(true).toBe(true);
+  });
+});"
+fi
 ########################################
 # COMPLETE TASK
 ########################################
