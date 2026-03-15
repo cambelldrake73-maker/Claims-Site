@@ -1781,3 +1781,7 @@ Sun Mar 15 15:44:20 PDT 2026: Skipped protected file /Users/cambelldrake/.opencl
 Sun Mar 15 15:44:20 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/tests/integration/parser_to_normalization.test.js
 Sun Mar 15 15:44:43 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
 Sun Mar 15 15:44:43 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
+Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
+Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
+Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/services/claim_normalization/normalize.js
+Sun Mar 15 15:45:01 PDT 2026: Skipped protected file /Users/cambelldrake/.openclaw/workspace/claims-site/configs/normalization-mapping.yaml
