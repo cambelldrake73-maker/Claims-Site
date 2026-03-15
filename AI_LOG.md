@@ -1864,3 +1864,10 @@ Sun Mar 15 15:54:54 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/cl
 Sun Mar 15 15:54:54 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/contract.json
 Sun Mar 15 15:54:54 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/services/job_queue/workers/claim_ingest_worker.js
 Sun Mar 15 15:54:54 PDT 2026: Created /Users/cambelldrake/.openclaw/workspace/claims-site/tests/integration/parser_to_normalization.test.js
+Sun Mar 15 15:54:54 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
+Sun Mar 15 15:54:54 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
+Sun Mar 15 15:54:54 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/claim_normalization/normalize.js
+Sun Mar 15 15:54:54 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/configs/normalization-mapping.yaml
+Sun Mar 15 15:54:54 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/interface.js
+Sun Mar 15 15:54:54 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/rules_adapter.js
+Sun Mar 15 15:54:54 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/contract.json
