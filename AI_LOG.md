@@ -1903,3 +1903,7 @@ Sun Mar 15 16:01:11 PDT 2026: Exists already /Users/cambelldrake/.openclaw/works
 Sun Mar 15 16:01:11 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/claim_ingestion_api/Dockerfile
 Sun Mar 15 16:01:11 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/claim_ingestion_api/README.md
 Sun Mar 15 16:01:11 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/tests/claim_ingestion_api.test.js
+Sun Mar 15 16:01:11 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
+Sun Mar 15 16:01:11 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
+Sun Mar 15 16:01:11 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/job_queue/workers/claim_ingest_worker.js
+Sun Mar 15 16:01:11 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/tests/integration/parser_to_normalization.test.js
