@@ -1934,3 +1934,7 @@ Sun Mar 15 16:04:21 PDT 2026: Exists already /Users/cambelldrake/.openclaw/works
 Sun Mar 15 16:04:21 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/configs/normalization-mapping.yaml
 Sun Mar 15 16:04:21 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/job_queue/workers/claim_ingest_worker.js
 Sun Mar 15 16:04:21 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/tests/integration/parser_to_normalization.test.js
+Sun Mar 15 16:04:22 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/denial_intelligence_engine/knowledgebase/loaders.js
+Sun Mar 15 16:04:22 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/denial_intelligence_engine/classifier/api.js
+Sun Mar 15 16:04:22 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/denial_intelligence_engine/rules/denial_rules.js
+Sun Mar 15 16:04:22 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/denial_intelligence_engine/fixtures/denial_codes_sample.csv
