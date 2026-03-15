@@ -1,1 +1,2 @@
 - Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
+- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.

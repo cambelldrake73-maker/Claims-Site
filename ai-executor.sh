@@ -109,7 +109,60 @@ create_file_if_missing() {
         echo "$(date): Exists already $TARGET" >> "$LOG"
     fi
 }
+# ---------------------------
+# CLAIM INGESTION API
+# ---------------------------
+if [[ "$LOWER" == *"claim_ingestion_api"* ]] || [[ "$LOWER" == *"claim ingestion api"* ]] || [[ "$LOWER" == *"services/claim_ingestion_api"* ]]; then
+    create_file_if_missing "$WORKSPACE/services/claim_ingestion_api/index.js" \
+"const express = require('express');
+const router = express.Router();
 
+router.post('/ingest', async (req, res) => {
+  return res.status(501).json({ message: 'claim ingestion not implemented yet' });
+});
+
+module.exports = router;"
+
+    create_file_if_missing "$WORKSPACE/services/claim_ingestion_api/contract.json" \
+'{
+  "type": "object",
+  "properties": {
+    "bundleId": { "type": "string" },
+    "source": { "type": "string" },
+    "niche": { "type": "string" }
+  },
+  "required": ["bundleId"]
+}'
+
+    create_file_if_missing "$WORKSPACE/services/claim_ingestion_api/validator.js" \
+"function validateIngestRequest(payload) {
+  return { valid: true, errors: [] };
+}
+
+module.exports = { validateIngestRequest };"
+
+    create_file_if_missing "$WORKSPACE/services/claim_ingestion_api/Dockerfile" \
+"FROM node:20-alpine
+WORKDIR /app
+COPY . .
+CMD [\"node\", \"index.js\"]"
+
+    create_file_if_missing "$WORKSPACE/services/claim_ingestion_api/README.md" \
+"# Claim Ingestion API
+
+POST /ingest
+- accepts claim bundle metadata
+- validates request payload
+- forwards for downstream processing
+"
+
+    create_file_if_missing "$WORKSPACE/tests/claim_ingestion_api.test.js" \
+"describe('claim_ingestion_api', () => {
+  it('should expose ingest route scaffold', () => {
+    expect(true).toBe(true);
+  });
+});"
+fi
 # ---------------------------
 # PARSER ROUTER
 # ---------------------------
