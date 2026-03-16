@@ -40,48 +40,77 @@ if echo "$TASK" | grep -iq "dashboard"; then
 
     echo "AI modifying dashboard..."
 
-    echo "" >> dashboard.html
-    echo "<!-- AI improvement: dashboard spacing -->" >> dashboard.html
-    echo "<style> .panel{margin-bottom:30px;} </style>" >> dashboard.html
+    if ! grep -q "AI improvement: dashboard spacing" dashboard.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: dashboard spacing -->"
+            echo "<style> .panel{margin-bottom:30px;} </style>"
+        } >> dashboard.html
+    else
+        echo "Dashboard improvement already present."
+    fi
 
 elif echo "$TASK" | grep -iq "login"; then
 
     echo "AI modifying login page..."
 
-    echo "" >> login.html
-    echo "<!-- AI improvement: login alignment -->" >> login.html
-    echo "<style> .login-form{max-width:420px;margin:40px auto;} </style>" >> login.html
+    if ! grep -q "AI improvement: login alignment" login.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: login alignment -->"
+            echo "<style> .login-form{max-width:420px;margin:40px auto;} </style>"
+        } >> login.html
+    else
+        echo "Login improvement already present."
+    fi
 
 elif echo "$TASK" | grep -iq "sidebar"; then
 
     echo "AI modifying dashboard sidebar..."
 
-    echo "" >> dashboard.html
-    echo "<!-- AI improvement: sidebar spacing -->" >> dashboard.html
-    echo "<style> .sidebar a{display:block;padding:12px 16px;} </style>" >> dashboard.html
+    if ! grep -q "AI improvement: sidebar spacing" dashboard.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: sidebar spacing -->"
+            echo "<style> .sidebar a{display:block;padding:12px 16px;} </style>"
+        } >> dashboard.html
+    else
+        echo "Sidebar improvement already present."
+    fi
 
 elif echo "$TASK" | grep -iq "status badges"; then
 
     echo "AI modifying claims page for status badges..."
 
-    echo "" >> claims.html
-    echo "<!-- AI improvement: claim status badges -->" >> claims.html
-    echo "<style> .status-badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600;} </style>" >> claims.html
+    if ! grep -q "AI improvement: claim status badges" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: claim status badges -->"
+            echo "<style> .status-badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600;} </style>"
+        } >> claims.html
+    else
+        echo "Status badge improvement already present."
+    fi
 
 elif echo "$TASK" | grep -iq "filtering"; then
 
     echo "AI modifying claims page for filtering..."
 
-    echo "" >> claims.html
-    echo "<!-- AI improvement: claims filtering controls -->" >> claims.html
-    echo "<div class=\"claims-filter-bar\">Filter controls placeholder</div>" >> claims.html
+    if ! grep -q "AI improvement: claims filtering controls" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: claims filtering controls -->"
+            echo "<div class=\"claims-filter-bar\">Filter controls placeholder</div>"
+        } >> claims.html
+    else
+        echo "Filtering controls already present."
+    fi
 
 else
 
     echo "No safe file action matched task."
 
 fi
-
 echo "Logging work..."
 
 echo "$(date): Completed task $TASK" >> "$LOG"
