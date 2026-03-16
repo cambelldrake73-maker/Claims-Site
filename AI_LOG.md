@@ -2049,3 +2049,6 @@ Sun Mar 15 21:21:52 PDT 2026: Exists already /Users/cambelldrake/.openclaw/works
 Sun Mar 15 21:21:52 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/edi_formatter/edi_formatter.js
 Sun Mar 15 21:22:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
 Sun Mar 15 21:22:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
+Sun Mar 15 21:22:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/schemas/canonical_claim_schema.json
+Sun Mar 15 21:22:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/schemas/canonical_claim_schema.ts
+Sun Mar 15 21:22:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/libs/validators/canonicalValidator.js
