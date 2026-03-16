@@ -28825,3 +28825,10 @@
 - Improve sidebar navigation spacing
 - Add status badges to claims table
 - Improve login form UI alignment
+- Add filtering to claims table
+- Improve login form UI alignment
+- Improve sidebar navigation spacing
+- Add status badges to claims table
+- Improve dashboard layout responsiveness
+- Improve dashboard layout responsiveness
+- Add filtering to claims table
