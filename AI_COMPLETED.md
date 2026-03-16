@@ -10846,3 +10846,4 @@
 - Add filtering to claims table
 - Improve dashboard layout responsiveness
 - Improve sidebar navigation spacing
+- Improve login form UI alignment
