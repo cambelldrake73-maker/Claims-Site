@@ -11548,3 +11548,4 @@
 - Improve login form UI alignment
 - Improve sidebar navigation spacing
 - Add status badges to claims table
+- Add filtering to claims table
