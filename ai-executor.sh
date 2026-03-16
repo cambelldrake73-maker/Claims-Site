@@ -182,8 +182,25 @@ else
     echo "No safe file action matched task."
 
 fi
-echo "Logging work..."
+# Stage only safe files (prevent backend deletion)
+git add dashboard.html *.html *.css *.js ai-executor.sh services 2>/dev/null
 
+# Abort if protected files were deleted
+if git diff --cached --name-status | grep -E "^D\s+(services/|package.json|agent-worker.sh|ai-executor.sh)"; then
+    echo "Protected file deletion detected. Aborting commit."
+    git reset
+    exit 1
+fi
+
+# Skip completion if nothing actually changed
+if git diff --cached --quiet; then
+    echo "No staged changes; task not completed."
+    sed -i '' "/$TASK/d" "$RUNNING"
+    echo "$(date): No-op task $TASK" >> "$LOG"
+    exit 0
+fi
+
+echo "Logging work..."
 echo "$(date): Completed task $TASK" >> "$LOG"
 
 sleep 2
@@ -191,18 +208,5 @@ sleep 2
 sed -i '' "/$TASK/d" "$RUNNING"
 echo "$TASK" >> "$COMPLETED"
 
-# Stage only safe files (prevent backend deletion)
-git add dashboard.html *.html *.css *.js ai-executor.sh services/**/*.js services/*.js 2>/dev/null
-# Abort if protected files were deleted
-if git diff --cached --name-status | grep -E "^D\s+(services/|package.json|agent-worker.sh|ai-executor.sh)"; then
-    echo "Protected file deletion detected. Aborting commit."
-    git reset
-    exit 1
-fi
-# Skip commit if nothing actually changed
-if git diff --cached --quiet; then
-    echo "No staged changes; task already satisfied."
-    exit 0
-fi
 git commit -m "AI task completed: $TASK" 2>/dev/null
 echo "Task completed."
