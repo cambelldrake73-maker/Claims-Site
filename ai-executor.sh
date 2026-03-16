@@ -36,8 +36,7 @@ echo "- Identify files to modify" >> "$PLAN"
 echo "- Apply safe improvement" >> "$PLAN"
 echo "" >> "$PLAN"
 # SAFE TASK ACTIONS
-if echo "$TASK" | grep -iq "dashboard"; then
-
+if echo "$TASK" | grep -iq "improve dashboard layout responsiveness"; then
     echo "AI modifying dashboard..."
 
     if ! grep -q "AI improvement: dashboard spacing" dashboard.html; then
@@ -299,7 +298,32 @@ elif echo "$TASK" | grep -iq "dashboard summary metrics"; then
     else
         echo "Dashboard summary metrics already present."
     fi
+elif echo "$TASK" | grep -iq "basic review queue page scaffolding"; then
 
+    echo "AI creating review queue page scaffolding..."
+
+    if [ ! -f review-queue.html ]; then
+        cat > review-queue.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Queue</title>
+  <link rel="stylesheet" href="design-system.css">
+</head>
+<body>
+  <div class="page">
+    <h1>Review Queue</h1>
+    <p>Claims awaiting manual review will appear here.</p>
+    <div class="review-queue-list"></div>
+  </div>
+</body>
+</html>
+EOF
+    else
+        echo "Review queue page scaffolding already present."
+    fi
 else
     echo "No safe file action matched task."
 fi
