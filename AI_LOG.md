@@ -537,3 +537,5 @@ Sun Mar 15 23:22:33 PDT 2026: Completed task - Improve dashboard layout responsi
 Sun Mar 15 23:22:36 PDT 2026: Completed task - Improve sidebar navigation spacing
 Sun Mar 15 23:22:36 PDT 2026: Completed task - Improve login form UI alignment
 Sun Mar 15 23:22:39 PDT 2026: Completed task - Add status badges to claims table
+Sun Mar 15 23:22:42 PDT 2026: Completed task - Add filtering to claims table
+Sun Mar 15 23:22:43 PDT 2026: Completed task - Improve dashboard layout responsiveness
