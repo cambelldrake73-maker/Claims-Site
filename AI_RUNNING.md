@@ -1,2 +1,3 @@
-- Add status badges to claims table
-- Add status badges to claims table
+- Improve sidebar navigation spacing
+- Improve login form UI alignment
+- Improve login form UI alignment
