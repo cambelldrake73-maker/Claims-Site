@@ -19721,3 +19721,4 @@
 - Add status badges to claims table
 - Add filtering to claims table
 - Improve dashboard layout responsiveness
+- Improve sidebar navigation spacing
