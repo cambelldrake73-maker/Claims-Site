@@ -191,7 +191,68 @@ elif echo "$TASK" | grep -iq "top navigation consistency"; then
     else
         echo "Top navigation already consistent."
     fi
+elif echo "$TASK" | grep -iq "claims table column sorting"; then
 
+    echo "AI adding claims table column sorting..."
+
+    if ! grep -q "AI improvement: claims column sorting" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: claims column sorting -->"
+            echo "<script>"
+            echo "document.addEventListener('DOMContentLoaded', () => {"
+            echo "  const table = document.querySelector('table');"
+            echo "  if (!table) return;"
+            echo "  const headers = table.querySelectorAll('th');"
+            echo "  headers.forEach((header, index) => {"
+            echo "    header.addEventListener('click', () => {"
+            echo "      const tbody = table.querySelector('tbody');"
+            echo "      if (!tbody) return;"
+            echo "      const rows = Array.from(tbody.querySelectorAll('tr'));"
+            echo "      rows.sort((a, b) => a.children[index].innerText.localeCompare(b.children[index].innerText));"
+            echo "      rows.forEach(row => tbody.appendChild(row));"
+            echo "    });"
+            echo "  });"
+            echo "});"
+            echo "</script>"
+        } >> claims.html
+    else
+        echo "Claims column sorting already present."
+    fi
+
+elif echo "$TASK" | grep -iq "claims table empty state"; then
+
+    echo "AI adding claims table empty state UI..."
+
+    if ! grep -q "AI improvement: claims empty state" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: claims empty state -->"
+            echo "<div class=\"claims-empty-state\">No claims available.</div>"
+            echo "<style>.claims-empty-state{padding:24px;text-align:center;color:#6b7280;font-style:italic;}</style>"
+        } >> claims.html
+    else
+        echo "Claims empty state already present."
+    fi
+
+elif echo "$TASK" | grep -iq "mobile layout improvements to claims page"; then
+
+    echo "AI adding mobile layout improvements to claims page..."
+
+    if ! grep -q "AI improvement: mobile claims layout" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: mobile claims layout -->"
+            echo "<style>"
+            echo "@media (max-width: 768px) {"
+            echo "  table { display:block; overflow-x:auto; white-space:nowrap; }"
+            echo "  .claims-filter-bar { display:flex; flex-direction:column; gap:8px; }"
+            echo "}"
+            echo "</style>"
+        } >> claims.html
+    else
+        echo "Mobile claims layout already present."
+    fi
 elif echo "$TASK" | grep -iq "claims.*api.*endpoint"; then
 
     echo "AI creating claims list API endpoint..."
