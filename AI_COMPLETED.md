@@ -42127,3 +42127,5 @@
 - Improve sidebar navigation spacing
 - Add filtering to claims table
 - Add status badges to claims table
+- Improve dashboard layout responsiveness
+- Improve sidebar navigation spacing
