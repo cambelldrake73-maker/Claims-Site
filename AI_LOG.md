@@ -1995,3 +1995,7 @@ Sun Mar 15 20:37:37 PDT 2026: Exists already /Users/cambelldrake/.openclaw/works
 Sun Mar 15 20:37:37 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/configs/normalization-mapping.yaml
 Sun Mar 15 20:37:37 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/claim_deduplication/deduper.js
 Sun Mar 15 20:37:37 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/db/migrations/2026_03_create_claim_fingerprints.sql
+Sun Mar 15 20:44:17 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
+Sun Mar 15 20:44:17 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
+Sun Mar 15 20:44:17 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/job_queue/workers/claim_ingest_worker.js
+Sun Mar 15 20:44:17 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/tests/integration/parser_to_normalization.test.js
