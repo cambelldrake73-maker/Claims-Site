@@ -1,1 +1,0 @@
-- Add submission_status_tracker persistence schema (db/models/submission_status.ts) and implement services/submission_status_tracker/index.ts with APIs to record submission_attempts, external_correlation_id, status_history, last_updated; add a small endpoint POST /submission-status/update in claims_dashboard_api scaffolding to accept status updates from clearinghouse adapters.
