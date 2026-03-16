@@ -670,3 +670,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
+<!-- AI improvement: claims loading state -->
+<div class="claims-loading-state" style="display:none;">Loading claims...</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const loading = document.querySelector('.claims-loading-state');
+  if (loading) loading.style.display = 'block';
+  window.addEventListener('load', () => {
+    if (loading) loading.style.display = 'none';
+  });
+});
+</script>
