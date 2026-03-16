@@ -1,0 +1,1 @@
+- Improve sidebar navigation spacing
