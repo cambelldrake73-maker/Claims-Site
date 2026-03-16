@@ -1,5 +1,13 @@
 #!/bin/bash
+LOCKFILE="/tmp/openclaw_worker.lock"
 
+if [ -f "$LOCKFILE" ]; then
+    echo "Another OpenClaw worker is active. Exiting."
+    exit 0
+fi
+
+touch "$LOCKFILE"
+trap "rm -f $LOCKFILE" EXIT
 WORKSPACE="$HOME/.openclaw/workspace/claims-site"
 
 cd "$WORKSPACE"
@@ -107,25 +115,21 @@ QUEUE_SIZE=$(grep -c "^-" "$WORKSPACE/AI_PENDING.md" 2>/dev/null || echo 0)
     fi
 
 fi
-
 # ---------------------------
-# EXECUTE TASK BATCH
+# EXECUTE SINGLE TASK
 # ---------------------------
 
-echo "Executing task batch..."
+echo "Executing one task..."
 
-for i in {1..20}
-do
-    if [ -s "$WORKSPACE/AI_PENDING.md" ]; then
-        bash "$WORKSPACE/ai-executor.sh"
-    else
-        echo "No tasks remaining."
-        bash ~/.openclaw/workspace/claims-site/update-architecture-memory.sh
-        break
-    fi
+if [ -s "$WORKSPACE/AI_PENDING.md" ]; then
+    bash "$WORKSPACE/ai-executor.sh"
+else
+    echo "No tasks remaining."
+    bash "$WORKSPACE/update-architecture-memory.sh"
+fi
 done
 
-echo "Sleeping 3 minutes..."
-sleep 180
+echo "Sleeping 30 seconds..."
+sleep 30
 
 done
