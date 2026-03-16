@@ -638,3 +638,19 @@ renderClaims();
 .status-pending_review{background:#fef3c7;color:#92400e;}
 .status-paid{background:#dcfce7;color:#166534;}
 </style>
+
+<!-- AI improvement: claim row click navigation -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const rows = document.querySelectorAll('table tbody tr');
+  rows.forEach(row => {
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', () => {
+      const idCell = row.querySelector('td');
+      if (!idCell) return;
+      const claimId = idCell.innerText.trim();
+      window.location.href = 'claim-detail.html?id=' + encodeURIComponent(claimId);
+    });
+  });
+});
+</script>
