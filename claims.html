@@ -620,3 +620,13 @@
 
 <!-- AI improvement: claim status badges -->
 <style> .status-badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600;} </style>
+
+<!-- AI improvement: render fetched claim rows -->
+<script>
+async function renderClaims(){
+  const res = await fetch('/api/claims');
+  const data = await res.json();
+  console.log('Render claim rows:', data.claims);
+}
+renderClaims();
+</script>
