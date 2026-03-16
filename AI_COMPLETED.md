@@ -8250,3 +8250,4 @@
 - Add filtering to claims table
 - Improve login form UI alignment
 - Improve login form UI alignment
+- Add status badges to claims table
