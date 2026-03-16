@@ -20,21 +20,21 @@ if grep -qE '^- ' "$PENDING"; then
     exit 0
 fi
 
-# rebuild pending header cleanly
+# rebuild pending cleanly
 echo "# Pending Tasks" > "$PENDING"
 
-# if suggestions exist, convert only NEW suggestions into tasks
+# if suggestions exist, convert only new suggestions into tasks
 if [ -f "$SUGGESTIONS" ]; then
     while IFS= read -r task; do
         # only process markdown bullet tasks
         if echo "$task" | grep -qE '^- '; then
             # skip if task already completed
-            if grep -Fxq "$task" "$COMPLETED"; then
+            if grep -Fxq -- "$task" "$COMPLETED"; then
                 continue
             fi
 
             # skip if task already in pending
-            if grep -Fxq "$task" "$PENDING"; then
+            if grep -Fxq -- "$task" "$PENDING"; then
                 continue
             fi
 
