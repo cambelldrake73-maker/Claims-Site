@@ -1969,3 +1969,8 @@ Sun Mar 15 20:33:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/works
 Sun Mar 15 20:33:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/tests/claim_ingestion_api.test.js
 Sun Mar 15 20:33:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
 Sun Mar 15 20:33:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
+Sun Mar 15 20:33:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/schemas/canonical_claim_schema.json
+Sun Mar 15 20:33:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/schemas/canonical_claim_schema.ts
+Sun Mar 15 20:33:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/libs/validators/canonicalValidator.js
+Sun Mar 15 20:33:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/claim_normalization/normalize.js
+Sun Mar 15 20:33:02 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/configs/normalization-mapping.yaml
