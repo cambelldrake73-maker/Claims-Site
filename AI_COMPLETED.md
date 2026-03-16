@@ -21134,3 +21134,4 @@
 - Improve sidebar navigation spacing
 - Improve login form UI alignment
 - Improve dashboard layout responsiveness
+- Add status badges to claims table
