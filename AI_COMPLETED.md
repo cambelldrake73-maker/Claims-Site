@@ -13821,3 +13821,4 @@
 - Improve sidebar navigation spacing
 - Improve sidebar navigation spacing
 - Improve dashboard layout responsiveness
+- Add filtering to claims table
