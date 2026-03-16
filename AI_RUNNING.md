@@ -1,3 +1,0 @@
-- Add status badges to claims table
-- Add status badges to claims table
-- Improve login form UI alignment
