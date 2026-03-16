@@ -25,6 +25,13 @@ bash ai-task-maker.sh
 echo "Checking for tasks..."
 bash ai-executor.sh
 
+# Auto-push if too many local commits are ahead of GitHub
+COMMITS_AHEAD=$(git rev-list --count origin/ai-dev..HEAD 2>/dev/null)
+
+if [ -n "$COMMITS_AHEAD" ] && [ "$COMMITS_AHEAD" -gt 50 ]; then
+    echo "Pushing $COMMITS_AHEAD commits to GitHub..."
+    git push origin ai-dev
+fi
 echo "Sleeping 30 seconds..."
 sleep 30
 
