@@ -1378,3 +1378,9 @@ Task: - Add status badges to claims table
 - Identify files to modify
 - Apply safe improvement
 
+
+Task: - Add filtering to claims table
+- Analyze project structure
+- Identify files to modify
+- Apply safe improvement
+
