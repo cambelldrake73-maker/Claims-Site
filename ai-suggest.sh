@@ -39,22 +39,23 @@ add_suggestion() {
 }
 
 # Frontend suggestions
-add_suggestion "- Improve dashboard layout responsiveness"
-add_suggestion "- Improve sidebar navigation spacing"
-add_suggestion "- Improve login form UI alignment"
-add_suggestion "- Add status badges to claims table"
-add_suggestion "- Add filtering to claims table"
+add_suggestion "- Add claims table column sorting"
+add_suggestion "- Add claims table empty state UI"
+add_suggestion "- Add mobile layout improvements to claims page"
+add_suggestion "- Add top navigation consistency across pages"
+add_suggestion "- Add dashboard quick action buttons"
 
 # Backend / product suggestions
 if [ -d "services" ]; then
-    add_suggestion "- Connect claims table to backend data"
-    add_suggestion "- Add claim search endpoint"
-    add_suggestion "- Add claim status API wiring"
-    add_suggestion "- Add denial reason display to claims page"
-    add_suggestion "- Build claim review workflow UI"
-    add_suggestion "- Add upload-to-parser flow for submitted claims"
-    add_suggestion "- Add claim detail page scaffolding"
-    add_suggestion "- Add reporting summary cards to dashboard"
+    add_suggestion "- Add claims list API endpoint"
+    add_suggestion "- Add mock claims JSON response for frontend wiring"
+    add_suggestion "- Wire claims page to render fetched claim rows"
+    add_suggestion "- Add claim status color mapping logic"
+    add_suggestion "- Add denial reason field to mock claim payloads"
+    add_suggestion "- Add claim detail HTML page scaffolding"
+    add_suggestion "- Add claim detail route placeholder"
+    add_suggestion "- Add upload form submission handler for submitted claims"
+    add_suggestion "- Add dashboard summary metrics from mock claims data"
+    add_suggestion "- Add basic review queue page scaffolding"
 fi
-
 echo "Suggestions refreshed."
