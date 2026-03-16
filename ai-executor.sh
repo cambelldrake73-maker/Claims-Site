@@ -493,6 +493,62 @@ elif echo "$TASK" | grep -iq "hide claims empty state when claim rows exist"; th
     else
         echo "Claims empty state hide logic already present."
     fi
+elif echo "$TASK" | grep -iq "loading state to claims page"; then
+
+    echo "AI adding loading state to claims page..."
+
+    if ! grep -q "AI improvement: claims loading state" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: claims loading state -->"
+            echo "<div class=\"claims-loading-state\" style=\"display:none;\">Loading claims...</div>"
+            echo "<script>"
+            echo "document.addEventListener('DOMContentLoaded', () => {"
+            echo "  const loading = document.querySelector('.claims-loading-state');"
+            echo "  if (loading) loading.style.display = 'block';"
+            echo "  window.addEventListener('load', () => {"
+            echo "    if (loading) loading.style.display = 'none';"
+            echo "  });"
+            echo "});"
+            echo "</script>"
+        } >> claims.html
+    else
+        echo "Claims loading state already present."
+    fi
+
+elif echo "$TASK" | grep -iq "style dashboard summary metric cards"; then
+
+    echo "AI styling dashboard summary metric cards..."
+
+    if ! grep -q "AI improvement: dashboard metric card styling" dashboard.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: dashboard metric card styling -->"
+            echo "<style>"
+            echo ".summary-metrics{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px;}"
+            echo ".metric-card{padding:16px 20px;border-radius:12px;background:#f8fafc;border:1px solid #e5e7eb;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.05);}"
+            echo "</style>"
+        } >> dashboard.html
+    else
+        echo "Dashboard metric card styling already present."
+    fi
+
+elif echo "$TASK" | grep -iq "review queue item styling"; then
+
+    echo "AI styling review queue items..."
+
+    if ! grep -q "AI improvement: review queue item styling" review-queue.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: review queue item styling -->"
+            echo "<style>"
+            echo ".review-queue-list{display:flex;flex-direction:column;gap:12px;margin-top:20px;}"
+            echo ".queue-item{padding:14px 16px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;box-shadow:0 1px 2px rgba(0,0,0,0.04);}"
+            echo "</style>"
+        } >> review-queue.html
+    else
+        echo "Review queue item styling already present."
+    fi
 else
     echo "No safe file action matched task."
 fi
