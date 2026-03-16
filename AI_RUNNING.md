@@ -1,4 +1,2 @@
 - Add filtering to claims table
-- Improve sidebar navigation spacing
 - Add filtering to claims table
-- Improve sidebar navigation spacing
