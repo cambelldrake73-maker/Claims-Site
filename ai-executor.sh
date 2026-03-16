@@ -128,6 +128,10 @@ if git diff --cached --name-status | grep -E "^D\s+(services/|package.json|agent
     git reset
     exit 1
 fi
-
+# Skip commit if nothing actually changed
+if git diff --cached --quiet; then
+    echo "No staged changes; task already satisfied."
+    exit 0
+fi
 git commit -m "AI task completed: $TASK" 2>/dev/null
 echo "Task completed."
