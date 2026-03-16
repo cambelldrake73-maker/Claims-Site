@@ -1,3 +1,1 @@
 - Improve dashboard layout responsiveness
-- Improve dashboard layout responsiveness
-- Add status badges to claims table
