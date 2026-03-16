@@ -135,3 +135,15 @@
   </script>
 </body>
 </html>
+
+<!-- AI improvement: upload submission handler -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('form');
+  if(!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log('Submitted claims upload placeholder');
+  });
+});
+</script>
