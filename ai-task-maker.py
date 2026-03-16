@@ -44,6 +44,18 @@ def service_family(text: str) -> str:
             "claim normalization", "claim_normalization", "normalizeclaim", "normalize claim",
             "normalization worker", "services/claim_normalization"
         ]),
+        ("document_storage", [
+            "document storage", "document_storage", "storedocument"
+        ]),
+
+        ("claim_bundle_validator", [
+            "claim bundle validator", "claim_bundle_validator"
+        ]),
+
+        ("denial_reason_classifier", [
+            "denial reason classifier", "denial_reason_classifier"
+        ]),
+
         ("claim_deduplication", [
             "claim deduplication", "claim_deduplication", "deduper", "deduplication", "claim fingerprint"
         ]),
@@ -112,6 +124,15 @@ def service_family(text: str) -> str:
             return family
 
     # fallback: collapse leading verbs so wording changes don't matter as much
+    t = re.sub(r"^(implement|create|add|build|wire|scaffold|design|develop|deliver)\s+", "", t)
+
+    # collapse microservice / service wording
+    t = re.sub(r"\b(microservice|service|module|system|engine)\b", "", t)
+
+    # collapse whitespace again
+    t = re.sub(r"\s+", " ", t).strip()
+
+    return t
     t = re.sub(r"^(implement|create|add|build|wire|scaffold)\s+", "", t)
     return t
 
@@ -122,11 +143,15 @@ def collect_families(text: str) -> set[str]:
         if line:
             families.add(service_family(line))
     return families
-
-completed_families = collect_families(completed.read_text())
-implemented_families = collect_families(arch_memory.read_text())
+def collect_exact_tasks(text: str) -> set[str]:
+    tasks = set()
+    for line in text.splitlines():
+        line = line.strip()
+        if line.startswith("- "):
+            tasks.add(normalize(line))
+    return tasks
+completed_tasks = collect_exact_tasks(completed.read_text())
 queued_families = collect_families(pending.read_text())
-
 matches = []
 seen = set()
 
@@ -139,15 +164,12 @@ for raw in suggestions.read_text().splitlines():
 
     if not family:
         continue
-    if family in completed_families:
-        continue
-    if family in implemented_families:
+    if normalize(raw) in completed_tasks:
         continue
     if family in queued_families:
         continue
     if family in seen:
         continue
-
     seen.add(family)
     matches.append(raw)
 

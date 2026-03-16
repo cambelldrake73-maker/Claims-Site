@@ -1,1889 +1,414 @@
-- Improve dashboard layout spacing
-- Improve dashboard layout responsiveness
-- Improve sidebar navigation spacing
-- Improve login form UI alignment
-- Add status badges to claims table
-- Add filtering to claims table
-- Improve dashboard layout responsiveness
-- Improve sidebar navigation spacing
-- Improve login form UI alignment
-- Add status badges to claims table
-- Add filtering to claims table
-- Improve dashboard layout responsiveness
-- Improve sidebar navigation spacing
-- Improve login form UI alignment
-- Add status badges to claims table
-- Add filtering to claims table
-- Improve dashboard layout responsiveness
-- Improve sidebar navigation spacing
-- Improve login form UI alignment
-- Add status badges to claims table
-- Add filtering to claims table
-- Improve dashboard layout responsiveness
-- Improve sidebar navigation spacing
-- Improve login form UI alignment
-- Add status badges to claims table
-- Add filtering to claims table
-- Improve dashboard layout responsiveness
-- Improve sidebar navigation spacing
-- Improve login form UI alignment
-- Add status badges to claims table
-- Add filtering to claims table
     "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-    "message": "x-api-key header is required"
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off mid-function
-- Add a hover tooltip showing the full nav link label when the sidebar is in its collapsed 56px state
-- Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
-- Standardize sidebar CSS across all pages into a single shared stylesheet to reduce duplication
-- Add a visible icon or SVG next to each sidebar nav-link so collapsed sidebar still communicates page identity without relying solely on the dot indicator
-- Replace the `::before` dot placeholder in collapsed sidebar with recognizable single-letter or icon abbreviations for each nav item
-- Add a smooth rotation animation to the sidebar-tab arrow in `submit-claims.html` to match the behavior already implemented in `agreements.html`
-- Fix missing `accountButton.setAttribute('aria-expanded', 'false')` reset in the `submit-claims.html` document click listener where the script appears cut off
-- Add `transition` property to `.nav-link` in `submit-claims.html` to match the hover transition already present in `agreements.html` and `claims.html`
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
-- Standardize the `sidebar-tab` button arrow indicator so it rotates on pin state in `submit-claims.html` the same way `agreements.html` handles it
-- Add `resize: vertical` to all `textarea` elements across pages for consistent behavior
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing the closing `aria-expanded` reset and `});` statements
-- Add hover and focus styles to form inputs and selects across all pages for better interactive feedback
-- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
-- Add a character counter or max-length attribute to the `textarea` fields in `submit-claims.html` and `contact.html`
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the closing `aria-expanded` reset and `});`
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Standardize the `sidebar-tab` toggle arrow indicator so it rotates 180° when pinned across all pages (currently missing in `submit-claims.html`)
-- Fix truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute('aria-expanded', 'false')` and Escape key listener are missing compared to other pages
 - Add `aria-expanded` reset and Escape key handler to `submit-claims.html` account menu script to match `agreements.html` behavior
-- Add spinning/rotation transition to sidebar tab arrow in `submit-claims.html` to match `agreements.html` pinned state indicator
+- Add `aria-expanded` reset to `false` in the account menu close handler in submit-claims.html to match agreements.html behavior
 - Add `display:flex; align-items:center; justify-content:center; padding:0;` to `.sidebar-tab` in `submit-claims.html` to match `agreements.html` styling
 - Add `font-size:14px` to `.account-button` in `submit-claims.html` to match other pages
-- Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates destination without hover
-- Fix the truncated JavaScript in submit-claims.html where the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
-- Add a loading/disabled state to the Submit Claim button after form submission to prevent double-clicks
-- Add a character counter below the Notes textarea in submit-claims.html
-- Increase the collapsed sidebar width slightly or add tooltips on nav links so users know where each link leads without expanding
-- Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates navigation options without text
-- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
-- Add a loading/disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Make the `savedNotice` span in `submit-claims.html` auto-hide after a few seconds using a CSS transition or `setTimeout`
-- Add a pin/unpin visual indicator to the sidebar-tab button so users understand its toggle function (e.g., rotate arrow icon like `agreements.html` already does, but `submit-claims.html` is missing this)
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Standardize the `sidebar-tab` button arrow indicator so it rotates 180° when pinned, matching the behavior in `agreements.html` but missing in `submit-claims.html`
-- Add hover transition effects to the table rows in `agreements.html` for better visual feedback
-- Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
-- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
-- Add `aria-expanded` reset to `false` in the account menu close handler in submit-claims.html to match agreements.html behavior
 - Add `keydown` Escape key listener to close the account dropdown in submit-claims.html to match agreements.html behavior
-- Add transition animation to the sidebar tab arrow indicator (rotate on pin) in submit-claims.html to match agreements.html behavior
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Add a transition animation to the `savedNotice` element in `submit-claims.html` instead of an abrupt display change
-- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'...)` block is cut off, missing the closing `aria-expanded` reset and Escape key handler
-- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
-- Standardize sidebar CSS across all pages into a shared stylesheet to reduce code duplication
-- Add a smooth transition animation to the `savedNotice` element in `submit-claims.html` instead of abruptly showing it
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
-- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
-- Add a loading or disabled state to the Submit Claim button after the form is submitted to prevent duplicate clicks
-- Add consistent focus ring styles across all input, select, textarea, and button elements for keyboard navigation visibility
-- Add a visible icon (SVG or emoji) to each sidebar nav link to improve scanability when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` handler is cut off and missing closing braces
-- Add a hover tooltip showing the nav link label when the sidebar is in collapsed state
-- Increase the sidebar collapse/expand tab button size for easier clicking on touch devices
-- Add a focus-visible outline style to all interactive elements (buttons, links, inputs) for keyboard navigation visibility
-- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
-- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Add `resize: vertical` to all `textarea` elements across pages for consistent behavior
+- Add `transition` property to `.nav-link` in `submit-claims.html` to match the hover transition already present in `agreements.html` and `claims.html`
+- Add a character counter below the Notes textarea in submit-claims.html
+- Add a character counter or max-length attribute to the `textarea` fields in `submit-claims.html` and `contact.html`
 - Add a focus-visible outline style to all interactive elements (buttons, links, inputs) for keyboard navigation accessibility
+- Add a focus-visible outline style to all interactive elements (buttons, links, inputs) for keyboard navigation visibility
+- Add a focus-visible outline style to all interactive elements for keyboard navigation visibility
+- Add a hover state color transition to the `.btn.primary` and `.btn.secondary` buttons in `submit-claims.html`
 - Add a hover state color transition to the `btn.primary` and `btn.secondary` buttons in `submit-claims.html`
+- Add a hover tooltip showing the full nav link label when the sidebar is in its collapsed 56px state
+- Add a hover tooltip showing the nav link label when the sidebar is in collapsed state
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent double-clicks
+- Add a loading or disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Add a loading or disabled state to the Submit Claim button after the form is submitted to prevent duplicate clicks
+- Add a loading/disabled state to the Submit Claim button after form submission to prevent double-clicks
+- Add a loading/disabled state to the Submit Claim button after form submission to prevent duplicate clicks
+- Add a pin/unpin visual indicator to the sidebar-tab button so users understand its toggle function (e.g., rotate arrow icon like `agreements.html` already does, but `submit-claims.html` is missing this)
+- Add a smooth rotation animation to the sidebar-tab arrow in `submit-claims.html` to match the behavior already implemented in `agreements.html`
+- Add a smooth transition animation to the `savedNotice` element in `submit-claims.html` instead of abruptly showing it
+- Add a transition animation to the `savedNotice` element in `submit-claims.html` instead of an abrupt display change
+- Add a visible icon (SVG or emoji) to each sidebar nav link to improve scanability when the sidebar is collapsed
+- Add a visible icon or SVG next to each sidebar nav-link so collapsed sidebar still communicates page identity without relying solely on the dot indicator
+- Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates destination without hover
+- Add a visible icon or symbol to each sidebar nav link so the collapsed sidebar (56px) still communicates navigation options without text
+- Add a visible icon or symbol to each sidebar nav link to improve navigation clarity when the sidebar is collapsed
+- Add a visible icon or symbol to each sidebar nav link to improve scannability when the sidebar is collapsed
+- Add audit logging for authentication events
+- Add authentication middleware
+- Add canonical schema files in schemas/canonical_claim_schema.json and schemas/claim_normalization.schema.json plus AJV-based validators in services/canonical_claim_schema/validator.ts; include field-level types for PHI and data classification tags.
+- Add canonical schema files under schemas/canonical_claim/v1 with JSON Schema and TypeScript/Go models (canonical_claim.schema.json, canonical_claim.model.ts/.go) and implement a validator module canonical_validator that is callable from claim_normalization.
+- Add canonical schema files under sectors/healthcare/schemas/canonical_claim_v1.json and sectors/healthcare/schemas/claim_bundle_v1.json plus AJV validation module libs/validators/healthcare-schemas.js and integrate these validators into services/parser_router to validate parser output before enqueueing normalization.
+- Add canonical_claim_schema JSON Schema files under schemas/canonical/healthcare/claim.schema.json and an AJV-based validator utility services/validators/canonicalValidator.js; wire validator into parser_router to validate parsed claims before enqueueing.
+- Add canonical_claim_schema to schemas/canonical_claim.v1.json and implement a JSON Schema validator utility services/schema_registry/validator.js; wire validator into claim_ingestion_api to validate parsed claims before enqueueing.
+- Add canonical_claim_schema: create schemas/canonical_claim.v1.json (JSON Schema) and a TypeScript model claims/models/canonicalClaim.ts plus a AJV-based validator claims/validators/canonicalClaimValidator.ts; wire validator into parser_router to validate ParserResult before downstream enqueue.
 - Add character counter or max-length indicator to the Notes textarea in `submit-claims.html`
-- Create a database schema and migration scripts (Postgres recommended) for claims, claim_events, users, roles, audit_logs (immutable), documents_metadata, payers, invoices, and report_jobs.
-- Implement authentication using OAuth2 / OpenID Connect with short-lived JWTs and refresh tokens; store refresh tokens securely and enforce secure cookie flags.
-- Implement an append-only audit logging system that records actor, action, resource, timestamp, and before/after state; persist audit logs in a write-optimized store (separate DB table/index).
-- Create a secure document access microservice that issues signed, time-limited URLs for files in protected directories and logs every access without modifying the files.
-- Introduce background job processing (Redis + Bull or RabbitMQ) with retry policies and idempotent tasks for long-running workflows (appeals, claim resubmissions, report generation).
-- Create auth service folder
-- Add login API endpoint
-- Implement JWT signing utility
-- Add authentication middleware
-- Add login API endpoint
-- Add migration scripts
-- Add RBAC permission checks
-- Create auth service folder
-- Create database schema file
-- Define claim_events table structure
-- Define claims table structure
-- Define patients table structure
-- Implement JWT signing utility
-- Add authentication middleware
-- Add login API endpoint
-- Add migration scripts
-- Add RBAC permission checks
-- Create auth service folder
-- Create database schema file
-- Define claim_events table structure
-- Define claims table structure
-- Define patients table structure
-- Implement JWT signing utility
-- Create monitoring service folder
-- Implement monitoring system
-- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
-- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
-- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
-- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
-- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
-- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
-- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
-- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
-- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
-- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
-- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
-- Test task A
-- Test task B
-- Add authentication middleware
-- Add login API endpoint
-- Add migration scripts
-- Add RBAC permission checks
-- Create auth service folder
-- Create database schema file
-- Define claim_events table structure
-- Define claims table structure
-- Define patients table structure
-- Implement JWT signing utility
-- Implement centralized secrets and key management: deploy a KMS/HSM-backed secrets store with envelope encryption for PHI, automated key rotation and rotation policies, tenant-scoped keys, strict access controls, audit logging of key usage, and integration with CI/CD to remove hardcoded secrets (HIPAA-compliant encryption-at-rest and in-transit posture).
-- Add authentication middleware
-- Add login API endpoint
-- Add RBAC permission checks
-- Create auth service folder
-- Implement JWT signing utility
-- Add authentication middleware
-- Add login API endpoint
-- Add RBAC permission checks
-- Create auth service folder
-- Implement JWT signing utility
-- Add authentication middleware
-- Add login API endpoint
-- Add RBAC permission checks
-- Create auth service folder
-- Implement JWT signing utility
-- Add authentication middleware
-- Add login API endpoint
-- Add RBAC permission checks
-- Create auth service folder
-- Implement JWT signing utility
-- Add authentication middleware
-- Add document access logging
-- Add login API endpoint
-- Add migration scripts
-- Add RBAC permission checks
-- Create auth service folder
-- Create database schema file
-- Create document proxy API endpoint
-- Define claim_events table structure
-- Define claims table structure
-- Define patients table structure
-- Add authentication middleware
-- Add denial code reference table
-- Add login API endpoint
-- Add RBAC permission checks
-- Create auth service folder
-- Create claim ingestion service folder
-- Create claim review dashboard API
-- Implement claim normalization pipeline
-- Implement EDI 837 claim formatter
-- Implement JWT signing utility
-- Design and implement a resilient asynchronous claim processing pipeline: centralized job queue with idempotent workers, dead-letter queues, exponential-backoff retries, distributed tracing, per-job metrics, automated horizontal scaling, and end-to-end claim lifecycle event tracing.
-- Implement a secure Clearinghouse Integration & Compliance layer: EDI (837) validator/formatter, multi-adapter transactional gateway with sandbox test harness, KMS-backed encryption (at-rest/in-transit) and key rotation, strict RBAC/audit trails for submissions, and submission SLA monitoring/alerting.
-- Build an automated CI test harness and contract-testing pipeline: end-to-end integration tests for the claims parsing→correction→submission flow using synthetic HIPAA-safe data, adapter contract tests for clearinghouse/document/invoice proxies, and gated release pipelines to prevent regressions
-- Implement a resilient, idempotent asynchronous claim processing pipeline: central durable job queue (Redis/NSQ/SQS), idempotent worker patterns, dead-letter queues, exponential-backoff retries, per-job metrics, distributed tracing (OpenTelemetry), structured tracing/span propagation, DLQ alerting, and automated horizontal scaling rules.  
-- Build a secure Clearinghouse Integration & Compliance microservice: EDI (837) validator/formatter, multi-adapter transactional gateway with sandbox/test harness, KMS-backed encryption for at-rest/in-transit payloads, strict RBAC and immutable submission audit trails, submission retry/rollback semantics, and SLA/health monitoring.  
-- Implement a resilient Clearinghouse Integration & Submission Service (transactional adapter pattern with sandbox/production adapters, submission queue with DLQ and exponential backoff, KMS-backed encryption for in-transit/at-rest, immutable audit trails, per-submission distributed tracing/OpenTelemetry, and SLA/health monitoring)
-- Implement a resilient Clearinghouse Integration & Submission Service (transactional adapter pattern with sandbox/production adapters, submission queue with DLQ and exponential backoff, KMS-backed encryption for in-transit/at-rest, immutable audit trails, per-submission distributed tracing/OpenTelemetry, and SLA/health monitoring)
-- Implement a resilient Clearinghouse Integration & Submission Service (transactional adapter pattern with sandbox/production adapters, submission queue with DLQ and exponential backoff, KMS-backed encryption for in-transit/at-rest, immutable audit trails, per-submission distributed tracing/OpenTelemetry, and SLA/health monitoring)
-- Implement a resilient Clearinghouse Integration & Submission Service (transactional adapter pattern with sandbox/production adapters, submission queue with DLQ and exponential backoff, KMS-backed encryption for in-transit/at-rest, immutable audit trails, per-submission distributed tracing/OpenTelemetry, and SLA/health monitoring)
-- Add denial code reference table
-- Create claim ingestion service folder
-- Create claim review dashboard API
-- Implement claim normalization pipeline
-- Implement EDI 837 claim formatter
-- Design and implement a dedicated Claim Parsing Microservice: pluggable parsers for common claim formats, strict schema validation, idempotent processing, and unit/integration tests.  
-- Create a Claim Normalization Service and canonical data model: versioned normalization rules, transformers for disparate payer formats, and a mapping repository with automated tests.  
-- Implement a Claim Correction Suggestion Engine: generate proposed edits with confidence scores, human-in-the-loop review workflow, and immutable audit trail for all suggestions.  
-- Implement an EDI 837 Formatter & Validator microservice: X12 837 generation, schema/segment validation, automated test harness and sandbox mode for verifier clearinghouse integrations.  
-- Build a Clearinghouse Integration Gateway: transactional adapter pattern (sandbox/prod adapters), submission queue with retries/DLQ, idempotency keys, and per-submission audit/logging.  
-- Add authentication middleware
-- Add denial code reference table
-- Add login API endpoint
-- Add RBAC permission checks
-- Configure Redis connection
-- Create auth service folder
-- Create claim ingestion service folder
-- Create claim review dashboard API
-- Create jobs processing folder
-- Implement background worker service
-- Implement claim normalization pipeline
-- Implement EDI 837 claim formatter
-- Implement JWT signing utility
-- Add authentication middleware
-- Add denial code reference table
-- Add document access logging
-- Add login API endpoint
-- Add RBAC permission checks
-- Create auth service folder
-- Create claim ingestion service folder
-- Create claim review dashboard API
-- Create document proxy API endpoint
-- Implement claim normalization pipeline
-- Implement EDI 837 claim formatter
-- Implement JWT signing utility
-- Implement signed URL generation
-- Add denial code reference table
-- Create claim ingestion service folder
-- Create claim review dashboard API
-- Implement claim normalization pipeline
-- Implement EDI 837 claim formatter
 - Add claim processing unit tests
+- Add clearinghouse_adapter_framework adapter interface in adapters/clearinghouse/adapter_interface.ts and implement a sandbox adapter adapters/clearinghouse/sandbox_adapter.ts that accepts EDI 837 payloads, a submission_status_tracker persistence schema (schemas/submissions.sql), and a mock submission worker workers/clearinghouse_submit_worker.ts that writes submission events to submission_status_tracker.
+- Add consistent focus ring styles across all input, select, textarea, and button elements for keyboard navigation visibility
+- Add correction_suggestion_engine worker in workers/correction_suggestion_worker that consumes "claim.enrichment.requests", runs deterministic rule-based corrections via sectors/healthcare/rules/*.js, writes suggested corrections to suggestions table (suggestion_id, claim_id, suggested_changes, score, status), and enqueues to review queue "review.queue".
 - Add denial code reference table
-- Create claim ingestion service folder
-- Create claim review dashboard API
-- Implement claim event lifecycle tracking
-- Implement claim ingestion API endpoint
-- Implement claim normalization pipeline
-- Implement claim parsing adapters (EDI, CSV, API)
-- Implement claim validation and schema enforcement
-- Implement denial correction suggestion engine
-- Implement EDI 837 claim formatter
-- Add audit logging for authentication events
-- Add authentication middleware
-- Add claim processing unit tests
-- Add denial code reference table
+- Add denial_intelligence_engine base service scaffold: services/denial_intelligence_engine/index.ts, include interfaces denial/types.ts (DenialCode, DenialExplanation, RecoverabilityScore) and a local knowledgebase loader services/denial_intelligence_engine/knowledgebase.yml; add a lookup API suggestCorrections(claim, denialCodes) that returns candidate corrections (no ML yet).
+- Add denial_intelligence_engine folder services/denial_intelligence_engine with denial code knowledgebase loader (YAML/JSON), an HTTP API endpoint /denial/suggest that returns top-3 correction candidates, and a persistence table denial_knowledgebase.sql.
 - Add document access logging
 - Add document audit logging
+- Add filtering to claims table
+- Add hover and focus styles to form inputs and selects across all pages for better interactive feedback
+- Add hover transition effects to the table rows in `agreements.html` for better visual feedback
 - Add job processing metrics and monitoring
 - Add login API endpoint
+- Add migration scripts
+- Add parser_router module at services/parser_router/index.js that exposes route processParsed(fileBundle) and a plugin interface; include parser plugin loader (filesystem-based) and a TypeScript interface file for parser plugins in sectors/healthcare/parsers/.
+- Add parser_router module under services/parser_router with a pluggable parser registry interface (registerParser(niche, parser)), implement healthcare parser stub that emits normalized claim JSON events to a job_queue topic "claim.parse.requests", and add OpenAPI contract for parser output.
 - Add RBAC permission checks
+- Add review_workflow_service queue state and persistence: create services/review_workflow_service/queue.ts, db/models/ReviewTask.ts (task id, claim_id, suggestion_id, assignee_id, state, created_at, updated_at), REST scaffold services/review_workflow_service/api.ts exposing POST /review-tasks and PATCH /review-tasks/:id/state and integrate approval_queue_service hooks for approved tasks.
+- Add schema files for canonical_claim_schema under schemas/canonical_claim_schema.json and a TypeScript interface schemas/canonical_claim_schema.ts; include field-level types for patient, provider, claimItems, denialCodes, originalPayerResponse, and provenance metadata, and add a JSON Schema validator wrapper in libs/validators/canonicalValidator.js that other services can import.
+- Add schema_registry/schemas/canonical_claim_schema.json and canonical_claim_schema.ts validator: JSON Schema file for canonical claim, plus a validation module using the project's validator library (Ajv or pydantic). Wire schema_registry export to be importable by claim_normalization service.
+- Add services/claim_deduplication/ persistence model and worker: create DB migration file for claim_fingerprint table (claim_id, fingerprint, source, created_at), a dedupe service that computes fingerprint strategy (payer+patient+svc_date+amount), and a background worker scaffold that listens to parser_router outputs and inserts/marks duplicates.
+- Add services/claim_normalization module with an entrypoint normalizeParsedBundle(parsedBundle) which maps parser outputs to canonical_claim models, implements deduplication hints, and emits normalization events to job_queue; include persistence model for canonical_claims (migration + ORM model).
+- Add services/clearinghouse/edi_formatter adapter interface and one concrete implementation services/clearinghouse/edi_formatter/x12 with a formatter function formatTo837(canonicalClaim) that returns EDI payload + metadata; include unit tests validating field mapping against canonical_claim.schema.json.
+- Add services/correction_suggestion_engine: implement suggestCorrections(normalizedClaim):CorrectionSuggestion[] stub that calls denial_reason_classifier classifyDenial and payer_rule_engine lookup (create a payer_rule_engine client interface file clients/payer_rule_engine_client.ts) and persist suggestions to a new table correction_suggestions (migration SQL included).
+- Add services/correction_suggestion_engine/ scaffold with interface suggestCorrections(canonicalClaim): Promise<CorrectionSuggestion[]>; include rules engine integration point: load payer_rule_engine rules from a new config folder rules/payer_rules/{payer}.yaml and map denial codes from denial_knowledgebase to suggested correction templates.
+- Add services/denial_intelligence_engine folder with two concrete files: knowledgebase/denial_codes.yaml (seed 200 common denial codes with categories and suggested correction types) and engine/classifier_stub.js which exposes classifyDenial(denialCode, context) returning {category, recoverabilityScore, suggestedCorrectionTypes}. Include a small seed loader script to populate a DB collection denial_codes and automated tests.
+- Add services/denial_intelligence_engine/ folder with two concrete modules: denial_knowledgebase loader (sectors/healthcare/code_sets/denial_codes.csv -> libs/denial/loader.js) and a denial_classifier API endpoint POST /classify that returns denial_code, confidence, and recommended_rule_ids; include unit-test scaffold tests/denial_intelligence_engine/.
+- Add spinning/rotation transition to sidebar tab arrow in `submit-claims.html` to match `agreements.html` pinned state indicator
+- Add status badges to claims table
+- Add transition animation to the sidebar tab arrow indicator (rotate on pin) in submit-claims.html to match agreements.html behavior
 - Add worker health check endpoint
-- Configure Redis connection
-- Create auth service folder
-- Create authentication unit tests
-- Create claim ingestion service folder
-- Create claim review dashboard API
-- Create document proxy API endpoint
-- Create jobs processing folder
-- Implement authentication service configuration
-- Implement background worker service
-- Implement claim event lifecycle tracking
-- Implement claim ingestion API endpoint
-- Implement claim normalization pipeline
-- Implement claim parsing adapters (EDI, CSV, API)
-- Implement claim validation and schema enforcement
-- Implement dead letter queue handling
-- Implement denial correction suggestion engine
-- Implement document permission checks
-- Implement document storage metadata model
-- Implement EDI 837 claim formatter
-- Implement job queue retry logic
-- Implement JWT signing utility
-- Implement refresh token support
-- Implement role and permission models
-- Implement signed URL generation
-- Implement a dedicated Denial Code Knowledge Base service with versioned taxonomy, mapping rules, confidence scores, and update webhook support.
-- Build a Claim Normalization microservice to transform parsed claims into a canonical schema with field-level provenance and validation.
-- Create a Pluggable Parser Framework for claim ingestion supporting PDF/OCR, EDI 837, CSV, and payer-specific XML with parser registry and unit tests.
-- Develop a Claim Enrichment service to augment claims with external data (payer databases, provider NPI lookup, patient demographics) via secure connectors.
-- Implement a Claim Correction Suggestion Engine using rule-based transforms and ML model hooks that produce suggested edits with explainability metadata.
-- Implement Per-Field Encryption for PHI in the database using envelope encryption and KMS-backed keys with access controls and audit logging.
-- Create a Secure Audit Trail Service that captures immutable, tamper-evident logs for claim lifecycle events, access to PHI, and clearinghouse submissions (WORM storage + signed entries).
-- Develop a Token Exchange & Session Management service to support short-lived service tokens, refresh flows, and session revocation for integrations and workers.
-- Build a Claims Ingestion Orchestrator microservice that accepts uploaded claim bundles, performs schema routing, enqueues parsing jobs, and returns idempotency keys.
-- Implement a Pluggable Parser Framework (microservice) supporting PDFs, X12, CSV, and HL7 input formats with per-parser validation and parser sandboxing.
-- Design and implement a Secrets & Key Management service for rotating KMS-backed keys, envelope encryption orchestration, and limited-scope key access policies for microservices.
-- Build a PHI-aware Column-Level Encryption layer in the database access service with transparent encryption/decryption hooks and strict key usage logs.
-- Create a Secure Document Proxy microservice (separate from file storage) that issues short-lived, audited access tokens and enforces fine-grained access rules for PDF/claim document retrieval.
-- Implement a Data Access Audit Trail service that records all PHI read/write operations with immutable logs and support for retention/querying for compliance audits.
-- Develop a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas (with versioning and compatibility checks) used by parsers and normalization services.
-- Implement a Token Revocation Service for JWTs with immediate blacklist support and distributed cache propagation
-- Design and deploy a Secrets Management integration (HashiCorp Vault or AWS Secrets Manager) for service credentials and database passwords with automatic rotation
-- Build a Multi-Factor Authentication (MFA) enforcement microservice for sensitive admin actions and export operations
-- Implement End-to-End Encryption for queued claim payloads using envelope encryption and worker-side decryption keys
-- Create a Data Access Governance service that enforces field-level RBAC policies and generates policy evaluation logs for PHI access requests
-- Implement a Token Revocation Service with distributed blacklist propagation for immediate JWT invalidation (not already implemented).
-- Design and deploy a Secrets Management integration (HashiCorp Vault or cloud secrets) with automated secret rotation and audit hooks (not already implemented).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning and compatibility checks (not already implemented).
-- Implement Per-Field Access Control (field-level RBAC) enforcement service that intercepts DB reads and enforces policy evaluation logs (distinct from general Data Access Governance).
-- Create a Consent & Data Access Authorization service to manage clinic consents, data sharing scopes, and time-limited PHI access approvals.
-- Develop a Policy Engine for dynamic authorization rules (Rego/OPA integration) to evaluate sensitive actions (exports, reviewer access, clearinghouse submissions).
-- Implement end-to-end encrypted job payloads for the queue system with worker-side key access control and rotation separate from general envelope encryption.
-- Build a Secure Audit Log Service with immutable append-only storage (WORM), tamper-evident hashing, and retention policies for all PHI access and submission events.
-- Design and implement a Claim Lineage & Provenance service that tracks per-field provenance, transformation steps, and user approvals across the claim lifecycle.
-- Create a Claim Replay and Incident Debugging service that can re-run a claim through parsing/normalization/correction pipeline in a sandbox with versioned schema and test harness.
-- Implement a Denial Code Knowledgebase microservice: curated, versioned denial code mappings, payer-specific rules, and confidence scoring for correction suggestions.
-- Build a Correction Suggestion Orchestrator that consolidates signals from denial knowledgebase, historical fixes, and ML models to propose actionable claim edits with provenance.
-- Develop an ML Model Serving platform for denial prediction and recoverability scoring with A/B testing, feature store integration, and model explainability hooks.
-- Create an Idempotency & Deduplication Service for inbound claim bundles that generates and verifies idempotency keys across distributed ingestion points.
-- Implement a Pluggable Parser Router that routes incoming files to appropriate parser plugins (PDF OCR, EDI 837/835, CSV, JSON) with metadata-based routing and parser health checks.
-- Design a Payer Connector Framework with per-payer adapters, sandbox/prod toggles, rate-limiting, and retry semantics for external payer lookups and eligibility checks.
-- Implement a Transactional Clearinghouse Submission Orchestrator that coordinates EDI 837 submission, tracks transactional states, supports transactional rollback semantics, and stores immutable submission artifacts.
-- Build a Secure Document Access Broker service issuing short-lived signed URLs/tokens, with field-level masking and request-level audit for any PDF/document fetches (distinct from document proxy already implemented).
-- Create a Secure Data Export Service that enforces policy, anonymization/de-identification templates, and multi-approval flows before producing PHI-containing exports.
-- Implement End-to-End Distributed Tracing and Correlation service integration (OpenTelemetry full-trace pipeline, span propagation across jobs and microservices) with trace retention and sampling policies.
-- Develop a Per-Job Observability Dashboard backend: aggregated metrics, SLA monitoring, retry/DLQ stats, and automatic incident creation hooks for failing claim jobs.
-- Build an Automated Data Quality & Schema Validation pipeline: nightly profiling, anomaly detection on canonical claim fields, and alerting for schema drift.
-- Implement Multi-Region Data Replication and Disaster Recovery architecture for critical claim databases with automated failover playbooks
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints.
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service layer with evaluation logs and policy decision caching.
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances.
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas.
-- Implement a Data Access Governance service that centralizes policy evaluation and produces immutable policy decision logs for all PHI reads.
-- Create a Secure Document Access Broker that issues short-lived signed tokens for document fetches and supports fine-grained masking rules per-role.
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
-- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
-- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
-- Add audit logging for authentication events
-- Add authentication middleware
-- Add claim processing unit tests
-- Add denial code reference table
-- Add document access logging
-- Add document audit logging
-- Add job processing metrics and monitoring
-- Add login API endpoint
-- Add RBAC permission checks
-- Add worker health check endpoint
-- Configure Redis connection
-- Create auth service folder
-- Create authentication unit tests
-- Create claim ingestion service folder
-- Create claim review dashboard API
-- Create document proxy API endpoint
-- Create jobs processing folder
-- Implement authentication service configuration
-- Implement background worker service
-- Implement claim event lifecycle tracking
-- Implement claim ingestion API endpoint
-- Implement claim normalization pipeline
-- Implement claim parsing adapters (EDI, CSV, API)
-- Implement claim validation and schema enforcement
-- Implement dead letter queue handling
-- Implement denial correction suggestion engine
-- Implement document permission checks
-- Implement document storage metadata model
-- Implement EDI 837 claim formatter
-- Implement job queue retry logic
-- Implement JWT signing utility
-- Implement refresh token support
-- Implement role and permission models
-- Implement signed URL generation
-- Build a Token Revocation Service with distributed blacklist propagation and immediate JWT invalidation endpoints.
-- Create a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls.
-- Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and audit logs.
-- Develop a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service for dynamic authorization rules used by sensitive actions (exports, submissions, reviewer access).
-- Implement end-to-end encrypted job payloads for the job queue where payloads are envelope-encrypted and only authorized workers can decrypt.
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas.
-- Create a Claim Normalization microservice: transforms parsed claims into canonical schema with per-field provenance and validation hooks.
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation (distinct implementation from listed items).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (standalone service not already implemented).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with policy decision caching and audit logs (distinct from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with full audit trails.
-- Integrate an external Policy Engine (OPA/Rego) service for dynamic authorization rules used by submissions, exports, and sensitive-data actions.
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are envelope-encrypted and decrypted only by authorized worker instances (separate implementation from general envelope encryption).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Implement a Centralized Correction Suggestion Audit service to record suggestion provenance, model-versioning metadata, reviewer edits, and immutable approval trails.
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct implementation from those logged).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (standalone service not already implemented).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with policy decision caching and immutable evaluation logs (distinct from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, time-limited PHI access approvals, and consent audit trails.
-- Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation.
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and schema migration tooling.
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct implementation not in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (standalone service not already implemented).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with policy decision caching and immutable evaluation logs (distinct from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, time-limited PHI access approvals, and consent audit trails.
-- Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Implement end-to-end encrypted job payloads for the queuing system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation (distinct implementation).
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and schema migration tooling (separate implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWTs (distinct from existing notes).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (standalone implementation).
-- Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and immutable evaluation logs.
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, time-limited PHI access approvals, and full audit trails.
-- Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management for dynamic authorization rules used by sensitive actions.
-- Implement end-to-end encrypted job payload handling for the queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with rotation.
-- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Develop a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (new standalone implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not present in memory).
 - Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and a pub/sub schema rollout mechanism (new standalone implementation).
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (separate from general Data Access Governance).
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, and consent audit trails with revocation support.
-- Integrate an external Policy Engine service (OPA/Rego) with policy lifecycle management and a policy evaluation cache used by submission, export, and reviewer access flows.
-- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Design and implement a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Build a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and schema migration tooling (standalone).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (distinct from existing notes).
+- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
 - Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout.
-- Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and immutable evaluation logs.
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine service (OPA/Rego) with lifecycle management for dynamic authorization rules used by submissions, exports, reviewer access, and sensitive actions.
-- Implement end-to-end encrypted job payload handling for the job queue system using envelope encryption decrypted only by authorized worker instances with key rotation and attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Develop a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and schema migration tooling (standalone implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not present in memory)
 - Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub schema rollout
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs
-- Create a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails
-- Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management for dynamic authorization used by sensitive actions (submissions, exports, reviewer access)
-- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation
-- Design and build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls
-- Implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (standalone)
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
-- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout mechanism (standalone implementation).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
-- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
-- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
-- Build a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not in memory).
-- Create a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout.
-- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (standalone implementation).
-- Develop a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate a Policy Engine service (OPA/Rego) with policy lifecycle management for dynamic authorization rules used by submissions, exports, and sensitive actions.
-- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation (distinct implementation).
-- Design and implement a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
+- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (standalone implementation).
+- Build a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (standalone service not already implemented).
+- Build a Centralized Schema Registry microservice with versioning, compatibility checks, access controls, and pub/sub schema rollout (standalone implementation not previously completed).
+- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning and compatibility checks (not already implemented).
+- Build a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls (ensure this is implemented as a new standalone registry).
+- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
 - Build a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation).
-- Implement a Centralized Claim Signature & Provenance Service that cryptographically signs canonical claims and records immutable provenance metadata for audit and replay.
+- Build a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and schema migration tooling (standalone).
+- Build a Claim Normalization microservice to transform parsed claims into a canonical schema with field-level provenance and validation.
+- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
+- Build a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas.
+- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls
+- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
+- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
+- Build a Claims Ingestion Orchestrator microservice that accepts uploaded claim bundles, performs schema routing, enqueues parsing jobs, and returns idempotency keys.
+- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
+- Build a Clearinghouse Integration Gateway: transactional adapter pattern (sandbox/prod adapters), submission queue with retries/DLQ, idempotency keys, and per-submission audit/logging.  
+- build a correction suggestion engine and review workflow service pair (correction_suggestion_engine + review_workflow_service) that generate suggested corrections, score them, enqueue human review tasks into job_queue, and record decisions in audit_log_service.
+- Build a Correction Suggestion Orchestrator that consolidates signals from denial knowledgebase, historical fixes, and ML models to propose actionable claim edits with provenance.
+- build a denial intelligence engine including a denial knowledgebase and recoverability scoring microservice that subscribes to normalized claims, annotates denial reasons, suggests corrections, and integrates with correction_suggestion_engine and ml model serving endpoints
+- Build a Multi-Factor Authentication (MFA) enforcement microservice for sensitive admin actions and export operations
 - Build a Niche Router Authorization Adapter to enforce niche-specific RBAC and consent checks before routing uploads to healthcare pipelines.
-- Design and implement a Versioned Schema Migration Service that applies and validates schema changes across the Centralized Schema Registry and downstream services.
-- Create a Claim Deduplication Service using fingerprinting and fuzzy matching with an idempotency index to prevent duplicate processing across uploads.
-- Implement a High-Throughput Ingestion Gateway with pre-ingest validation, upload streaming, chunked upload support, and signed idempotency keys.
+- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
+- Build a PHI-aware Column-Level Encryption layer in the database access service with transparent encryption/decryption hooks and strict key usage logs.
 - Build a Pluggable Parser Sandbox Runner to execute and version parsers in isolated containers with resource limits and plugin lifecycle management.
-- Implement a Correction Suggestion Audit Trail service that stores proposed corrections, model inputs, and reviewer decisions for compliance and model retraining.
+- build a policy engine-backed access control layer (rbac/abac) that enforces field-level access to phi, ties into the authentication service and access_control registry, and emits auditable decisions to audit_log_service
+- build a schema registry service (single source of truth) for canonical_claim_schema, supporting versioned healthcare claim schemas, schema validation apis, and integration points for parser_router and claim_normalization.
+- Build a Secure Audit Log Service with immutable append-only storage (WORM), tamper-evident hashing, and retention policies for all PHI access and submission events.
+- Build a secure Clearinghouse Integration & Compliance microservice: EDI (837) validator/formatter, multi-adapter transactional gateway with sandbox/test harness, KMS-backed encryption for at-rest/in-transit payloads, strict RBAC and immutable submission audit trails, submission retry/rollback semantics, and SLA/health monitoring.  
+- Build a Secure Document Access Broker service issuing short-lived signed URLs/tokens, with field-level masking and request-level audit for any PDF/document fetches (distinct from document proxy already implemented).
+- Build a Token Revocation Service with distributed blacklist propagation and immediate JWT invalidation endpoints.
+- Build a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not in memory).
+- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
+- Build a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not present in memory)
+- Build an automated CI test harness and contract-testing pipeline: end-to-end integration tests for the claims parsing→correction→submission flow using synthetic HIPAA-safe data, adapter contract tests for clearinghouse/document/invoice proxies, and gated release pipelines to prevent regressions
+- Build an Automated Data Quality & Schema Validation pipeline: nightly profiling, anomaly detection on canonical claim fields, and alerting for schema drift.
 - Build an ML Feature Store and Batch Scoring Service for recoverability scoring with feature lineage, versioning, and offline/online access.
-- Implement a Centralized Schema Registry microservice with versioning, compatibility checks, access controls, and pub/sub schema rollout (standalone implementation not present in memory)
-- Build a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not present in memory)
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (separate from general Data Access Governance)
-- Develop a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails
-- Integrate a Policy Engine service (OPA/Rego) with policy lifecycle management for dynamic authorization rules used by submissions, exports, and sensitive actions
-- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation (distinct implementation)
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls
-- Design and implement a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- Implement a Centralized Schema Registry microservice with versioning, compatibility checks, access controls, and pub/sub schema rollout (standalone implementation not present in memory)
-- Build a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not present in memory)
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (separate from general Data Access Governance)
-- Develop a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails
-- Integrate a Policy Engine service (OPA/Rego) with policy lifecycle management for dynamic authorization rules used by submissions, exports, and sensitive actions
-- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation (distinct implementation)
-- Build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls
-- Design and implement a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (new standalone implementation).
-- Build a Centralized Schema Registry microservice with versioning, compatibility checks, access controls, and pub/sub schema rollout (standalone implementation not previously completed).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (distinct from general Data Access Governance).
-- Develop a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate an external Policy Engine service (OPA/Rego) with policy lifecycle management for dynamic authorization rules used by submissions, exports, and sensitive actions.
-- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation (distinct implementation).
-- Design and build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Create a Centralized Niche Router Authorization Adapter that enforces niche-specific RBAC and consent checks before routing uploads into healthcare pipelines.
-- Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (new standalone implementation).
-- Build a Centralized Schema Registry microservice with versioning, compatibility checks, access controls, and pub/sub schema rollout (standalone implementation not previously completed).
-- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (distinct from general Data Access Governance).
-- Develop a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
-- Integrate an external Policy Engine service (OPA/Rego) with policy lifecycle management for dynamic authorization rules used by submissions, exports, and sensitive actions.
-- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation (distinct implementation).
-- Design and build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
-- Create a Centralized Niche Router Authorization Adapter that enforces niche-specific RBAC and consent checks before routing uploads into healthcare pipelines.
-- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
-- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
-- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
-- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
-- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
-- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
-- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
-- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
-- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
-- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
-- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
-- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
-- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
-- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
-- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
-- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
-- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
-- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
-- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
-- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
-- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
-- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
-- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
-- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
-- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
-- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
-- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
-- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
-- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
-- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
-- build a claim normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
-- build a claim replay & incident debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls (not implemented)
-- build a clearinghouse adapter framework that supports multiple clearinghouse adapters (sandbox/prod), transactional submission semantics, idempotency keys, and per-adapter health checks (new implementation)
-- build a parser router microservice that selects pluggable parsers based on file type and schema, with idempotency, validation, and structured error reporting (new service)
-- build a token revocation service with immediate distributed blacklist propagation and admin revoke endpoints for jwt invalidation (distinct implementation not present in memory)
 - build denial_intelligence_engine (denial_reason_classifier + recoverability_scoring_model) as a backend microservice that consumes normalized claims, enriches them with denial code knowledgebase, and emits correction suggestions to correction_suggestion_engine.
 - build schema_registry as a centralized service (api + versioned store) for canonical_claim_schema and niche-specific schemas; include schema validation endpoints and integration points for parser_router and claim_ingestion.
-- create claim_ingestion api and upload_gateway: secure file upload endpoints (multipart + streaming), inbound validation, immediate enqueueing to job_queue, and hooks to document_proxy for storage.
-- create correction_suggestion_engine and review_workflow_service: generate suggested corrections, manage human review queues, provide approval_queue_service integration, and persist change events to claim_replay and audit_log_service.
-- develop parser_router service to detect file types (edi/837, pdf bundles, csv), dispatch to niche parsers in sectors/healthcare, and emit normalized claim drafts into claim_normalization; integrate with schema_registry and job_queue.
-- implement # platform build roadmap service
-- implement ------------------------------------------------ service
-- implement access_control service
-- build a denial intelligence engine including a denial knowledgebase and recoverability scoring microservice that subscribes to normalized claims, annotates denial reasons, suggests corrections, and integrates with correction_suggestion_engine and ml model serving endpoints
-- build a policy engine-backed access control layer (rbac/abac) that enforces field-level access to phi, ties into the authentication service and access_control registry, and emits auditable decisions to audit_log_service
+- Build services/denial_intelligence/denial_reason_classifier folder with classifier interface classifyDenial(denialText):{code,confidence}, plus a static denial code lookup table (data/denial_code_kb.yml) and a service adaptor that exposes classifyDenial over a local HTTP endpoint for other services.
+- Configure Redis connection
+- Create a Centralized Niche Router Authorization Adapter that enforces niche-specific RBAC and consent checks before routing uploads into healthcare pipelines.
+- Create a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, access controls, and pub/sub rollout.
+- Create a Centralized Schema Registry microservice for canonical claim, patient, payer, and event schemas with versioning, compatibility checks, and access controls.
+- Create a Claim Deduplication Service using fingerprinting and fuzzy matching with an idempotency index to prevent duplicate processing across uploads.
 - create a claim ingestion api and upload gateway that accepts uploads, performs initial validation, metadata extraction, stores documents in document_proxy/document_storage, and enqueues parsing jobs to parser_router via job_queue
+- create a claim ingestion api with secure upload_gateway endpoints, authenticated multipart uploads, upload validation, and connection to document_proxy and document_storage (no modifications to protected file directories).
+- Create a Claim Normalization microservice: transforms parsed claims into canonical schema with per-field provenance and validation hooks.
+- Create a Claim Normalization Service and canonical data model: versioned normalization rules, transformers for disparate payer formats, and a mapping repository with automated tests.  
+- Create a Claim Replay and Incident Debugging service that can re-run a claim through parsing/normalization/correction pipeline in a sandbox with versioned schema and test harness.
+- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with audit trails.
+- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with full audit trails.
+- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, time-limited PHI access approvals, and consent audit trails.
+- Create a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, time-limited PHI access approvals, and full audit trails.
+- Create a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, and consent audit trails with revocation support.
+- Create a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails
+- Create a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
+- Create a Consent & Data Access Authorization service to manage clinic consents, data sharing scopes, and time-limited PHI access approvals.
+- Create a Data Access Governance service that enforces field-level RBAC policies and generates policy evaluation logs for PHI access requests
+- Create a database schema and migration scripts (Postgres recommended) for claims, claim_events, users, roles, audit_logs (immutable), documents_metadata, payers, invoices, and report_jobs.
+- Create a new folder services/claim_ingestion/parser_router and add a parser_router.go (or .ts) scaffold that exposes a ParseClaimBundle(apiInput) -> ParsedBundle contract, plus unit tests; wire in dependency injection hooks for schema_registry and document_storage.
+- Create a new folder services/parser_router/ and add a TypeScript/Python (match project stack) scaffold: index, router.ts (or .py), interface IParserInput, IParserOutput, and unit-test stub. Add route scaffolded function parseBundle(bundleId: string): Promise<IParserOutput>.
+- Create a new service folder services/parser_router and add a TypeScript/Node scaffold: index.ts (export router function), job-types.ts (ParserJob / ParserResult interfaces), and unit test skeleton; register parser_router in the service registry manifest.
+- Create a new service folder services/parser_router with an index.js (or .ts) scaffold that exposes a parseClaimBundle(bundleId) async function, plus an API contract file services/parser_router/contracts.md describing input (raw files list, mime types, uploaderId, niche) and output (parsedClaimRecords array with sourceDocumentIds), and add unit-test stubs.
+- Create a new service folder services/parser_router with Node.js/TypeScript scaffold (index.ts, types.ts, logger.ts) and implement a Router class that exposes routeClaimBundle(bundle: ParsedBundle): Promise<RouterResult> with unit tests.
+- Create a new service folder services/parser_router/ and add an Express-style route scaffold POST /parse that accepts uploaded claim bundles (multipart/form-data), validates presence of niche header, and enqueues a ParseJob to job_queue; include OpenAPI YAML stub file services/parser_router/openapi.yaml.
+- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (distinct from general Data Access Governance).
+- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (separate from general Data Access Governance)
+- Create a Per-Field Access Control middleware service that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs.
+- Create a Pluggable Parser Framework for claim ingestion supporting PDF/OCR, EDI 837, CSV, and payer-specific XML with parser registry and unit tests.
+- Create a Secure Audit Trail Service that captures immutable, tamper-evident logs for claim lifecycle events, access to PHI, and clearinghouse submissions (WORM storage + signed entries).
+- Create a Secure Data Export Service that enforces policy, anonymization/de-identification templates, and multi-approval flows before producing PHI-containing exports.
+- Create a Secure Document Access Broker that issues short-lived signed tokens for document fetches and supports fine-grained masking rules per-role.
+- Create a secure document access microservice that issues signed, time-limited URLs for files in protected directories and logs every access without modifying the files.
+- Create a Secure Document Proxy microservice (separate from file storage) that issues short-lived, audited access tokens and enforces fine-grained access rules for PDF/claim document retrieval.
+- Create an Idempotency & Deduplication Service for inbound claim bundles that generates and verifies idempotency keys across distributed ingestion points.
+- Create auth service folder
+- Create authentication unit tests
+- Create claim ingestion service folder
+- Create claim review dashboard API
+- Create claim_deduplication persistence model: add db/migrations/0001_create_claim_dedup_table.sql and ORM model db/models/ClaimDedup.ts capturing claim signature, hash, source, created_at, last_seen; add a deduplication service services/claim_deduplication/index.ts with isDuplicate(hash) and markSeen(hash) APIs and integrate it into claim_normalization flow.
+- create claim_ingestion api and upload_gateway: secure file upload endpoints (multipart + streaming), inbound validation, immediate enqueueing to job_queue, and hooks to document_proxy for storage.
+- Create claim_normalization worker in workers/claim_normalization_worker that subscribes to "claim.parse.requests", applies normalization rules (field mapping/transforms), writes normalized claims to database table claims (claim_id, canonical_payload, source_upload_id, status), and emits event to "claim.enrichment.requests".
+- create correction_suggestion_engine and review_workflow_service: generate suggested corrections, manage human review queues, provide approval_queue_service integration, and persist change events to claim_replay and audit_log_service.
+- Create correction_suggestion_engine service scaffold services/correction_suggestion_engine with a REST contract /suggest-corrections that accepts a normalized claim ID, queries denial_intelligence_engine and returns ranked correction suggestions; include an approval flag in response and an audit log entry to audit_log_service.
+- Create correction_suggestion_engine worker and queue model: add queues/correction_suggestions.queue.ts (Bull / RabbitMQ queue scaffold), worker services/correction_suggestion_worker.ts that consumes normalized claims with denial metadata, calls denial_intelligence_engine.suggestCorrections, persists suggestions to db/models/CorrectionSuggestion.ts, and enqueues items into review_workflow_service queue.
+- Create database schema file
+- Create denial_intelligence_engine submodules: services/denial_intelligence_engine/index.js with an interface classifyDenial(denial_codes) that loads denial knowledgebase from sectors/healthcare/code_sets/denials.yaml, and add persistence table denial_classifications (claim_id, denial_code, classification, confidence, created_at).
+- Create document proxy API endpoint
+- Create jobs processing folder
+- Create monitoring service folder
+- Create service folder services/claim_ingestion_api with an Express (or FastAPI) route scaffold POST /ingest, request schema binding, and input validation middleware that stores uploaded metadata to a new persistence table claim_uploads (id, uploaded_by, filename, niche, status, created_at).
+- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
+- Create service folder services/claim_ingestion/parser_router and add a TypeScript/Node scaffold (index.ts), an IParser interface, and a router entry function routeParsedBundle(bundle):Promise<CanonicalClaim[]> that other services can import.
+- Create services/claim_deduplication/ with a dedupe worker that subscribes to job_queue parse/normalize completed events; add a deduplication Redis set/algorithm implementation libs/dedupe/index.js and persistence table/db index for claim_fingerprints to prevent double-processing; emit dedupe_result to claim_enrichment pipeline.
+- Create services/claim_deduplication/deduper.js with a persistence model (db/migrations/2026_03_create_claim_fingerprints.sql) and an API deduplicateClaim(canonicalClaim) that computes a deterministic fingerprint (patient hash, service dates, billed amount, payer id) and returns {isDuplicate, existingClaimId}. Add index on fingerprint to the claims table.
+- Create services/claim_ingestion/claim_bundle_validator module: add route scaffold validateBundle(bundleID) that loads uploaded documents from document_storage, runs parser_router, and calls canonical_validator; persist validation results to a new persistence table claim_bundle_validations (schema SQL/migration).
+- Create services/claim_ingestion/claim_bundle_validator with a route handler validateBundle(bundle):ValidationResult, wiring it to use schemas/canonical_claim_schema.json and implement deduplication hints (hashing strategy) returned in ValidationResult.
+- Create services/claim_normalization module with normalization pipeline scaffold, transform rules for healthcare (mapping EDI/flat fields to canonical schema) and persistence model definitions in models/claim_normalized.sql (Postgres).
+- Create services/claim_normalization/ with an entrypoint normalizeClaim(claim: IParserOutput): Promise<CanonicalClaim>. Include normalization rules file, a normalization mapping table (raw field → canonical field), and unit-test stubs. Add an adapter that imports schema_registry canonical schema to validate outputs.
+- Create services/clearinghouse_adapter_framework with an adapter interface IAdapter.submitClaim(claim:CanonicalClaim):Promise<SubmissionResult>, a sandbox adapter implementation adapters/sandbox_adapter.ts that formats to EDI 837 via a deterministic formatter module (formatters/edi837_formatter.ts), and a submission_status_tracker persistence schema (migrations) to record submission attempts and statuses.
+- Create services/correction_suggestion_engine interface services/correction_suggestion_engine/interface.js and implement a rules adapter services/correction_suggestion_engine/rules_adapter.js that accepts canonicalClaim + denialClassification and returns an ordered list of suggested corrections (field, suggestedValue, confidence, rationale). Add a JSON contract file services/correction_suggestion_engine/contract.json and unit tests that validate at least three correction patterns (coding typo, missing modifier, incorrect payer info).
+- Create services/correction_suggestion_engine/ with an interface libs/corrections/suggester.js implementing applyRuleSet(normalized_claim, denial_classification) and persist suggested_corrections table/db/models/suggested_corrections.sql with fields for suggestion_id, claim_id, suggested_payload, rules_applied, score; add a worker that listens to denial_classified events to generate suggestions.
+- Create services/correction_suggestion/correction_suggestion_engine module: add a worker that subscribes to normalization events from job_queue, queries denial_reason_classifier and code_sets, generates suggested_corrections records (DB table and ORM), and emits tasks to review_workflow_service; include an API contract getSuggestions(claimId).
+- Create services/denial_intelligence_engine/denial_knowledgebase.json and loader module: add a JSON file with denial codes (ACA-compatible subset) and a service module getDenialInfo(code) that returns categorized metadata. Add unit tests and a simple in-memory cache layer.
+- Create services/document_storage module with persistence model documents table (id, owner_id, path, s3_key, mime_type, checksum, encrypted boolean, created_at) and API function storeDocument(fileMeta) that returns document id; do not modify protected directories.
+- Create services/edi_formatter/ with adapter interface libs/edi/formatter_interface.js and a concrete healthcare EDI 837 generator module libs/edi/edi_837_v5010.js that accepts normalized_claim + approved_corrections and produces EDI payload; add integration test harness tests/edi_formatter/ that verifies format output and hooks the output to services/claim_submission_gateway as a queued SubmissionJob.
+- Create services/parser_router/tests and add two integration test scaffolds: one that feeds a sample EDI-like JSON into parser_router and asserts a normalized output, and one that ensures parser_router forwards to claim_normalization.normalizeClaim; include Docker-based test DB config.
+- Define claim_events table structure
+- Define claims table structure
+- Define patients table structure
+- deliver a denial intelligence engine (denial_intelligence_engine) providing denial reason classification, payer_rule_engine integration, recoverability_scoring_model serving, and an api for the correction_suggestion_engine to query suggestions.
+- Deliver a full GitOps CI/CD and infrastructure-as-code platform for safe, auditable deployments and compliance: Terraform/CloudFormation modules for infra, pipeline templates (GitHub Actions/GitLab CI) enforcing unit/integration/contract/e2e tests, DB migration orchestration with pre/post checks and safe migration strategies (canary
+- Design a Payer Connector Framework with per-payer adapters, sandbox/prod toggles, rate-limiting, and retry semantics for external payer lookups and eligibility checks.
+- Design and build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls
+- Design and build a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
 - design and deploy a schema registry service as the canonical source of truth for claim data models, versioned schemas, and niche-specific schema loading hooks; integrate with parser_router and claim_normalization services
+- Design and deploy a Secrets Management integration (HashiCorp Vault or AWS Secrets Manager) for service credentials and database passwords with automatic rotation
+- Design and deploy a Secrets Management integration (HashiCorp Vault or cloud secrets) with automated secret rotation and audit hooks (not already implemented).
+- Design and implement a Claim Lineage & Provenance service that tracks per-field provenance, transformation steps, and user approvals across the claim lifecycle.
+- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (distinct implementation).
+- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and schema migration tooling (separate implementation).
+- Design and implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and schema migration tooling.
+- Design and implement a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and migration tooling (standalone implementation)
+- Design and implement a Claim Replay & Incident Debugging service that can re-run a claim through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
+- Design and implement a Claim Replay & Incident Debugging service that can re-run claims through parsing/normalization/correction pipelines in an isolated sandbox with versioned schemas and replay controls.
+- Design and implement a dedicated Claim Parsing Microservice: pluggable parsers for common claim formats, strict schema validation, idempotent processing, and unit/integration tests.  
+- Design and implement a resilient asynchronous claim processing pipeline: centralized job queue with idempotent workers, dead-letter queues, exponential-backoff retries, distributed tracing, per-job metrics, automated horizontal scaling, and end-to-end claim lifecycle event tracing.
+- Design and implement a Secrets & Key Management service for rotating KMS-backed keys, envelope encryption orchestration, and limited-scope key access policies for microservices.
+- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct from previously noted items).
+- Design and implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints.
+- Design and implement a Versioned Schema Migration Service that applies and validates schema changes across the Centralized Schema Registry and downstream services.
+- Design and implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
+- Develop a Centralized Schema Registry service for canonical claim, patient, payer, and event schemas (with versioning and compatibility checks) used by parsers and normalization services.
+- Develop a Claim Enrichment service to augment claims with external data (payer databases, provider NPI lookup, patient demographics) via secure connectors.
+- Develop a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (new standalone implementation).
+- Develop a Claim Normalization microservice that transforms parsed claims into the canonical schema with per-field provenance, validation hooks, and schema migration tooling (standalone implementation).
+- Develop a Consent & Data Access Authorization microservice to manage clinic consents, data sharing scopes, and time-limited PHI access approvals with full audit trails.
+- Develop a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails
+- Develop a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
+- develop a parser router service that dispatches uploaded claim documents to niche-specific parsers, integrates with the schema registry, and emits normalized claims into the claim_normalization pipeline.
 - develop a parser router service that selects niche-specific parsers, invokes healthcare parsers for edi/x12/pdf extraction, normalizes outputs against the schema registry, and forwards normalized claims to claim_normalization and claim_ingestion services
+- Develop a Per-Job Observability Dashboard backend: aggregated metrics, SLA monitoring, retry/DLQ stats, and automatic incident creation hooks for failing claim jobs.
+- Develop a Policy Engine for dynamic authorization rules (Rego/OPA integration) to evaluate sensitive actions (exports, reviewer access, clearinghouse submissions).
+- Develop a Policy Engine integration (OPA/Rego) for dynamic authorization rules used by submission, export, and sensitive-data actions.
+- Develop a Token Exchange & Session Management service to support short-lived service tokens, refresh flows, and session revocation for integrations and workers.
+- Develop an ML Model Serving platform for denial prediction and recoverability scoring with A/B testing, feature store integration, and model explainability hooks.
+- develop parser_router service to detect file types (edi/837, pdf bundles, csv), dispatch to niche parsers in sectors/healthcare, and emit normalized claim drafts into claim_normalization; integrate with schema_registry and job_queue.
 - establish a clearinghouse adapter framework and edi formatter service that consumes approved corrected claims, renders edi 837 payloads, manages payer connectors, submission retries, and reports submissions to clearinghouse_gateway and submission_status_tracker services
+- Fix missing `accountButton.setAttribute('aria-expanded', 'false')` reset in the `submit-claims.html` document click listener where the script appears cut off
+- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click', ...)` handler is cut off and missing closing braces
+- Fix the truncated JavaScript in `submit-claims.html` — the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
+- Fix the truncated JavaScript in `submit-claims.html` where the `accountButton.setAttribute` and form submit handler code is cut off
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'...)` block is cut off, missing the closing `aria-expanded` reset and Escape key handler
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing closing braces
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off and missing the closing `aria-expanded` reset and `});` statements
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off mid-function
+- Fix the truncated JavaScript in `submit-claims.html` where the `document.addEventListener('click'` handler is cut off, missing the closing `aria-expanded` reset and `});`
+- Fix the truncated JavaScript in submit-claims.html where the `document.addEventListener('click'` handler is cut off and missing the `aria-expanded` reset and closing braces
+- Fix the truncated JavaScript in submit-claims.html where the account menu click-outside handler is cut off
+- Fix truncated JavaScript in `submit-claims.html` — the `accountButton.setAttribute('aria-expanded', 'false')` and Escape key listener are missing compared to other pages
+- implement ------------------------------------------------ service
+- implement # platform build roadmap service
+- Implement a Centralized Claim Signature & Provenance Service that cryptographically signs canonical claims and records immutable provenance metadata for audit and replay.
+- Implement a Centralized Correction Suggestion Audit service to record suggestion provenance, model-versioning metadata, reviewer edits, and immutable approval trails.
+- Implement a Centralized Schema Registry microservice with versioning, compatibility checks, access controls, and pub/sub schema rollout (standalone implementation not present in memory)
+- Implement a Claim Correction Suggestion Engine using rule-based transforms and ML model hooks that produce suggested edits with explainability metadata.
+- Implement a Claim Correction Suggestion Engine: generate proposed edits with confidence scores, human-in-the-loop review workflow, and immutable audit trail for all suggestions.  
+- Implement a Claim Normalization microservice that transforms parsed claims into a canonical schema with per-field provenance, validation hooks, and migration tooling (standalone)
 - implement a claim normalization service that applies canonical mapping rules, deduplication logic, and enrichment primitives (patient/payer matching), exposing apis for claim_replay and downstream denial intelligence services
+- Implement a Consent & Data Access Authorization microservice to manage clinic consents, time-limited PHI access scopes, revocations, and full audit trails.
+- Implement a Correction Suggestion Audit Trail service that stores proposed corrections, model inputs, and reviewer decisions for compliance and model retraining.
+- Implement a Data Access Audit Trail service that records all PHI read/write operations with immutable logs and support for retention/querying for compliance audits.
+- Implement a Data Access Governance service that centralizes policy evaluation and produces immutable policy decision logs for all PHI reads.
+- Implement a dedicated Denial Code Knowledge Base service with versioned taxonomy, mapping rules, confidence scores, and update webhook support.
+- Implement a Denial Code Knowledgebase microservice: curated, versioned denial code mappings, payer-specific rules, and confidence scoring for correction suggestions.
+- implement a hardened authentication service with rbac, token lifecycle management, and integration hooks for the policy engine and token revocation service (ensure service exposes well-defined apis and integrates with audit_log_service).
+- Implement a High-Throughput Ingestion Gateway with pre-ingest validation, upload streaming, chunked upload support, and signed idempotency keys.
+- Implement a Per-Job Observability Dashboard backend service that aggregates job metrics, retry/DLQ stats, SLA violations, and provides automated incident creation hooks.
+- Implement a Pluggable Parser Framework (microservice) supporting PDFs, X12, CSV, and HL7 input formats with per-parser validation and parser sandboxing.
+- Implement a Pluggable Parser Router that routes incoming files to appropriate parser plugins (PDF OCR, EDI 837/835, CSV, JSON) with metadata-based routing and parser health checks.
 - implement a production-grade authentication service with oauth2/oidc support, token issuance, refresh/revocation endpoints, and integration with the policy engine and token_revocation service in the service registry
+- Implement a resilient Clearinghouse Integration & Submission Service (transactional adapter pattern with sandbox/production adapters, submission queue with DLQ and exponential backoff, KMS-backed encryption for in-transit/at-rest, immutable audit trails, per-submission distributed tracing/OpenTelemetry, and SLA/health monitoring)
+- Implement a resilient, idempotent asynchronous claim processing pipeline: central durable job queue (Redis/NSQ/SQS), idempotent worker patterns, dead-letter queues, exponential-backoff retries, per-job metrics, distributed tracing (OpenTelemetry), structured tracing/span propagation, DLQ alerting, and automated horizontal scaling rules.  
+- Implement a secure Clearinghouse Integration & Compliance layer: EDI (837) validator/formatter, multi-adapter transactional gateway with sandbox test harness, KMS-backed encryption (at-rest/in-transit) and key rotation, strict RBAC/audit trails for submissions, and submission SLA monitoring/alerting.
+- Implement a Token Revocation Service for JWTs with immediate blacklist support and distributed cache propagation
+- Implement a Token Revocation Service with distributed blacklist propagation for immediate JWT invalidation (not already implemented).
+- Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not present in memory)
+- Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (distinct implementation not present in memory).
+- Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWT invalidation (new standalone implementation).
+- Implement a Token Revocation Service with immediate distributed blacklist propagation and admin revoke endpoints for JWTs (distinct from existing notes).
+- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation (distinct implementation from listed items).
+- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (distinct from existing notes).
+- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and admin revoke endpoints (ensure distinct implementation not present in memory).
+- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct implementation from those logged).
+- Implement a Token Revocation Service with immediate distributed blacklist propagation for JWT invalidation and revocation endpoints (distinct implementation not in memory).
+- Implement a Transactional Clearinghouse Submission Orchestrator that coordinates EDI 837 submission, tracks transactional states, supports transactional rollback semantics, and stores immutable submission artifacts.
+- implement access_control
+- implement access_control service
+- Implement an append-only audit logging system that records actor, action, resource, timestamp, and before/after state; persist audit logs in a write-optimized store (separate DB table/index).
+- Implement an EDI 837 Formatter & Validator microservice: X12 837 generation, schema/segment validation, automated test harness and sandbox mode for verifier clearinghouse integrations.  
 - implement analytics_api service
 - implement analytics_dashboard_ui service
+- implement approval_queue_service
 - implement approval_queue_service service
+- implement audit_log_service
 - implement audit_log_service service
+- Implement authentication service configuration
+- Implement authentication using OAuth2 / OpenID Connect with short-lived JWTs and refresh tokens; store refresh tokens securely and enforce secure cookie flags.
+- implement authentication_service
 - implement authentication_service service
+- Implement background worker service
+- implement canonical_claim_schema
 - implement canonical_claim_schema service
+- Implement centralized secrets and key management: deploy a KMS/HSM-backed secrets store with envelope encryption for PHI, automated key rotation and rotation policies, tenant-scoped keys, strict access controls, audit logging of key usage, and integration with CI/CD to remove hardcoded secrets (HIPAA-compliant encryption-at-rest and in-transit posture).
+- Implement claim event lifecycle tracking
+- Implement claim ingestion API endpoint
+- Implement claim normalization pipeline
+- implement claim normalization service to transform parsed outputs to the canonical_claim_schema, perform deduplication hooks, and publish normalized claim events to the claim_replay and claim_ingestion services.
+- Implement claim parsing adapters (EDI, CSV, API)
+- Implement claim validation and schema enforcement
+- implement claim_bundle_validator
 - implement claim_bundle_validator service
 - implement claim_deduplication service
+- Implement claim_deduplication worker: add queue model in queues/deduplication_queue.ts, worker at workers/deduplication_worker.ts that uses a deterministic claim fingerprint algorithm and a Postgres dedupe index table (schemas/dedupe_index.sql); include tests and metrics emission.
+- Implement claim_enrichment service folder services/claim_enrichment with a module to enrich claims using static code_sets (CPT/ICD) under sectors/healthcare/code_sets/, a REST endpoint GET /enrichments/:claim_id for UI polling, and persistence table claim_enrichments (claim_id, enrichment_payload, scored_at).
+- implement claim_ingestion_api
+- Implement claim_normalization entrypoint: add services/claim_normalization/index.ts that exposes normalizeClaim(claim: CanonicalClaim): Promise<NormalizedClaim>, include normalizer rules loader (configs/normalizers/) and a basic mapping/transformation module; add unit tests and register as a consumer of parser_router output.
+- Implement claim_normalization service module services/claim_normalization/normalize.js that exposes normalizeParsedRecord(parsedRecord) -> canonicalClaim. Wire it to import the canonical schema validator and emit normalized records to a Kafka topic or job-queue channel named "claims.normalized"; include mapping rules for common EDI/JSON source fields and unit tests for mapping edge cases.
 - implement claim_review_ui service
+- implement claim_submission_gateway
 - implement claim_upload_ui service
+- implement claims_dashboard_api
 - implement claims_dashboard_api service
 - implement claims_dashboard_ui service
-- implement denial_analysis_ui service
-- implement denial_reason_classifier service
-- implement document_viewer_api service
-- implement edi_formatter service
-- implement incident_replay_service service
-- implement payer_denial_trends service
-- implement payer_rule_engine service
-- implement performance_reporting service
-- implement revenue_recovery_analytics service
-- implement review_queue_api service
-- implement review_workflow_service service
-- implement system_health_monitor service
-- implement upload_gateway service
-- build a correction suggestion engine and review workflow service pair (correction_suggestion_engine + review_workflow_service) that generate suggested corrections, score them, enqueue human review tasks into job_queue, and record decisions in audit_log_service.
-- build a schema registry service (single source of truth) for canonical_claim_schema, supporting versioned healthcare claim schemas, schema validation apis, and integration points for parser_router and claim_normalization.
-- create a claim ingestion api with secure upload_gateway endpoints, authenticated multipart uploads, upload validation, and connection to document_proxy and document_storage (no modifications to protected file directories).
-- deliver a denial intelligence engine (denial_intelligence_engine) providing denial reason classification, payer_rule_engine integration, recoverability_scoring_model serving, and an api for the correction_suggestion_engine to query suggestions.
-- develop a parser router service that dispatches uploaded claim documents to niche-specific parsers, integrates with the schema registry, and emits normalized claims into the claim_normalization pipeline.
-- implement a hardened authentication service with rbac, token lifecycle management, and integration hooks for the policy engine and token revocation service (ensure service exposes well-defined apis and integrates with audit_log_service).
-- implement claim normalization service to transform parsed outputs to the canonical_claim_schema, perform deduplication hooks, and publish normalized claim events to the claim_replay and claim_ingestion services.
-- integrate a clearinghouse adapter framework and edi formatter service that convert approved corrections into edi 837, manage payer_connector configurations, handle submission retries, and report status updates to submission_status_tracker and claim_replay.
-- implement upload_gateway
-- implement claim_bundle_validator
-- implement canonical_claim_schema
-- implement payer_rule_engine
-- implement denial_reason_classifier
-- implement review_workflow_service
-- implement approval_queue_service
-- implement edi_formatter
-- implement upload_gateway
-- implement claim_bundle_validator
-- implement canonical_claim_schema
-- implement payer_rule_engine
-- implement denial_reason_classifier
-- implement review_workflow_service
-- implement approval_queue_service
-- implement edi_formatter
-- implement upload_gateway
-- implement claim_bundle_validator
-- implement canonical_claim_schema
-- implement payer_rule_engine
-- implement denial_reason_classifier
-- implement review_workflow_service
-- implement approval_queue_service
-- implement edi_formatter
-- implement approval_queue_service
-- implement approval_queue_service
-- implement approval_queue_service
-- implement approval_queue_service
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claim_submission_gateway
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement claims_dashboard_api
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement canonical_claim_schema
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement payer_rule_engine
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement upload_gateway
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement claim_bundle_validator
-- implement canonical_claim_schema
-- implement payer_rule_engine
-- implement denial_reason_classifier
-- implement review_workflow_service
-- implement approval_queue_service
-- implement edi_formatter
-- implement submission_status_tracker
-- implement claims_dashboard_api
-- implement review_queue_api
-- implement upload_gateway
-- implement claim_bundle_validator
-- implement canonical_claim_schema
-- implement payer_rule_engine
-- implement denial_reason_classifier
-- implement review_workflow_service
-- implement approval_queue_service
-- implement edi_formatter
-- implement upload_gateway
-- implement claim_bundle_validator
-- implement canonical_claim_schema
-- implement payer_rule_engine
-- implement denial_reason_classifier
-- implement review_workflow_service
-- implement approval_queue_service
-- implement edi_formatter
-- implement upload_gateway
-- implement claim_bundle_validator
-- implement canonical_claim_schema
-- implement payer_rule_engine
-- implement denial_reason_classifier
-- implement review_workflow_service
-- implement approval_queue_service
-- implement edi_formatter
-- implement authentication_service
-- implement token_revocation
-- implement policy_engine
-- implement access_control
-- implement audit_log_service
-- implement schema_registry
-- implement claim_ingestion_api
-- implement upload_gateway
-- implement authentication_service
-- implement token_revocation
-- implement policy_engine
-- implement access_control
-- implement audit_log_service
-- implement schema_registry
-- implement claim_ingestion_api
-- implement upload_gateway
-- Create a new service folder services/parser_router with an index.js (or .ts) scaffold that exposes a parseClaimBundle(bundleId) async function, plus an API contract file services/parser_router/contracts.md describing input (raw files list, mime types, uploaderId, niche) and output (parsedClaimRecords array with sourceDocumentIds), and add unit-test stubs.
-- Add schema files for canonical_claim_schema under schemas/canonical_claim_schema.json and a TypeScript interface schemas/canonical_claim_schema.ts; include field-level types for patient, provider, claimItems, denialCodes, originalPayerResponse, and provenance metadata, and add a JSON Schema validator wrapper in libs/validators/canonicalValidator.js that other services can import.
-- Implement claim_normalization service module services/claim_normalization/normalize.js that exposes normalizeParsedRecord(parsedRecord) -> canonicalClaim. Wire it to import the canonical schema validator and emit normalized records to a Kafka topic or job-queue channel named "claims.normalized"; include mapping rules for common EDI/JSON source fields and unit tests for mapping edge cases.
-- Create services/claim_deduplication/deduper.js with a persistence model (db/migrations/2026_03_create_claim_fingerprints.sql) and an API deduplicateClaim(canonicalClaim) that computes a deterministic fingerprint (patient hash, service dates, billed amount, payer id) and returns {isDuplicate, existingClaimId}. Add index on fingerprint to the claims table.
-- Add services/denial_intelligence_engine folder with two concrete files: knowledgebase/denial_codes.yaml (seed 200 common denial codes with categories and suggested correction types) and engine/classifier_stub.js which exposes classifyDenial(denialCode, context) returning {category, recoverabilityScore, suggestedCorrectionTypes}. Include a small seed loader script to populate a DB collection denial_codes and automated tests.
-- Create services/correction_suggestion_engine interface services/correction_suggestion_engine/interface.js and implement a rules adapter services/correction_suggestion_engine/rules_adapter.js that accepts canonicalClaim + denialClassification and returns an ordered list of suggested corrections (field, suggestedValue, confidence, rationale). Add a JSON contract file services/correction_suggestion_engine/contract.json and unit tests that validate at least three correction patterns (coding typo, missing modifier, incorrect payer info).
-- Scaffold services/clearinghouse_adapter_framework with adapters/abstract_adapter.js defining submitClaim(formattedEdi, metadata) and adapters/mock_clearinghouse_adapter.js implementing the interface (simulate responses and submission ids). Also add services/edi_formatter/edi_formatter.js with a formatTo837(canonicalClaim, options) stub that produces a validated EDI 837 payload structure and unit tests for minimal required segments.
-- Wire end-to-end job orchestration: add job definitions and worker in services/job_queue/workers/claim_ingest_worker.js that performs: fetch uploaded bundle -> parser_router.parseClaimBundle -> claim_normalization.normalizeParsedRecord -> emit to claims.normalized queue -> denial_intelligence_engine.classifier_stub -> correction_suggestion_engine.rules_adapter -> persist suggested corrections to DB table claim_corrections (db/migrations/2026_03_create_claim_corrections.sql) and push a review task into review_queue. Include queue message schemas under services/job_queue/schemas and integration test scaffolds.
-- Create service folder services/claim_ingestion/parser_router and add a TypeScript/Node scaffold (index.ts), an IParser interface, and a router entry function routeParsedBundle(bundle):Promise<CanonicalClaim[]> that other services can import.
-- Add canonical schema files in schemas/canonical_claim_schema.json and schemas/claim_normalization.schema.json plus AJV-based validators in services/canonical_claim_schema/validator.ts; include field-level types for PHI and data classification tags.
-- Create services/claim_ingestion/claim_bundle_validator with a route handler validateBundle(bundle):ValidationResult, wiring it to use schemas/canonical_claim_schema.json and implement deduplication hints (hashing strategy) returned in ValidationResult.
-- Implement services/claim_normalization module: add normalizeClaim(rawClaim):CanonicalClaim, a persistence model mapping (models/normalized_claim.ts) for PostgreSQL (id, source_id, patient_hash, payer_id, normalized_payload JSONB, status), and a migration SQL file to create the table.
-- Create services/parser_router/tests and add two integration test scaffolds: one that feeds a sample EDI-like JSON into parser_router and asserts a normalized output, and one that ensures parser_router forwards to claim_normalization.normalizeClaim; include Docker-based test DB config.
-- Build services/denial_intelligence/denial_reason_classifier folder with classifier interface classifyDenial(denialText):{code,confidence}, plus a static denial code lookup table (data/denial_code_kb.yml) and a service adaptor that exposes classifyDenial over a local HTTP endpoint for other services.
-- Add services/correction_suggestion_engine: implement suggestCorrections(normalizedClaim):CorrectionSuggestion[] stub that calls denial_reason_classifier classifyDenial and payer_rule_engine lookup (create a payer_rule_engine client interface file clients/payer_rule_engine_client.ts) and persist suggestions to a new table correction_suggestions (migration SQL included).
-- Create services/clearinghouse_adapter_framework with an adapter interface IAdapter.submitClaim(claim:CanonicalClaim):Promise<SubmissionResult>, a sandbox adapter implementation adapters/sandbox_adapter.ts that formats to EDI 837 via a deterministic formatter module (formatters/edi837_formatter.ts), and a submission_status_tracker persistence schema (migrations) to record submission attempts and statuses.
-- Create a new service folder services/parser_router/ and add an Express-style route scaffold POST /parse that accepts uploaded claim bundles (multipart/form-data), validates presence of niche header, and enqueues a ParseJob to job_queue; include OpenAPI YAML stub file services/parser_router/openapi.yaml.
-- Add canonical schema files under sectors/healthcare/schemas/canonical_claim_v1.json and sectors/healthcare/schemas/claim_bundle_v1.json plus AJV validation module libs/validators/healthcare-schemas.js and integrate these validators into services/parser_router to validate parser output before enqueueing normalization.
-- Implement services/claim_normalization/ module with an entrypoint normalizeClaim(claim, context) and add persistence model schemas/db/models/normalized_claim.sql (or ORM model) including fields for claim_id, normalized_payload (JSONB), source_file_ref, ingest_metadata, and validation_status; wire services/parser_router to call normalizeClaim after parse success.
-- Create services/claim_deduplication/ with a dedupe worker that subscribes to job_queue parse/normalize completed events; add a deduplication Redis set/algorithm implementation libs/dedupe/index.js and persistence table/db index for claim_fingerprints to prevent double-processing; emit dedupe_result to claim_enrichment pipeline.
-- Add services/denial_intelligence_engine/ folder with two concrete modules: denial_knowledgebase loader (sectors/healthcare/code_sets/denial_codes.csv -> libs/denial/loader.js) and a denial_classifier API endpoint POST /classify that returns denial_code, confidence, and recommended_rule_ids; include unit-test scaffold tests/denial_intelligence_engine/.
-- Create services/correction_suggestion_engine/ with an interface libs/corrections/suggester.js implementing applyRuleSet(normalized_claim, denial_classification) and persist suggested_corrections table/db/models/suggested_corrections.sql with fields for suggestion_id, claim_id, suggested_payload, rules_applied, score; add a worker that listens to denial_classified events to generate suggestions.
-- Implement services/review_workflow_service/ scaffolding: REST endpoints GET /reviews/queue (paginated), POST /reviews/{id}/approve, POST /reviews/{id}/request-changes; add persistence models for review_queue (review_id, claim_id, assignee_id, state, created_at, history JSONB) and enqueue approved items to clearinghouse submission pipeline.
-- Create services/edi_formatter/ with adapter interface libs/edi/formatter_interface.js and a concrete healthcare EDI 837 generator module libs/edi/edi_837_v5010.js that accepts normalized_claim + approved_corrections and produces EDI payload; add integration test harness tests/edi_formatter/ that verifies format output and hooks the output to services/claim_submission_gateway as a queued SubmissionJob.
-- Create a new service folder services/parser_router with Node.js/TypeScript scaffold (index.ts, types.ts, logger.ts) and implement a Router class that exposes routeClaimBundle(bundle: ParsedBundle): Promise<RouterResult> with unit tests.
-- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
-- Add parser_router module at services/parser_router/index.js that exposes route processParsed(fileBundle) and a plugin interface; include parser plugin loader (filesystem-based) and a TypeScript interface file for parser plugins in sectors/healthcare/parsers/.
-- Add canonical_claim_schema to schemas/canonical_claim.v1.json and implement a JSON Schema validator utility services/schema_registry/validator.js; wire validator into claim_ingestion_api to validate parsed claims before enqueueing.
-- Create services/claim_normalization module with normalization pipeline scaffold, transform rules for healthcare (mapping EDI/flat fields to canonical schema) and persistence model definitions in models/claim_normalized.sql (Postgres).
-- Implement claim_deduplication worker: add queue model in queues/deduplication_queue.ts, worker at workers/deduplication_worker.ts that uses a deterministic claim fingerprint algorithm and a Postgres dedupe index table (schemas/dedupe_index.sql); include tests and metrics emission.
-- Add denial_intelligence_engine folder services/denial_intelligence_engine with denial code knowledgebase loader (YAML/JSON), an HTTP API endpoint /denial/suggest that returns top-3 correction candidates, and a persistence table denial_knowledgebase.sql.
-- Create correction_suggestion_engine service scaffold services/correction_suggestion_engine with a REST contract /suggest-corrections that accepts a normalized claim ID, queries denial_intelligence_engine and returns ranked correction suggestions; include an approval flag in response and an audit log entry to audit_log_service.
-- Add clearinghouse_adapter_framework adapter interface in adapters/clearinghouse/adapter_interface.ts and implement a sandbox adapter adapters/clearinghouse/sandbox_adapter.ts that accepts EDI 837 payloads, a submission_status_tracker persistence schema (schemas/submissions.sql), and a mock submission worker workers/clearinghouse_submit_worker.ts that writes submission events to submission_status_tracker.
-- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
-- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
-- Create service folder services/claim_ingestion_api with Express.js route scaffold POST /ingest, input JSON contract, request validator (AJV) and unit tests; add Dockerfile and README.
-- Create a new folder services/parser_router/ and add a TypeScript/Python (match project stack) scaffold: index, router.ts (or .py), interface IParserInput, IParserOutput, and unit-test stub. Add route scaffolded function parseBundle(bundleId: string): Promise<IParserOutput>.
-- Add schema_registry/schemas/canonical_claim_schema.json and canonical_claim_schema.ts validator: JSON Schema file for canonical claim, plus a validation module using the project's validator library (Ajv or pydantic). Wire schema_registry export to be importable by claim_normalization service.
-- Create services/claim_normalization/ with an entrypoint normalizeClaim(claim: IParserOutput): Promise<CanonicalClaim>. Include normalization rules file, a normalization mapping table (raw field → canonical field), and unit-test stubs. Add an adapter that imports schema_registry canonical schema to validate outputs.
-- Add services/claim_deduplication/ persistence model and worker: create DB migration file for claim_fingerprint table (claim_id, fingerprint, source, created_at), a dedupe service that computes fingerprint strategy (payer+patient+svc_date+amount), and a background worker scaffold that listens to parser_router outputs and inserts/marks duplicates.
-- Create services/denial_intelligence_engine/denial_knowledgebase.json and loader module: add a JSON file with denial codes (ACA-compatible subset) and a service module getDenialInfo(code) that returns categorized metadata. Add unit tests and a simple in-memory cache layer.
-- Add services/correction_suggestion_engine/ scaffold with interface suggestCorrections(canonicalClaim): Promise<CorrectionSuggestion[]>; include rules engine integration point: load payer_rule_engine rules from a new config folder rules/payer_rules/{payer}.yaml and map denial codes from denial_knowledgebase to suggested correction templates.
-- Implement services/review_workflow_service queue models and persistence: add DB migration for review_tasks table (task_id, claim_id, suggested_corrections JSON, assignee_id, status, created_at, updated_at), create queue consumer worker that reads from job_queue "review_tasks" topic, and REST API scaffold POST /api/review-tasks to enqueue tasks (claims_dashboard_api will call this).
-- Wire parser_router output into claim_normalization entrypoint and enqueue follow-ups: update services/upload_gateway or parser_router to call normalizeClaim after parsing, then (a) persist canonical claim, (b) call denial_intelligence to score recoverability, (c) if recoverability > threshold enqueue correction_suggestion_engine job and/or review_workflow_service review_tasks job; add integration tests (end-to-end small fixture) to validate flow.
-- Create a new service folder services/parser_router and add a TypeScript/Node scaffold: index.ts (export router function), job-types.ts (ParserJob / ParserResult interfaces), and unit test skeleton; register parser_router in the service registry manifest.
-- Add canonical_claim_schema: create schemas/canonical_claim.v1.json (JSON Schema) and a TypeScript model claims/models/canonicalClaim.ts plus a AJV-based validator claims/validators/canonicalClaimValidator.ts; wire validator into parser_router to validate ParserResult before downstream enqueue.
-- Implement claim_normalization entrypoint: add services/claim_normalization/index.ts that exposes normalizeClaim(claim: CanonicalClaim): Promise<NormalizedClaim>, include normalizer rules loader (configs/normalizers/) and a basic mapping/transformation module; add unit tests and register as a consumer of parser_router output.
-- Create claim_deduplication persistence model: add db/migrations/0001_create_claim_dedup_table.sql and ORM model db/models/ClaimDedup.ts capturing claim signature, hash, source, created_at, last_seen; add a deduplication service services/claim_deduplication/index.ts with isDuplicate(hash) and markSeen(hash) APIs and integrate it into claim_normalization flow.
-- Add denial_intelligence_engine base service scaffold: services/denial_intelligence_engine/index.ts, include interfaces denial/types.ts (DenialCode, DenialExplanation, RecoverabilityScore) and a local knowledgebase loader services/denial_intelligence_engine/knowledgebase.yml; add a lookup API suggestCorrections(claim, denialCodes) that returns candidate corrections (no ML yet).
-- Create correction_suggestion_engine worker and queue model: add queues/correction_suggestions.queue.ts (Bull / RabbitMQ queue scaffold), worker services/correction_suggestion_worker.ts that consumes normalized claims with denial metadata, calls denial_intelligence_engine.suggestCorrections, persists suggestions to db/models/CorrectionSuggestion.ts, and enqueues items into review_workflow_service queue.
-- Add review_workflow_service queue state and persistence: create services/review_workflow_service/queue.ts, db/models/ReviewTask.ts (task id, claim_id, suggestion_id, assignee_id, state, created_at, updated_at), REST scaffold services/review_workflow_service/api.ts exposing POST /review-tasks and PATCH /review-tasks/:id/state and integrate approval_queue_service hooks for approved tasks.
-- Implement submission_status_tracker persistence and API contract: add db/migrations/0002_create_submission_status_table.sql and db/models/SubmissionStatus.ts (claim_id, submission_id, payer, status, last_update, retries), plus services/submission_status_tracker/api.ts exposing GET /submission-status?claim_id= and an event handler services/submission_status_tracker/handler.ts to be called by clearinghouse adapter when submission events arrive.
-- Create service folder services/claim_ingestion_api with an Express (or FastAPI) route scaffold POST /ingest, request schema binding, and input validation middleware that stores uploaded metadata to a new persistence table claim_uploads (id, uploaded_by, filename, niche, status, created_at).
-- Add parser_router module under services/parser_router with a pluggable parser registry interface (registerParser(niche, parser)), implement healthcare parser stub that emits normalized claim JSON events to a job_queue topic "claim.parse.requests", and add OpenAPI contract for parser output.
-- Add canonical_claim_schema JSON Schema files under schemas/canonical/healthcare/claim.schema.json and an AJV-based validator utility services/validators/canonicalValidator.js; wire validator into parser_router to validate parsed claims before enqueueing.
-- Create claim_normalization worker in workers/claim_normalization_worker that subscribes to "claim.parse.requests", applies normalization rules (field mapping/transforms), writes normalized claims to database table claims (claim_id, canonical_payload, source_upload_id, status), and emits event to "claim.enrichment.requests".
-- Implement claim_enrichment service folder services/claim_enrichment with a module to enrich claims using static code_sets (CPT/ICD) under sectors/healthcare/code_sets/, a REST endpoint GET /enrichments/:claim_id for UI polling, and persistence table claim_enrichments (claim_id, enrichment_payload, scored_at).
-- Create denial_intelligence_engine submodules: services/denial_intelligence_engine/index.js with an interface classifyDenial(denial_codes) that loads denial knowledgebase from sectors/healthcare/code_sets/denials.yaml, and add persistence table denial_classifications (claim_id, denial_code, classification, confidence, created_at).
-- Add correction_suggestion_engine worker in workers/correction_suggestion_worker that consumes "claim.enrichment.requests", runs deterministic rule-based corrections via sectors/healthcare/rules/*.js, writes suggested corrections to suggestions table (suggestion_id, claim_id, suggested_changes, score, status), and enqueues to review queue "review.queue".
 - Implement clearinghouse_adapter_framework scaffold under services/clearinghouse_adapter_framework with adapter interface IAdapter {formatClaim(claim), submit(payload)}, add a mock ClearinghouseAdapter implementation for testing, and create persistence table submission_jobs (job_id, claim_id, adapter_name, payload, status, attempts, last_error, created_at) plus API POST /submission_jobs to create submission jobs from approved claims.
-- Create a new folder services/claim_ingestion/parser_router and add a parser_router.go (or .ts) scaffold that exposes a ParseClaimBundle(apiInput) -> ParsedBundle contract, plus unit tests; wire in dependency injection hooks for schema_registry and document_storage.
-- Add canonical schema files under schemas/canonical_claim/v1 with JSON Schema and TypeScript/Go models (canonical_claim.schema.json, canonical_claim.model.ts/.go) and implement a validator module canonical_validator that is callable from claim_normalization.
-- Create services/claim_ingestion/claim_bundle_validator module: add route scaffold validateBundle(bundleID) that loads uploaded documents from document_storage, runs parser_router, and calls canonical_validator; persist validation results to a new persistence table claim_bundle_validations (schema SQL/migration).
-- Add services/claim_normalization module with an entrypoint normalizeParsedBundle(parsedBundle) which maps parser outputs to canonical_claim models, implements deduplication hints, and emits normalization events to job_queue; include persistence model for canonical_claims (migration + ORM model).
+- Implement dead letter queue handling
+- Implement denial correction suggestion engine
+- implement denial_analysis_ui service
+- implement denial_reason_classifier
+- implement denial_reason_classifier service
+- Implement document permission checks
+- Implement document storage metadata model
+- implement document_viewer_api service
+- Implement EDI 837 claim formatter
+- implement edi_formatter
+- implement edi_formatter service
+- Implement End-to-End Distributed Tracing and Correlation service integration (OpenTelemetry full-trace pipeline, span propagation across jobs and microservices) with trace retention and sampling policies.
+- Implement end-to-end encrypted job payload handling for the job queue system using envelope encryption decrypted only by authorized worker instances with key rotation and attestation.
+- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation
+- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation (distinct implementation)
+- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation (distinct implementation).
+- Implement end-to-end encrypted job payload handling for the job queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation and worker attestation.
+- Implement end-to-end encrypted job payload handling for the queue system where payloads are envelope-encrypted and decrypted only by authorized worker instances with rotation.
+- Implement end-to-end encrypted job payloads for the job queue where payloads are envelope-encrypted and only authorized workers can decrypt.
+- Implement end-to-end encrypted job payloads for the queue system with worker-side key access control and rotation separate from general envelope encryption.
+- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances (distinct implementation from general envelope encryption).
+- Implement end-to-end encrypted job payloads for the queuing system where payloads are encrypted envelope-style and decrypted only by authorized worker instances.
+- Implement end-to-end encrypted job payloads for the queuing system where payloads are envelope-encrypted and decrypted only by authorized worker instances (separate implementation from general envelope encryption).
+- Implement end-to-end encrypted job payloads for the queuing system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation (distinct implementation).
+- Implement end-to-end encrypted job payloads for the queuing system where payloads are envelope-encrypted and decrypted only by authorized worker instances with key rotation.
+- Implement End-to-End Encryption for queued claim payloads using envelope encryption and worker-side decryption keys
+- implement incident_replay_service service
+- Implement job queue retry logic
+- Implement JWT signing utility
+- Implement monitoring system
+- Implement Multi-Region Data Replication and Disaster Recovery architecture for critical claim databases with automated failover playbooks
+- implement payer_denial_trends service
+- implement payer_rule_engine
+- implement payer_rule_engine service
+- Implement Per-Field Access Control (field-level RBAC) enforcement service that intercepts DB reads and enforces policy evaluation logs (distinct from general Data Access Governance).
+- Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and audit logs.
+- Implement Per-Field Access Control middleware enforcing field-level RBAC at the service/data access layer with policy decision caching and immutable evaluation logs.
+- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service layer with evaluation logs and policy decision caching.
+- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with evaluation logs and policy decision caching (separate from general Data Access Governance).
+- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with policy decision caching and audit logs (distinct from general Data Access Governance).
+- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data access layer with policy decision caching and immutable evaluation logs (distinct from general Data Access Governance).
+- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs
+- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (separate from general Data Access Governance).
+- Implement Per-Field Access Control middleware that enforces field-level RBAC at the service/data-access layer with policy decision caching and immutable evaluation logs (standalone implementation).
+- Implement Per-Field Encryption for PHI in the database using envelope encryption and KMS-backed keys with access controls and audit logging.
+- implement performance_reporting service
+- implement policy_engine
+- Implement refresh token support
+- implement revenue_recovery_analytics service
+- implement review_queue_api
+- implement review_queue_api service
+- implement review_workflow_service
+- implement review_workflow_service service
+- Implement role and permission models
+- implement schema_registry
+- Implement services/claim_normalization module: add normalizeClaim(rawClaim):CanonicalClaim, a persistence model mapping (models/normalized_claim.ts) for PostgreSQL (id, source_id, patient_hash, payer_id, normalized_payload JSONB, status), and a migration SQL file to create the table.
+- Implement services/claim_normalization/ module with an entrypoint normalizeClaim(claim, context) and add persistence model schemas/db/models/normalized_claim.sql (or ORM model) including fields for claim_id, normalized_payload (JSONB), source_file_ref, ingest_metadata, and validation_status; wire services/parser_router to call normalizeClaim after parse success.
 - Implement services/denial_intelligence/denial_reason_classifier scaffold: add classifier interface, a local rule fallback engine with configurable rule sets (rules/), and a REST gRPC contract classifyClaim(claimId) -> denialCodes+confidence; include a simple test rule set for common CPT/ICD denial mappings.
-- Create services/correction_suggestion/correction_suggestion_engine module: add a worker that subscribes to normalization events from job_queue, queries denial_reason_classifier and code_sets, generates suggested_corrections records (DB table and ORM), and emits tasks to review_workflow_service; include an API contract getSuggestions(claimId).
-- Add services/clearinghouse/edi_formatter adapter interface and one concrete implementation services/clearinghouse/edi_formatter/x12 with a formatter function formatTo837(canonicalClaim) that returns EDI payload + metadata; include unit tests validating field mapping against canonical_claim.schema.json.
+- Implement services/review_workflow_service queue models and persistence: add DB migration for review_tasks table (task_id, claim_id, suggested_corrections JSON, assignee_id, status, created_at, updated_at), create queue consumer worker that reads from job_queue "review_tasks" topic, and REST API scaffold POST /api/review-tasks to enqueue tasks (claims_dashboard_api will call this).
+- Implement services/review_workflow_service/ scaffolding: REST endpoints GET /reviews/queue (paginated), POST /reviews/{id}/approve, POST /reviews/{id}/request-changes; add persistence models for review_queue (review_id, claim_id, assignee_id, state, created_at, history JSONB) and enqueue approved items to clearinghouse submission pipeline.
+- Implement signed URL generation
+- implement submission_status_tracker
+- Implement submission_status_tracker persistence and API contract: add db/migrations/0002_create_submission_status_table.sql and db/models/SubmissionStatus.ts (claim_id, submission_id, payer, status, last_update, retries), plus services/submission_status_tracker/api.ts exposing GET /submission-status?claim_id= and an event handler services/submission_status_tracker/handler.ts to be called by clearinghouse adapter when submission events arrive.
+- implement system_health_monitor service
+- implement token_revocation
+- implement upload_gateway
+- implement upload_gateway service
+- Improve dashboard layout responsiveness
+- Improve dashboard layout spacing
+- Improve login form UI alignment
+- Improve sidebar navigation spacing
+- Increase the collapsed sidebar width slightly or add tooltips on nav links so users know where each link leads without expanding
+- Increase the sidebar collapse/expand tab button size for easier clicking on touch devices
+- integrate a clearinghouse adapter framework and edi formatter service that convert approved corrections into edi 837, manage payer_connector configurations, handle submission retries, and report status updates to submission_status_tracker and claim_replay.
+- Integrate a Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
+- Integrate a Policy Engine (OPA/Rego) service for dynamic authorization rules used by sensitive actions (exports, submissions, reviewer access).
+- Integrate a Policy Engine service (OPA/Rego) with lifecycle management for dynamic authorization rules used by submissions, exports, reviewer access, and sensitive actions.
+- Integrate a Policy Engine service (OPA/Rego) with policy lifecycle management for dynamic authorization rules used by submissions, exports, and sensitive actions
+- Integrate a Policy Engine service (OPA/Rego) with policy lifecycle management for dynamic authorization rules used by submissions, exports, and sensitive actions.
+- Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management for dynamic authorization rules used by sensitive actions.
+- Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management for dynamic authorization used by sensitive actions (submissions, exports, reviewer access)
+- Integrate an external Policy Engine (OPA/Rego) service and policy lifecycle management to evaluate dynamic authorization rules for sensitive actions (submissions, exports, reviewer access).
+- Integrate an external Policy Engine (OPA/Rego) service for dynamic authorization rules used by submissions, exports, and sensitive-data actions.
+- Integrate an external Policy Engine service (OPA/Rego) with policy lifecycle management and a policy evaluation cache used by submission, export, and reviewer access flows.
+- Integrate an external Policy Engine service (OPA/Rego) with policy lifecycle management for dynamic authorization rules used by submissions, exports, and sensitive actions.
+- Introduce background job processing (Redis + Bull or RabbitMQ) with retry policies and idempotent tasks for long-running workflows (appeals, claim resubmissions, report generation).
+- Make the `savedNotice` span in `submit-claims.html` auto-hide after a few seconds using a CSS transition or `setTimeout`
+- Replace the `::before` dot placeholder in collapsed sidebar with recognizable single-letter or icon abbreviations for each nav item
+- Scaffold services/clearinghouse_adapter_framework with adapters/abstract_adapter.js defining submitClaim(formattedEdi, metadata) and adapters/mock_clearinghouse_adapter.js implementing the interface (simulate responses and submission ids). Also add services/edi_formatter/edi_formatter.js with a formatTo837(canonicalClaim, options) stub that produces a validated EDI 837 payload structure and unit tests for minimal required segments.
+- Standardize sidebar CSS across all pages into a shared stylesheet to reduce code duplication
+- Standardize sidebar CSS across all pages into a single shared stylesheet to reduce duplication
+- Standardize the `sidebar-tab` button arrow indicator so it rotates 180° when pinned, matching the behavior in `agreements.html` but missing in `submit-claims.html`
+- Standardize the `sidebar-tab` button arrow indicator so it rotates on pin state in `submit-claims.html` the same way `agreements.html` handles it
+- Standardize the `sidebar-tab` toggle arrow indicator so it rotates 180° when pinned across all pages (currently missing in `submit-claims.html`)
+- Standardize the sidebar CSS across all pages into a single shared stylesheet to reduce code duplication
+- Test task A
+- Test task B
 - Wire end-to-end flow: add a job worker in services/job_queue/workers/normalization_worker that receives parsed bundles, calls claim_normalization.normalizeParsedBundle, then enqueues denial_intelligence tasks and correction_suggestion jobs; add necessary queue models and a small integration test that runs parser_router -> normalization -> classifier -> suggestion pipeline (mocks allowed).
-- Create services/document_storage module with persistence model documents table (id, owner_id, path, s3_key, mime_type, checksum, encrypted boolean, created_at) and API function storeDocument(fileMeta) that returns document id; do not modify protected directories.
-- Create services/document_storage module with persistence model documents table (id, owner_id, path, s3_key, mime_type, checksum, encrypted boolean, created_at) and API function storeDocument(fileMeta) that returns document id; do not modify protected directories.
+- Wire end-to-end job orchestration: add job definitions and worker in services/job_queue/workers/claim_ingest_worker.js that performs: fetch uploaded bundle -> parser_router.parseClaimBundle -> claim_normalization.normalizeParsedRecord -> emit to claims.normalized queue -> denial_intelligence_engine.classifier_stub -> correction_suggestion_engine.rules_adapter -> persist suggested corrections to DB table claim_corrections (db/migrations/2026_03_create_claim_corrections.sql) and push a review task into review_queue. Include queue message schemas under services/job_queue/schemas and integration test scaffolds.
+- Wire parser_router output into claim_normalization entrypoint and enqueue follow-ups: update services/upload_gateway or parser_router to call normalizeClaim after parsing, then (a) persist canonical claim, (b) call denial_intelligence to score recoverability, (c) if recoverability > threshold enqueue correction_suggestion_engine job and/or review_workflow_service review_tasks job; add integration tests (end-to-end small fixture) to validate flow.
+- Create service folder services/claim_ingestion_api with Express-style route scaffold (POST /upload, POST /validate-bundle) and add OpenAPI yaml contract files (openapi/claim_ingestion_api.yaml) defining request/response schemas for file upload metadata (no PHI) and bundle validation results.
