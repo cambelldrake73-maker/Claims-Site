@@ -57,7 +57,7 @@ sed -i '' "/$TASK/d" "$RUNNING"
 echo "$TASK" >> "$COMPLETED"
 
 # Stage only safe files (prevent backend deletion)
-git add dashboard.html *.html *.css *.js AI_*.md ai-executor.sh
+git add dashboard.html *.html *.css *.js ai-executor.sh
 # Abort if protected files were deleted
 if git diff --cached --name-status | grep -E "^D\s+(services/|package.json|agent-worker.sh|ai-executor.sh)"; then
     echo "Protected file deletion detected. Aborting commit."
