@@ -147,3 +147,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+
+<!-- AI improvement: upload success message -->
+<div class="upload-success-message" style="display:none;">Upload successful.</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('form');
+  const msg = document.querySelector('.upload-success-message');
+  if (!form || !msg) return;
+  form.addEventListener('submit', () => {
+    setTimeout(() => { msg.style.display = 'block'; }, 300);
+  });
+});
+</script>
