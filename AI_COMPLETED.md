@@ -27534,3 +27534,5 @@
 - Improve dashboard layout responsiveness
 - Improve login form UI alignment
 - Add filtering to claims table
+- Improve sidebar navigation spacing
+- Improve sidebar navigation spacing
