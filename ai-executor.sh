@@ -341,8 +341,11 @@ elif echo "$TASK" | grep -iq "denial reason field to mock claim payloads"; then
 EOF
     else
         echo "Denial reason field already present."
+        echo "$(date): Completed task $TASK (already satisfied)" >> "$LOG"
+        sed -i '' "/$TASK/d" "$RUNNING"
+        echo "$TASK" >> "$COMPLETED"
+        exit 0
     fi
-
 elif echo "$TASK" | grep -iq "upload form submission handler for submitted claims"; then
 
     echo "AI adding upload form submission handler..."
@@ -364,51 +367,6 @@ elif echo "$TASK" | grep -iq "upload form submission handler for submitted claim
         } >> submit-claims.html
     else
         echo "Upload submission handler already present."
-    fi
-
-elif echo "$TASK" | grep -iq "dashboard summary metrics"; then
-
-    echo "AI adding dashboard summary metrics..."
-
-    if ! grep -q "AI improvement: dashboard summary metrics" dashboard.html; then
-        {
-            echo ""
-            echo "<!-- AI improvement: dashboard summary metrics -->"
-            echo "<div class=\"summary-metrics\">"
-            echo "  <div class=\"metric-card\">Total Claims: 3</div>"
-            echo "  <div class=\"metric-card\">Denied Claims: 1</div>"
-            echo "  <div class=\"metric-card\">Pending Review: 1</div>"
-            echo "</div>"
-        } >> dashboard.html
-    else
-        echo "Dashboard summary metrics already present."
-    fi
-
-elif echo "$TASK" | grep -iq "basic review queue page scaffolding"; then
-
-    echo "AI creating review queue page scaffolding..."
-
-    if [ ! -f review-queue.html ]; then
-        cat > review-queue.html <<'EOF'
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Review Queue</title>
-  <link rel="stylesheet" href="design-system.css">
-</head>
-<body>
-  <div class="page">
-    <h1>Review Queue</h1>
-    <p>Claims awaiting manual review will appear here.</p>
-    <div class="review-queue-list"></div>
-  </div>
-</body>
-</html>
-EOF
-    else
-        echo "Review queue page scaffolding already present."
     fi
 else
     echo "No safe file action matched task."
