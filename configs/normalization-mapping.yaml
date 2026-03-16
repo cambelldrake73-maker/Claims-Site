@@ -1,4 +1,0 @@
-mappings:
-  patient_id: patient.id
-  provider_id: provider.id
-  denial_code: denialCodes[]
