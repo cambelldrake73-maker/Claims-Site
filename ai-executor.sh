@@ -665,6 +665,59 @@ EOF
     else
         echo "Claim detail API endpoint already present."
     fi
+elif echo "$TASK" | grep -iq "claim search UI wiring"; then
+
+    echo "AI adding claim search UI wiring..."
+
+    if ! grep -q "AI improvement: claim search ui wiring" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: claim search ui wiring -->"
+            echo "<script>"
+            echo "document.addEventListener('DOMContentLoaded', () => {"
+            echo "  const filterBar = document.querySelector('.claims-filter-bar');"
+            echo "  if (!filterBar) return;"
+            echo "  const input = document.createElement('input');"
+            echo "  input.type = 'text';"
+            echo "  input.placeholder = 'Search claims...';"
+            echo "  input.className = 'claim-search-input';"
+            echo "  filterBar.prepend(input);"
+            echo "  input.addEventListener('input', async () => {"
+            echo "    const q = input.value.trim();"
+            echo "    const res = await fetch('/api/claims/search?q=' + encodeURIComponent(q));"
+            echo "    const data = await res.json();"
+            echo "    console.log('Claim search results:', data);"
+            echo "  });"
+            echo "});"
+            echo "</script>"
+        } >> claims.html
+    else
+        echo "Claim search UI wiring already present."
+    fi
+
+elif echo "$TASK" | grep -iq "review queue data rendering from claims API"; then
+
+    echo "AI adding review queue data rendering from claims API..."
+
+    if ! grep -q "AI improvement: review queue api rendering" review-queue.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: review queue api rendering -->"
+            echo "<script>"
+            echo "async function loadReviewQueueFromApi(){"
+            echo "  const res = await fetch('/api/claims');"
+            echo "  const data = await res.json();"
+            echo "  const list = document.querySelector('.review-queue-list');"
+            echo "  if (!list || !data.claims) return;"
+            echo "  const reviewClaims = data.claims.filter(c => c.status === 'pending_review' || c.status === 'denied');"
+            echo "  list.innerHTML = reviewClaims.map(c => `<div class=\"queue-item\">${c.id} - ${c.status} - ${c.denialReason || 'No denial reason'}</div>`).join('');"
+            echo "}"
+            echo "loadReviewQueueFromApi();"
+            echo "</script>"
+        } >> review-queue.html
+    else
+        echo "Review queue API rendering already present."
+    fi
 else
     echo "No safe file action matched task."
 fi
