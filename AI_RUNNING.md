@@ -1,0 +1,2 @@
+- Add filtering to claims table
+- Improve dashboard layout responsiveness
