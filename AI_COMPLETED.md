@@ -5901,3 +5901,4 @@
 - Improve login form UI alignment
 - Improve dashboard layout responsiveness
 - Add filtering to claims table
+- Improve sidebar navigation spacing
