@@ -718,6 +718,85 @@ elif echo "$TASK" | grep -iq "review queue data rendering from claims API"; then
     else
         echo "Review queue API rendering already present."
     fi
+elif echo "$TASK" | grep -Eiq "claims page|claims table|claim row|denial reason|loading state|search"; then
+
+    echo "AI handling claims page enhancement task..."
+
+    if ! grep -q "AI improvement: claim search ui wiring" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: claim search ui wiring -->"
+            echo "<script>"
+            echo "document.addEventListener('DOMContentLoaded', () => {"
+            echo "  const filterBar = document.querySelector('.claims-filter-bar');"
+            echo "  if (!filterBar) return;"
+            echo "  const input = document.createElement('input');"
+            echo "  input.type = 'text';"
+            echo "  input.placeholder = 'Search claims...';"
+            echo "  filterBar.prepend(input);"
+            echo "});"
+            echo "</script>"
+        } >> claims.html
+    fi
+
+
+elif echo "$TASK" | grep -Eiq "dashboard|summary metric|badge"; then
+
+    echo "AI handling dashboard task..."
+
+    if ! grep -q "AI improvement: dashboard summary metrics" dashboard.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: dashboard summary metrics -->"
+            echo "<div class=\"summary-metrics\">"
+            echo "<div class=\"metric-card\">Total Claims: 3</div>"
+            echo "<div class=\"metric-card\">Denied Claims: 1</div>"
+            echo "<div class=\"metric-card\">Pending Review: 1</div>"
+            echo "</div>"
+        } >> dashboard.html
+    fi
+
+
+elif echo "$TASK" | grep -Eiq "review queue"; then
+
+    echo "AI handling review queue task..."
+
+    if [ ! -f review-queue.html ]; then
+        cat > review-queue.html <<'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Review Queue</title>
+</head>
+<body>
+<h1>Review Queue</h1>
+<div class="review-queue-list"></div>
+</body>
+</html>
+EOF
+    fi
+
+
+elif echo "$TASK" | grep -Eiq "detail page|detail api|detail json"; then
+
+    echo "AI handling claim detail task..."
+
+    if [ ! -f claim-detail.html ]; then
+        cat > claim-detail.html <<'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Claim Detail</title>
+</head>
+<body>
+<h1>Claim Detail</h1>
+<div class="claim-detail"></div>
+</body>
+</html>
+EOF
+    fi
 else
     echo "No safe file action matched task."
 fi
