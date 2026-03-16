@@ -1,1 +1,2 @@
 - Create a new folder services/parser_router with Node.js/TypeScript scaffold (index.ts, routes.ts) and implement an HTTP POST /parse endpoint that accepts upload metadata and returns a normalized parse-job descriptor; include OpenAPI fragment schema for the request/response.
+- Build services/correction_engine/correction_suggestion_engine scaffold with worker.js that subscribes to normalized_claims, calls denial_knowledgebase.getDenialMeta, runs rule-based suggestion pipeline (rules/*.js), and enqueues suggestion jobs to review_queue via job_queue API.
