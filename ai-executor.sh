@@ -176,7 +176,22 @@ EOF
     else
         echo "Claim status endpoint already present."
     fi
+elif echo "$TASK" | grep -iq "top navigation consistency"; then
 
+    echo "AI adding top navigation consistency..."
+
+    if ! grep -q "AI improvement: top nav consistency" dashboard.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: top nav consistency -->"
+            echo "<style>"
+            echo ".topnav { display:flex; gap:20px; align-items:center; }"
+            echo ".topnav a { text-decoration:none; font-weight:500; }"
+            echo "</style>"
+        } >> dashboard.html
+    else
+        echo "Top navigation already consistent."
+    fi
 else
 
     echo "No safe file action matched task."
