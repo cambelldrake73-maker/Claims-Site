@@ -549,6 +549,122 @@ elif echo "$TASK" | grep -iq "review queue item styling"; then
     else
         echo "Review queue item styling already present."
     fi
+elif echo "$TASK" | grep -iq "claim count badge to dashboard"; then
+
+    echo "AI adding claim count badge to dashboard..."
+
+    if ! grep -q "AI improvement: claim count badge" dashboard.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: claim count badge -->"
+            echo "<div class=\"claim-count-badge\">Claims: 3</div>"
+            echo "<style>.claim-count-badge{display:inline-block;padding:8px 12px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-weight:600;margin-top:12px;}</style>"
+        } >> dashboard.html
+    else
+        echo "Claim count badge already present."
+    fi
+
+elif echo "$TASK" | grep -iq "upload success message to submit claims page"; then
+
+    echo "AI adding upload success message..."
+
+    if ! grep -q "AI improvement: upload success message" submit-claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: upload success message -->"
+            echo "<div class=\"upload-success-message\" style=\"display:none;\">Upload successful.</div>"
+            echo "<script>"
+            echo "document.addEventListener('DOMContentLoaded', () => {"
+            echo "  const form = document.querySelector('form');"
+            echo "  const msg = document.querySelector('.upload-success-message');"
+            echo "  if (!form || !msg) return;"
+            echo "  form.addEventListener('submit', () => {"
+            echo "    setTimeout(() => { msg.style.display = 'block'; }, 300);"
+            echo "  });"
+            echo "});"
+            echo "</script>"
+        } >> submit-claims.html
+    else
+        echo "Upload success message already present."
+    fi
+
+elif echo "$TASK" | grep -iq "claim detail page data rendering"; then
+
+    echo "AI adding claim detail page data rendering..."
+
+    if ! grep -q "AI improvement: claim detail rendering" claim-detail.html 2>/dev/null; then
+        {
+            echo ""
+            echo "<!-- AI improvement: claim detail rendering -->"
+            echo "<script>"
+            echo "async function loadClaimDetail(){"
+            echo "  const params = new URLSearchParams(window.location.search);"
+            echo "  const id = params.get('id');"
+            echo "  const detail = document.querySelector('.claim-detail');"
+            echo "  if (!detail) return;"
+            echo "  detail.innerHTML = 'Claim Detail: ' + (id || 'Unknown Claim');"
+            echo "}"
+            echo "loadClaimDetail();"
+            echo "</script>"
+        } >> claim-detail.html
+    else
+        echo "Claim detail rendering already present."
+    fi
+
+elif echo "$TASK" | grep -iq "mock claim detail json payload"; then
+
+    echo "AI creating mock claim detail JSON payload..."
+
+    mkdir -p services/claim_ingestion_api/mock_data
+
+    if [ ! -f services/claim_ingestion_api/mock_data/claim-detail.json ]; then
+        cat > services/claim_ingestion_api/mock_data/claim-detail.json <<'EOF'
+{
+  "ok": true,
+  "claim": {
+    "id": "CLM-1002",
+    "status": "denied",
+    "denialReason": "Missing modifier",
+    "amount": 980.00,
+    "patient": "Jane Doe",
+    "payer": "Example Health"
+  }
+}
+EOF
+    else
+        echo "Mock claim detail JSON payload already present."
+    fi
+
+elif echo "$TASK" | grep -iq "claim detail api endpoint"; then
+
+    echo "AI creating claim detail API endpoint..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/detail_endpoint.js ]; then
+        cat > services/claim_ingestion_api/detail_endpoint.js <<'EOF'
+const express = require('express');
+const router = express.Router();
+
+router.get('/api/claims/detail', async (req, res) => {
+  res.json({
+    ok: true,
+    claim: {
+      id: req.query.id || 'CLM-1002',
+      status: 'denied',
+      denialReason: 'Missing modifier',
+      amount: 980.00,
+      patient: 'Jane Doe',
+      payer: 'Example Health'
+    }
+  });
+});
+
+module.exports = router;
+EOF
+    else
+        echo "Claim detail API endpoint already present."
+    fi
 else
     echo "No safe file action matched task."
 fi
