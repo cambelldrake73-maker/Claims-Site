@@ -1,1 +1,0 @@
-- Add status badges to claims table
