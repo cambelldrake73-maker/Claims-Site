@@ -28832,3 +28832,4 @@
 - Improve dashboard layout responsiveness
 - Improve dashboard layout responsiveness
 - Add filtering to claims table
+- Improve dashboard layout responsiveness
