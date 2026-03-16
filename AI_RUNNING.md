@@ -1,1 +1,2 @@
 - Improve sidebar navigation spacing
+- Improve login form UI alignment
