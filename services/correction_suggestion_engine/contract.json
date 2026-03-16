@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "field": {"type": "string"},
+    "suggestedValue": {},
+    "confidence": {"type": "number"},
+    "rationale": {"type": "string"}
+  }
+}
