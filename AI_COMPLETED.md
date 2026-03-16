@@ -16103,3 +16103,4 @@
 - Improve login form UI alignment
 - Add status badges to claims table
 - Add filtering to claims table
+- Improve sidebar navigation spacing
