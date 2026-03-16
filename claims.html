@@ -659,3 +659,14 @@ document.addEventListener('DOMContentLoaded', () => {
 <style>
 .denial-reason-cell{color:#b91c1c;font-weight:500;}
 </style>
+
+<!-- AI improvement: hide claims empty state -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const emptyState = document.querySelector('.claims-empty-state');
+  const rows = document.querySelectorAll('table tbody tr');
+  if (emptyState && rows.length > 0) {
+    emptyState.style.display = 'none';
+  }
+});
+</script>
