@@ -1,1 +1,0 @@
-- Implement services/correction_suggestion_engine with an interface suggestCorrections(enrichedClaim) in services/correction_suggestion_engine/engine.js, a rules config file rules/correction_rules.yaml, and a persistence table correction_suggestions (db/models/correction_suggestions.sql) storing suggested fixes and source rule IDs for audit.
