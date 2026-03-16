@@ -1,1 +1,0 @@
-- Wire parser_router output into claim_normalization in integration: add orchestration glue services/orchestrator/ingest-orchestrator.ts which receives parse results, validates against canonical_claim_schema, calls claim_normalization.normalize, and on success enqueues normalization-complete event; include OpenAPI route POST /orchestrate/ingest and integration tests.
