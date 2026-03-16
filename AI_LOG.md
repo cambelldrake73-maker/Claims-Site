@@ -2005,3 +2005,6 @@ Sun Mar 15 20:44:17 PDT 2026: Exists already /Users/cambelldrake/.openclaw/works
 Sun Mar 15 20:44:17 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/interface.js
 Sun Mar 15 20:44:17 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/rules_adapter.js
 Sun Mar 15 20:44:17 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/contract.json
+Sun Mar 15 20:44:17 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/clearinghouse_adapter_framework/adapters/abstract_adapter.js
+Sun Mar 15 20:44:17 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/clearinghouse_adapter_framework/adapters/mock_clearinghouse_adapter.js
+Sun Mar 15 20:44:17 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/edi_formatter/edi_formatter.js
