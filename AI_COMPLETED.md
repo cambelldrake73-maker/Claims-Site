@@ -6214,3 +6214,4 @@
 - Add status badges to claims table
 - Add filtering to claims table
 - Improve sidebar navigation spacing
+- Improve dashboard layout responsiveness
