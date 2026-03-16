@@ -429,6 +429,70 @@ elif echo "$TASK" | grep -iq "upload form submission handler for submitted claim
     else
         echo "Upload submission handler already present."
     fi
+elif echo "$TASK" | grep -iq "claim row click navigation to detail page"; then
+
+    echo "AI adding claim row click navigation to detail page..."
+
+    if ! grep -q "AI improvement: claim row click navigation" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: claim row click navigation -->"
+            echo "<script>"
+            echo "document.addEventListener('DOMContentLoaded', () => {"
+            echo "  const rows = document.querySelectorAll('table tbody tr');"
+            echo "  rows.forEach(row => {"
+            echo "    row.style.cursor = 'pointer';"
+            echo "    row.addEventListener('click', () => {"
+            echo "      const idCell = row.querySelector('td');"
+            echo "      if (!idCell) return;"
+            echo "      const claimId = idCell.innerText.trim();"
+            echo "      window.location.href = 'claim-detail.html?id=' + encodeURIComponent(claimId);"
+            echo "    });"
+            echo "  });"
+            echo "});"
+            echo "</script>"
+        } >> claims.html
+    else
+        echo "Claim row click navigation already present."
+    fi
+
+elif echo "$TASK" | grep -iq "denial reason display to claims table rows"; then
+
+    echo "AI adding denial reason display to claims table rows..."
+
+    if ! grep -q "AI improvement: denial reason display" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: denial reason display -->"
+            echo "<style>"
+            echo ".denial-reason-cell{color:#b91c1c;font-weight:500;}"
+            echo "</style>"
+        } >> claims.html
+    else
+        echo "Denial reason display already present."
+    fi
+
+elif echo "$TASK" | grep -iq "hide claims empty state when claim rows exist"; then
+
+    echo "AI hiding empty state when claim rows exist..."
+
+    if ! grep -q "AI improvement: hide claims empty state" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: hide claims empty state -->"
+            echo "<script>"
+            echo "document.addEventListener('DOMContentLoaded', () => {"
+            echo "  const emptyState = document.querySelector('.claims-empty-state');"
+            echo "  const rows = document.querySelectorAll('table tbody tr');"
+            echo "  if (emptyState && rows.length > 0) {"
+            echo "    emptyState.style.display = 'none';"
+            echo "  }"
+            echo "});"
+            echo "</script>"
+        } >> claims.html
+    else
+        echo "Claims empty state hide logic already present."
+    fi
 else
     echo "No safe file action matched task."
 fi
