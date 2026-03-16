@@ -1,0 +1,12 @@
+
+<!-- AI improvement: claim detail rendering -->
+<script>
+async function loadClaimDetail(){
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const detail = document.querySelector('.claim-detail');
+  if (!detail) return;
+  detail.innerHTML = 'Claim Detail: ' + (id || 'Unknown Claim');
+}
+loadClaimDetail();
+</script>
