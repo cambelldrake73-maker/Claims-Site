@@ -10479,3 +10479,4 @@
 - Improve login form UI alignment
 - Improve sidebar navigation spacing
 - Add filtering to claims table
+- Improve dashboard layout responsiveness
