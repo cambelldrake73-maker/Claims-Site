@@ -324,6 +324,92 @@ EOF
     else
         echo "Review queue page scaffolding already present."
     fi
+elif echo "$TASK" | grep -iq "denial reason field to mock claim payloads"; then
+
+    echo "AI adding denial reason field to mock claim payloads..."
+
+    if [ -f services/claim_ingestion_api/mock_data/claims.json ] && ! grep -q '"denialReason"' services/claim_ingestion_api/mock_data/claims.json; then
+        cat > services/claim_ingestion_api/mock_data/claims.json <<'EOF'
+{
+  "ok": true,
+  "claims": [
+    { "id": "CLM-1001", "status": "submitted", "denialReason": "", "amount": 1250.00 },
+    { "id": "CLM-1002", "status": "denied", "denialReason": "Missing modifier", "amount": 980.00 },
+    { "id": "CLM-1003", "status": "pending_review", "denialReason": "", "amount": 430.00 }
+  ]
+}
+EOF
+    else
+        echo "Denial reason field already present."
+    fi
+
+elif echo "$TASK" | grep -iq "upload form submission handler for submitted claims"; then
+
+    echo "AI adding upload form submission handler..."
+
+    if ! grep -q "AI improvement: upload submission handler" submit-claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: upload submission handler -->"
+            echo "<script>"
+            echo "document.addEventListener('DOMContentLoaded', () => {"
+            echo "  const form = document.querySelector('form');"
+            echo "  if(!form) return;"
+            echo "  form.addEventListener('submit', (e) => {"
+            echo "    e.preventDefault();"
+            echo "    console.log('Submitted claims upload placeholder');"
+            echo "  });"
+            echo "});"
+            echo "</script>"
+        } >> submit-claims.html
+    else
+        echo "Upload submission handler already present."
+    fi
+
+elif echo "$TASK" | grep -iq "dashboard summary metrics"; then
+
+    echo "AI adding dashboard summary metrics..."
+
+    if ! grep -q "AI improvement: dashboard summary metrics" dashboard.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: dashboard summary metrics -->"
+            echo "<div class=\"summary-metrics\">"
+            echo "  <div class=\"metric-card\">Total Claims: 3</div>"
+            echo "  <div class=\"metric-card\">Denied Claims: 1</div>"
+            echo "  <div class=\"metric-card\">Pending Review: 1</div>"
+            echo "</div>"
+        } >> dashboard.html
+    else
+        echo "Dashboard summary metrics already present."
+    fi
+
+elif echo "$TASK" | grep -iq "basic review queue page scaffolding"; then
+
+    echo "AI creating review queue page scaffolding..."
+
+    if [ ! -f review-queue.html ]; then
+        cat > review-queue.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Queue</title>
+  <link rel="stylesheet" href="design-system.css">
+</head>
+<body>
+  <div class="page">
+    <h1>Review Queue</h1>
+    <p>Claims awaiting manual review will appear here.</p>
+    <div class="review-queue-list"></div>
+  </div>
+</body>
+</html>
+EOF
+    else
+        echo "Review queue page scaffolding already present."
+    fi
 else
     echo "No safe file action matched task."
 fi
