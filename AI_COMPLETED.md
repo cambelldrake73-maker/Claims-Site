@@ -22678,3 +22678,4 @@
 - Add status badges to claims table
 - Improve dashboard layout responsiveness
 - Add filtering to claims table
+- Improve sidebar navigation spacing
