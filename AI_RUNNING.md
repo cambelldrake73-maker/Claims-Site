@@ -1,1 +1,1 @@
-- Create service folder services/claim_ingestion_api with Express-style route scaffold (POST /upload, POST /validate-bundle) and add OpenAPI yaml contract files (openapi/claim_ingestion_api.yaml) defining request/response schemas for file upload metadata (no PHI) and bundle validation results.
+- Create a new folder services/parser_router with Node.js/TypeScript scaffold (index.ts, routes.ts) and implement an HTTP POST /parse endpoint that accepts upload metadata and returns a normalized parse-job descriptor; include OpenAPI fragment schema for the request/response.

@@ -1983,3 +1983,5 @@ Sun Mar 15 20:33:03 PDT 2026: Exists already /Users/cambelldrake/.openclaw/works
 Sun Mar 15 20:33:03 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/interface.js
 Sun Mar 15 20:33:03 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/rules_adapter.js
 Sun Mar 15 20:33:03 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/correction_suggestion_engine/contract.json
+Sun Mar 15 20:37:37 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/index.js
+Sun Mar 15 20:37:37 PDT 2026: Exists already /Users/cambelldrake/.openclaw/workspace/claims-site/services/parser_router/contracts.md
