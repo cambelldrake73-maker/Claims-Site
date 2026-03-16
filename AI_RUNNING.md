@@ -1,1 +1,1 @@
-- Improve sidebar navigation spacing
+- Add filtering to claims table
