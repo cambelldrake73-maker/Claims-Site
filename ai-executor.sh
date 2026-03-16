@@ -192,7 +192,7 @@ elif echo "$TASK" | grep -iq "top navigation consistency"; then
         echo "Top navigation already consistent."
     fi
 
-elif echo "$TASK" | grep -iq "claims list api endpoint"; then
+elif echo "$TASK" | grep -iq "claims.*api.*endpoint"; then
 
     echo "AI creating claims list API endpoint..."
 
@@ -220,7 +220,7 @@ EOF
         echo "Claims list API endpoint already present."
     fi
 
-elif echo "$TASK" | grep -iq "mock claims json response"; then
+elif echo "$TASK" | grep -iq "mock.*claims.*json"; then
 
     echo "AI creating mock claims JSON response..."
 
@@ -241,7 +241,7 @@ EOF
         echo "Mock claims JSON response already present."
     fi
 
-elif echo "$TASK" | grep -iq "render fetched claim rows"; then
+elif echo "$TASK" | grep -iq "render.*claim"; then
 
     echo "AI wiring claims page to render fetched claim rows..."
 
@@ -262,7 +262,7 @@ elif echo "$TASK" | grep -iq "render fetched claim rows"; then
         echo "Fetched claim row rendering already present."
     fi
 
-elif echo "$TASK" | grep -iq "claim status color mapping logic"; then
+elif echo "$TASK" | grep -iq "status.*color"; then
 
     echo "AI adding claim status color mapping..."
 
