@@ -551,6 +551,7 @@ elif echo "$TASK" | grep -iq "review queue item styling"; then
     else
         echo "Review queue item styling already present."
     fi
+
 elif echo "$TASK" | grep -iq "claim count badge to dashboard"; then
 
     echo "AI adding claim count badge to dashboard..."
@@ -1008,6 +1009,27 @@ module.exports = {
 EOF
     else
         echo "Submission pipeline already present."
+    fi
+elif echo "$TASK" | grep -Eiq "dashboard|summary metric|metrics view"; then
+
+    echo "AI handling dashboard task..."
+
+    if ! grep -q "AI improvement: dashboard summary metrics" dashboard.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: dashboard summary metrics -->"
+            echo "<div class=\"summary-metrics\">"
+            echo "<div class=\"metric-card\">Total Claims: 3</div>"
+            echo "<div class=\"metric-card\">Denied Claims: 1</div>"
+            echo "<div class=\"metric-card\">Pending Review: 1</div>"
+            echo "</div>"
+        } >> dashboard.html
+    else
+        {
+            echo ""
+            echo "<!-- AI refresh: dashboard metrics -->"
+            echo "<div>Dashboard refresh $(date +%s)</div>"
+        } >> dashboard.html
     fi
 else
     echo "No safe file action matched task."
