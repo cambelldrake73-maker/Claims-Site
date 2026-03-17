@@ -1034,31 +1034,29 @@ elif echo "$TASK" | grep -Eiq "dashboard|summary metric|metrics view"; then
 else
     echo "No safe file action matched task."
 fi
-# Stage only safe files (prevent backend deletion)
+# Stage only safe files
 git add dashboard.html *.html *.css *.js ai-executor.sh services 2>/dev/null
 
-# Abort if protected files were deleted
+# Protected deletion guard
 if git diff --cached --name-status | grep -E "^D\s+(services/|package.json|agent-worker.sh|ai-executor.sh)"; then
     echo "Protected file deletion detected. Aborting commit."
     git reset
+    : > "$RUNNING"
     exit 1
 fi
 
-# Skip completion if nothing actually changed
+# If nothing changed, clear running and log a no-op
 if git diff --cached --quiet; then
     echo "No staged changes; task not completed."
-    sed -i '' "/$TASK/d" "$RUNNING"
     echo "$(date): No-op task $TASK" >> "$LOG"
+    : > "$RUNNING"
     exit 0
 fi
 
 echo "Logging work..."
 echo "$(date): Completed task $TASK" >> "$LOG"
-
-sleep 2
-
-sed -i '' "/$TASK/d" "$RUNNING"
 echo "$TASK" >> "$COMPLETED"
+: > "$RUNNING"
 
 git commit -m "AI task completed: $TASK" 2>/dev/null
 echo "Task completed."
