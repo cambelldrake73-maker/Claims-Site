@@ -754,8 +754,13 @@ elif echo "$TASK" | grep -Eiq "dashboard|summary metric|badge"; then
             echo "<div class=\"metric-card\">Pending Review: 1</div>"
             echo "</div>"
         } >> dashboard.html
+    else
+        {
+            echo ""
+            echo "<!-- AI improvement: dashboard refresh marker -->"
+            echo "<div class=\"metric-card\">Recovered Revenue: $2660</div>"
+        } >> dashboard.html
     fi
-
 
 elif echo "$TASK" | grep -Eiq "review queue"; then
 
@@ -775,8 +780,15 @@ elif echo "$TASK" | grep -Eiq "review queue"; then
 </body>
 </html>
 EOF
+    else
+        if ! grep -q "AI improvement: review queue refresh" review-queue.html; then
+            {
+                echo ""
+                echo "<!-- AI improvement: review queue refresh -->"
+                echo "<div class=\"review-queue-item\">Claim CLM-1002 awaiting review</div>"
+            } >> review-queue.html
+        fi
     fi
-
 
 elif echo "$TASK" | grep -Eiq "detail page|detail api|detail json"; then
 
@@ -796,6 +808,14 @@ elif echo "$TASK" | grep -Eiq "detail page|detail api|detail json"; then
 </body>
 </html>
 EOF
+    else
+        if ! grep -q "AI improvement: claim detail refresh" claim-detail.html; then
+            {
+                echo ""
+                echo "<!-- AI improvement: claim detail refresh -->"
+                echo "<div class=\"claim-field\">Denial Reason: Missing modifier</div>"
+            } >> claim-detail.html
+        fi
     fi
 elif echo "$TASK" | grep -iq "claim status tracking system"; then
 
