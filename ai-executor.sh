@@ -1031,6 +1031,113 @@ elif echo "$TASK" | grep -Eiq "dashboard|summary metric|metrics view"; then
             echo "<div>Dashboard refresh $(date +%s)</div>"
         } >> dashboard.html
     fi
+elif echo "$TASK" | grep -Eiq "AI service wrapper for claim summary generation"; then
+
+    echo "AI building claim summary service wrapper..."
+
+    mkdir -p services/ai
+
+    if [ ! -f services/ai/claim_summary_service.js ]; then
+        cat > services/ai/claim_summary_service.js <<'EOF'
+const { generateText } = require("./provider");
+
+async function generateClaimSummary(claim) {
+  const system = "You summarize denied or underpaid insurance claims for internal workflow use.";
+  const prompt = `Summarize this claim in 3-4 sentences:\n${JSON.stringify(claim, null, 2)}`;
+  return generateText({ system, prompt });
+}
+
+module.exports = { generateClaimSummary };
+EOF
+    else
+        {
+            echo ""
+            echo "// AI refresh $(date +%s)" >> services/ai/claim_summary_service.js
+        }
+    fi
+
+
+elif echo "$TASK" | grep -Eiq "claim summary endpoint using Claude provider"; then
+
+    echo "AI building claim summary endpoint..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/claim_summary_endpoint.js ]; then
+        cat > services/claim_ingestion_api/claim_summary_endpoint.js <<'EOF'
+const express = require('express');
+const router = express.Router();
+const { generateClaimSummary } = require('../ai/claim_summary_service');
+
+router.post('/api/claims/summary', async (req, res) => {
+  try {
+    const claim = req.body || {
+      id: 'CLM-1002',
+      status: 'denied',
+      denialReason: 'Missing modifier',
+      amount: 980.00,
+      patient: 'Jane Doe',
+      payer: 'Example Health'
+    };
+
+    const summary = await generateClaimSummary(claim);
+    res.json({ ok: true, summary });
+  } catch (error) {
+    res.status(500).json({ ok: false, error: error.message });
+  }
+});
+
+module.exports = router;
+EOF
+    else
+        {
+            echo ""
+            echo "// AI refresh $(date +%s)" >> services/claim_ingestion_api/claim_summary_endpoint.js
+        }
+    fi
+
+
+elif echo "$TASK" | grep -Eiq "denied claim explanation endpoint using Claude provider"; then
+
+    echo "AI building denied claim explanation endpoint..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/claim_explanation_endpoint.js ]; then
+        cat > services/claim_ingestion_api/claim_explanation_endpoint.js <<'EOF'
+const express = require('express');
+const router = express.Router();
+const { generateText } = require('../ai/provider');
+
+router.post('/api/claims/explanation', async (req, res) => {
+  try {
+    const claim = req.body || {
+      id: 'CLM-1002',
+      status: 'denied',
+      denialReason: 'Missing modifier',
+      amount: 980.00,
+      patient: 'Jane Doe',
+      payer: 'Example Health'
+    };
+
+    const system = "You explain denied medical claims for internal claim recovery teams.";
+    const prompt = `Explain why this claim may have been denied and suggest next steps:\n${JSON.stringify(claim, null, 2)}`;
+
+    const explanation = await generateText({ system, prompt });
+    res.json({ ok: true, explanation });
+  } catch (error) {
+    res.status(500).json({ ok: false, error: error.message });
+  }
+});
+
+module.exports = router;
+EOF
+    else
+        {
+            echo ""
+            echo "// AI refresh $(date +%s)" >> services/claim_ingestion_api/claim_explanation_endpoint.js
+        }
+    fi
 else
     echo "No safe file action matched task."
 fi
