@@ -682,3 +682,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+
+<!-- AI improvement: claim search ui wiring -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const filterBar = document.querySelector('.claims-filter-bar');
+  if (!filterBar) return;
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.placeholder = 'Search claims...';
+  input.className = 'claim-search-input';
+  filterBar.prepend(input);
+  input.addEventListener('input', async () => {
+    const q = input.value.trim();
+    const res = await fetch('/api/claims/search?q=' + encodeURIComponent(q));
+    const data = await res.json();
+    console.log('Claim search results:', data);
+  });
+});
+</script>
