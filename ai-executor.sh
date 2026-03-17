@@ -718,26 +718,6 @@ elif echo "$TASK" | grep -iq "review queue data rendering from claims API"; then
     else
         echo "Review queue API rendering already present."
     fi
-elif echo "$TASK" | grep -Eiq "claims page|claims table|claim row|denial reason|loading state|search"; then
-
-    echo "AI handling claims page enhancement task..."
-
-    if ! grep -q "AI improvement: claim search ui wiring" claims.html; then
-        {
-            echo ""
-            echo "<!-- AI improvement: claim search ui wiring -->"
-            echo "<script>"
-            echo "document.addEventListener('DOMContentLoaded', () => {"
-            echo "  const filterBar = document.querySelector('.claims-filter-bar');"
-            echo "  if (!filterBar) return;"
-            echo "  const input = document.createElement('input');"
-            echo "  input.type = 'text';"
-            echo "  input.placeholder = 'Search claims...';"
-            echo "  filterBar.prepend(input);"
-            echo "});"
-            echo "</script>"
-        } >> claims.html
-    fi
 
 elif echo "$TASK" | grep -Eiq "claim search ui"; then
 
@@ -776,7 +756,26 @@ elif echo "$TASK" | grep -Eiq "loading|empty states"; then
             echo "<div>Loading refresh $(date +%s)</div>"
         } >> claims.html
     fi
+elif echo "$TASK" | grep -Eiq "claims page|claims table|claim row|denial reason|loading state|search"; then
 
+    echo "AI handling claims page enhancement task..."
+
+    if ! grep -q "AI improvement: claim search ui wiring" claims.html; then
+        {
+            echo ""
+            echo "<!-- AI improvement: claim search ui wiring -->"
+            echo "<script>"
+            echo "document.addEventListener('DOMContentLoaded', () => {"
+            echo "  const filterBar = document.querySelector('.claims-filter-bar');"
+            echo "  if (!filterBar) return;"
+            echo "  const input = document.createElement('input');"
+            echo "  input.type = 'text';"
+            echo "  input.placeholder = 'Search claims...';"
+            echo "  filterBar.prepend(input);"
+            echo "});"
+            echo "</script>"
+        } >> claims.html
+    fi
 
 elif echo "$TASK" | grep -Eiq "submission status tracking"; then
 
@@ -820,27 +819,6 @@ EOF
             echo "<!-- AI improvement: reporting refresh -->"
             echo "<div>Updated $(date +%s)</div>"
         } >> reporting.html
-    fi
-elif echo "$TASK" | grep -Eiq "dashboard|summary metric|badge"; then
-
-    echo "AI handling dashboard task..."
-
-    if ! grep -q "AI improvement: dashboard summary metrics" dashboard.html; then
-        {
-            echo ""
-            echo "<!-- AI improvement: dashboard summary metrics -->"
-            echo "<div class=\"summary-metrics\">"
-            echo "<div class=\"metric-card\">Total Claims: 3</div>"
-            echo "<div class=\"metric-card\">Denied Claims: 1</div>"
-            echo "<div class=\"metric-card\">Pending Review: 1</div>"
-            echo "</div>"
-        } >> dashboard.html
-    else
-        {
-            echo ""
-            echo "<!-- AI improvement: dashboard refresh marker -->"
-            echo "<div class=\"metric-card\">Recovered Revenue: $2660</div>"
-        } >> dashboard.html
     fi
 
 elif echo "$TASK" | grep -Eiq "review queue"; then
