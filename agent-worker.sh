@@ -10,12 +10,9 @@ while true
 do
 echo "-----------------------------------"
 echo "Syncing repo..."
-
-git fetch origin
-
+git fetch origin ai-dev
 git checkout ai-dev
-git pull origin ai-dev
-
+git reset --hard origin/ai-dev
 # Only refresh suggestions/tasks when queue is empty
 if ! grep -qE '^- ' "$WORKSPACE/AI_PENDING.md"; then
     echo "Generating AI suggestions..."

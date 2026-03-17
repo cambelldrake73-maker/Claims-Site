@@ -797,6 +797,141 @@ elif echo "$TASK" | grep -Eiq "detail page|detail api|detail json"; then
 </html>
 EOF
     fi
+elif echo "$TASK" | grep -iq "claim status tracking system"; then
+
+    echo "AI creating claim status tracking system..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/status_tracking.js ]; then
+        cat > services/claim_ingestion_api/status_tracking.js <<'EOF'
+const CLAIM_STATUSES = ['pending', 'reviewed', 'corrected', 'submitted', 'accepted', 'rejected'];
+
+function normalizeStatus(status) {
+  return CLAIM_STATUSES.includes(status) ? status : 'pending';
+}
+
+function buildClaimStatusRecord(claimId, status = 'pending') {
+  return {
+    claimId,
+    status: normalizeStatus(status),
+    updatedAt: new Date().toISOString()
+  };
+}
+
+module.exports = {
+  CLAIM_STATUSES,
+  normalizeStatus,
+  buildClaimStatusRecord
+};
+EOF
+    else
+        echo "Claim status tracking system already present."
+    fi
+
+elif echo "$TASK" | grep -iq "logging system"; then
+
+    echo "AI creating claim processing logging system..."
+
+    mkdir -p services/logging
+
+    if [ ! -f services/logging/claim_event_logger.js ]; then
+        cat > services/logging/claim_event_logger.js <<'EOF'
+function buildClaimEventLog(eventType, claimId, metadata = {}) {
+  return {
+    eventType,
+    claimId,
+    metadata,
+    createdAt: new Date().toISOString()
+  };
+}
+
+module.exports = {
+  buildClaimEventLog
+};
+EOF
+    else
+        echo "Claim processing logging system already present."
+    fi
+
+elif echo "$TASK" | grep -iq "retry mechanism for failed submissions"; then
+
+    echo "AI creating retry mechanism for failed submissions..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/retry_mechanism.js ]; then
+        cat > services/claim_ingestion_api/retry_mechanism.js <<'EOF'
+function shouldRetrySubmission(attemptCount, maxRetries = 3) {
+  return attemptCount < maxRetries;
+}
+
+function buildRetryRecord(claimId, attemptCount = 0) {
+  return {
+    claimId,
+    attemptCount,
+    nextAttemptAt: new Date(Date.now() + 5 * 60 * 1000).toISOString()
+  };
+}
+
+module.exports = {
+  shouldRetrySubmission,
+  buildRetryRecord
+};
+EOF
+    else
+        echo "Retry mechanism already present."
+    fi
+
+elif echo "$TASK" | grep -iq "audit trail for claim updates"; then
+
+    echo "AI creating audit trail for claim updates..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/audit_trail.js ]; then
+        cat > services/claim_ingestion_api/audit_trail.js <<'EOF'
+function buildAuditTrailEntry(claimId, action, actor = 'system', details = {}) {
+  return {
+    claimId,
+    action,
+    actor,
+    details,
+    timestamp: new Date().toISOString()
+  };
+}
+
+module.exports = {
+  buildAuditTrailEntry
+};
+EOF
+    else
+        echo "Audit trail already present."
+    fi
+
+elif echo "$TASK" | grep -iq "submission pipeline to clearinghouse adapter"; then
+
+    echo "AI creating submission pipeline to clearinghouse adapter..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/submission_pipeline.js ]; then
+        cat > services/claim_ingestion_api/submission_pipeline.js <<'EOF'
+async function submitClaimToClearinghouse(claim, adapter) {
+  if (!adapter || typeof adapter.submit !== 'function') {
+    throw new Error('Clearinghouse adapter is not configured');
+  }
+
+  return adapter.submit(claim);
+}
+
+module.exports = {
+  submitClaimToClearinghouse
+};
+EOF
+    else
+        echo "Submission pipeline already present."
+    fi
 else
     echo "No safe file action matched task."
 fi
