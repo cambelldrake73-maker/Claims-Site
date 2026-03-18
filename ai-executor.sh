@@ -1146,6 +1146,270 @@ EOF
             echo "// AI refresh $(date +%s)" >> services/claim_ingestion_api/claim_explanation_endpoint.js
         }
     fi
+elif echo "$TASK" | grep -Eiq "sqlite|database layer|claim persistence|CLAIM_STORE"; then
+
+    echo "AI creating SQLite persistence layer..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/db.js ]; then
+        cat > services/claim_ingestion_api/db.js <<'EOF'
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+
+const DB_PATH = path.resolve(__dirname, '../../claims.db');
+const db = new sqlite3.Database(DB_PATH);
+
+function initializeDatabase() {
+  db.serialize(() => {
+    db.run(`
+      CREATE TABLE IF NOT EXISTS claims (
+        claim_id TEXT PRIMARY KEY,
+        patient TEXT,
+        payer TEXT,
+        status TEXT,
+        denial_reason TEXT,
+        amount REAL,
+        date_of_service TEXT,
+        source_file TEXT,
+        created_at INTEGER,
+        updated_at INTEGER
+      )
+    `);
+
+    db.run(`CREATE INDEX IF NOT EXISTS idx_claims_status ON claims(status)`);
+    db.run(`CREATE INDEX IF NOT EXISTS idx_claims_payer ON claims(payer)`);
+  });
+}
+
+module.exports = {
+  db,
+  initializeDatabase
+};
+EOF
+    else
+        {
+            echo ""
+            echo "// AI refresh $(date +%s)" >> services/claim_ingestion_api/db.js
+        }
+    fi
+
+elif echo "$TASK" | grep -Eiq "schema migration|claims table|review_queue table|claims_intelligence table|migration script"; then
+
+    echo "AI creating database migration script..."
+
+    mkdir -p services/claim_ingestion_api/migrations
+
+    if [ ! -f services/claim_ingestion_api/migrations/init_claims_schema.sql ]; then
+        cat > services/claim_ingestion_api/migrations/init_claims_schema.sql <<'EOF'
+CREATE TABLE IF NOT EXISTS claims (
+  claim_id TEXT PRIMARY KEY,
+  patient TEXT,
+  payer TEXT,
+  status TEXT,
+  denial_reason TEXT,
+  amount REAL,
+  date_of_service TEXT,
+  source_file TEXT,
+  created_at INTEGER,
+  updated_at INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS review_queue (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  claim_id TEXT NOT NULL,
+  reviewer_id TEXT,
+  reviewer_notes TEXT,
+  assignment_status TEXT DEFAULT 'unassigned',
+  created_at INTEGER,
+  updated_at INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS claims_intelligence (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  claim_id TEXT,
+  denial_reason TEXT,
+  payer TEXT,
+  procedure_code TEXT,
+  created_at INTEGER
+);
+
+CREATE INDEX IF NOT EXISTS idx_claims_claim_id ON claims(claim_id);
+CREATE INDEX IF NOT EXISTS idx_claims_status ON claims(status);
+CREATE INDEX IF NOT EXISTS idx_claims_payer ON claims(payer);
+CREATE INDEX IF NOT EXISTS idx_review_queue_claim_id ON review_queue(claim_id);
+CREATE INDEX IF NOT EXISTS idx_claims_intelligence_claim_id ON claims_intelligence(claim_id);
+EOF
+    else
+        {
+            echo ""
+            echo "-- AI refresh $(date +%s)" >> services/claim_ingestion_api/migrations/init_claims_schema.sql
+        }
+    fi
+
+elif echo "$TASK" | grep -Eiq "GET /api/claims/search|claims/search endpoint|query parameter filtering"; then
+
+    echo "AI creating claims search endpoint..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/claim_search_endpoint.js ]; then
+        cat > services/claim_ingestion_api/claim_search_endpoint.js <<'EOF'
+const express = require('express');
+const router = express.Router();
+
+let CLAIM_STORE = [];
+
+router.get('/search', (req, res) => {
+  const {
+    status,
+    payer,
+    patient_name,
+    patient,
+    date_of_service_from,
+    date_of_service_to
+  } = req.query;
+
+  let results = [...CLAIM_STORE];
+
+  if (status) {
+    results = results.filter(c => (c.status || '').toLowerCase() === status.toLowerCase());
+  }
+
+  if (payer) {
+    results = results.filter(c => (c.payer || '').toLowerCase().includes(payer.toLowerCase()));
+  }
+
+  const patientQuery = patient_name || patient;
+  if (patientQuery) {
+    results = results.filter(c => (c.patient || '').toLowerCase().includes(patientQuery.toLowerCase()));
+  }
+
+  if (date_of_service_from) {
+    results = results.filter(c => (c.date_of_service || '') >= date_of_service_from);
+  }
+
+  if (date_of_service_to) {
+    results = results.filter(c => (c.date_of_service || '') <= date_of_service_to);
+  }
+
+  res.json({ ok: true, claims: results });
+});
+
+router.__setClaimStore = (store) => {
+  CLAIM_STORE = store;
+};
+
+module.exports = router;
+EOF
+    else
+        {
+            echo ""
+            echo "// AI refresh $(date +%s)" >> services/claim_ingestion_api/claim_search_endpoint.js
+        }
+    fi
+
+elif echo "$TASK" | grep -Eiq "POST /api/claims/review-queue|review-queue endpoint|reviewer_notes|reviewer_id"; then
+
+    echo "AI creating review queue POST endpoint..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/review_queue_endpoint.js ]; then
+        cat > services/claim_ingestion_api/review_queue_endpoint.js <<'EOF'
+const express = require('express');
+const router = express.Router();
+
+let REVIEW_QUEUE = [];
+
+router.post('/review-queue', (req, res) => {
+  const { claim_id, reviewer_notes = '', reviewer_id = '' } = req.body || {};
+
+  if (!claim_id) {
+    return res.status(400).json({ ok: false, error: 'claim_id is required' });
+  }
+
+  const record = {
+    id: Date.now(),
+    claim_id,
+    reviewer_notes,
+    reviewer_id,
+    assignment_status: reviewer_id ? 'assigned' : 'unassigned',
+    status: 'in_review',
+    created_at: Date.now(),
+    updated_at: Date.now()
+  };
+
+  REVIEW_QUEUE.push(record);
+
+  res.json({ ok: true, review: record });
+});
+
+router.get('/queue', (req, res) => {
+  const sorted = [...REVIEW_QUEUE].sort((a, b) => a.created_at - b.created_at);
+  res.json({ ok: true, queue: sorted });
+});
+
+module.exports = router;
+EOF
+    else
+        {
+            echo ""
+            echo "// AI refresh $(date +%s)" >> services/claim_ingestion_api/review_queue_endpoint.js
+        }
+    fi
+
+elif echo "$TASK" | grep -Eiq "GET /api/claims/intelligence|denial statistics|recovery trends|performance metrics|claims intelligence"; then
+
+    echo "AI creating claims intelligence endpoint..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/claims_intelligence_endpoint.js ]; then
+        cat > services/claim_ingestion_api/claims_intelligence_endpoint.js <<'EOF'
+const express = require('express');
+const router = express.Router();
+
+let CLAIM_STORE = [];
+
+router.get('/intelligence', (req, res) => {
+  const byReason = {};
+  const byPayer = {};
+  const byProcedureCode = {};
+
+  CLAIM_STORE.forEach(c => {
+    const reason = c.denial_reason || c.denialReason || 'unspecified';
+    const payer = c.payer || 'Unknown Payer';
+    const procedureCode = c.procedure_code || 'unknown';
+
+    byReason[reason] = (byReason[reason] || 0) + 1;
+    byPayer[payer] = (byPayer[payer] || 0) + 1;
+    byProcedureCode[procedureCode] = (byProcedureCode[procedureCode] || 0) + 1;
+  });
+
+  res.json({
+    ok: true,
+    totals: {
+      claims: CLAIM_STORE.length
+    },
+    denial_reasons: byReason,
+    payers: byPayer,
+    procedure_codes: byProcedureCode
+  });
+});
+
+router.__setClaimStore = (store) => {
+  CLAIM_STORE = store;
+};
+
+module.exports = router;
+EOF
+    else
+        {
+            echo ""
+            echo "// AI refresh $(date +%s)" >> services/claim_ingestion_api/claims_intelligence_endpoint.js
+        }
+    fi
 else
     echo "No safe file action matched task."
 fi
