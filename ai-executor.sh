@@ -29,8 +29,9 @@ fi
 echo "Starting task: $TASK"
 
 # remove from pending
-sed -i '' "/$TASK/d" "$PENDING"
-
+tmp_pending=$(mktemp)
+awk 'BEGIN{removed=0} { if (!removed && $0 == task) { removed=1; next } print }' task="$TASK" "$PENDING" > "$tmp_pending"
+mv "$tmp_pending" "$PENDING"
 # move to running
 echo "$TASK" >> "$RUNNING"
 
