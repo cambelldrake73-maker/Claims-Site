@@ -1,22 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const { generateText } = require('../ai/provider');
 
-router.post('/api/claims/explanation', async (req, res) => {
+router.post('/explanation', async (req, res) => {
   try {
-    const claim = req.body || {
-      id: 'CLM-1002',
-      status: 'denied',
-      denialReason: 'Missing modifier',
-      amount: 980.00,
-      patient: 'Jane Doe',
-      payer: 'Example Health'
-    };
+    const claim = Object.keys(req.body || {}).length
+      ? req.body
+      : {
+          id: 'CLM-1002',
+          status: 'denied',
+          denialReason: 'Missing modifier',
+          amount: 980.00,
+          patient: 'Jane Doe',
+          payer: 'Example Health'
+        };
 
-    const system = "You explain denied medical claims for internal claim recovery teams.";
-    const prompt = `Explain why this claim may have been denied and suggest next steps:\n${JSON.stringify(claim, null, 2)}`;
+    const id = claim?.id || 'UNKNOWN';
+    const denialReason = claim?.denialReason || 'unspecified reason';
+    const status = claim?.status || 'unknown';
+    const amount = claim?.amount || 0;
+    const patient = claim?.patient || 'Unknown Patient';
+    const payer = claim?.payer || 'Unknown Payer';
 
-    const explanation = await generateText({ system, prompt });
+    const explanation =
+      `Claim ${id} for ${patient} with ${payer} is currently ${status}. ` +
+      `The denial reason is ${denialReason}. ` +
+      `The billed amount is $${amount}. ` +
+      `Recommended next step: review coding, documentation, and payer requirements before correction and resubmission.`;
+
     res.json({ ok: true, explanation });
   } catch (error) {
     res.status(500).json({ ok: false, error: error.message });
@@ -24,4 +34,3 @@ router.post('/api/claims/explanation', async (req, res) => {
 });
 
 module.exports = router;
-// AI refresh 1773791416

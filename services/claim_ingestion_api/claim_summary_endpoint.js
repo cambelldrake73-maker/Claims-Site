@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { generateClaimSummary } = require('../ai/claim_summary_service');
 
-router.post('/api/claims/summary', async (req, res) => {
+router.post('/summary', async (req, res) => {
   try {
     const claim = req.body || {
       id: 'CLM-1002',

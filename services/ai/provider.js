@@ -1,14 +1,18 @@
 const axios = require('axios');
+const { checkUsage } = require('./usage_limiter');
 
 const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY;
 
-async function callClaude(prompt) {
+async function generateText({ system = "", prompt }) {
   try {
+    checkUsage();
+
     const response = await axios.post(
       'https://api.anthropic.com/v1/messages',
       {
-        model: "claude-3-sonnet-20240229",
+        model: "claude-sonnet-4-6",
         max_tokens: 300,
+        system,
         messages: [
           {
             role: "user",
@@ -26,13 +30,12 @@ async function callClaude(prompt) {
     );
 
     return response.data.content[0].text;
-
   } catch (err) {
     console.error("Claude API error:", err.response?.data || err.message);
-    return "Error generating response";
+    throw err;
   }
 }
 
 module.exports = {
-  callClaude
+  generateText
 };

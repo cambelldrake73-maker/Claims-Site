@@ -1,10 +1,12 @@
-const { generateText } = require("./provider");
-
 async function generateClaimSummary(claim) {
-  const system = "You summarize denied or underpaid insurance claims for internal workflow use.";
-  const prompt = `Summarize this claim in 3-4 sentences:\n${JSON.stringify(claim, null, 2)}`;
-  return generateText({ system, prompt });
+  const id = claim?.id || 'UNKNOWN';
+  const status = claim?.status || 'unknown';
+  const denialReason = claim?.denialReason || 'unspecified reason';
+  const amount = claim?.amount || 0;
+  const patient = claim?.patient || 'Unknown Patient';
+  const payer = claim?.payer || 'Unknown Payer';
+
+  return `Claim ${id} for ${patient} with ${payer} is currently ${status}. The claim amount is $${amount}. The current denial reason is ${denialReason}. This claim should be reviewed for correction and resubmission.`;
 }
 
 module.exports = { generateClaimSummary };
-// AI refresh 1773791400
