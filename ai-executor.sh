@@ -832,8 +832,7 @@ EOF
             echo "<div>Updated $(date +%s)</div>"
         } >> reporting.html
     fi
-elif echo "$TASK" | grep -Eiq "review queue"; then
-
+elif echo "$TASK" | grep -Eiq "review queue interface|review queue item styling|review queue data rendering"; then
     echo "AI handling review queue task..."
 
     if [ ! -f review-queue.html ]; then
@@ -1408,6 +1407,132 @@ EOF
             echo ""
             echo "// AI refresh $(date +%s)" >> services/claim_ingestion_api/claims_intelligence_endpoint.js
         }
+    fi
+elif echo "$TASK" | grep -Eiq "GET /api/claims/search|claims/search endpoint"; then
+
+    echo "AI creating claims search endpoint..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/claim_search_endpoint.js ]; then
+        cat > services/claim_ingestion_api/claim_search_endpoint.js <<'EOF'
+const express = require('express');
+const router = express.Router();
+const { all } = require('./db');
+
+router.get('/search', async (req, res) => {
+  try {
+    const { status, payer, patient } = req.query;
+
+    let sql = 'SELECT * FROM claims WHERE 1=1';
+    const params = [];
+
+    if (status) {
+      sql += ' AND lower(status) = lower(?)';
+      params.push(status);
+    }
+
+    if (payer) {
+      sql += ' AND lower(payer) LIKE lower(?)';
+      params.push(`%${payer}%`);
+    }
+
+    if (patient) {
+      sql += ' AND lower(patient) LIKE lower(?)';
+      params.push(`%${patient}%`);
+    }
+
+    sql += ' ORDER BY created_at DESC';
+
+    const claims = await all(sql, params);
+    res.json({ ok: true, claims });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+module.exports = router;
+EOF
+    else
+        echo "Claims search endpoint already present."
+    fi
+
+elif echo "$TASK" | grep -Eiq "review queue persistence endpoint|POST /api/claims/review-queue"; then
+
+    echo "AI creating review queue persistence endpoint..."
+
+    if [ ! -f services/claim_ingestion_api/review_queue_endpoint.js ]; then
+        echo "review_queue_endpoint.js missing; task not complete."
+        exit 1
+    else
+        echo "Review queue persistence endpoint already present."
+    fi
+
+elif echo "$TASK" | grep -Eiq "claims intelligence service|services/ai/claims_intelligence_service.js"; then
+
+    echo "AI creating claims intelligence service..."
+
+    mkdir -p services/ai
+
+    if [ ! -f services/ai/claims_intelligence_service.js ]; then
+        cat > services/ai/claims_intelligence_service.js <<'EOF'
+const { all } = require('../claim_ingestion_api/db');
+
+async function getClaimsIntelligenceSummary() {
+  const rows = await all('SELECT status, amount FROM claims');
+
+  const summary = {
+    total_claims: rows.length,
+    denied_count: 0,
+    approved_count: 0,
+    pending_count: 0,
+    average_amount_by_status: {
+      denied: 0,
+      approved: 0,
+      pending: 0
+    }
+  };
+
+  const sums = { denied: 0, approved: 0, pending: 0 };
+
+  rows.forEach(row => {
+    const status = String(row.status || '').toLowerCase();
+    const amount = Number(row.amount || 0);
+
+    if (status === 'denied') {
+      summary.denied_count += 1;
+      sums.denied += amount;
+    } else if (status === 'approved') {
+      summary.approved_count += 1;
+      sums.approved += amount;
+    } else if (status === 'pending') {
+      summary.pending_count += 1;
+      sums.pending += amount;
+    }
+  });
+
+  if (summary.denied_count) summary.average_amount_by_status.denied = sums.denied / summary.denied_count;
+  if (summary.approved_count) summary.average_amount_by_status.approved = sums.approved / summary.approved_count;
+  if (summary.pending_count) summary.average_amount_by_status.pending = sums.pending / summary.pending_count;
+
+  return summary;
+}
+
+module.exports = { getClaimsIntelligenceSummary };
+EOF
+    else
+        echo "Claims intelligence service already present."
+    fi
+
+elif echo "$TASK" | grep -Eiq "refactor claim_ingest_endpoint|database-backed ingest|instead of in-memory CLAIM_STORE"; then
+
+    echo "AI checking DB-backed ingest refactor..."
+
+    if grep -q "CLAIM_STORE" services/claim_ingestion_api/claim_ingest_endpoint.js; then
+        echo "claim_ingest_endpoint.js still uses CLAIM_STORE; task not complete."
+        exit 1
+    else
+        echo "DB-backed ingest refactor already present."
     fi
 else
     echo "No safe file action matched task."

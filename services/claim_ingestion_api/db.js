@@ -4,6 +4,33 @@ const path = require('path');
 const DB_PATH = path.resolve(__dirname, '../../claims.db');
 const db = new sqlite3.Database(DB_PATH);
 
+function run(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.run(sql, params, function (err) {
+      if (err) return reject(err);
+      resolve({ id: this.lastID, changes: this.changes });
+    });
+  });
+}
+
+function get(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.get(sql, params, (err, row) => {
+      if (err) return reject(err);
+      resolve(row);
+    });
+  });
+}
+
+function all(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.all(sql, params, (err, rows) => {
+      if (err) return reject(err);
+      resolve(rows);
+    });
+  });
+}
+
 function initializeDatabase() {
   db.serialize(() => {
     db.run(`
@@ -21,17 +48,28 @@ function initializeDatabase() {
       )
     `);
 
+    db.run(`
+      CREATE TABLE IF NOT EXISTS review_queue (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        claim_id TEXT NOT NULL,
+        reviewer_id TEXT,
+        reviewer_notes TEXT,
+        assignment_status TEXT DEFAULT 'unassigned',
+        created_at INTEGER,
+        updated_at INTEGER
+      )
+    `);
+
     db.run(`CREATE INDEX IF NOT EXISTS idx_claims_status ON claims(status)`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_claims_payer ON claims(payer)`);
+    db.run(`CREATE INDEX IF NOT EXISTS idx_review_queue_claim_id ON review_queue(claim_id)`);
   });
 }
 
 module.exports = {
   db,
+  run,
+  get,
+  all,
   initializeDatabase
 };
-// AI refresh 1773872462
-// AI refresh 1773872462
-// AI refresh 1773872542
-// AI refresh 1773872542
-// AI refresh 1773872558
