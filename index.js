@@ -16,7 +16,9 @@ app.get('/', (req, res) => {
 app.use('/api/claims', claimIngestionRouter);
 
 const PORT = process.env.PORT || 3000;
+const path = require('path');
 
+app.use(express.static(path.join(__dirname)));
 app.listen(PORT, () => {
   console.log(`claims-site API listening on port ${PORT}`);
 });
