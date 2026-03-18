@@ -769,8 +769,7 @@ elif echo "$TASK" | grep -Eiq "loading|empty states"; then
             echo "<div>Loading refresh $(date +%s)</div>"
         } >> claims.html
     fi
-elif echo "$TASK" | grep -Eiq "claims page|claims table|claim row|denial reason|loading state|search"; then
-
+elif echo "$TASK" | grep -Eiq "claims page|claim row|denial reason|loading state"; then
     echo "AI handling claims page enhancement task..."
 
     if ! grep -q "AI improvement: claim search ui wiring" claims.html; then
