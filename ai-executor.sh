@@ -13,7 +13,14 @@ cd "$WORKSPACE"
 echo "Checking for tasks..."
 
 TASK=$(grep -v "#" "$PENDING" | head -n 1)
-
+# Prevent duplicate task execution
+if grep -Fxq -- "$TASK" "$COMPLETED"; then
+    echo "Task already completed. Skipping."
+    tmp_pending=$(mktemp)
+    grep -Fxv -- "$TASK" "$PENDING" > "$tmp_pending"
+    mv "$tmp_pending" "$PENDING"
+    exit 0
+fi
 if [ -z "$TASK" ]; then
     echo "No tasks found."
     exit 0
