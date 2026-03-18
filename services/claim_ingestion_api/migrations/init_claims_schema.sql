@@ -37,3 +37,4 @@ CREATE INDEX IF NOT EXISTS idx_review_queue_claim_id ON review_queue(claim_id);
 CREATE INDEX IF NOT EXISTS idx_claims_intelligence_claim_id ON claims_intelligence(claim_id);
 -- AI refresh 1773872462
 -- AI refresh 1773872542
+-- AI refresh 1773874322
