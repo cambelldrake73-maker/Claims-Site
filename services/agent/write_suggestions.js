@@ -1,20 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 const { suggestTasks } = require('./task_suggester');
+const { collectContext } = require('./context_collector');
 
 async function run() {
-  const projectGoal = "Build a claims recovery platform with dashboard, review queue, denial handling, and internal claims intelligence.";
+  const projectGoal =
+    "Build a claims recovery platform with robust ingestion, normalization, review queue workflows, persistent storage, and internal claims intelligence without runtime dependence on external AI.";
 
-  const currentState = `
-- Runtime app no longer uses external AI
-- Claim summary is rule-based
-- Claim explanation is rule-based
-- Dev-only Claude lives in services/agent
-- Basic dashboard, claim detail page, and review queue exist
-- Claims API endpoints exist
-- No real database persistence yet
-- No robust review queue backend logic yet
-`;
+  const currentState = collectContext();
 
   const suggestionsPath = path.resolve(__dirname, '../../AI_SUGGESTIONS.md');
 
