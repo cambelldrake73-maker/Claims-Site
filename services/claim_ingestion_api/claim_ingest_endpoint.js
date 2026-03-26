@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { normalizeClaim } = require('./claim_model');
+const { evaluateClaim } = require('./claim_decision_engine');
 const { run, all } = require('./db');
 
 router.post('/ingest', async (req, res) => {
@@ -11,12 +12,42 @@ router.post('/ingest', async (req, res) => {
       return res.status(400).json({ ok: false, error: 'Expected array of claims' });
     }
 
-    const normalized = input.map(c => normalizeClaim(c));
+    const normalized = input.map(c => {
+      const claim = normalizeClaim(c);
+      const decision = evaluateClaim(claim);
+
+      claim.confidence = decision.confidence;
+      claim.recovery_route = decision.recovery_route;
+      claim.likely_fix_type = decision.likely_fix_type;
+      claim.missing_fields = decision.missing_fields;
+      claim.missing_elements = decision.missing_elements;
+      claim.coding_flags = decision.coding_flags;
+      claim.warnings = decision.warnings;
+      claim.recommended_actions = decision.recommended_actions;
+      claim.fix_plan = decision.fix_plan;  
+    return claim;
+    });
 
     let ingested = 0;
     const duplicates = [];
+    const review_required = [];
 
     for (const claim of normalized) {
+      if (claim.recovery_route === 'manual_exception_review' || claim.recovery_route === 'needs_more_documents') {
+        review_required.push({
+          claim_id: claim.claim_id,
+          confidence: claim.confidence,
+          likely_fix_type: claim.likely_fix_type,
+          recovery_route: claim.recovery_route,
+          missing_fields: claim.missing_fields,
+          missing_elements: claim.missing_elements,
+          coding_flags: claim.coding_flags,
+          warnings: claim.warnings,
+          recommended_actions: claim.recommended_actions,
+          fix_plan: claim.fix_plan
+        });
+      }
+
       try {
         await run(
           `INSERT INTO claims (
@@ -52,6 +83,7 @@ router.post('/ingest', async (req, res) => {
       ok: true,
       ingested,
       duplicates,
+      review_required,
       total: totalRows.length
     });
   } catch (err) {

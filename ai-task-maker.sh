@@ -1,52 +1,38 @@
 #!/bin/bash
 
 WORKSPACE="$HOME/.openclaw/workspace/claims-site"
-
 SUGGESTIONS="$WORKSPACE/AI_SUGGESTIONS.md"
 PENDING="$WORKSPACE/AI_PENDING.md"
+RUNNING="$WORKSPACE/AI_RUNNING.md"
 COMPLETED="$WORKSPACE/AI_COMPLETED.md"
 
-cd "$WORKSPACE"
+cd "$WORKSPACE" || exit 1
 
 echo "Generating AI tasks..."
 
-# ensure files exist
-touch "$PENDING"
-touch "$COMPLETED"
+touch "$SUGGESTIONS" "$PENDING" "$RUNNING" "$COMPLETED"
 
-# if pending already has real tasks, do nothing
 if grep -qE '^- ' "$PENDING"; then
-    echo "Task queue already populated."
+    echo "Pending already populated."
     exit 0
 fi
 
-# rebuild pending cleanly
 echo "# Pending Tasks" > "$PENDING"
 
-# if suggestions exist, convert only new suggestions into tasks
-if [ -f "$SUGGESTIONS" ]; then
-    while IFS= read -r task; do
-        # only process markdown bullet tasks
-        if echo "$task" | grep -qE '^- '; then
-            # skip if task already completed
-            if grep -Fxq -- "$task" "$COMPLETED"; then
-                continue
-            fi
+count=0
+while IFS= read -r task; do
+    [[ ! "$task" =~ ^- ]] && continue
+    grep -Fxq -- "$task" "$COMPLETED" && continue
+    grep -Fxq -- "$task" "$RUNNING" && continue
+    grep -Fxq -- "$task" "$PENDING" && continue
 
-            # skip if task already in pending
-            if grep -Fxq -- "$task" "$PENDING"; then
-                continue
-            fi
+    echo "$task" >> "$PENDING"
+    count=$((count+1))
+    [ "$count" -ge 5 ] && break
+done < "$SUGGESTIONS"
 
-            echo "$task" >> "$PENDING"
-        fi
-    done < "$SUGGESTIONS"
-
-    if grep -qE '^- ' "$PENDING"; then
-        echo "Tasks generated."
-    else
-        echo "No new tasks to add."
-    fi
+if grep -qE '^- ' "$PENDING"; then
+    echo "Tasks generated."
 else
-    echo "No suggestions file found."
+    echo "No new tasks to add."
 fi

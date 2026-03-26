@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cases</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f6fb;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .case-card {
+      background: white;
+      padding: 16px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      cursor: pointer;
+    }
+
+    .case-card:hover {
+      background: #f9fafc;
+    }
+
+    .case-id {
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    .claims {
+      margin-top: 20px;
+    }
+
+    .claim {
+      background: white;
+      padding: 12px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Cases</h1>
+<h2>Submission Queue</h2>
+<div id="submissionQueue"></div>
+<div id="cases"></div>
+
+<div class="claims" id="claims"></div>
+
+<script>
+async function loadCases() {
+  const res = await fetch('/api/cases/all');
+  const data = await res.json();
+
+  const container = document.getElementById('cases');
+  container.innerHTML = '';
+
+  data.cases.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'case-card';
+    div.innerHTML = `
+      <div class="case-id">${c.case_id}</div>
+      <div>Batch: ${c.batch_id}</div>
+      <div>Claims: ${c.claim_count}</div>
+      <div>Status: ${c.case_status}</div>
+      <button onclick="approveCase('${c.case_id}', event)">Approve & Submit</button>
+      <button onclick="rejectCase('${c.case_id}', event)">Reject</button>
+    `;
+
+    div.onclick = () => loadCaseClaims(c.case_id);
+
+    container.appendChild(div);
+  });
+}
+
+async function loadCaseClaims(caseId) {
+  const res = await fetch(`/api/case/${caseId}/claims`);
+  const data = await res.json();
+
+  const container = document.getElementById('claims');
+  container.innerHTML = `<h2>${caseId}</h2>`;
+
+  data.claims.forEach(claim => {
+    const div = document.createElement('div');
+    div.className = 'claim';
+    div.innerHTML = `
+      <div><strong>File:</strong> ${claim.source_file}</div>
+      <div>Status: ${claim.status}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+async function processCase(caseId, event) {
+  event.stopPropagation(); // prevents clicking card
+
+  await fetch(`/api/case/${caseId}/process`, {
+    method: 'POST'
+  });
+
+  alert(`Processed ${caseId}`);
+
+  loadCases(); // refresh list
+}
+loadCases();
+async function approveCase(caseId, event) {
+  event.stopPropagation();
+
+  await fetch(`/api/case/${caseId}/approve`, {
+    method: 'POST'
+  });
+
+  alert(`Approved ${caseId}`);
+loadCases();
+}
+async function rejectCase(caseId, event) {
+  event.stopPropagation();
+
+  await fetch(`/api/case/${caseId}/reject`, {
+    method: 'POST'
+  });
+
+  alert(`Rejected ${caseId}`);
+  loadCases();
+  loadSubmissionQueue();
+}
+
+async function loadSubmissionQueue() {
+  const res = await fetch('/api/cases/submission-ready');
+  const data = await res.json();
+
+  const container = document.getElementById('submissionQueue');
+
+  if (!container) {
+    console.error('submissionQueue div not found');
+    return;
+  }
+
+  container.innerHTML = '';
+
+  data.cases.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'case-card';
+
+    div.innerHTML = `
+      <div class="case-id">${c.case_id}</div>
+      <div>Batch: ${c.batch_id}</div>
+      <div>Claims: ${c.claim_count}</div>
+      <div>Status: READY TO SUBMIT</div>
+      <button onclick="submitCase('${c.case_id}', event)">Submit</button>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+// INITIAL LOAD
+async function submitCase(caseId, event) {
+  event.stopPropagation();
+
+  const res = await fetch(`/api/case/${caseId}/submit`, {
+    method: 'POST'
+  });
+
+  const data = await res.json();
+
+  if (!data.ok) {
+    alert(data.error || 'Submit failed');
+    return;
+  }
+
+  alert(`Submitted ${caseId}`);
+
+  loadCases();
+  loadSubmissionQueue();
+}
+loadCases();
+loadSubmissionQueue();
+</script>
+
+</body>
+</html>
