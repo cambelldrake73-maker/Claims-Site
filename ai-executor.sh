@@ -37,12 +37,6 @@ echo "$TASK" >> "$RUNNING"
 
 echo "Generating plan..."
 
-echo "" >> "$PLAN"
-echo "Task: $TASK" >> "$PLAN"
-echo "- Analyze project structure" >> "$PLAN"
-echo "- Identify files to modify" >> "$PLAN"
-echo "- Apply safe improvement" >> "$PLAN"
-echo "" >> "$PLAN"
 # SAFE TASK ACTIONS
 if echo "$TASK" | grep -iq "improve dashboard layout responsiveness"; then
     echo "AI modifying dashboard..."
