@@ -1528,6 +1528,81 @@ elif echo "$TASK" | grep -Eiq "refactor claim_ingest_endpoint|database-backed in
     else
         echo "DB-backed ingest refactor already present."
     fi
+elif echo "$TASK" | grep -Eiq "batch-normalize|normalize.*claim|claims.*normalize"; then
+
+    echo "AI building batch normalize endpoint..."
+
+    mkdir -p services/claim_ingestion_api
+
+    if [ ! -f services/claim_ingestion_api/batch_normalize_endpoint.js ]; then
+        cat > services/claim_ingestion_api/batch_normalize_endpoint.js <<'EOF'
+const express = require('express');
+const router = express.Router();
+const { db } = require('./db');
+
+// simple normalize stub (replace later)
+function normalizeClaim(claim) {
+  return {
+    claim_id: claim.claim_id || claim.id || `CLM-${Date.now()}`,
+    patient: claim.patient || 'Unknown',
+    payer: claim.payer || 'Unknown',
+    status: claim.status || 'pending',
+    denial_reason: claim.denial_reason || '',
+    amount: Number(claim.amount || 0),
+    created_at: Date.now(),
+    updated_at: Date.now()
+  };
+}
+
+router.post('/api/claims/batch-normalize', async (req, res) => {
+  try {
+    const claims = Array.isArray(req.body) ? req.body : [];
+
+    if (!claims.length) {
+      return res.status(400).json({ ok: false, error: 'No claims provided' });
+    }
+
+    const normalized = claims.map(normalizeClaim);
+
+    db.serialize(() => {
+      const stmt = db.prepare(`
+        INSERT OR REPLACE INTO claims
+        (claim_id, patient, payer, status, denial_reason, amount, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      `);
+
+      normalized.forEach(c => {
+        stmt.run(
+          c.claim_id,
+          c.patient,
+          c.payer,
+          c.status,
+          c.denial_reason,
+          c.amount,
+          c.created_at,
+          c.updated_at
+        );
+      });
+
+      stmt.finalize();
+    });
+
+    res.json({
+      ok: true,
+      inserted: normalized.length,
+      sample: normalized[0]
+    });
+
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+module.exports = router;
+EOF
+    else
+        echo "Batch normalize endpoint already exists."
+    fi
 else
     echo "No safe file action matched task."
 fi
