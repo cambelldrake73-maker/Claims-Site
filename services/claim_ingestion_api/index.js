@@ -8,7 +8,10 @@ const claimIngestRouter = require('./claim_ingest_endpoint');
 const reviewQueueRouter = require('./review_queue_endpoint');
 const claimSearchRouter = require('./claim_search_endpoint');
 const claimStatsRouter = require('./claim_stats_endpoint');
-const { getClaimsIntelligenceSummary } = require('../ai/claims_intelligence_service');
+const claimsIntelligenceRouter = require('./claims_intelligence_endpoint');
+const batchNormalizeRouter = require('./batch_normalize_endpoint');
+const listEndpointRouter = require('./list_endpoint');
+const detailEndpointRouter = require('./detail_endpoint');
 
 router.use(claimStatusRouter);
 router.use(claimSummaryRouter);
@@ -17,12 +20,9 @@ router.use(claimIngestRouter);
 router.use(reviewQueueRouter);
 router.use(claimSearchRouter);
 router.use(claimStatsRouter);
-router.get('/intelligence', async (req, res) => {
-  try {
-    const data = await getClaimsIntelligenceSummary();
-    res.json({ ok: true, intelligence: data });
-  } catch (err) {
-    res.status(500).json({ ok: false, error: err.message });
-  }
-});
+router.use(claimsIntelligenceRouter);
+router.use(batchNormalizeRouter);
+router.use(listEndpointRouter);
+router.use(detailEndpointRouter);
+
 module.exports = router;

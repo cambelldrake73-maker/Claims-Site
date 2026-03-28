@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { run, all } = require('./db');
 
-router.post('/review-queue', async (req, res) => {
+router.post('/api/review-queue', async (req, res) => {
   try {
     const { claim_id, reviewer_notes = '', reviewer_id = '' } = req.body || {};
 
@@ -38,7 +38,7 @@ router.post('/review-queue', async (req, res) => {
   }
 });
 
-router.get('/queue', async (req, res) => {
+router.get('/api/review-queue', async (req, res) => {
   try {
     const queue = await all(
       `SELECT * FROM review_queue ORDER BY created_at ASC`

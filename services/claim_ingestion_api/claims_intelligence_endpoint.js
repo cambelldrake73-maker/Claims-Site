@@ -3,7 +3,7 @@ const router = express.Router();
 
 let CLAIM_STORE = [];
 
-router.get('/intelligence', (req, res) => {
+router.get('/api/claims/intelligence', (req, res) => {
   const byReason = {};
   const byPayer = {};
   const byProcedureCode = {};

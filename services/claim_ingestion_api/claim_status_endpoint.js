@@ -4,7 +4,7 @@ const { run, get } = require('./db');
 
 const ALLOWED_STATUSES = ['under_review', 'submitted', 'not_recoverable'];
 
-router.post('/update-status', async (req, res) => {
+router.post('/api/claims/status', async (req, res) => {
   try {
     const { claim_id, status } = req.body || {};
 

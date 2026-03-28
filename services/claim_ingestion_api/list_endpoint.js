@@ -1,22 +1,18 @@
 const express = require('express');
 const router = express.Router();
+const { all } = require('./db');
 
 router.get('/api/claims', async (req, res) => {
-  res.json({
-    ok: true,
-    claims: [
-      { id: 'CLM-1001', status: 'submitted', denialReason: '', amount: 1250.00 },
-      { id: 'CLM-1002', status: 'denied', denialReason: 'Missing modifier', amount: 980.00 },
-      { id: 'CLM-1003', status: 'pending_review', denialReason: '', amount: 430.00 }
-    ]
-  });
+  try {
+    const claims = await all(`SELECT * FROM claims ORDER BY created_at DESC`);
+    res.json({
+      ok: true,
+      count: claims.length,
+      claims
+    });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
 });
 
 module.exports = router;
-// AI refresh 1773788684
-// AI refresh 1773789475
-// AI refresh 1773791262
-// AI refresh 1773872478
-// AI refresh 1773872558
-// AI refresh 1773874339
-// AI refresh 1774659903

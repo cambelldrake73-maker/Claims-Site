@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { all } = require('./db');
 
-router.get('/stats', async (req, res) => {
+router.get('/api/claims/stats', async (req, res) => {
   try {
     const rows = await all('SELECT status, amount FROM claims');
 
