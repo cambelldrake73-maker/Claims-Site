@@ -1602,6 +1602,10 @@ module.exports = router;
 EOF
     else
         echo "Batch normalize endpoint already exists."
+        echo "$(date): Completed task $TASK (already satisfied)" >> "$LOG"
+        : > "$RUNNING"
+        echo "$TASK" >> "$COMPLETED"
+        exit 0
     fi
 else
     echo "No safe file action matched task."
