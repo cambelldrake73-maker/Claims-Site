@@ -826,30 +826,190 @@ EOF
             echo "<div>Updated $(date +%s)</div>"
         } >> reporting.html
     fi
-elif echo "$TASK" | grep -Eiq "review queue interface|review queue item styling|review queue data rendering"; then
+elif echo "$TASK" | grep -Eiq "review queue"; then
     echo "AI handling review queue task..."
 
-    if [ ! -f review-queue.html ]; then
-        cat > review-queue.html <<'EOF'
+    cat > review-queue.html <<'EOF'
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Review Queue</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Queue</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+      margin: 0;
+      padding: 0;
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 32px;
+    }
+    .page-header {
+      margin-bottom: 24px;
+    }
+    .page-header h1 {
+      margin: 0 0 8px 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .page-header p {
+      margin: 0;
+      color: #4b5563;
+      font-size: 15px;
+    }
+    .queue-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      padding: 20px;
+    }
+    .panel h2 {
+      margin: 0 0 16px 0;
+      font-size: 18px;
+    }
+    .review-queue-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .queue-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: #ffffff;
+    }
+    .queue-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+    .queue-meta {
+      font-size: 14px;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+    .tag {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #3730a3;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .empty-state {
+      color: #6b7280;
+      font-size: 14px;
+    }
+    .detail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 14px;
+      color: #374151;
+    }
+    .detail-list div strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+  </style>
 </head>
 <body>
-<h1>Review Queue</h1>
-<div class="review-queue-list"></div>
+  <div class="page">
+    <div class="page-header">
+      <h1>Review Queue</h1>
+      <p>Claims requiring manual review, presented in a structured operational layout.</p>
+    </div>
+
+    <div class="queue-layout">
+      <section class="panel">
+        <h2>Claims Awaiting Review</h2>
+        <div class="review-queue-list" id="reviewQueueList">
+          <div class="empty-state">Loading review queue...</div>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>Queue Guidance</h2>
+        <div class="detail-list">
+          <div>
+            <strong>Priority</strong>
+            Review denied and pending review claims first.
+          </div>
+          <div>
+            <strong>Focus</strong>
+            Validate denial reasons, missing fields, and recommended actions.
+          </div>
+          <div>
+            <strong>Goal</strong>
+            Move claims toward correction and resubmission with minimal ambiguity.
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    async function loadReviewQueue() {
+      try {
+        const res = await fetch('/api/review-queue');
+        const data = await res.json();
+        const list = document.getElementById('reviewQueueList');
+
+        if (!list) return;
+
+        if (!data.ok || !Array.isArray(data.queue) || data.queue.length === 0) {
+          list.innerHTML = '<div class="empty-state">No claims currently require manual review.</div>';
+          return;
+        }
+
+        list.innerHTML = data.queue.map(item => {
+          const claim = item.claim || {};
+          const enrichment = item.enrichment || {};
+          const actions = Array.isArray(enrichment.recommended_actions)
+            ? enrichment.recommended_actions.slice(0, 2).join(' • ')
+            : 'No recommended actions available';
+
+          return `
+            <div class="queue-item">
+              <strong>${item.claim_id}</strong>
+              <div class="queue-meta">
+                ${claim.patient || 'Unknown Patient'} · ${claim.payer || 'Unknown Payer'}<br>
+                Status: ${claim.status || 'unknown'}<br>
+                Denial: ${claim.denial_reason || 'unspecified'}<br>
+                Confidence: ${enrichment.confidence ?? 'n/a'}
+              </div>
+              <div class="tag">${enrichment.likely_fix_type || 'manual_review'}</div>
+              <div class="queue-meta" style="margin-top:10px;">${actions}</div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        const list = document.getElementById('reviewQueueList');
+        if (list) {
+          list.innerHTML = '<div class="empty-state">Unable to load review queue.</div>';
+        }
+      }
+    }
+
+    loadReviewQueue();
+  </script>
 </body>
 </html>
 EOF
-    else
-        {
-            echo ""
-            echo "<!-- AI improvement: review queue refresh -->"
-            echo "<div class=\"review-queue-item\">Claim CLM-1002 awaiting review $(date +%s)</div>"
-        } >> review-queue.html
-    fi
 elif echo "$TASK" | grep -Eiq "detail page|detail api|detail json"; then
 
     echo "AI handling claim detail task..."
