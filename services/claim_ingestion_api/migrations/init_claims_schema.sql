@@ -46,3 +46,4 @@ CREATE INDEX IF NOT EXISTS idx_claims_intelligence_claim_id ON claims_intelligen
 -- AI refresh 1774756199
 -- AI refresh 1774756199
 -- AI refresh 1774756214
+-- AI refresh 1774757722
