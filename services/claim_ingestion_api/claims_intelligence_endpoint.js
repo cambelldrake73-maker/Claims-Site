@@ -1,39 +1,37 @@
 const express = require('express');
 const router = express.Router();
+const { all } = require('./db');
 
-let CLAIM_STORE = [];
+router.get('/api/claims/intelligence', async (req, res) => {
+  try {
+    const rows = await all(`SELECT * FROM claims`);
 
-router.get('/api/claims/intelligence', (req, res) => {
-  const byReason = {};
-  const byPayer = {};
-  const byProcedureCode = {};
+    const byReason = {};
+    const byPayer = {};
+    const byStatus = {};
 
-  CLAIM_STORE.forEach(c => {
-    const reason = c.denial_reason || c.denialReason || 'unspecified';
-    const payer = c.payer || 'Unknown Payer';
-    const procedureCode = c.procedure_code || 'unknown';
+    rows.forEach(c => {
+      const reason = c.denial_reason || 'unspecified';
+      const payer = c.payer || 'Unknown Payer';
+      const status = c.status || 'unknown';
 
-    byReason[reason] = (byReason[reason] || 0) + 1;
-    byPayer[payer] = (byPayer[payer] || 0) + 1;
-    byProcedureCode[procedureCode] = (byProcedureCode[procedureCode] || 0) + 1;
-  });
+      byReason[reason] = (byReason[reason] || 0) + 1;
+      byPayer[payer] = (byPayer[payer] || 0) + 1;
+      byStatus[status] = (byStatus[status] || 0) + 1;
+    });
 
-  res.json({
-    ok: true,
-    totals: {
-      claims: CLAIM_STORE.length
-    },
-    denial_reasons: byReason,
-    payers: byPayer,
-    procedure_codes: byProcedureCode
-  });
+    res.json({
+      ok: true,
+      totals: {
+        claims: rows.length
+      },
+      denial_reasons: byReason,
+      payers: byPayer,
+      statuses: byStatus
+    });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
 });
 
-router.__setClaimStore = (store) => {
-  CLAIM_STORE = store;
-};
-
 module.exports = router;
-// AI refresh 1773872399
-// AI refresh 1773872478
-// AI refresh 1774655469

@@ -35,10 +35,10 @@ router.get('/api/claims/stats', async (req, res) => {
       if (status === 'denied') {
         stats.denied_count += 1;
         sums.denied += amount;
-      } else if (status === 'approved') {
+      } else if (status === 'approved' || status === 'accepted') {
         stats.approved_count += 1;
         sums.approved += amount;
-      } else if (status === 'pending') {
+      } else if (status === 'pending' || status === 'pending_review' || status === 'under_review') {
         stats.pending_count += 1;
         sums.pending += amount;
       }

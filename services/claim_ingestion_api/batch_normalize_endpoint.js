@@ -2,14 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { db } = require('./db');
 
-// simple normalize stub (replace later)
 function normalizeClaim(claim) {
   return {
     claim_id: claim.claim_id || claim.id || `CLM-${Date.now()}`,
-    patient: claim.patient || 'Unknown',
-    payer: claim.payer || 'Unknown',
-    status: claim.status || 'pending',
-    denial_reason: claim.denial_reason || '',
+    patient: claim.patient || claim.patient_name || 'Unknown',
+    payer: claim.payer || claim.payer_name || 'Unknown',
+    status: String(claim.status || 'pending').toLowerCase(),
+    denial_reason: claim.denial_reason || claim.denialReason || '',
     amount: Number(claim.amount || 0),
     created_at: Date.now(),
     updated_at: Date.now()
@@ -18,7 +17,11 @@ function normalizeClaim(claim) {
 
 router.post('/api/claims/batch-normalize', async (req, res) => {
   try {
-    const claims = Array.isArray(req.body) ? req.body : [];
+    const claims = Array.isArray(req.body?.claims)
+      ? req.body.claims
+      : Array.isArray(req.body)
+      ? req.body
+      : [];
 
     if (!claims.length) {
       return res.status(400).json({ ok: false, error: 'No claims provided' });
@@ -54,7 +57,6 @@ router.post('/api/claims/batch-normalize', async (req, res) => {
       inserted: normalized.length,
       sample: normalized[0]
     });
-
   } catch (err) {
     res.status(500).json({ ok: false, error: err.message });
   }

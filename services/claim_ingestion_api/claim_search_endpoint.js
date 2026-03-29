@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { all } = require('./db');
+
 router.get('/api/claims/search', async (req, res) => {
   try {
     const {
@@ -44,7 +45,7 @@ router.get('/api/claims/search', async (req, res) => {
     sql += ' ORDER BY created_at DESC';
 
     const claims = await all(sql, params);
-    res.json({ ok: true, claims });
+    res.json({ ok: true, count: claims.length, claims });
   } catch (err) {
     res.status(500).json({ ok: false, error: err.message });
   }

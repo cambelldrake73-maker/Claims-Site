@@ -2,9 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { normalizeClaim } = require('./claim_model');
 const { evaluateClaim } = require('./claim_decision_engine');
-const { run, all } = require('./db');
-
-router.post('/ingest', async (req, res) => {
+const { run, all, get } = require('./db');
+router.post('/api/claims/ingest', async (req, res) => {
   try {
     const input = req.body;
 
@@ -68,6 +67,36 @@ router.post('/ingest', async (req, res) => {
           ]
         );
         ingested += 1;
+                await run(
+          `INSERT INTO claims_enrichment (
+            claim_id,
+            confidence,
+            recovery_route,
+            likely_fix_type,
+            missing_fields,
+            missing_elements,
+            coding_flags,
+            warnings,
+            recommended_actions,
+            fix_plan,
+            created_at,
+            updated_at
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [
+            claim.claim_id,
+            claim.confidence,
+            claim.recovery_route,
+            claim.likely_fix_type,
+            JSON.stringify(claim.missing_fields || []),
+            JSON.stringify(claim.missing_elements || []),
+            JSON.stringify(claim.coding_flags || []),
+            JSON.stringify(claim.warnings || []),
+            JSON.stringify(claim.recommended_actions || []),
+            JSON.stringify(claim.fix_plan || {}),
+            claim.created_at,
+            claim.updated_at
+          ]
+        );
       } catch (err) {
         if (String(err.message).includes('UNIQUE')) {
           duplicates.push(claim.claim_id);
@@ -90,8 +119,7 @@ router.post('/ingest', async (req, res) => {
     res.status(500).json({ ok: false, error: err.message });
   }
 });
-
-router.get('/all', async (req, res) => {
+router.get('/api/claims/all', async (req, res) => {
   try {
     const claims = await all(`SELECT * FROM claims ORDER BY created_at DESC`);
     res.json({ ok: true, claims });

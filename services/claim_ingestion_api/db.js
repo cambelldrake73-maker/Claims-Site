@@ -59,7 +59,26 @@ function initializeDatabase() {
         updated_at INTEGER
       )
     `);
+    db.run(`
+      CREATE TABLE IF NOT EXISTS claims_enrichment (
+        enrichment_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        claim_id TEXT NOT NULL,
+        confidence REAL,
+        recovery_route TEXT,
+        likely_fix_type TEXT,
+        missing_fields TEXT,
+        missing_elements TEXT,
+        coding_flags TEXT,
+        warnings TEXT,
+        recommended_actions TEXT,
+        fix_plan TEXT,
+        created_at INTEGER,
+        updated_at INTEGER,
+        FOREIGN KEY (claim_id) REFERENCES claims(claim_id) ON DELETE CASCADE
+      )
+    `);
 
+    db.run(`CREATE INDEX IF NOT EXISTS idx_claims_enrichment_claim_id ON claims_enrichment(claim_id)`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_claims_status ON claims(status)`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_claims_payer ON claims(payer)`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_review_queue_claim_id ON review_queue(claim_id)`);

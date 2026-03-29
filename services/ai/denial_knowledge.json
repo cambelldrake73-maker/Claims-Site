@@ -1,0 +1,33 @@
+{
+  "missing modifier": {
+    "category": "coding",
+    "description": "A required modifier is missing from the procedure code.",
+    "action": "Add the correct modifier based on payer rules and resubmit the claim.",
+    "confidence": 0.9
+  },
+  "authorization required": {
+    "category": "authorization",
+    "description": "The claim requires prior authorization which was not included.",
+    "action": "Obtain authorization documentation and attach it before resubmission.",
+    "confidence": 0.9
+  },
+  "duplicate claim": {
+    "category": "duplicate",
+    "description": "The claim appears to be a duplicate submission.",
+    "action": "Verify submission history and ensure the claim has not already been processed.",
+    "confidence": 0.85
+  },
+  "documentation missing": {
+    "category": "documentation",
+    "description": "Supporting clinical documentation is missing.",
+    "action": "Attach clinical notes and medical necessity documentation.",
+    "confidence": 0.9
+  },
+  "invalid code": {
+    "category": "coding",
+    "description": "The procedure or diagnosis code is invalid.",
+    "action": "Verify CPT/ICD codes and correct them before resubmitting.",
+    "confidence": 0.9
+  }
+}
+

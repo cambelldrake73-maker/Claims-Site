@@ -292,3 +292,15 @@
   </script>
 </body>
 </html>
+
+<!-- AI improvement: claim search ui wiring -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const filterBar = document.querySelector('.claims-filter-bar');
+  if (!filterBar) return;
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.placeholder = 'Search claims...';
+  filterBar.prepend(input);
+});
+</script>

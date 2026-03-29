@@ -1,13 +1,16 @@
 const express = require('express');
 const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
-
+const { initializeDatabase } = require('./services/claim_ingestion_api/db');
+const claimsApiRouter = require('./services/claim_ingestion_api');
 const app = express();
 const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
+app.use(claimsApiRouter);
+initializeDatabase();
 const db = new sqlite3.Database('./claims.db');
 
 const run = (sql, params = []) =>

@@ -2,7 +2,19 @@ const express = require('express');
 const router = express.Router();
 const { run, get } = require('./db');
 
-const ALLOWED_STATUSES = ['under_review', 'submitted', 'not_recoverable'];
+const ALLOWED_STATUSES = [
+  'pending',
+  'pending_review',
+  'under_review',
+  'reviewed',
+  'corrected',
+  'submitted',
+  'accepted',
+  'approved',
+  'denied',
+  'rejected',
+  'not_recoverable'
+];
 
 router.post('/api/claims/status', async (req, res) => {
   try {
@@ -45,4 +57,3 @@ router.post('/api/claims/status', async (req, res) => {
 });
 
 module.exports = router;
-
