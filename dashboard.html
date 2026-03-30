@@ -162,11 +162,11 @@
       </div>
       <div class="card">
         <h3>Under Review</h3>
-        <div class="value" id="unde-rreview-count">-</div>
+        <div class="value" id="under-review-count">-</div>
       </div>
       <div class="card">
         <h3>Submitted Claims</h3>
-        <div class="value" id="Sumbitted-count">-</div>
+        <div class="value" id="submitted-count">-</div>
       </div>
     </section>
 
@@ -196,16 +196,23 @@
         if (!data.ok) {
           throw new Error(data.error || 'Failed to load intelligence');
         }
-        const intel = data.intelligence;
+        const intel = data;
+        document.getElementById('total-cases').textContent = intel.totals?.claims ?? 0;
 
-        document.getElementById('total-cases').textContent = intel.total_cases ?? 0;
-        document.getElementById('under-review-count').textContent = intel.under_review_count ?? 0;
-        document.getElementById('submitted-count').textContent = intel.submitted_count ?? 0;
-        document.getElementById('not-recoverable-count').textContent = intel.not_recoverable_count ?? 0;
-          `$${Number(intel.submitted_recovery_value ?? 0).toLocaleString()}`;
+        const statuses = intel.statuses || {};
+
+        document.getElementById('under-review-count').textContent =
+          statuses.under_review ?? 0;
+
+        document.getElementById('submitted-count').textContent =
+          statuses.submitted ?? 0;
+
+        document.getElementById('not-recoverable-count').textContent =
+          statuses.not_recoverable ?? 0;
         const denialList = document.getElementById('top-denial-reasons');
         denialList.innerHTML = '';
-        const denialReasons = intel.top_denial_reasons || [];
+        const denialReasons = Object.entries(intel.denial_reasons || {})
+          .map(([denial_reason, count]) => ({ denial_reason, count }));
         if (denialReasons.length === 0) {
           denialList.innerHTML = '<li class="empty">No denial reason data yet</li>';
         } else {
@@ -215,14 +222,16 @@
             denialList.appendChild(li);
           });
         }
-
         const payerList = document.getElementById('payer-denials');
         payerList.innerHTML = '';
-        const payers = intel.payer_denials || [];
-        if (payers.length === 0) {
-          payerList.innerHTML = '<li class="empty">No payer denial data yet</li>';
+
+        const payerData = Object.entries(intel.payers || {})
+          .map(([payer, count]) => ({ payer, count }));
+
+        if (payerData.length === 0) {
+          payerList.innerHTML = '<li class="empty">No payer data yet</li>';
         } else {
-          payers.forEach(item => {
+          payerData.forEach(item => {
             const li = document.createElement('li');
             li.textContent = `${item.payer}: ${item.count}`;
             payerList.appendChild(li);
