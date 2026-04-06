@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claims Dashboard</title>
+  <title>Operations Dashboard</title>
   <style>
     * {
       box-sizing: border-box;
@@ -13,108 +13,156 @@
     }
 
     body {
-      background: #f5f7fb;
+      background: #f3f4f6;
       color: #1f2937;
+      line-height: 1.4;
     }
 
     .navbar {
       background: #ffffff;
       border-bottom: 1px solid #e5e7eb;
-      padding: 18px 28px;
+      padding: 12px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
     }
 
     .logo {
-      font-size: 1.2rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
       font-weight: 700;
+      color: #111827;
+      text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
-      gap: 18px;
+      gap: 14px;
     }
 
     .nav-links a {
       text-decoration: none;
-      color: #374151;
-      font-size: 0.95rem;
+      color: #4b5563;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 2px 0;
+    }
+
+    .nav-links a.active {
+      color: #111827;
     }
 
     .page {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 32px 20px 60px;
+      padding: 22px 20px 44px;
     }
 
     .hero {
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
 
     .hero h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      color: #111827;
     }
 
     .hero p {
       color: #6b7280;
+      font-size: 0.88rem;
+      max-width: 620px;
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 28px;
+      gap: 14px;
+      margin-bottom: 22px;
     }
 
     .card {
       background: #ffffff;
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
     }
 
     .card h3 {
-      font-size: 0.95rem;
+      font-size: 0.8rem;
       color: #6b7280;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
 
     .card .value {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       font-weight: 700;
+      letter-spacing: -0.03em;
       color: #111827;
+      font-variant-numeric: tabular-nums;
     }
 
     .panel-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 16px;
     }
 
     .panel {
       background: #ffffff;
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
     }
 
     .panel h2 {
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       margin-bottom: 14px;
+      color: #111827;
     }
 
     .panel ul {
-      padding-left: 18px;
+      list-style: none;
+      padding-left: 0;
     }
 
     .panel li {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: #374151;
+      border-bottom: 1px solid #f3f4f6;
+      padding-bottom: 10px;
+    }
+
+    .panel li:last-child {
+      margin-bottom: 0;
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .list-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .list-label {
+      color: #111827;
+      font-weight: 600;
+      line-height: 1.4;
+      font-size: 0.92rem;
+    }
+
+    .list-value {
+      color: #4b5563;
+      flex-shrink: 0;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-size: 0.92rem;
     }
 
     .empty {
@@ -122,24 +170,24 @@
     }
 
     @media (max-width: 800px) {
-      .panel-grid {
-        grid-template-columns: 1fr;
-      }
-
       .navbar {
         flex-direction: column;
         gap: 10px;
         align-items: flex-start;
+      }
+
+      .panel-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
   <nav class="navbar">
-    <div class="logo">Claims Dashboard</div>
+    <div class="logo">Operations Dashboard</div>
     <div class="nav-links">
-      <a href="dashboard.html">Dashboard</a>
-      <a href="claims.html">Claims</a>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="claims.html">Cases</a>
       <a href="review-queue.html">Review Queue</a>
       <a href="reporting.html">Reporting</a>
     </div>
@@ -147,8 +195,8 @@
 
   <main class="page">
     <section class="hero">
-    <h1>Recovery Intelligence</h1>
-      <p>Live view of denied-claim activity, payer patterns, and recovery workload.</p>
+      <h1>Recovery Intelligence</h1>
+      <p>Operational view of claim volume, review status, denial reasons, and payer distribution.</p>
     </section>
 
     <section class="cards">
@@ -157,16 +205,16 @@
         <div class="value" id="total-cases">-</div>
       </div>
       <div class="card">
-        <h3>Not recoverable</h3>
-        <div class="value" id="not-recoverable-count">-</div>
-      </div>
-      <div class="card">
         <h3>Under Review</h3>
         <div class="value" id="under-review-count">-</div>
       </div>
       <div class="card">
-        <h3>Submitted Claims</h3>
+        <h3>Submitted Cases</h3>
         <div class="value" id="submitted-count">-</div>
+      </div>
+      <div class="card">
+        <h3>Not Recoverable</h3>
+        <div class="value" id="not-recoverable-count">-</div>
       </div>
     </section>
 
@@ -218,7 +266,12 @@
         } else {
           denialReasons.forEach(item => {
             const li = document.createElement('li');
-            li.textContent = `${item.denial_reason}: ${item.count}`;
+            li.innerHTML = `
+              <div class="list-row">
+                <span class="list-label">${item.denial_reason}</span>
+                <span class="list-value">${item.count}</span>
+              </div>
+            `;
             denialList.appendChild(li);
           });
         }
@@ -233,7 +286,12 @@
         } else {
           payerData.forEach(item => {
             const li = document.createElement('li');
-            li.textContent = `${item.payer}: ${item.count}`;
+            li.innerHTML = `
+              <div class="list-row">
+                <span class="list-label">${item.payer}</span>
+                <span class="list-value">${item.count}</span>
+              </div>
+            `;
             payerList.appendChild(li);
           });
         }
@@ -251,22 +309,3 @@
   </script>
 </body>
 </html>
-
-<!-- AI improvement: dashboard summary metrics -->
-<div class="summary-metrics">
-<div class="metric-card">Total Claims: 3</div>
-<div class="metric-card">Denied Claims: 1</div>
-<div class="metric-card">Pending Review: 1</div>
-</div>
-
-<!-- AI refresh: dashboard metrics -->
-<div>Dashboard refresh 1774655469</div>
-
-<!-- AI refresh: dashboard metrics -->
-<div>Dashboard refresh 1774756134</div>
-
-<!-- AI improvement: sidebar spacing -->
-<style> .sidebar a{display:block;padding:12px 16px;} </style>
-
-<!-- AI refresh: dashboard metrics -->
-<div>Dashboard refresh 1774756214</div>

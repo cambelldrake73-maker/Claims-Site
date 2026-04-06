@@ -12,6 +12,7 @@ const claimsIntelligenceRouter = require('./claims_intelligence_endpoint');
 const batchNormalizeRouter = require('./batch_normalize_endpoint');
 const listEndpointRouter = require('./list_endpoint');
 const detailEndpointRouter = require('./detail_endpoint');
+const intakeUploadRouter = require('../intake/intake_upload_endpoint');
 
 router.use(claimStatusRouter);
 router.use(claimSummaryRouter);
@@ -24,5 +25,6 @@ router.use(claimsIntelligenceRouter);
 router.use(batchNormalizeRouter);
 router.use(listEndpointRouter);
 router.use(detailEndpointRouter);
+router.use(intakeUploadRouter);
 
 module.exports = router;

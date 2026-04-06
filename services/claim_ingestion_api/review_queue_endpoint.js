@@ -73,6 +73,7 @@ router.get('/api/review-queue', async (req, res) => {
         ON rq.claim_id = c.claim_id
       LEFT JOIN claims_enrichment ce
         ON rq.claim_id = ce.claim_id
+      WHERE c.status = 'needs_review'
       ORDER BY rq.created_at ASC
     `);
 

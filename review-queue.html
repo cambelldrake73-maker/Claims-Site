@@ -1,134 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Review Queue</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f8fa;
-      color: #111827;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
     }
+
+    body {
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.4;
+    }
+
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 2px 0;
+    }
+
+    .nav-links a[aria-current="page"] {
+      color: #111827;
+      font-weight: 600;
+    }
+
     .page {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 40px 32px;
+      padding: 24px 20px 48px;
     }
-    .page-header {
+
+    .hero {
       margin-bottom: 24px;
     }
-    .page-header h1 {
-      margin: 0 0 8px 0;
-      font-size: 28px;
-      font-weight: 700;
+
+    .hero h1 {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+      color: #111827;
     }
-    .page-header p {
-      margin: 0;
-      color: #4b5563;
-      font-size: 15px;
+
+    .hero p {
+      color: #6b7280;
+      font-size: 0.9rem;
+      max-width: 680px;
     }
-    .queue-layout {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-    }
-    .panel {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-      padding: 20px;
-    }
-    .panel h2 {
-      margin: 0 0 16px 0;
-      font-size: 18px;
-    }
-    .review-queue-list {
+
+    #reviewQueueList {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-    .queue-item {
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-      padding: 14px 16px;
+
+    .queue-item,
+    .empty-state {
       background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
     }
+
+    .queue-item {
+      cursor: pointer;
+    }
+
+    .queue-item:hover {
+      background: #f9fafb;
+    }
+
     .queue-item strong {
       display: block;
-      margin-bottom: 6px;
-      font-size: 15px;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      color: #111827;
     }
+
     .queue-meta {
-      font-size: 14px;
+      font-size: 0.92rem;
       color: #4b5563;
       line-height: 1.5;
     }
-    .tag {
-      display: inline-block;
+
+    .queue-row {
       margin-top: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #eef2ff;
-      color: #3730a3;
-      font-size: 12px;
+    }
+
+    .queue-label {
+      color: #111827;
       font-weight: 600;
     }
+
+    .tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 999px;
+      background: #f9fafb;
+      color: #374151;
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+
+    .actions-row {
+      white-space: normal;
+      word-break: break-word;
+    }
+
     .empty-state {
       color: #6b7280;
-      font-size: 14px;
+      font-size: 0.92rem;
     }
-    .detail-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      font-size: 14px;
-      color: #374151;
-    }
-    .detail-list div strong {
-      display: block;
-      margin-bottom: 4px;
-      color: #111827;
+
+    @media (max-width: 800px) {
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="page-header">
+  <nav class="navbar">
+    <div class="logo">Operations Dashboard</div>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="claims.html">Cases</a>
+      <a href="review-queue.html" aria-current="page">Review Queue</a>
+      <a href="reporting.html">Reporting</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="hero">
       <h1>Review Queue</h1>
-      <p>Claims requiring manual review, presented in a structured operational layout.</p>
-    </div>
+      <p>Cases requiring manual review and operational follow-up.</p>
+    </section>
 
-    <div class="queue-layout">
-      <section class="panel">
-        <h2>Claims Awaiting Review</h2>
-        <div class="review-queue-list" id="reviewQueueList">
-          <div class="empty-state">Loading review queue...</div>
-        </div>
-      </section>
-
-      <aside class="panel">
-        <h2>Queue Guidance</h2>
-        <div class="detail-list">
-          <div>
-            <strong>Priority</strong>
-            Review denied and pending review claims first.
-          </div>
-          <div>
-            <strong>Focus</strong>
-            Validate denial reasons, missing fields, and recommended actions.
-          </div>
-          <div>
-            <strong>Goal</strong>
-            Move claims toward correction and resubmission with minimal ambiguity.
-          </div>
-        </div>
-      </aside>
+    <div id="reviewQueueList">
+      <div class="empty-state">Loading review queue...</div>
     </div>
-  </div>
+  </main>
 
   <script>
     async function loadReviewQueue() {
@@ -139,12 +181,22 @@
 
         if (!list) return;
 
-        if (!data.ok || !Array.isArray(data.queue) || data.queue.length === 0) {
-          list.innerHTML = '<div class="empty-state">No claims currently require manual review.</div>';
+        if (!data.ok || !Array.isArray(data.queue)) {
+          list.innerHTML = '<div class="empty-state">Unable to load review queue.</div>';
           return;
         }
 
-        list.innerHTML = data.queue.map(item => {
+        const reviewCases = data.queue.filter(item => {
+          const status = item?.claim?.status;
+          return status === 'needs_review';
+        });
+
+        if (reviewCases.length === 0) {
+          list.innerHTML = '<div class="empty-state">No cases currently require manual review.</div>';
+          return;
+        }
+
+        list.innerHTML = reviewCases.map(item => {
           const claim = item.claim || {};
           const enrichment = item.enrichment || {};
           const actions = Array.isArray(enrichment.recommended_actions)
@@ -152,16 +204,27 @@
             : 'No recommended actions available';
 
           return `
-            <div class="queue-item">
-              <strong>${item.claim_id}</strong>
-              <div class="queue-meta">
-                ${claim.patient || 'Unknown Patient'} · ${claim.payer || 'Unknown Payer'}<br>
-                Status: ${claim.status || 'unknown'}<br>
-                Denial: ${claim.denial_reason || 'unspecified'}<br>
-                Confidence: ${enrichment.confidence ?? 'n/a'}
+            <div class="queue-item" onclick="if ('${item.claim_id}') window.location.href='claim-detail.html?id=${encodeURIComponent(item.claim_id)}'">
+              <strong>Case ${item.claim_id}</strong>
+              <div class="queue-meta queue-row">
+                <span class="queue-label">Patient:</span> ${claim.patient || 'Unknown Patient'}
+              </div>
+              <div class="queue-meta queue-row">
+                <span class="queue-label">Payer:</span> ${claim.payer || 'Unknown Payer'}
+              </div>
+              <div class="queue-meta queue-row">
+                <span class="queue-label">Status:</span> ${String(claim.status || 'unknown').replaceAll('_', ' ').replace(/\b\w/g, c => c.toUpperCase())}
+              </div>
+              <div class="queue-meta queue-row">
+                <span class="queue-label">Denial Reason:</span> ${claim.denial_reason || 'unspecified'}
+              </div>
+              <div class="queue-meta queue-row">
+                <span class="queue-label">Confidence:</span> ${enrichment.confidence ?? 'n/a'}
               </div>
               <div class="tag">${enrichment.likely_fix_type || 'manual_review'}</div>
-              <div class="queue-meta" style="margin-top:10px;">${actions}</div>
+              <div class="queue-meta queue-row actions-row">
+                <span class="queue-label">Recommended Actions:</span> ${actions}
+              </div>
             </div>
           `;
         }).join('');

@@ -1,27 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Detail</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-<!-- AI improvement: claim detail rendering -->
-<script>
-async function loadClaimDetail(){
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
-  const detail = document.querySelector('.claim-detail');
-  if (!detail) return;
-  detail.innerHTML = 'Claim Detail: ' + (id || 'Unknown Claim');
-}
-loadClaimDetail();
-</script>
+    body {
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.4;
+    }
 
-<!-- AI improvement: claim detail refresh -->
-<div class="claim-field">Denial Reason: Missing modifier</div>
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-<!-- AI improvement: claim detail refresh -->
-<div class="claim-field">Denial Reason: Missing modifier 1773788680</div>
+    .logo {
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+      color: #111827;
+      text-transform: uppercase;
+    }
 
-<!-- AI improvement: claim detail refresh -->
-<div class="claim-field">Denial Reason: Missing modifier 1773791245</div>
+    .nav-links {
+      display: flex;
+      gap: 14px;
+    }
 
-<!-- AI improvement: claim detail refresh -->
-<div class="claim-field">Denial Reason: Missing modifier 1774756117</div>
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 2px 0;
+    }
 
-<!-- AI improvement: claim detail refresh -->
-<div class="claim-field">Denial Reason: Missing modifier 1774756118</div>
+    .nav-links a.active {
+      color: #111827;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px 20px 44px;
+    }
+
+    .hero {
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      color: #111827;
+    }
+
+    .hero p {
+      color: #6b7280;
+      font-size: 0.88rem;
+      max-width: 620px;
+    }
+
+    .detail-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .action-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+
+    .action-bar button {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .action-bar button:disabled {
+      cursor: default;
+      color: #6b7280;
+      background: #f9fafb;
+    }
+
+    .action-bar button:not(:disabled):hover {
+      background: #f9fafb;
+    }
+
+    .claim-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .detail-section {
+      margin-bottom: 18px;
+    }
+
+    .detail-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #6b7280;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f3f4f6;
+      margin-bottom: 10px;
+    }
+
+    .detail-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .detail-label {
+      color: #111827;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .detail-value {
+      color: #4b5563;
+      font-size: 0.92rem;
+      text-align: right;
+    }
+
+    .detail-value.claim-id-value {
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .detail-value.numeric {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .empty-state {
+      color: #6b7280;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 800px) {
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .detail-row {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .detail-value {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Operations Dashboard</div>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="claims.html" class="active">Cases</a>
+      <a href="review-queue.html">Review Queue</a>
+      <a href="reporting.html">Reporting</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Case Detail</h1>
+      <p>Case reference, current status, enrichment details, and review context.</p>
+    </section>
+
+    <section class="detail-card">
+      <div class="action-bar">
+        <button id="sendToReviewBtn" type="button" disabled>Send to Review</button>
+      </div>
+      <div class="claim-detail">
+        <div class="empty-state">Loading claim detail...</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function formatAmount(amount) {
+      return `$${Number(amount || 0).toLocaleString()}`;
+    }
+
+    function formatStatus(status) {
+      return String(status || '-')
+        .replaceAll('_', ' ')
+        .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function formatValue(value) {
+      if (Array.isArray(value)) {
+        return value.length ? value.join(' • ') : '-';
+      }
+
+      return value ?? '-';
+    }
+
+    async function loadClaimDetail() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const detail = document.querySelector('.claim-detail');
+      const sendToReviewBtn = document.getElementById('sendToReviewBtn');
+      if (!detail) return;
+      detail.innerHTML = '<div class="empty-state">Loading claim detail...</div>';
+      if (sendToReviewBtn) {
+        sendToReviewBtn.disabled = true;
+        sendToReviewBtn.textContent = 'Send to Review';
+        sendToReviewBtn.onclick = null;
+      }
+
+      try {
+        const res = await fetch(`/api/claims/${encodeURIComponent(id || '')}`);
+        const data = await res.json();
+        const claim = data.claim || data;
+        const enrichment = claim.enrichment || data.enrichment || {};
+
+        detail.innerHTML = `
+          <div class="detail-section">
+            <div class="section-title">Case Information</div>
+            <div class="detail-row">
+              <div class="detail-label">Claim ID</div>
+              <div class="detail-value claim-id-value">${claim.claim_id || id || 'Unknown Claim'}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Patient</div>
+              <div class="detail-value">${formatValue(claim.patient)}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Payer</div>
+              <div class="detail-value">${formatValue(claim.payer)}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Date of Service</div>
+              <div class="detail-value">${formatValue(claim.date_of_service)}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Amount</div>
+              <div class="detail-value numeric">${formatAmount(claim.amount)}</div>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <div class="section-title">Case Status</div>
+            <div class="detail-row">
+              <div class="detail-label">Status</div>
+              <div class="detail-value">${formatStatus(claim.status)}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Denial Reason</div>
+              <div class="detail-value">${formatValue(claim.denial_reason)}</div>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <div class="section-title">Recovery Analysis</div>
+            <div class="detail-row">
+              <div class="detail-label">Recovery Route</div>
+              <div class="detail-value">${formatValue(enrichment.recovery_route)}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Likely Fix Type</div>
+              <div class="detail-value">${formatValue(enrichment.likely_fix_type)}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Confidence</div>
+              <div class="detail-value numeric">${formatValue(enrichment.confidence)}</div>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <div class="section-title">Action Guidance</div>
+            <div class="detail-row">
+              <div class="detail-label">Missing Elements</div>
+              <div class="detail-value">${formatValue(enrichment.missing_elements)}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Recommended Actions</div>
+              <div class="detail-value">${formatValue(enrichment.recommended_actions)}</div>
+            </div>
+          </div>
+        `;
+
+        if (sendToReviewBtn && claim.claim_id) {
+          sendToReviewBtn.disabled = false;
+          sendToReviewBtn.onclick = async () => {
+            try {
+              const reviewRes = await fetch('/api/review-queue', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  claim_id: claim.claim_id
+                })
+              });
+              const reviewData = await reviewRes.json();
+
+              if (!reviewRes.ok || !reviewData.ok) {
+                throw new Error('Failed to send to review');
+              }
+
+              sendToReviewBtn.textContent = 'Sent to Review';
+              sendToReviewBtn.disabled = true;
+              sendToReviewBtn.onclick = null;
+            } catch (err) {
+              alert('Failed to send to review');
+            }
+          };
+        }
+      } catch (err) {
+        detail.innerHTML = '<div class="empty-state">Unable to load claim detail. Please try again.</div>';
+      }
+    }
+
+    loadClaimDetail();
+  </script>
+</body>
+</html>

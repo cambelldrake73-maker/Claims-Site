@@ -2,289 +2,248 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Uploaded Cases</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cases</title>
   <style>
-    :root {
-      --bg: #f5f7fb;
-      --panel: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --nav: #111827;
-      --nav-hover: #1f2937;
-      --shadow: 0 8px 24px rgba(0,0,0,0.06);
-    }
-
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
       font-family: Arial, Helvetica, sans-serif;
     }
 
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.4;
     }
 
-    .layout {
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 12px 24px;
       display: flex;
-      min-height: 100vh;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .sidebar {
-      width: 220px;
-      background: var(--nav);
-      color: white;
-      padding: 22px 14px;
-      flex-shrink: 0;
+    .logo {
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+      color: #111827;
+      text-transform: uppercase;
     }
 
-    .sidebar h2 {
-      margin: 0 0 18px;
-      font-size: 18px;
+    .nav-links {
+      display: flex;
+      gap: 14px;
     }
 
-    .sidebar a {
-      display: block;
-      color: #d1d5db;
+    .nav-links a {
       text-decoration: none;
-      padding: 10px 12px;
-      border-radius: 10px;
-      margin-bottom: 6px;
+      color: #4b5563;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 2px 0;
     }
 
-    .sidebar a:hover,
-    .sidebar a.active {
-      background: var(--nav-hover);
-      color: white;
+    .nav-links a.active {
+      color: #111827;
     }
 
-    .main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px 20px 44px;
     }
 
-    .topbar {
-      background: white;
-      padding: 18px 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    .hero {
+      margin-bottom: 20px;
     }
 
-    .topbar h1 {
-      margin: 0;
-      font-size: 24px;
+    .hero h1 {
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      color: #111827;
     }
 
-    .content {
-      padding: 24px;
+    .hero p {
+      color: #6b7280;
+      font-size: 0.88rem;
+      max-width: 620px;
     }
 
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: var(--shadow);
+    .table-shell {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
       overflow: hidden;
     }
 
-    .card-head {
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .card-head h2 {
-      margin: 0 0 6px;
-      font-size: 18px;
-    }
-
-    .card-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
+      min-width: 920px;
     }
 
-    th, td {
+    th,
+    td {
       padding: 14px 16px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid #e5e7eb;
       text-align: left;
       vertical-align: middle;
-      font-size: 14px;
+      font-size: 0.92rem;
     }
 
     th {
-      background: #fafafa;
+      background: #f9fafb;
+      color: #6b7280;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      color: #374151;
-    }
-
-    tbody tr:hover {
-      background: #fcfcfd;
-    }
-
-    .case-id {
-      font-weight: 700;
-      color: #1d4ed8;
-      word-break: break-word;
-      max-width: 220px;
-    }
-
-    .status-pill {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
       white-space: nowrap;
     }
 
-    .under_review {
-      background: #ede9fe;
-      color: #5b21b6;
+    tbody td {
+      color: #4b5563;
     }
 
-    .submitted {
-      background: #dcfce7;
-      color: #166534;
+    tbody tr {
+      cursor: pointer;
     }
 
-    .not_recoverable {
-      background: #fee2e2;
-      color: #991b1b;
+    tbody tr:last-child td {
+      border-bottom: 0;
     }
 
-    .empty {
+    .claim-id {
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .status-text {
+      color: #374151;
+      white-space: nowrap;
+    }
+
+    .amount {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .empty-state {
       padding: 18px 16px;
-      color: var(--muted);
+      color: #6b7280;
+      font-size: 0.92rem;
     }
 
-    @media (max-width: 900px) {
-      .layout {
+    @media (max-width: 800px) {
+      .navbar {
         flex-direction: column;
-      }
-
-      .sidebar {
-        width: 100%;
-      }
-
-      .content {
-        padding: 18px;
-      }
-
-      table {
-        display: block;
-        overflow-x: auto;
+        gap: 10px;
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <h2>Recovery Platform</h2>
+  <nav class="navbar">
+    <div class="logo">Operations Dashboard</div>
+    <div class="nav-links">
       <a href="dashboard.html">Dashboard</a>
-      <a href="submit-claims.html">Case Upload</a>
-      <a href="claims.html" class="active">Uploaded Cases</a>
+      <a href="claims.html" class="active">Cases</a>
       <a href="review-queue.html">Review Queue</a>
-      <a href="reports.html">Recovery Insights</a>
-      <a href="history.html">History</a>
-    </aside>
+      <a href="reporting.html">Reporting</a>
+    </div>
+  </nav>
 
-    <main class="main">
-      <div class="topbar">
-        <h1>Uploaded Cases</h1>
+  <main class="page">
+    <section class="hero">
+      <h1>Cases</h1>
+      <p>All processed cases and current status.</p>
+    </section>
+
+    <section class="table-shell">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Claim ID</th>
+              <th>Patient</th>
+              <th>Payer</th>
+              <th>Status</th>
+              <th>Denial Reason</th>
+              <th>Amount</th>
+              <th>Date of Service</th>
+            </tr>
+          </thead>
+          <tbody id="claimsTableBody">
+            <tr>
+              <td class="empty-state" colspan="7">Loading claims...</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-
-      <div class="content">
-        <div class="card">
-          <div class="card-head">
-            <h2>Case List</h2>
-            <p>View uploaded cases and their current recovery status.</p>
-          </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Case ID</th>
-                <th>Patient</th>
-                <th>Payer</th>
-                <th>Service Date</th>
-                <th>Recovery Status</th>
-                <th>Amount</th>
-                <th>Upload Date</th>
-              </tr>
-            </thead>
-            <tbody id="tableBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </main>
-  </div>
+    </section>
+  </main>
 
   <script>
-    function statusLabel(status) {
-      const s = String(status || '').toLowerCase();
-
-      if (['denied', 'pending', 'under_review'].includes(s)) return 'Under Review';
-      if (['submitted', 'approved'].includes(s)) return 'Submitted';
-      if (['not_recoverable', 'rejected'].includes(s)) return 'Not Recoverable';
-
-      return 'Under Review';
+    function formatAmount(amount) {
+      return `$${Number(amount || 0).toLocaleString()}`;
     }
 
-    function statusClass(status) {
-      const s = String(status || '').toLowerCase();
-
-      if (['denied', 'pending', 'under_review'].includes(s)) return 'under_review';
-      if (['submitted', 'approved'].includes(s)) return 'submitted';
-      if (['not_recoverable', 'rejected'].includes(s)) return 'not_recoverable';
-
-      return 'under_review';
-    }
-
-    function formatDate(timestamp) {
-      if (!timestamp) return '-';
-      return new Date(timestamp).toLocaleDateString();
+    function formatStatus(status) {
+      return String(status || '-')
+        .replaceAll('_', ' ')
+        .replace(/\b\w/g, char => char.toUpperCase());
     }
 
     async function loadClaims() {
       try {
-        const res = await fetch('/api/claims/all');
+        const res = await fetch('/api/claims');
         const data = await res.json();
+        const tableBody = document.getElementById('claimsTableBody');
 
-        const tableBody = document.getElementById('tableBody');
-        tableBody.innerHTML = '';
+        if (!tableBody) return;
 
         const claims = data.claims || [];
+        tableBody.innerHTML = '';
 
         if (claims.length === 0) {
-          tableBody.innerHTML = '<tr><td class="empty" colspan="7">No uploaded cases found.</td></tr>';
+          tableBody.innerHTML = '<tr><td class="empty-state" colspan="7">No claims available</td></tr>';
           return;
         }
 
-        claims.forEach(c => {
+        claims.forEach(claim => {
           const row = document.createElement('tr');
           row.innerHTML = `
-            <td class="case-id">${c.claim_id}</td>
-            <td>${c.patient || '-'}</td>
-            <td>${c.payer || '-'}</td>
-            <td>${c.date_of_service || '-'}</td>
-            <td><span class="status-pill ${statusClass(c.status)}">${statusLabel(c.status)}</span></td>
-            <td>$${Number(c.amount || 0).toLocaleString()}</td>
-            <td>${formatDate(c.created_at)}</td>
+            <td class="claim-id">${claim.claim_id || '-'}</td>
+            <td>${claim.patient || '-'}</td>
+            <td>${claim.payer || '-'}</td>
+            <td class="status-text">${formatStatus(claim.status)}</td>
+            <td>${claim.denial_reason || '-'}</td>
+            <td class="amount">${formatAmount(claim.amount)}</td>
+            <td>${claim.date_of_service || '-'}</td>
           `;
+          row.addEventListener('click', () => {
+            if (!claim.claim_id) return;
+            window.location.href = `claim-detail.html?id=${encodeURIComponent(claim.claim_id)}`;
+          });
           tableBody.appendChild(row);
         });
       } catch (err) {
-        console.error('Failed to load uploaded cases:', err);
+        const tableBody = document.getElementById('claimsTableBody');
+        if (tableBody) {
+          tableBody.innerHTML = '<tr><td class="empty-state" colspan="7">No claims available</td></tr>';
+        }
       }
     }
 
@@ -292,18 +251,3 @@
   </script>
 </body>
 </html>
-
-<!-- AI improvement: claim search ui wiring -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const filterBar = document.querySelector('.claims-filter-bar');
-  if (!filterBar) return;
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.placeholder = 'Search claims...';
-  filterBar.prepend(input);
-});
-</script>
-
-<!-- AI improvement: claims filtering controls -->
-<div class="claims-filter-bar">Filter controls placeholder</div>
