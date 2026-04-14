@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uploads</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.4;
+    }
+
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+      color: #111827;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 2px 0;
+    }
+
+    .nav-links a.active {
+      color: #111827;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px 20px 44px;
+    }
+
+    .hero {
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      color: #111827;
+    }
+
+    .hero p {
+      color: #6b7280;
+      font-size: 0.88rem;
+      max-width: 620px;
+    }
+
+    .filter-bar {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+
+    .upload-shell {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .upload-shell h2 {
+      font-size: 1rem;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    .upload-shell p {
+      color: #6b7280;
+      font-size: 0.88rem;
+      margin-bottom: 14px;
+      max-width: 720px;
+    }
+
+    .upload-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      align-items: end;
+    }
+
+    .upload-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .upload-field-wide {
+      grid-column: 1 / -1;
+    }
+
+    .upload-field label {
+      color: #6b7280;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .upload-field input {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 9px 10px;
+      font-size: 0.88rem;
+      color: #111827;
+      background: #ffffff;
+    }
+
+    .upload-field input:focus {
+      outline: none;
+      border-color: #9ca3af;
+      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.06);
+    }
+
+    .upload-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .session-banner {
+      margin-top: 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #f9fafb;
+      padding: 12px 14px;
+      color: #4b5563;
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .primary-button {
+      border: none;
+      border-radius: 6px;
+      padding: 10px 14px;
+      background: #111827;
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .primary-button:disabled {
+      cursor: wait;
+      opacity: 0.7;
+    }
+
+    .upload-status {
+      color: #6b7280;
+      font-size: 0.84rem;
+      min-height: 1.2em;
+    }
+
+    .upload-status.error {
+      color: #b42318;
+    }
+
+    .upload-status.success {
+      color: #0f766e;
+    }
+
+    .session-shell {
+      margin-top: 18px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 16px;
+    }
+
+    .session-meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .session-meta-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #f9fafb;
+    }
+
+    .session-meta-item small {
+      display: block;
+      color: #6b7280;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 5px;
+    }
+
+    .session-meta-item strong {
+      color: #111827;
+      font-size: 0.92rem;
+      word-break: break-word;
+    }
+
+    .result-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .result-pill-accepted {
+      color: #0f766e;
+      background: #ecfdf3;
+      border-color: #a7f3d0;
+    }
+
+    .result-pill-review {
+      color: #b45309;
+      background: #fffbeb;
+      border-color: #fde68a;
+    }
+
+    .result-pill-rejected {
+      color: #b42318;
+      background: #fef3f2;
+      border-color: #fecaca;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .filter-field label {
+      color: #6b7280;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .filter-field input {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 9px 10px;
+      font-size: 0.88rem;
+      color: #111827;
+      background: #ffffff;
+    }
+
+    .filter-field input:focus {
+      outline: none;
+      border-color: #9ca3af;
+      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.06);
+    }
+
+    .filter-actions {
+      display: flex;
+      align-items: end;
+    }
+
+    .filter-button {
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .filter-button:hover {
+      background: #f9fafb;
+    }
+
+    .table-shell {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1020px;
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: middle;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: #f9fafb;
+      color: #6b7280;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    tbody td {
+      color: #4b5563;
+    }
+
+    .count-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      color: #111827;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .count-detail {
+      display: block;
+      margin-top: 6px;
+      color: #6b7280;
+      font-size: 0.78rem;
+      line-height: 1.35;
+      max-width: 220px;
+      white-space: normal;
+    }
+
+    .connection-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .connection-pill-connected {
+      color: #0f766e;
+      background: #ecfdf3;
+      border-color: #a7f3d0;
+    }
+
+    .connection-pill-blocked {
+      color: #b42318;
+      background: #fef3f2;
+      border-color: #fecaca;
+    }
+
+    .empty-state {
+      padding: 28px 20px;
+      color: #6b7280;
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 920px) {
+      .upload-grid,
+      .session-meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .filter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .navbar {
+        align-items: flex-start;
+        gap: 12px;
+        flex-direction: column;
+      }
+
+      .upload-grid,
+      .session-meta,
+      .filter-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Claims Operations</div>
+    <div class="nav-links">
+      <a href="upload-history.html" class="active">Uploads</a>
+      <a href="review-queue.html">Review Queue</a>
+      <a href="claims.html">Claims</a>
+      <a href="provider-connections.html">Provider Connections</a>
+      <a href="billing.html">Billing</a>
+      <a href="reports.html">Operations</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Uploads</h1>
+      <p>Submit one or more files, then review recent upload activity in one place.</p>
+    </section>
+
+    <section class="upload-shell">
+      <h2>New Upload</h2>
+      <p>One upload can contain multiple files, and each file will be tracked separately in the results below.</p>
+      <form id="uploadForm">
+        <div class="upload-grid">
+          <div class="upload-field upload-field-wide">
+            <label for="uploadNiche">Niche</label>
+            <input id="uploadNiche" name="niche" type="text" autocomplete="off" />
+          </div>
+          <div class="upload-field upload-field-wide">
+            <label for="uploadFiles">Files</label>
+            <input id="uploadFiles" name="files" type="file" multiple required />
+          </div>
+        </div>
+        <div class="upload-actions">
+          <button id="uploadSubmitButton" class="primary-button" type="submit">Start Upload</button>
+          <div id="uploadStatus" class="upload-status"></div>
+        </div>
+      </form>
+      <div id="uploadSessionBanner" class="session-banner">
+        Signed in and ready to upload.
+      </div>
+      <div id="latestUploadSession" class="session-shell" hidden></div>
+    </section>
+
+    <section class="filter-bar">
+      <div class="filter-grid">
+        <div class="filter-field">
+          <label for="filterProvider">Provider</label>
+          <input id="filterProvider" type="text" placeholder="Filter by provider" />
+        </div>
+        <div class="filter-field">
+          <label for="filterUpload">Upload ID / Name</label>
+          <input id="filterUpload" type="text" placeholder="Filter by upload ID or name" />
+        </div>
+        <div class="filter-field">
+          <label for="filterNiche">Niche</label>
+          <input id="filterNiche" type="text" placeholder="Filter by niche" />
+        </div>
+        <div class="filter-field">
+          <label for="filterDateFrom">Upload Date From</label>
+          <input id="filterDateFrom" type="date" />
+        </div>
+        <div class="filter-field">
+          <label for="filterDateTo">Upload Date To</label>
+          <input id="filterDateTo" type="date" />
+        </div>
+        <div class="filter-actions">
+          <button id="clearFiltersBtn" class="filter-button" type="button">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="table-shell">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Upload ID</th>
+              <th>Upload Name</th>
+              <th>Provider</th>
+              <th>Niche</th>
+              <th>Upload Date</th>
+              <th>Files</th>
+              <th>Claims</th>
+              <th>Submission Setup</th>
+            </tr>
+          </thead>
+          <tbody id="uploadHistoryBody">
+            <tr>
+              <td colspan="8" class="empty-state">Loading upload history...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script>
+    const uploadFilters = {
+      provider: '',
+      upload: '',
+      niche: '',
+      dateFrom: '',
+      dateTo: ''
+    };
+
+    let allUploads = [];
+    let authUser = null;
+
+    function normalizeText(value) {
+      return String(value || '').trim().toLowerCase();
+    }
+
+    function matchesTextFilter(value, filterValue) {
+      if (!filterValue) {
+        return true;
+      }
+
+      return normalizeText(value).includes(normalizeText(filterValue));
+    }
+
+    function toTimestamp(value) {
+      if (value === null || value === undefined || value === '') {
+        return null;
+      }
+
+      const timestamp = Number(value);
+      if (Number.isFinite(timestamp) && timestamp > 0) {
+        return timestamp;
+      }
+
+      const parsed = Date.parse(value);
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function getFilterBoundary(value, isEnd) {
+      if (!value) {
+        return null;
+      }
+
+      const boundary = new Date(isEnd ? `${value}T23:59:59.999` : `${value}T00:00:00.000`);
+      const timestamp = boundary.getTime();
+      return Number.isFinite(timestamp) ? timestamp : null;
+    }
+
+    function matchesUploadDateFilter(upload, filters) {
+      const uploadTimestamp = toTimestamp(upload && upload.created_at);
+
+      if (uploadTimestamp === null) {
+        return !filters.dateFrom && !filters.dateTo;
+      }
+
+      const fromBoundary = getFilterBoundary(filters.dateFrom, false);
+      const toBoundary = getFilterBoundary(filters.dateTo, true);
+
+      if (fromBoundary !== null && uploadTimestamp < fromBoundary) {
+        return false;
+      }
+
+      if (toBoundary !== null && uploadTimestamp > toBoundary) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function matchesUploadFilters(upload, filters) {
+      return matchesTextFilter(upload && upload.provider_name, filters.provider)
+        && (
+          matchesTextFilter(upload && upload.upload_id, filters.upload)
+          || matchesTextFilter(upload && upload.upload_name, filters.upload)
+        )
+        && matchesTextFilter(upload && upload.niche, filters.niche)
+        && matchesUploadDateFilter(upload, filters);
+    }
+
+    function formatDateTime(value) {
+      const timestamp = toTimestamp(value);
+
+      if (timestamp === null) {
+        return 'Unknown';
+      }
+
+      return new Intl.DateTimeFormat(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      }).format(new Date(timestamp));
+    }
+
+    function setUploadStatus(message, tone) {
+      const statusEl = document.getElementById('uploadStatus');
+      if (!statusEl) return;
+      statusEl.textContent = message || '';
+      statusEl.className = `upload-status${tone ? ` ${tone}` : ''}`;
+    }
+
+    function normalizeUploadResponseFiles(payload) {
+      if (Array.isArray(payload && payload.files)) {
+        return payload.files;
+      }
+
+      if (!payload || typeof payload !== 'object') {
+        return [];
+      }
+
+      if (!payload.file_id && !payload.file_name && !payload.upload_id) {
+        return [];
+      }
+
+      return [{
+        file_name: payload.file_name || null,
+        upload_id: payload.upload_id || null,
+        file_id: payload.file_id || null,
+        accepted: payload.accepted === true,
+        cases_created: Number(payload.cases_created || 0),
+        review_matches: Number(payload.review_matches || 0),
+        manual_review_required: payload.manual_review_required === true,
+        parse_status: payload.parse_status || null,
+        normalization_status: payload.normalization_status || null,
+        error: payload.error || null
+      }];
+    }
+
+    function getResultPill(item) {
+      if (item.accepted && item.manual_review_required) {
+        return {
+          className: 'result-pill-review',
+          label: 'Accepted with review'
+        };
+      }
+
+      if (item.accepted) {
+        return {
+          className: 'result-pill-accepted',
+          label: 'Accepted'
+        };
+      }
+
+      return {
+        className: 'result-pill-rejected',
+        label: 'Rejected'
+      };
+    }
+
+    function renderLatestUploadSession(payload) {
+      const shell = document.getElementById('latestUploadSession');
+      if (!shell) return;
+
+      const files = normalizeUploadResponseFiles(payload);
+      if (!files.length) {
+        shell.hidden = true;
+        shell.innerHTML = '';
+        return;
+      }
+
+      const acceptedCount = files.filter(item => item.accepted).length;
+      const manualReviewCount = files.filter(item => item.manual_review_required).length;
+      const casesCreated = files.reduce((sum, item) => sum + Number(item.cases_created || 0), 0);
+
+      shell.hidden = false;
+      shell.innerHTML = `
+        <div class="session-meta">
+          <div class="session-meta-item">
+            <small>Upload ID</small>
+            <strong>${payload.upload_id || files[0].upload_id || 'Unknown'}</strong>
+          </div>
+          <div class="session-meta-item">
+            <small>Files</small>
+            <strong>${files.length}</strong>
+          </div>
+          <div class="session-meta-item">
+            <small>Accepted</small>
+            <strong>${acceptedCount}</strong>
+          </div>
+          <div class="session-meta-item">
+            <small>Manual Review</small>
+            <strong>${manualReviewCount}</strong>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>File</th>
+                <th>Status</th>
+                <th>Claims Created</th>
+                <th>Review Matches</th>
+                <th>Parse Status</th>
+                <th>Normalization Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${files.map(item => {
+                const pill = getResultPill(item);
+                return `
+                  <tr>
+                    <td>${item.file_name || item.file_id || 'Uploaded file'}</td>
+                    <td>
+                      <span class="result-pill ${pill.className}">${pill.label}</span>
+                      ${item.error ? `<span class="count-detail">${item.error}</span>` : ''}
+                    </td>
+                    <td>${Number(item.cases_created || 0)}</td>
+                    <td>${Number(item.review_matches || 0)}</td>
+                    <td>${item.parse_status || '-'}</td>
+                    <td>${item.normalization_status || '-'}</td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+        <div class="count-detail" style="margin-top:12px;">
+          This upload created ${casesCreated} claim${casesCreated === 1 ? '' : 's'} across ${files.length} file${files.length === 1 ? '' : 's'}.
+        </div>
+      `;
+    }
+
+    async function loadAuthUser() {
+      const banner = document.getElementById('uploadSessionBanner');
+
+      try {
+        const response = await fetch('/api/auth/me');
+        const data = await response.json();
+
+        if (!response.ok || !data || data.ok === false) {
+          if (banner) {
+            banner.textContent = 'Ready to upload files.';
+          }
+          return;
+        }
+
+        authUser = data.user || null;
+        if (banner) {
+          const role = authUser && authUser.role ? String(authUser.role) : 'unknown';
+          banner.textContent = `Signed in as ${role}.`;
+        }
+      } catch (err) {
+        authUser = null;
+        if (banner) {
+          banner.textContent = 'Ready to upload files.';
+        }
+      }
+    }
+
+    async function submitUpload(event) {
+      event.preventDefault();
+
+      const form = document.getElementById('uploadForm');
+      const submitButton = document.getElementById('uploadSubmitButton');
+      const niche = document.getElementById('uploadNiche').value.trim();
+      const fileInput = document.getElementById('uploadFiles');
+      const selectedFiles = fileInput && fileInput.files ? Array.from(fileInput.files) : [];
+
+      if (!selectedFiles.length) {
+        setUploadStatus('At least one file is required.', 'error');
+        return;
+      }
+
+      const formData = new FormData();
+      if (niche) {
+        formData.append('niche', niche);
+      }
+      selectedFiles.forEach(file => {
+        formData.append('files', file, file.name);
+      });
+
+      submitButton.disabled = true;
+      setUploadStatus(`Uploading ${selectedFiles.length} file${selectedFiles.length === 1 ? '' : 's'}...`, '');
+
+      try {
+        const response = await fetch('/api/intake/upload', {
+          method: 'POST',
+          body: formData
+        });
+        const payload = await response.json().catch(() => null);
+
+        if (!response.ok || !payload) {
+          throw new Error(payload && payload.error ? payload.error : 'Upload failed');
+        }
+
+        renderLatestUploadSession(payload);
+        setUploadStatus(
+          `Upload ${payload.upload_id || 'completed'} processed ${selectedFiles.length} file${selectedFiles.length === 1 ? '' : 's'}.`,
+          'success'
+        );
+
+        if (form) {
+          form.reset();
+        }
+        await loadUploads();
+      } catch (err) {
+        renderLatestUploadSession(null);
+        setUploadStatus(err.message || 'Upload failed', 'error');
+      } finally {
+        submitButton.disabled = false;
+      }
+    }
+
+    function renderUploads() {
+      const tbody = document.getElementById('uploadHistoryBody');
+      const uploads = Array.isArray(allUploads)
+        ? allUploads.filter(upload => matchesUploadFilters(upload, uploadFilters))
+        : [];
+
+      if (!uploads.length) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="empty-state">No uploads found.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      function getConnectionStatus(upload) {
+        if (!normalizeText(upload && upload.provider_name)) {
+          return {
+            className: 'connection-pill-blocked',
+            label: 'Provider missing',
+            detail: 'Submission setup requires provider context'
+          };
+        }
+
+        if (upload && upload.has_active_clearinghouse_connection) {
+          return {
+            className: 'connection-pill-connected',
+            label: 'Clearinghouse connected',
+            detail: 'Provider submission path is configured'
+          };
+        }
+
+        return {
+          className: 'connection-pill-blocked',
+          label: 'Connection required before submission',
+          detail: 'Configure provider connection before this upload can submit'
+        };
+      }
+
+      tbody.innerHTML = uploads.map(upload => `
+        <tr>
+          <td>${upload.upload_id || 'Unknown'}</td>
+          <td>${upload.upload_name || 'Unnamed upload'}</td>
+          <td>${upload.provider_name || 'Unknown'}</td>
+          <td>${upload.niche || 'Unspecified'}</td>
+          <td>${formatDateTime(upload.created_at)}</td>
+          <td>
+            <span class="count-pill">${Number(upload.file_count || 0)}</span>
+            ${upload.file_type_summary ? `<span class="count-detail">${upload.file_type_summary}</span>` : ''}
+          </td>
+          <td><span class="count-pill">${Number(upload.case_count || 0)}</span></td>
+          <td>
+            <span class="connection-pill ${getConnectionStatus(upload).className}">${getConnectionStatus(upload).label}</span>
+            <span class="count-detail">${getConnectionStatus(upload).detail}</span>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function syncFiltersFromInputs() {
+      const providerInput = document.getElementById('filterProvider');
+      const uploadInput = document.getElementById('filterUpload');
+      const nicheInput = document.getElementById('filterNiche');
+      const dateFromInput = document.getElementById('filterDateFrom');
+      const dateToInput = document.getElementById('filterDateTo');
+
+      uploadFilters.provider = providerInput ? providerInput.value.trim() : '';
+      uploadFilters.upload = uploadInput ? uploadInput.value.trim() : '';
+      uploadFilters.niche = nicheInput ? nicheInput.value.trim() : '';
+      uploadFilters.dateFrom = dateFromInput ? dateFromInput.value : '';
+      uploadFilters.dateTo = dateToInput ? dateToInput.value : '';
+    }
+
+    function attachFilterHandlers() {
+      [
+        'filterProvider',
+        'filterUpload',
+        'filterNiche'
+      ].forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
+
+        input.addEventListener('input', () => {
+          syncFiltersFromInputs();
+          renderUploads();
+        });
+      });
+
+      [
+        'filterDateFrom',
+        'filterDateTo'
+      ].forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
+
+        input.addEventListener('change', () => {
+          syncFiltersFromInputs();
+          renderUploads();
+        });
+      });
+
+      const clearButton = document.getElementById('clearFiltersBtn');
+      if (clearButton) {
+        clearButton.addEventListener('click', () => {
+          ['filterProvider', 'filterUpload', 'filterNiche', 'filterDateFrom', 'filterDateTo'].forEach(id => {
+            const input = document.getElementById(id);
+            if (input) {
+              input.value = '';
+            }
+          });
+          syncFiltersFromInputs();
+          renderUploads();
+        });
+      }
+    }
+
+    async function loadUploads() {
+      const tbody = document.getElementById('uploadHistoryBody');
+
+      try {
+        const response = await fetch('/api/uploads');
+        const data = await response.json();
+        allUploads = data && Array.isArray(data.uploads) ? data.uploads : [];
+        renderUploads();
+      } catch (err) {
+        console.error('Failed to load uploads:', err);
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="empty-state">No uploads found.</td>
+          </tr>
+        `;
+      }
+    }
+
+    document.getElementById('uploadForm').addEventListener('submit', submitUpload);
+    attachFilterHandlers();
+    loadAuthUser();
+    loadUploads();
+  </script>
+</body>
+</html>

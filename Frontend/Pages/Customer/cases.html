@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cases</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+    :root {
+      --page-bg: #f7f8fb;
+      --surface: #ffffff;
+      --surface-muted: #f8fafc;
+      --border: #e6eaf0;
+      --line: #edf1f5;
+      --text: #0f172a;
+      --text-soft: #667085;
+      --accent: #0f766e;
+      --success-bg: #ecfdf3;
+      --success-text: #047857;
+      --warning-bg: #fff7ed;
+      --warning-text: #b45309;
+      --neutral-bg: #eef6ff;
+      --neutral-text: #1d4ed8;
+      --danger-bg: #fef2f2;
+      --danger-text: #b91c1c;
+    }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 28%),
+        linear-gradient(180deg, #fcfdff 0%, var(--page-bg) 100%);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    .topbar {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(230, 234, 240, 0.8);
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+    }
+    .topbar-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .brand-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+    .nav-links a.active {
+      color: var(--text);
+    }
+    .page {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 28px 24px 56px;
+    }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      color: var(--text-soft);
+      max-width: 620px;
+    }
+    .hero-meta {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+    .card {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.05);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(248, 250, 252, 0.9), rgba(255, 255, 255, 0.85));
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .card-caption {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+    th, td {
+      padding: 18px 24px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+      font-size: 0.95rem;
+    }
+    th {
+      font-size: 0.76rem;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    tbody tr {
+      cursor: pointer;
+      transition: background-color 160ms ease;
+    }
+    tbody tr:hover {
+      background: rgba(248, 250, 252, 0.8);
+    }
+    .case-id {
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .supporting-copy {
+      color: var(--text-soft);
+      font-size: 0.86rem;
+      margin-top: 4px;
+    }
+    .amount,
+    .date-cell {
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .status-ready {
+      background: var(--neutral-bg);
+      color: var(--neutral-text);
+    }
+    .status-progress {
+      background: var(--warning-bg);
+      color: var(--warning-text);
+    }
+    .status-done {
+      background: var(--success-bg);
+      color: var(--success-text);
+    }
+    .status-final {
+      background: var(--danger-bg);
+      color: var(--danger-text);
+    }
+    .empty-state {
+      padding: 28px 24px;
+      color: var(--text-soft);
+      font-size: 0.96rem;
+    }
+    @media (max-width: 860px) {
+      .topbar-inner, .hero, .card-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .page {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .topbar {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      th, td {
+        padding: 16px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-name">Claims Portal</div>
+      <nav class="nav-links" aria-label="Customer navigation">
+        <a href="upload.html">Upload</a>
+        <a href="cases.html" class="active">Cases</a>
+        <a href="customer-billing.html">Billing</a>
+        <a href="agreements.html">Agreements</a>
+        <a href="account.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <h1>Your cases</h1>
+        <p>Track the current outcome for each case in one place. This view stays read-focused so you can quickly see where things stand without internal workflow details.</p>
+      </div>
+      <div class="hero-meta" id="caseCount">Loading cases...</div>
+    </section>
+
+    <section class="card" aria-label="Customer cases">
+      <div class="card-head">
+        <div class="card-title">Case overview</div>
+        <div class="card-caption">A read-only view of your current cases and outcomes.</div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Case ID</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Outcome</th>
+            </tr>
+          </thead>
+          <tbody id="casesTableBody">
+            <tr>
+              <td class="empty-state" colspan="4">Loading cases...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script>
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function formatAmount(amount) {
+      const numeric = Number(amount);
+      if (!Number.isFinite(numeric)) {
+        return null;
+      }
+
+      return `$${numeric.toLocaleString()}`;
+    }
+
+    function formatDate(value) {
+      if (!value) {
+        return '-';
+      }
+
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) {
+        return escapeHtml(value);
+      }
+
+      return date.toLocaleDateString(undefined, {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+    }
+
+    function mapStatus(status) {
+      const normalized = String(status || '').trim().toLowerCase();
+      const statusMap = {
+        ready_for_submission: {
+          label: 'Ready to Submit',
+          className: 'status-ready'
+        },
+        pending_clearinghouse: {
+          label: 'In Progress',
+          className: 'status-progress'
+        },
+        recovered: {
+          label: 'Recovered',
+          className: 'status-done'
+        },
+        not_recoverable: {
+          label: 'Closed',
+          className: 'status-final'
+        }
+      };
+
+      return statusMap[normalized] || {
+        label: String(status || 'In Progress')
+          .replaceAll('_', ' ')
+          .replace(/\b\w/g, char => char.toUpperCase()),
+        className: 'status-progress'
+      };
+    }
+
+    function getOutcomeSummary(claim) {
+      const amountText = formatAmount(claim.amount);
+      const payerText = claim.payer ? `Payer: ${claim.payer}` : null;
+
+      switch (String(claim.status || '').trim().toLowerCase()) {
+        case 'ready_for_submission':
+          return {
+            title: 'Prepared for next submission step',
+            detail: payerText || amountText || 'We have what we need to continue.'
+          };
+        case 'pending_clearinghouse':
+          return {
+            title: 'Currently being worked',
+            detail: 'We are continuing the recovery process for this case.'
+          };
+        case 'recovered':
+          return {
+            title: 'Recovery completed',
+            detail: amountText ? `Recovered amount: ${amountText}` : 'This case was successfully recovered.'
+          };
+        case 'not_recoverable':
+          return {
+            title: 'No further recovery action planned',
+            detail: 'This case reached a final outcome and is now closed.'
+          };
+        default:
+          return {
+            title: 'In progress',
+            detail: payerText || 'We are reviewing the current status of this case.'
+          };
+      }
+    }
+
+    function openCase(id) {
+      if (!id) {
+        return;
+      }
+
+      window.location.href = `case-detail.html?id=${encodeURIComponent(id)}`;
+    }
+
+    function renderCases(claims) {
+      const tableBody = document.getElementById('casesTableBody');
+      const caseCount = document.getElementById('caseCount');
+
+      if (!tableBody) {
+        return;
+      }
+
+      if (caseCount) {
+        caseCount.textContent = `${claims.length} ${claims.length === 1 ? 'case' : 'cases'}`;
+      }
+
+      if (!claims.length) {
+        tableBody.innerHTML = '<tr><td class="empty-state" colspan="4">No cases are available right now.</td></tr>';
+        return;
+      }
+
+      tableBody.innerHTML = claims.map(claim => {
+        const status = mapStatus(claim.status);
+        const outcome = getOutcomeSummary(claim);
+
+        return `
+          <tr onclick="openCase('${escapeHtml(claim.claim_id)}')">
+            <td>
+              <div class="case-id">${escapeHtml(claim.claim_id || '-')}</div>
+              <div class="supporting-copy">${escapeHtml(claim.patient || 'Case')}</div>
+            </td>
+            <td>
+              <span class="status-pill ${status.className}">${escapeHtml(status.label)}</span>
+            </td>
+            <td class="date-cell">${escapeHtml(formatDate(claim.updated_at || claim.created_at || claim.date_of_service))}</td>
+            <td>
+              <div>${escapeHtml(outcome.title)}</div>
+              <div class="supporting-copy">${escapeHtml(outcome.detail)}</div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function loadCases() {
+      const tableBody = document.getElementById('casesTableBody');
+      const caseCount = document.getElementById('caseCount');
+
+      try {
+        const response = await fetch('/api/customer/claims');
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+          throw new Error(data.error || 'Unable to load cases');
+        }
+
+        renderCases(Array.isArray(data.claims) ? data.claims : []);
+      } catch (err) {
+        if (tableBody) {
+          tableBody.innerHTML = '<tr><td class="empty-state" colspan="4">We could not load your cases right now. Please try again later.</td></tr>';
+        }
+
+        if (caseCount) {
+          caseCount.textContent = 'Unavailable';
+        }
+      }
+    }
+
+    loadCases();
+  </script>
+</body>
+</html>

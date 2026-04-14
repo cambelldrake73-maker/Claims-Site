@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operations</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+    body { background: #f3f4f6; color: #1f2937; line-height: 1.45; }
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .logo { font-size: 1rem; font-weight: 700; color: #111827; }
+    .nav-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; color: #4b5563; font-size: 0.9rem; font-weight: 500; }
+    .nav-links a.active { color: #111827; font-weight: 700; }
+    .page { max-width: 1180px; margin: 0 auto; padding: 24px 20px 48px; }
+    .hero { margin-bottom: 24px; }
+    .hero h1 { font-size: 1.65rem; margin-bottom: 8px; color: #111827; }
+    .hero p { color: #6b7280; max-width: 760px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .card h2 { font-size: 1rem; color: #111827; margin-bottom: 8px; }
+    .card p { color: #6b7280; font-size: 0.9rem; margin-bottom: 14px; }
+    .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .tile {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #f9fafb;
+      padding: 14px;
+    }
+    .tile small {
+      display: block;
+      color: #6b7280;
+      text-transform: uppercase;
+      font-size: 0.73rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .tile strong { color: #111827; font-size: 1.15rem; }
+    .list { display: flex; flex-direction: column; gap: 10px; }
+    .list-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #f9fafb;
+      padding: 12px 14px;
+    }
+    .list-item strong { display: block; color: #111827; margin-bottom: 4px; }
+    .muted { color: #6b7280; font-size: 0.88rem; }
+    .warning { border-color: #fed7aa; background: #fff7ed; }
+    .empty-state { color: #6b7280; font-size: 0.92rem; }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px;
+      color: #374151;
+      font-size: 0.84rem;
+    }
+    @media (max-width: 900px) {
+      .grid, .tiles { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Claims Operations</div>
+    <div class="nav-links">
+      <a href="upload-history.html">Uploads</a>
+      <a href="review-queue.html">Review Queue</a>
+      <a href="claims.html">Claims</a>
+      <a href="provider-connections.html">Provider Connections</a>
+      <a href="billing.html">Billing</a>
+      <a href="reports.html" class="active">Operations</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Operations</h1>
+      <p>A real operator surface backed by current system APIs: operational integrity, claim totals, and intelligence summaries. No placeholder exports or static analytics remain here.</p>
+    </section>
+    <section class="card" style="margin-bottom: 20px;">
+      <h2>Live Operator Operations</h2>
+      <p>This page shows backend-backed operator integrity, intelligence, and recommendation evaluation data from live operations APIs.</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Operational Integrity</h2>
+        <p>Live system integrity snapshot from the operations backend.</p>
+        <div id="integrityPanel" class="empty-state">Loading integrity status...</div>
+      </article>
+
+      <article class="card">
+        <h2>Claim Totals</h2>
+        <p>Live aggregate totals from the claims intelligence summary endpoint.</p>
+        <div id="claimTotals" class="empty-state">Loading claim totals...</div>
+      </article>
+
+      <article class="card">
+        <h2>Status Distribution</h2>
+        <p>Current lifecycle status counts.</p>
+        <div id="statusDistribution" class="empty-state">Loading status distribution...</div>
+      </article>
+
+      <article class="card">
+        <h2>Recommendation Evaluation</h2>
+        <p>Recommendation-state and blocker patterns from the decision-log evaluation layer.</p>
+        <div id="recommendationEvaluation" class="empty-state">Loading recommendation evaluation...</div>
+      </article>
+    </section>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script>
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function formatLabel(value) {
+      return String(value || 'unknown')
+        .replaceAll('_', ' ')
+        .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function renderTiles(targetId, entries, formatter = value => value) {
+      const container = document.getElementById(targetId);
+
+      if (!entries.length) {
+        container.innerHTML = '<div class="empty-state">No data available.</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="tiles">
+          ${entries.map(([label, value]) => `
+            <div class="tile">
+              <small>${escapeHtml(formatLabel(label))}</small>
+              <strong>${escapeHtml(formatter(value))}</strong>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderIntegrity(integrity) {
+      const container = document.getElementById('integrityPanel');
+
+      if (!integrity) {
+        container.innerHTML = '<div class="empty-state">Integrity data unavailable.</div>';
+        return;
+      }
+
+      const warnings = Array.isArray(integrity.warnings) ? integrity.warnings : [];
+      container.innerHTML = `
+        <div class="list">
+          <div class="list-item ${warnings.length ? 'warning' : ''}">
+            <strong>${integrity.ok ? 'Healthy' : 'Needs attention'}</strong>
+            <div class="muted">Warning count: ${warnings.length}</div>
+          </div>
+          ${warnings.length ? warnings.map(item => `
+            <div class="list-item warning">
+              <strong>${escapeHtml(item.code || 'warning')}</strong>
+              <div class="muted">${escapeHtml(item.message || 'No message')}</div>
+            </div>
+          `).join('') : '<div class="list-item"><strong>No active warnings</strong><div class="muted">The integrity snapshot did not report active warnings.</div></div>'}
+        </div>
+      `;
+    }
+
+    function renderStateOutcomes(evaluation) {
+      const container = document.getElementById('recommendationEvaluation');
+
+      if (!evaluation || !evaluation.recommendation) {
+        container.innerHTML = '<div class="empty-state">Recommendation evaluation unavailable.</div>';
+        return;
+      }
+
+      const recommendation = evaluation.recommendation;
+      const byState = recommendation.by_recommendation_state && typeof recommendation.by_recommendation_state === 'object'
+        ? Object.entries(recommendation.by_recommendation_state).slice(0, 6)
+        : [];
+      const blockers = recommendation.blocker_type_counts && typeof recommendation.blocker_type_counts === 'object'
+        ? Object.entries(recommendation.blocker_type_counts).slice(0, 6)
+        : [];
+
+      container.innerHTML = `
+        <div class="list">
+          <div class="list-item">
+            <strong>Recommendation States</strong>
+            ${byState.length
+              ? byState.map(([label, count]) => `<div class="muted">${escapeHtml(formatLabel(label))}: ${escapeHtml(count)}</div>`).join('')
+              : '<div class="muted">No recommendation states available.</div>'}
+          </div>
+          <div class="list-item">
+            <strong>Top Blockers</strong>
+            ${blockers.length
+              ? blockers.map(([label, count]) => `<div class="muted">${escapeHtml(formatLabel(label))}: ${escapeHtml(count)}</div>`).join('')
+              : '<div class="muted">No blocker counts available.</div>'}
+          </div>
+        </div>
+      `;
+    }
+
+    async function loadOperationsPage() {
+      try {
+        const [integrityRes, intelligenceRes, evaluationRes] = await Promise.all([
+          fetch('/api/ops/integrity'),
+          fetch('/api/claims/intelligence'),
+          fetch('/api/claims/intelligence/evaluation?decision_type=recommendation')
+        ]);
+        const responses = [integrityRes, intelligenceRes, evaluationRes];
+        const unauthenticated = responses.some(response => response.status === 401);
+
+        const [integrityPayload, intelligencePayload, evaluationPayload] = await Promise.all([
+          integrityRes.json().catch(() => null),
+          intelligenceRes.json().catch(() => null),
+          evaluationRes.json().catch(() => null)
+        ]);
+
+        if (unauthenticated) {
+          throw new Error('UNAUTHENTICATED');
+        }
+
+        renderIntegrity(integrityRes.ok && integrityPayload?.ok ? integrityPayload.integrity : null);
+
+        renderTiles(
+          'claimTotals',
+          intelligenceRes.ok && intelligencePayload?.ok
+            ? Object.entries(intelligencePayload.totals || {})
+            : []
+        );
+
+        renderTiles(
+          'statusDistribution',
+          intelligenceRes.ok && intelligencePayload?.ok
+            ? Object.entries(intelligencePayload.statuses || {})
+            : [],
+          value => Number(value || 0).toLocaleString()
+        );
+
+        renderStateOutcomes(evaluationRes.ok && evaluationPayload?.ok ? evaluationPayload.evaluation : null);
+      } catch (err) {
+        const isUnauthenticated = err && err.message === 'UNAUTHENTICATED';
+        const integrityMessage = isUnauthenticated
+          ? 'Your session has expired. Please sign in again to view operations data.'
+          : 'Unable to load integrity data.';
+        const claimsMessage = isUnauthenticated
+          ? 'Your session has expired. Please sign in again to view operations data.'
+          : 'Unable to load claim totals.';
+        const statusMessage = isUnauthenticated
+          ? 'Your session has expired. Please sign in again to view operations data.'
+          : 'Unable to load status distribution.';
+        const recommendationMessage = isUnauthenticated
+          ? 'Your session has expired. Please sign in again to view operations data.'
+          : 'Unable to load recommendation evaluation.';
+
+        document.getElementById('integrityPanel').innerHTML = `<div class="empty-state">${escapeHtml(integrityMessage)}</div>`;
+        document.getElementById('claimTotals').innerHTML = `<div class="empty-state">${escapeHtml(claimsMessage)}</div>`;
+        document.getElementById('statusDistribution').innerHTML = `<div class="empty-state">${escapeHtml(statusMessage)}</div>`;
+        document.getElementById('recommendationEvaluation').innerHTML = `<div class="empty-state">${escapeHtml(recommendationMessage)}</div>`;
+      }
+    }
+
+    loadOperationsPage();
+  </script>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agreements</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+    :root {
+      --page-bg: #f7f8fb;
+      --surface: #ffffff;
+      --border: #e6eaf0;
+      --line: #edf1f5;
+      --text: #0f172a;
+      --text-soft: #667085;
+      --success-bg: #ecfdf3;
+      --success-text: #047857;
+      --warning-bg: #fff7ed;
+      --warning-text: #b45309;
+      --neutral-bg: #eef6ff;
+      --neutral-text: #1d4ed8;
+    }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 28%),
+        linear-gradient(180deg, #fcfdff 0%, var(--page-bg) 100%);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    .topbar {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(230, 234, 240, 0.8);
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+    }
+    .topbar-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .brand-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+    .nav-links a.active {
+      color: var(--text);
+    }
+    .page {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 28px 24px 56px;
+      display: grid;
+      gap: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      color: var(--text-soft);
+      max-width: 720px;
+    }
+    .card {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.05);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+    .card-head {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(248, 250, 252, 0.9), rgba(255, 255, 255, 0.85));
+    }
+    .card-head h2 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .card-head p {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+    .card-body {
+      padding: 24px;
+    }
+    .summary-copy {
+      color: var(--text-soft);
+      font-size: 0.94rem;
+    }
+    .agreement-list {
+      display: grid;
+      gap: 16px;
+    }
+    .agreement-item {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: #fafbfc;
+    }
+    .agreement-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .agreement-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .agreement-meta {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+    .agreement-content {
+      color: var(--text);
+      font-size: 0.94rem;
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .agreement-content p {
+      margin: 0;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--neutral-bg);
+      color: var(--neutral-text);
+      white-space: nowrap;
+    }
+    .status-pill.accepted {
+      background: var(--success-bg);
+      color: var(--success-text);
+    }
+    .status-pill.pending {
+      background: var(--warning-bg);
+      color: var(--warning-text);
+    }
+    .agreement-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .agreement-note {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+    button {
+      border: 0;
+      border-radius: 12px;
+      background: #111827;
+      color: #ffffff;
+      padding: 11px 16px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .empty-state {
+      color: var(--text-soft);
+      font-size: 0.94rem;
+    }
+    @media (max-width: 860px) {
+      .topbar-inner,
+      .agreement-top,
+      .agreement-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .page {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .topbar {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-name">Claims Portal</div>
+      <nav class="nav-links" aria-label="Customer navigation">
+        <a href="upload.html">Upload</a>
+        <a href="cases.html">Cases</a>
+        <a href="customer-billing.html">Billing</a>
+        <a href="agreements.html" class="active">Agreements</a>
+        <a href="account.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Agreements</h1>
+      <p>Review the latest agreement versions for your account and record acceptance directly from this page.</p>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Agreement status</h2>
+        <p>Your current acceptance status for the latest agreement versions.</p>
+      </div>
+      <div class="card-body">
+        <div id="agreementStatusSummary" class="summary-copy">Loading agreement status...</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Latest agreements</h2>
+        <p>Each acceptance is saved to your account history and can be updated when a new version is published.</p>
+      </div>
+      <div class="card-body">
+        <div id="agreementsList" class="agreement-list">
+          <div class="empty-state">Loading agreements...</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script>
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function formatDate(value) {
+      if (!value) {
+        return '-';
+      }
+
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) {
+        return escapeHtml(value);
+      }
+
+      return date.toLocaleDateString(undefined, {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+    }
+
+    function formatAgreementType(type) {
+      return String(type || 'agreement')
+        .replaceAll('_', ' ')
+        .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function renderAgreementStatusSummary(status) {
+      const container = document.getElementById('agreementStatusSummary');
+      const missingTypes = Array.isArray(status?.missing_types) ? status.missing_types : [];
+      const acceptedTypes = Array.isArray(status?.accepted_types) ? status.accepted_types : [];
+
+      if (!container) {
+        return;
+      }
+
+      container.innerHTML = status?.accepted_all
+        ? 'All current agreement versions have been accepted.'
+        : `Pending agreement types: ${missingTypes.length ? escapeHtml(missingTypes.join(', ')) : 'None'}. Accepted: ${acceptedTypes.length ? escapeHtml(acceptedTypes.join(', ')) : 'None yet'}.`;
+    }
+
+    function renderAgreements(agreements, status) {
+      const list = document.getElementById('agreementsList');
+      const agreementStatusById = new Map(
+        (Array.isArray(status?.agreements) ? status.agreements : []).map(item => [item.agreement_id, item])
+      );
+
+      if (!list) {
+        return;
+      }
+
+      if (!Array.isArray(agreements) || agreements.length === 0) {
+        list.innerHTML = '<div class="empty-state">No agreements are available right now.</div>';
+        return;
+      }
+
+      list.innerHTML = agreements.map(agreement => {
+        const state = agreementStatusById.get(agreement.agreement_id) || {};
+        const accepted = state.accepted === true;
+
+        return `
+          <article class="agreement-item">
+            <div class="agreement-top">
+              <div>
+                <div class="agreement-title">${escapeHtml(formatAgreementType(agreement.type))}</div>
+                <div class="agreement-meta">Version ${escapeHtml(agreement.version || '-')}</div>
+              </div>
+              <span class="status-pill ${accepted ? 'accepted' : 'pending'}">${accepted ? 'Accepted' : 'Pending acceptance'}</span>
+            </div>
+            <div class="agreement-content">${agreement.content || '<p>No agreement content is available.</p>'}</div>
+            <div class="agreement-actions">
+              <div class="agreement-note">
+                ${accepted
+                  ? `Accepted on ${escapeHtml(formatDate(state.accepted_at))}`
+                  : 'This agreement still needs acceptance.'}
+              </div>
+              <button type="button" data-agreement-id="${escapeHtml(agreement.agreement_id)}" ${accepted ? 'disabled' : ''}>
+                ${accepted ? 'Accepted' : 'Accept'}
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    async function loadAgreementData() {
+      const list = document.getElementById('agreementsList');
+      const summary = document.getElementById('agreementStatusSummary');
+
+      try {
+        const [latestResponse, statusResponse] = await Promise.all([
+          fetch('/api/agreements/latest'),
+          fetch('/api/agreements/status')
+        ]);
+        const latestPayload = await latestResponse.json();
+        const statusPayload = await statusResponse.json();
+
+        if (!latestResponse.ok || !latestPayload?.ok) {
+          throw new Error(latestPayload?.error || 'Unable to load agreements');
+        }
+
+        if (!statusResponse.ok || !statusPayload?.ok) {
+          throw new Error(statusPayload?.error || 'Unable to load agreement status');
+        }
+
+        renderAgreementStatusSummary(statusPayload.status);
+        renderAgreements(latestPayload.agreements || [], statusPayload.status);
+      } catch (err) {
+        if (summary) {
+          summary.textContent = 'We could not load agreement status right now.';
+        }
+
+        if (list) {
+          list.innerHTML = '<div class="empty-state">We could not load agreements right now. Please try again later.</div>';
+        }
+      }
+    }
+
+    async function acceptAgreement(agreementId, button) {
+      if (!agreementId) {
+        return;
+      }
+
+      const previousText = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Saving...';
+
+      try {
+        const response = await fetch('/api/agreements/accept', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            agreement_id: agreementId
+          })
+        });
+        const payload = await response.json();
+
+        if (!response.ok || !payload?.ok) {
+          throw new Error(payload?.error || 'Unable to save acceptance');
+        }
+
+        await loadAgreementData();
+      } catch (err) {
+        button.disabled = false;
+        button.textContent = previousText;
+        window.alert(err.message || 'Unable to save acceptance');
+      }
+    }
+
+    document.getElementById('agreementsList').addEventListener('click', event => {
+      const button = event.target.closest('button[data-agreement-id]');
+
+      if (!button) {
+        return;
+      }
+
+      acceptAgreement(button.getAttribute('data-agreement-id'), button);
+    });
+
+    loadAgreementData();
+  </script>
+</body>
+</html>

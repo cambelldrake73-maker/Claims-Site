@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+    :root {
+      --page-bg: #f7f8fb;
+      --surface: #ffffff;
+      --surface-muted: #f8fafc;
+      --border: #e6eaf0;
+      --text: #0f172a;
+      --text-soft: #667085;
+      --accent: #0f766e;
+      --accent-soft: rgba(15, 118, 110, 0.12);
+      --success: #047857;
+      --warning: #b45309;
+      --danger: #b91c1c;
+    }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 28%),
+        linear-gradient(180deg, #fcfdff 0%, var(--page-bg) 100%);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    .topbar {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(230, 234, 240, 0.8);
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+    }
+    .topbar-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .brand-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+    .nav-links a.active {
+      color: var(--text);
+    }
+    .page {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 28px 24px 56px;
+    }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      color: var(--text-soft);
+      max-width: 620px;
+    }
+    .session-badge {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+    .card {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.05);
+      backdrop-filter: blur(10px);
+    }
+    .card + .card {
+      margin-top: 24px;
+    }
+    .card-inner {
+      padding: 24px;
+    }
+    .section-heading {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .section-copy {
+      color: var(--text-soft);
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field-wide {
+      grid-column: 1 / -1;
+    }
+    label {
+      font-size: 0.84rem;
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+    input, select {
+      width: 100%;
+      border: 1px solid #d3d9e3;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      background: #ffffff;
+      color: var(--text);
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    button {
+      border: 0;
+      border-radius: 12px;
+      background: #111827;
+      color: #ffffff;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+    .status-copy {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+    }
+    .status-copy.success { color: var(--success); }
+    .status-copy.error { color: var(--danger); }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .summary-item {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface-muted);
+    }
+    .summary-item small {
+      display: block;
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .summary-item strong {
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 14px 10px;
+      text-align: left;
+      border-bottom: 1px solid #edf1f5;
+      font-size: 0.94rem;
+      vertical-align: middle;
+    }
+    th {
+      font-size: 0.76rem;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: #eef6ff;
+      color: #1d4ed8;
+    }
+    .pill.review { background: #fff7ed; color: var(--warning); }
+    .pill.error { background: #fef2f2; color: var(--danger); }
+    .hint {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: var(--accent-soft);
+      color: #115e59;
+      font-size: 0.92rem;
+    }
+    .notice-banner {
+      margin-bottom: 20px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid #f5d0a5;
+      background: #fff7ed;
+      color: #9a3412;
+      font-size: 0.94rem;
+    }
+    .notice-banner a {
+      color: inherit;
+      font-weight: 700;
+    }
+    .empty-state {
+      color: var(--text-soft);
+      font-size: 0.94rem;
+    }
+    @media (max-width: 860px) {
+      .topbar-inner, .hero { flex-direction: column; align-items: flex-start; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-name">Claims Portal</div>
+      <nav class="nav-links" aria-label="Customer navigation">
+        <a href="upload.html" class="active">Upload</a>
+        <a href="cases.html">Cases</a>
+        <a href="customer-billing.html">Billing</a>
+        <a href="agreements.html">Agreements</a>
+        <a href="account.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <h1>Upload documents</h1>
+        <p>Send one or more claim-related files securely. We’ll process each file and let you know how many cases were created and whether any items need additional review.</p>
+      </div>
+      <div class="session-badge" id="sessionBadge">Checking your secure session...</div>
+    </section>
+
+    <div id="agreementBanner" class="notice-banner" hidden>
+      You need to accept the latest agreements before continuing. You can still review this page now, and you can update your status in <a href="agreements.html">Agreements</a>.
+    </div>
+
+    <section class="card">
+      <div class="card-inner">
+        <div class="section-heading">New upload</div>
+        <div class="section-copy">You can upload multiple files at once and we will summarize the results for each file below.</div>
+        <form id="uploadForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="uploadNiche">Niche (optional)</label>
+              <input id="uploadNiche" name="niche" type="text" autocomplete="off" />
+            </div>
+            <div class="field field-wide">
+              <label for="uploadFiles">Files</label>
+              <input id="uploadFiles" name="files" type="file" multiple required />
+            </div>
+          </div>
+          <div class="actions">
+            <button id="uploadSubmitButton" type="submit">Start Upload</button>
+            <div id="uploadStatus" class="status-copy"></div>
+          </div>
+        </form>
+        <div class="hint">After the upload finishes, you’ll see a simple summary of what was received and whether anything needs review.</div>
+      </div>
+    </section>
+
+    <section class="card" id="resultCard" hidden>
+      <div class="card-inner">
+        <div class="section-heading">Latest upload result</div>
+        <div class="section-copy">A summary of the files you just submitted.</div>
+        <div id="resultSummary"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script>
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function setUploadStatus(message, tone = '') {
+      const element = document.getElementById('uploadStatus');
+      element.textContent = message || '';
+      element.className = `status-copy${tone ? ` ${tone}` : ''}`;
+    }
+
+    function getResultPill(item) {
+      if (item.accepted && item.manual_review_required) {
+        return { className: 'review', label: 'Uploaded, needs review' };
+      }
+
+      if (item.accepted) {
+        return { className: '', label: 'Processed' };
+      }
+
+      return { className: 'error', label: 'Needs attention' };
+    }
+
+    function renderLatestResult(payload) {
+      const resultCard = document.getElementById('resultCard');
+      const resultSummary = document.getElementById('resultSummary');
+      const files = Array.isArray(payload?.files) ? payload.files : [];
+
+      if (!payload || !files.length) {
+        resultCard.hidden = true;
+        resultSummary.innerHTML = '';
+        return;
+      }
+
+      const claimsCreated = files.reduce((sum, item) => sum + Number(item.cases_created || 0), 0);
+      const reviewCount = files.filter(item => item.manual_review_required).length;
+      const acceptedCount = files.filter(item => item.accepted).length;
+
+      resultCard.hidden = false;
+      resultSummary.innerHTML = `
+        <div class="summary-grid">
+          <div class="summary-item"><small>Upload ID</small><strong>${escapeHtml(payload.upload_id || 'Unknown')}</strong></div>
+          <div class="summary-item"><small>Files Processed</small><strong>${files.length}</strong></div>
+          <div class="summary-item"><small>Accepted</small><strong>${acceptedCount}</strong></div>
+          <div class="summary-item"><small>Cases Created</small><strong>${claimsCreated}</strong></div>
+          <div class="summary-item"><small>Needs Review</small><strong>${reviewCount}</strong></div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Outcome</th>
+              <th>Cases Created</th>
+              <th>Review</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${files.map(item => {
+              const pill = getResultPill(item);
+              return `
+                <tr>
+                  <td>${escapeHtml(item.file_name || item.file_id || 'Uploaded file')}</td>
+                  <td><span class="pill ${pill.className}">${escapeHtml(pill.label)}</span></td>
+                  <td>${Number(item.cases_created || 0)}</td>
+                  <td>${item.manual_review_required ? 'Yes' : 'No'}</td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    async function loadSessionContext() {
+      const badge = document.getElementById('sessionBadge');
+
+      try {
+        const response = await fetch('/api/auth/me');
+        const payload = await response.json();
+
+        if (!response.ok || !payload?.ok || !payload.user) {
+          throw new Error('Unable to resolve session');
+        }
+
+        const email = payload.user.email || 'your account';
+        badge.textContent = `Signed in as ${email}.`;
+      } catch (err) {
+        badge.textContent = 'Ready to upload files.';
+      }
+    }
+
+    async function loadAgreementStatus() {
+      const banner = document.getElementById('agreementBanner');
+
+      try {
+        const response = await fetch('/api/agreements/status');
+        const payload = await response.json();
+        const status = payload?.status;
+
+        if (!response.ok || !payload?.ok || !status) {
+          throw new Error('Unable to load agreement status');
+        }
+
+        const missingTypes = Array.isArray(status.missing_types) ? status.missing_types : [];
+        banner.hidden = missingTypes.length === 0;
+      } catch (err) {
+        banner.hidden = true;
+      }
+    }
+
+    async function submitUpload(event) {
+      event.preventDefault();
+
+      const button = document.getElementById('uploadSubmitButton');
+      const fileInput = document.getElementById('uploadFiles');
+      const niche = document.getElementById('uploadNiche').value.trim();
+      const selectedFiles = fileInput?.files ? Array.from(fileInput.files) : [];
+
+      if (!selectedFiles.length) {
+        setUploadStatus('Please choose at least one file.', 'error');
+        return;
+      }
+
+      const formData = new FormData();
+      if (niche) {
+        formData.append('niche', niche);
+      }
+      selectedFiles.forEach(file => formData.append('files', file, file.name));
+
+      button.disabled = true;
+      setUploadStatus(`Uploading ${selectedFiles.length} file${selectedFiles.length === 1 ? '' : 's'}...`);
+
+      try {
+        const response = await fetch('/api/intake/upload', {
+          method: 'POST',
+          body: formData
+        });
+        const payload = await response.json().catch(() => null);
+
+        if (!response.ok || !payload) {
+          throw new Error(payload?.error || 'Upload failed');
+        }
+
+        renderLatestResult(payload);
+        setUploadStatus('Your upload was received successfully.', 'success');
+        document.getElementById('uploadForm').reset();
+      } catch (err) {
+        renderLatestResult(null);
+        setUploadStatus(err.message || 'Upload failed', 'error');
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    document.getElementById('uploadForm').addEventListener('submit', submitUpload);
+    loadSessionContext();
+    loadAgreementStatus();
+  </script>
+</body>
+</html>

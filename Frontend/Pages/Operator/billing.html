@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billing & Invoices</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --panel: #fff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --brand: #2563eb;
+      --nav: #111827;
+      --nav-hover: #1f2937;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      --pill-paid-bg: #dcfce7;
+      --pill-paid-text: #166534;
+      --pill-pending-bg: #fff7e8;
+      --pill-pending-text: #9a6700;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .layout {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    .sidebar-shell {
+      width: 56px;
+      transition: width 260ms ease;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .sidebar-shell:hover,
+    .sidebar-shell.pinned {
+      width: 250px;
+    }
+
+    .sidebar {
+      height: 100%;
+      background: var(--nav);
+      color: #fff;
+      padding: 24px 12px;
+      overflow: hidden;
+    }
+
+    .sidebar-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 26px;
+      white-space: nowrap;
+    }
+
+    .company-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: #1d4ed8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .company-name {
+      margin: 0;
+      font-size: 18px;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .sidebar-shell:hover .company-name,
+    .sidebar-shell.pinned .company-name,
+    .sidebar-shell:hover .nav-label,
+    .sidebar-shell.pinned .nav-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .sidebar-nav {
+      display: grid;
+      gap: 6px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: #d1d5db;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 11px 12px;
+      white-space: nowrap;
+      transition: background-color 180ms ease, color 180ms ease;
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: var(--nav-hover);
+      color: #fff;
+    }
+
+    .nav-link::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.55);
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: opacity 180ms ease;
+    }
+
+    .nav-label {
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 180ms ease, transform 180ms ease;
+      margin-left: 14px;
+    }
+
+    .sidebar-shell:hover .nav-link::before,
+    .sidebar-shell.pinned .nav-link::before {
+      opacity: 0;
+    }
+
+    .sidebar-tab {
+      position: absolute;
+      right: -16px;
+      top: 94px;
+      width: 16px;
+      height: 56px;
+      border-radius: 0 10px 10px 0;
+      border: none;
+      background: #1d4ed8;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(29, 78, 216, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .sidebar-tab span {
+      display: inline-block;
+      transition: transform 220ms ease;
+      font-size: 12px;
+    }
+
+    .sidebar-shell.pinned .sidebar-tab span {
+      transform: rotate(180deg);
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      background: var(--panel);
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      position: relative;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .account-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .account-button {
+      background: #fff;
+      color: #111827;
+      border: 1px solid #d1d5db;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      background: #fff;
+      min-width: 240px;
+      border-radius: 12px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .account-menu.open .dropdown {
+      display: block;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--text);
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .dropdown a:hover {
+      background: #f8fafc;
+    }
+
+    .content {
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .account-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .account-tabs a {
+      text-decoration: none;
+      color: #334155;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .account-tabs a.active {
+      background: #dbeafe;
+      border-color: #93c5fd;
+      color: #1e3a8a;
+    }
+
+    .card {
+      background: var(--panel);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-head {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-head h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .card-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .card-body {
+      padding: 16px 18px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .tile {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .tile small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .tile strong {
+      font-size: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      vertical-align: middle;
+    }
+
+    th {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #111827;
+      white-space: nowrap;
+    }
+
+    .pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pill-paid {
+      background: var(--pill-paid-bg);
+      color: var(--pill-paid-text);
+    }
+
+    .pill-partial {
+      background: #e0f2fe;
+      color: #075985;
+    }
+
+    .pill-pending {
+      background: var(--pill-pending-bg);
+      color: var(--pill-pending-text);
+    }
+
+    .empty-state {
+      color: var(--muted);
+      font-size: 14px;
+      padding: 16px 0;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar-shell,
+      .sidebar-shell:hover,
+      .sidebar-shell.pinned {
+        width: 100%;
+      }
+
+      .sidebar-tab {
+        display: none;
+      }
+
+      .company-name,
+      .nav-label {
+        opacity: 1;
+        transform: none;
+      }
+
+      .layout {
+        flex-direction: column;
+      }
+
+      .topbar {
+        padding: 16px 20px;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar-shell" id="sidebarShell">
+      <div class="sidebar">
+        <div class="sidebar-head">
+          <div class="company-mark">RC</div>
+          <h2 class="company-name">RevCapture</h2>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="upload-history.html" class="nav-link"><span class="nav-label">Uploads</span></a>
+          <a href="review-queue.html" class="nav-link"><span class="nav-label">Review Queue</span></a>
+          <a href="claims.html" class="nav-link"><span class="nav-label">Claims</span></a>
+          <a href="provider-connections.html" class="nav-link"><span class="nav-label">Provider Connections</span></a>
+          <a href="reports.html" class="nav-link"><span class="nav-label">Operations</span></a>
+          <a href="billing.html" class="nav-link active"><span class="nav-label">Billing</span></a>
+        </nav>
+      </div>
+      <button class="sidebar-tab" id="sidebarTab" aria-label="Pin sidebar" title="Pin sidebar"><span>></span></button>
+    </aside>
+    <main class="main">
+      <div class="topbar">
+        <h1>Billing & Invoices</h1>
+      </div>
+      <div class="content">
+        <section class="card">
+          <div class="card-head">
+            <div>
+              <h2>Operator Billing Summary</h2>
+              <p>Posted recovered funds, platform fee revenue, clearinghouse costs, and current invoice totals.</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="summary" id="billingSummary">
+              <div class="tile"><small>Recovered Amount</small><strong>-</strong></div>
+              <div class="tile"><small>Platform Fee Revenue</small><strong>-</strong></div>
+              <div class="tile"><small>Clearinghouse Costs</small><strong>-</strong></div>
+              <div class="tile"><small>Invoice Total</small><strong>-</strong></div>
+              <div class="tile"><small>Amount Paid</small><strong>-</strong></div>
+              <div class="tile"><small>Remaining Balance</small><strong>-</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div>
+              <h2>Recent Invoices</h2>
+              <p>Invoices created from posted recoveries, including platform fees, clearinghouse costs, and payment balances.</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>Invoice #</th>
+                  <th>Claim</th>
+                  <th>Upload</th>
+                  <th>Recovered Amount</th>
+                  <th>Platform Fee</th>
+                  <th>Clearinghouse Cost</th>
+                  <th>Invoice Total</th>
+                  <th>Amount Paid</th>
+                  <th>Balance</th>
+                  <th>Invoice Status</th>
+                  <th>Payment Status</th>
+                  <th>Due Date</th>
+                </tr>
+              </thead>
+              <tbody id="billingTableBody">
+                <tr>
+                  <td colspan="12" class="empty-state">Loading invoices...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="/static/auth-client.js"></script>
+  <script>
+    function formatCurrency(value) {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) {
+        return '-';
+      }
+
+      return `$${numeric.toFixed(2)}`;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function formatDateTime(value) {
+      if (!value) {
+        return '-';
+      }
+
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) {
+        return escapeHtml(value);
+      }
+
+      return date.toLocaleString();
+    }
+
+    function getStatusPillClass(status) {
+      const normalized = String(status || '').toLowerCase();
+
+      if (normalized === 'paid') {
+        return 'pill pill-paid';
+      }
+
+      if (normalized === 'partial') {
+        return 'pill pill-partial';
+      }
+
+      return 'pill pill-pending';
+    }
+
+    function formatStatusLabel(status) {
+      return String(status || 'pending')
+        .replaceAll('_', ' ')
+        .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function renderSummary(invoices) {
+      const summary = document.getElementById('billingSummary');
+      if (!summary) return;
+
+      const totals = (Array.isArray(invoices) ? invoices : []).reduce((acc, invoice) => {
+        acc.recovered += Number(invoice.recovered_amount || 0);
+        acc.platform += Number(invoice.platform_fee_amount || 0);
+        acc.clearinghouse += Number(invoice.clearinghouse_cost || 0);
+        acc.due += Number(invoice.amount_due || 0);
+        acc.paid += Number(invoice.amount_paid || 0);
+        acc.balance += Number(invoice.remaining_balance || 0);
+        return acc;
+      }, {
+        recovered: 0,
+        platform: 0,
+        clearinghouse: 0,
+        due: 0,
+        paid: 0,
+        balance: 0
+      });
+
+      summary.innerHTML = `
+        <div class="tile"><small>Recovered Amount</small><strong>${escapeHtml(formatCurrency(totals.recovered))}</strong></div>
+        <div class="tile"><small>Platform Fee Revenue</small><strong>${escapeHtml(formatCurrency(totals.platform))}</strong></div>
+        <div class="tile"><small>Clearinghouse Costs</small><strong>${escapeHtml(formatCurrency(totals.clearinghouse))}</strong></div>
+        <div class="tile"><small>Invoice Total</small><strong>${escapeHtml(formatCurrency(totals.due))}</strong></div>
+        <div class="tile"><small>Amount Paid</small><strong>${escapeHtml(formatCurrency(totals.paid))}</strong></div>
+        <div class="tile"><small>Remaining Balance</small><strong>${escapeHtml(formatCurrency(totals.balance))}</strong></div>
+      `;
+    }
+
+    function renderInvoices(invoices) {
+      const tableBody = document.getElementById('billingTableBody');
+      if (!tableBody) return;
+
+      if (!Array.isArray(invoices) || invoices.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="12" class="empty-state">No invoices available yet.</td></tr>';
+        return;
+      }
+
+      tableBody.innerHTML = invoices.map(invoice => `
+        <tr>
+          <td>INV-${escapeHtml(invoice.invoice_id)}</td>
+          <td>${escapeHtml(invoice.claim_id || '-')}</td>
+          <td>
+            <div>${escapeHtml(invoice.upload && invoice.upload.upload_name ? invoice.upload.upload_name : '-')}</div>
+            <div style="font-size:12px; color:#6b7280;">${escapeHtml(invoice.upload && invoice.upload.provider_name ? invoice.upload.provider_name : '')}</div>
+          </td>
+          <td>${escapeHtml(formatCurrency(invoice.recovered_amount))}</td>
+          <td>${escapeHtml(formatCurrency(invoice.platform_fee_amount))}</td>
+          <td>${escapeHtml(formatCurrency(invoice.clearinghouse_cost))}</td>
+          <td>${escapeHtml(formatCurrency(invoice.amount_due))}</td>
+          <td>${escapeHtml(formatCurrency(invoice.amount_paid))}</td>
+          <td>${escapeHtml(formatCurrency(invoice.remaining_balance))}</td>
+          <td><span class="${getStatusPillClass(invoice.invoice_status)}">${escapeHtml(formatStatusLabel(invoice.invoice_status))}</span></td>
+          <td>
+            <div>${escapeHtml(formatStatusLabel(invoice.payment_status))}</div>
+            <div style="font-size:12px; color:#6b7280;">${escapeHtml(formatDateTime(invoice.paid_at || invoice.created_at))}</div>
+          </td>
+          <td>${escapeHtml(formatDateTime(invoice.due_date))}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadBilling() {
+      const tableBody = document.getElementById('billingTableBody');
+
+      try {
+        const response = await fetch('/api/billing/invoices');
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+          throw new Error(data.error || 'Unable to load billing');
+        }
+
+        const invoices = Array.isArray(data.invoices) ? data.invoices : [];
+        renderSummary(invoices);
+        renderInvoices(invoices);
+      } catch (err) {
+        if (tableBody) {
+          tableBody.innerHTML = '<tr><td colspan="12" class="empty-state">Unable to load invoices right now.</td></tr>';
+        }
+      }
+    }
+
+    const shell = document.getElementById('sidebarShell');
+    const tab = document.getElementById('sidebarTab');
+    tab.addEventListener('click', () => {
+      shell.classList.toggle('pinned');
+    });
+
+    loadBilling();
+  </script>
+</body>
+</html>

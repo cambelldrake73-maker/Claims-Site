@@ -1,0 +1,3470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Detail</title>
+  <style>
+    :root {
+      --bg: #f3f6fb;
+      --panel: rgba(255, 255, 255, 0.94);
+      --panel-strong: #ffffff;
+      --line: #dde5ef;
+      --line-soft: #ecf1f7;
+      --text: #162033;
+      --muted: #667085;
+      --muted-strong: #475467;
+      --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      --shadow-soft: 0 10px 24px rgba(15, 23, 42, 0.05);
+      --brand: #2563eb;
+      --brand-soft: #dbeafe;
+      --ready: #12724d;
+      --ready-bg: #e8f7ef;
+      --warning: #b54708;
+      --warning-bg: #fff2e2;
+      --danger: #b42318;
+      --danger-bg: #fdecec;
+      --neutral: #475467;
+      --neutral-bg: #eef2f6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.09), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 38%, #eef3f9 100%);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(221, 229, 239, 0.9);
+      padding: 16px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: #0f172a;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted-strong);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 8px 0;
+    }
+
+    .page {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 34px 26px 64px;
+    }
+
+    .hero {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hero-eyebrow {
+      color: var(--brand);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 3vw, 2.7rem);
+      letter-spacing: -0.04em;
+      color: #0f172a;
+      line-height: 1.05;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 760px;
+    }
+
+    .workbench-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.92fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .workbench-main,
+    .workbench-side {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      min-width: 0;
+    }
+
+    .detail-card {
+      background: var(--panel);
+      border: 1px solid rgba(221, 229, 239, 0.92);
+      border-radius: 22px;
+      padding: 22px 24px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .card-header-main {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .card-kicker {
+      color: var(--brand);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-heading {
+      font-size: 1.08rem;
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .card-description,
+    .panel-description {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .subsection-label {
+      color: var(--muted-strong);
+      font-size: 0.77rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .subsection-block + .subsection-block {
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .empty-state {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .claim-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .overview-shell {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .overview-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 22px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(255, 255, 255, 0.95));
+      border: 1px solid rgba(191, 219, 254, 0.9);
+    }
+
+    .overview-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .overview-caption {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .overview-title {
+      font-size: 1.7rem;
+      letter-spacing: -0.04em;
+      color: #0f172a;
+      line-height: 1.1;
+    }
+
+    .overview-subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    .status-pill-needs-review {
+      background: #fff6dd;
+      color: #9a6700;
+      border-color: #f3d27a;
+    }
+
+    .status-pill-approved {
+      background: #e7f0ff;
+      color: #1450c8;
+      border-color: #b9d2ff;
+    }
+
+    .status-pill-submitted {
+      background: var(--neutral-bg);
+      color: var(--neutral);
+      border-color: #d0d5dd;
+    }
+
+    .status-pill-paid {
+      background: var(--ready-bg);
+      color: var(--ready);
+      border-color: #9fe0b9;
+    }
+
+    .status-pill-failed {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-color: #f5b4af;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .overview-metric {
+      border: 1px solid var(--line-soft);
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 18px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .overview-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .overview-value {
+      color: var(--text);
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .overview-value-amount {
+      font-size: 1.42rem;
+      letter-spacing: -0.03em;
+    }
+
+    .detail-section {
+      margin-bottom: 0;
+      border: 1px solid var(--line-soft);
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: rgba(248, 250, 252, 0.7);
+    }
+
+    .section-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .detail-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .detail-label {
+      color: #344054;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .detail-value {
+      color: var(--text);
+      font-size: 0.94rem;
+      text-align: right;
+      max-width: 62%;
+      word-break: break-word;
+    }
+
+    .confidence-emphasis {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+    }
+
+    .auditor-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 18px;
+    }
+
+    .form-grid label {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .form-grid input {
+      border: 1px solid #d7dee7;
+      border-radius: 14px;
+      padding: 13px 14px;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: #ffffff;
+      outline: none;
+      box-shadow: inset 0 1px 2px rgba(16, 24, 40, 0.03);
+    }
+
+    .form-grid input:focus {
+      border-color: #98a2b3;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+    }
+
+    .source-files-list,
+    .evidence-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .source-file-item,
+    .evidence-item {
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      padding: 16px 18px;
+      background: rgba(248, 250, 252, 0.82);
+    }
+
+    .evidence-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .source-file-title,
+    .evidence-title {
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 6px;
+    }
+
+    .source-file-meta,
+    .evidence-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .source-file-link {
+      display: inline-flex;
+      margin-top: 10px;
+      color: var(--brand);
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .source-file-link:hover {
+      text-decoration: underline;
+    }
+
+    .evidence-confidence {
+      border-radius: 12px;
+      background: rgba(37, 99, 235, 0.08);
+      color: #0f4bd3;
+      padding: 8px 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .submission-history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .submission-history-item {
+      border: 1px solid #e5eaf0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #fbfcfd;
+    }
+
+    .submission-history-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .submission-history-status {
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 4px 10px;
+    }
+
+    .submission-history-status-paid {
+      background: #e7f6ec;
+      color: #1f7a3f;
+    }
+
+    .submission-history-status-submitted {
+      background: #e0f2fe;
+      color: #075985;
+    }
+
+    .submission-history-status-retry {
+      background: #fff4e5;
+      color: #b54708;
+    }
+
+    .submission-history-status-failed {
+      background: #fdecec;
+      color: #b42318;
+    }
+
+    .submission-history-time {
+      color: #667085;
+      font-size: 0.82rem;
+    }
+
+    .submission-history-summary {
+      color: #475467;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .lifecycle-history-note {
+      color: #667085;
+      font-size: 0.82rem;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .fix-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .fix-card {
+      border: 1px solid #e5eaf0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #fbfcfd;
+    }
+
+    .fix-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .fix-type {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .fix-decision {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .fix-decision-pending {
+      background: #eef2f6;
+      color: #475467;
+    }
+
+    .fix-decision-approved {
+      background: #e7f6ec;
+      color: #1f7a3f;
+    }
+
+    .fix-decision-rejected {
+      background: #fdecec;
+      color: #b42318;
+    }
+
+    .fix-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .fix-meta .detail-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .fix-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .fix-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .fix-group + .fix-group {
+      margin-top: 6px;
+    }
+
+    .fix-group-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #667085;
+    }
+
+    .fix-confidence {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fix-confidence-score {
+      font-weight: 700;
+    }
+
+    .fix-confidence-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      flex: 0 0 auto;
+    }
+
+    .fix-confidence-high {
+      color: #1f7a3f;
+    }
+
+    .fix-confidence-high .fix-confidence-dot {
+      background: #1f7a3f;
+    }
+
+    .fix-confidence-medium {
+      color: #b54708;
+    }
+
+    .fix-confidence-medium .fix-confidence-dot {
+      background: #f79009;
+    }
+
+    .fix-confidence-low {
+      color: #b42318;
+    }
+
+    .fix-confidence-low .fix-confidence-dot {
+      background: #d92d20;
+    }
+
+    .fix-explanation {
+      margin-top: 10px;
+      color: #475467;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .fix-action {
+      min-width: 88px;
+      padding: 8px 12px;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #344054;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .fix-action:hover:not(:disabled) {
+      background: #f8fafc;
+    }
+
+    .fix-action:disabled {
+      cursor: default;
+      opacity: 0.55;
+    }
+
+    .fix-suggestions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .fix-suggestion-item {
+      border: 1px solid #e5eaf0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #fbfcfd;
+    }
+
+    .fix-suggestion-message {
+      color: #111827;
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .fix-suggestion-field {
+      color: #667085;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .required-fields-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .required-field-item {
+      border: 1px solid #e5eaf0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #fbfcfd;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .required-field-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .required-field-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .required-field-name {
+      color: #111827;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .required-field-meta,
+    .required-field-current {
+      color: #667085;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .required-field-input-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .required-field-input-label {
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .required-field-input {
+      border: 1px solid #d7dee7;
+      border-radius: 12px;
+      padding: 12px 13px;
+      font-size: 0.92rem;
+      color: var(--text);
+      background: #ffffff;
+      outline: none;
+      box-shadow: inset 0 1px 2px rgba(16, 24, 40, 0.03);
+    }
+
+    .required-field-input:focus {
+      border-color: #98a2b3;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+    }
+
+    .learning-block + .learning-block {
+      margin-top: 14px;
+    }
+
+    .learning-block strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #344054;
+      font-size: 0.84rem;
+    }
+
+    .learning-pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #fbfcfd;
+      border: 1px solid #e5eaf0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #111827;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .panel-description {
+      color: #667085;
+      font-size: 0.87rem;
+      margin-bottom: 14px;
+    }
+
+    .match-reasons-list {
+      margin: 8px 0 0 18px;
+      color: #111827;
+      font-size: 0.9rem;
+    }
+
+    .match-reasons-list li + li {
+      margin-top: 6px;
+    }
+
+    .match-option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .match-option-item {
+      border: 1px solid #e5eaf0;
+      border-radius: 10px;
+      background: #fbfcfd;
+      padding: 10px 12px;
+      color: #111827;
+      font-size: 0.86rem;
+    }
+
+    .match-warning {
+      color: #b42318;
+      background: #fef3f2;
+      border: 1px solid #fecdca;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .match-risk-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .match-risk-item {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid #f2d39b;
+      background: #fff7e8;
+      color: #9a6700;
+      padding: 6px 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .match-signal-list,
+    .match-support-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .match-signal-item {
+      border: 1px solid #dbe6f3;
+      border-radius: 12px;
+      background: #f8fbff;
+      padding: 12px 14px;
+    }
+
+    .match-signal-label {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1450c8;
+      margin-bottom: 6px;
+    }
+
+    .match-signal-copy {
+      color: #111827;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .match-support-item {
+      color: #667085;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      padding-left: 2px;
+    }
+
+    .match-option-title {
+      color: #111827;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .match-option-reason {
+      color: #667085;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .match-actions-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .match-action-button {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #cfd6df;
+      background: #ffffff;
+      color: #111827;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .match-action-button:hover {
+      background: #f8fafc;
+    }
+
+    .learning-impact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .learning-impact-item {
+      border: 1px solid #e5eaf0;
+      border-radius: 10px;
+      background: #fbfcfd;
+      padding: 10px 12px;
+      color: #111827;
+      font-size: 0.84rem;
+    }
+
+    .learning-impact-item-positive {
+      color: #1f7a3f;
+      border-color: #b7e3c2;
+      background: #f3fbf5;
+    }
+
+    .learning-impact-item-negative {
+      color: #b42318;
+      border-color: #f2c2bd;
+      background: #fff5f4;
+    }
+
+    .learning-impact-item-neutral {
+      color: #475467;
+    }
+
+    .learning-impact-copy {
+      margin-top: 8px;
+      font-size: 0.84rem;
+      color: #667085;
+    }
+
+    .readiness-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .readiness-indicator-ready {
+      background: var(--ready-bg);
+      color: var(--ready);
+    }
+
+    .readiness-indicator-not-ready {
+      background: var(--warning-bg);
+      color: var(--warning);
+    }
+
+    .readiness-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: currentColor;
+      flex: 0 0 auto;
+    }
+
+    .action-card {
+      position: sticky;
+      top: 92px;
+    }
+
+    .actions-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .actions-stack button,
+    .action-secondary-button {
+      width: 100%;
+      border-radius: 14px;
+      padding: 12px 14px;
+      border: 1px solid #cfd6df;
+      background: #ffffff;
+      color: #111827;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .actions-stack button:hover:not(:disabled),
+    .action-secondary-button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(15, 23, 42, 0.08);
+      background: #f8fbff;
+    }
+
+    .actions-stack button:disabled,
+    .action-secondary-button:disabled {
+      cursor: default;
+      color: #98a2b3;
+      background: #f8fafc;
+      box-shadow: none;
+    }
+
+    .action-button-primary {
+      background: var(--brand) !important;
+      color: #ffffff !important;
+      border-color: var(--brand) !important;
+    }
+
+    .action-button-primary:hover:not(:disabled) {
+      background: #1d4ed8 !important;
+      border-color: #1d4ed8 !important;
+    }
+
+    .action-button-secondary {
+      background: #ffffff;
+      color: #111827;
+      border-color: #cfd6df;
+    }
+
+    .system-recommendation {
+      border: 1px solid var(--line-soft);
+      border-radius: 18px;
+      background: rgba(248, 250, 252, 0.82);
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+
+    .system-recommendation-label {
+      color: var(--brand);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .system-recommendation-title {
+      color: #0f172a;
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .system-recommendation-copy {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .provider-submission-panel {
+      border: 1px solid var(--line-soft);
+      border-radius: 18px;
+      background: rgba(248, 250, 252, 0.82);
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+
+    .provider-connection-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid #dbe4ee;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .provider-connection-status-connected {
+      color: #0f766e;
+      background: #ecfdf3;
+      border-color: #a7f3d0;
+    }
+
+    .provider-connection-status-blocked {
+      color: #b42318;
+      background: #fef3f2;
+      border-color: #fecaca;
+    }
+
+    .provider-connection-status-unavailable {
+      color: #475467;
+      background: #f8fafc;
+      border-color: #dbe4ee;
+    }
+
+    .provider-connection-copy {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin-top: 10px;
+    }
+
+    .provider-connection-link {
+      color: var(--brand);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .provider-connection-link:hover {
+      text-decoration: underline;
+    }
+
+    .actions-note {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .inline-card-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    @media (max-width: 980px) {
+      .workbench-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .action-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .page {
+        padding: 24px 18px 48px;
+      }
+
+      .overview-banner,
+      .detail-row,
+      .evidence-item,
+      .submission-history-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .detail-value {
+        text-align: left;
+        max-width: 100%;
+      }
+
+      .form-grid,
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Operations Dashboard</div>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="claims.html">Cases</a>
+      <a href="upload-history.html">Upload History</a>
+      <a href="review-queue.html">Review Queue</a>
+      <a href="provider-connections.html">Provider Connections</a>
+      <a href="reporting.html">Reporting</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-eyebrow">Claim Recovery System</div>
+      <h1>Claim Operations Workbench</h1>
+      <p>Review the claim, inspect denial reasoning, audit evidence, and take the next recovery action from one operator view.</p>
+    </section>
+
+    <div class="workbench-grid">
+      <div class="workbench-main">
+        <section class="detail-card">
+          <div class="card-header">
+            <div class="card-header-main">
+              <div class="card-kicker">Claim Overview</div>
+              <h2 class="section-heading">Claim Overview</h2>
+              <p class="card-description">Patient, payer, denial context, and editable claim fields for the current recovery workflow.</p>
+            </div>
+          </div>
+          <div class="claim-detail"></div>
+          <form class="auditor-form" id="auditorForm">
+            <div class="subsection-label">Edit Claim Fields</div>
+            <div class="form-grid">
+              <label>
+                <span>Patient</span>
+                <input type="text" id="editPatient" />
+              </label>
+              <label>
+                <span>Payer</span>
+                <input type="text" id="editPayer" />
+              </label>
+              <label>
+                <span>Status</span>
+                <input type="text" id="editStatus" />
+              </label>
+              <label>
+                <span>Denial Reason</span>
+                <input type="text" id="editDenialReason" />
+              </label>
+              <label>
+                <span>Amount</span>
+                <input type="text" id="editAmount" />
+              </label>
+              <label>
+                <span>Date of Service</span>
+                <input type="text" id="editDateOfService" />
+              </label>
+            </div>
+          </form>
+        </section>
+
+        <section class="detail-card">
+          <div class="card-header">
+            <div class="card-header-main">
+              <div class="card-kicker">Outcome</div>
+              <h2 class="section-heading">Outcome</h2>
+              <p class="card-description">The latest visible result of the system's claim decision and submission workflow.</p>
+            </div>
+          </div>
+          <div id="outcomeSummary">
+            <div class="empty-state">Loading outcome...</div>
+          </div>
+        </section>
+
+        <section class="detail-card">
+          <div class="card-header">
+            <div class="card-header-main">
+              <div class="card-kicker">Recommended Actions</div>
+              <h2 class="section-heading">Recommended Actions</h2>
+              <p class="card-description">System guidance and suggested fixes to move this claim forward safely.</p>
+            </div>
+          </div>
+          <div class="inline-card-grid">
+            <div class="subsection-block">
+              <div class="subsection-label">System Recommendations</div>
+              <div id="fixSuggestions">
+                <div class="empty-state">Loading fix suggestions...</div>
+              </div>
+            </div>
+            <div class="subsection-block">
+              <div class="subsection-label">Required Fields</div>
+              <div id="requiredFieldStatus">
+                <div class="empty-state">No required fields</div>
+              </div>
+            </div>
+            <div class="subsection-block">
+              <div class="subsection-label">AI Suggested Fixes</div>
+              <div id="appliedFixes">
+                <div class="empty-state">Loading suggested fixes...</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="detail-card">
+          <div class="card-header">
+            <div class="card-header-main">
+              <div class="card-kicker">Documents</div>
+              <h2 class="section-heading">Documents / Evidence</h2>
+              <p class="card-description">Uploaded denial files linked to this claim and the confidence attached to each match.</p>
+            </div>
+          </div>
+          <div id="sourceFilesList" class="source-files-list">
+            <div class="empty-state">No source files available.</div>
+          </div>
+        </section>
+
+        <section id="match-panel" class="detail-card">
+          <div class="card-header">
+            <div class="card-header-main">
+              <div class="card-kicker">Match Reasoning</div>
+              <h2 class="section-heading">Match Reasoning</h2>
+              <p class="panel-description">This explains how this claim was matched to its supporting evidence.</p>
+            </div>
+          </div>
+          <div id="match-panel-content">
+            <div class="learning-block">
+              <strong>Confidence</strong>
+              <div id="match-confidence" class="learning-pre">Loading match confidence...</div>
+            </div>
+
+            <div class="learning-block">
+              <strong>Why this matched</strong>
+              <ul id="match-reasons" class="match-reasons-list">
+                <li>Loading match reasons...</li>
+              </ul>
+            </div>
+
+            <div id="match-competition" class="learning-block">
+              <strong>Other possible matches</strong>
+              <div id="match-options" class="match-option-list">
+                <div class="match-option-item">Loading alternative matches...</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="match-actions" class="learning-block">
+            <strong>Actions</strong>
+            <div class="match-actions-row">
+              <button id="accept-match" type="button" class="match-action-button">Accept Match</button>
+              <button id="review-match" type="button" class="match-action-button">Send to Review</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="detail-card">
+          <div class="card-header">
+            <div class="card-header-main">
+              <div class="card-kicker">History</div>
+              <h2 class="section-heading">Submission / History</h2>
+              <p class="card-description">Past submission attempts and payer outcomes for this claim.</p>
+            </div>
+          </div>
+          <div id="submissionHistory">
+            <div class="empty-state">Loading submission history...</div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="workbench-side">
+        <section class="detail-card">
+          <div class="card-header">
+            <div class="card-header-main">
+              <div class="card-kicker">Readiness</div>
+              <h2 class="section-heading">Readiness</h2>
+              <p class="card-description">Backend validation state for whether this claim can move forward in the workflow.</p>
+            </div>
+          </div>
+          <div class="claim-detail" id="reviewReadinessCard">
+            <div class="empty-state">Loading review readiness...</div>
+          </div>
+        </section>
+
+        <section id="learning-panel" class="detail-card">
+          <div class="card-header">
+            <div class="card-header-main">
+              <div class="card-kicker">Match Intelligence</div>
+              <h2 class="section-heading">Match Intelligence</h2>
+              <p class="panel-description">This reflects how the system is currently weighting matching signals across all claims.</p>
+            </div>
+          </div>
+          <div id="learning-panel-content">
+            <em>Loading match intelligence...</em>
+          </div>
+        </section>
+
+        <section class="detail-card">
+          <div class="card-header">
+            <div class="card-header-main">
+              <div class="card-kicker">Lifecycle</div>
+              <h2 class="section-heading">Lifecycle History</h2>
+              <p class="card-description">A step-by-step audit trail of how the claim moved through the system.</p>
+            </div>
+          </div>
+          <div id="lifecycleHistory">
+            <div class="empty-state">Loading history...</div>
+          </div>
+        </section>
+
+        <section class="detail-card action-card">
+          <div class="card-header">
+            <div class="card-header-main">
+              <div class="card-kicker">Actions</div>
+              <h2 class="section-heading">Actions</h2>
+              <p class="card-description">The system decides first. Operators can confirm that decision or override it when needed.</p>
+            </div>
+          </div>
+          <div id="actionRecommendation" class="system-recommendation">
+            <div class="system-recommendation-label">System Decision</div>
+            <div class="system-recommendation-title">Loading system decision...</div>
+            <div class="system-recommendation-copy">Checking readiness, match confidence, and current guidance.</div>
+          </div>
+          <div id="providerSubmissionStatus" class="provider-submission-panel">
+            <div class="empty-state">Loading provider submission context...</div>
+          </div>
+          <div class="system-recommendation-label">Your Control</div>
+          <div class="actions-note">You can override or confirm the system decision.</div>
+          <div class="actions-stack">
+            <button id="submitClaimBtn" type="button" disabled>Submit to Clearinghouse</button>
+            <button id="saveAdjustmentsBtn" type="button" disabled>Confirm System Decision</button>
+            <button id="sendToReviewBtn" type="button" disabled>Override and Send to Review</button>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script src="customer-identity.js"></script>
+  <script>
+    const CUSTOMER_ID = getCurrentCustomerId();
+    const MATCH_FEEDBACK_IMPACT_KEY = 'matchFeedbackImpact';
+
+    function formatLabel(value) {
+      return String(value || '')
+        .replaceAll('_', ' ')
+        .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function parseAdditionalData(value) {
+      if (!value) return {};
+
+      if (typeof value === 'string') {
+        try {
+          const parsed = JSON.parse(value);
+          return parsed && typeof parsed === 'object' && !Array.isArray(parsed)
+            ? parsed
+            : {};
+        } catch (err) {
+          return {};
+        }
+      }
+
+      return value && typeof value === 'object' && !Array.isArray(value)
+        ? { ...value }
+        : {};
+    }
+
+    function getClaimAdditionalData(claim) {
+      return parseAdditionalData(claim && claim.additional_data);
+    }
+
+    function getRequiredFieldStatus(claim) {
+      const direct = Array.isArray(claim && claim.required_field_status)
+        ? claim.required_field_status
+        : null;
+      const nested = Array.isArray(claim && claim.enrichment && claim.enrichment.required_field_status)
+        ? claim.enrichment.required_field_status
+        : null;
+
+      return (direct || nested || []).filter(item => item && typeof item === 'object' && item.field);
+    }
+
+    function normalizeClaimUIData(claim) {
+      if (!claim || typeof claim !== 'object') {
+        return claim;
+      }
+
+      return {
+        ...claim,
+        additional_data: getClaimAdditionalData(claim),
+        required_field_status: getRequiredFieldStatus(claim)
+      };
+    }
+
+    function normalizeText(value) {
+      return String(value || '').trim().toLowerCase();
+    }
+
+    function getClaimUploadContexts(claim) {
+      const contexts = [];
+      const seen = new Set();
+      const candidates = [];
+
+      if (claim && claim.upload && typeof claim.upload === 'object') {
+        candidates.push({
+          ...claim.upload,
+          __context_source: 'primary'
+        });
+      }
+
+      if (Array.isArray(claim && claim.linked_uploads)) {
+        claim.linked_uploads.forEach(upload => {
+          if (!upload || typeof upload !== 'object') {
+            return;
+          }
+
+          candidates.push({
+            ...upload,
+            __context_source: 'linked'
+          });
+        });
+      }
+
+      candidates.forEach(upload => {
+        if (!upload || typeof upload !== 'object') {
+          return;
+        }
+
+        const key = upload.upload_id || JSON.stringify(upload);
+
+        if (seen.has(key)) {
+          return;
+        }
+
+        seen.add(key);
+        contexts.push(upload);
+      });
+
+      return contexts;
+    }
+
+    function getSubmitProviderContext(claim) {
+      const uploads = getClaimUploadContexts(claim);
+      const firstWithProvider = uploads.find(upload => (
+        normalizeText(upload && upload.provider_id)
+        || normalizeText(upload && upload.provider_name)
+      ));
+
+      if (!firstWithProvider) {
+        return {
+          provider_id: null,
+          provider_name: null,
+          upload_name: uploads[0] && uploads[0].upload_name ? uploads[0].upload_name : null,
+          source: uploads.length ? 'Upload context present without provider name' : 'No upload context'
+        };
+      }
+
+      return {
+        provider_id: firstWithProvider.provider_id || null,
+        provider_name: firstWithProvider.provider_name,
+        upload_name: firstWithProvider.upload_name || null,
+        source: firstWithProvider.__context_source === 'primary' ? 'Primary upload' : 'Linked upload'
+      };
+    }
+
+    function getProviderConnectionState(providerContext, connections) {
+      const normalizedProviderId = normalizeText(providerContext && providerContext.provider_id);
+      const normalizedProvider = normalizeText(providerContext && providerContext.provider_name);
+      const providerRows = Array.isArray(connections)
+        ? connections.filter(connection => {
+            const connectionProviderId = normalizeText(connection && connection.provider_id);
+            if (normalizedProviderId && connectionProviderId) {
+              return connectionProviderId === normalizedProviderId;
+            }
+
+            return normalizeText(connection && connection.provider_name) === normalizedProvider;
+          })
+        : [];
+      const activeConnection = providerRows.find(connection => (
+        Boolean(connection && connection.is_active)
+        && normalizeText(connection && connection.credential_status) === 'connected'
+      )) || null;
+
+      if (activeConnection) {
+        return {
+          className: 'provider-connection-status-connected',
+          label: 'Clearinghouse connected',
+          copy: 'The provider submit path is configured and the backend submit guard should allow submission once the rest of the case is ready.',
+          connection: activeConnection
+        };
+      }
+
+      if (providerRows.length) {
+        return {
+          className: 'provider-connection-status-blocked',
+          label: 'Connection required before submission',
+          copy: 'A provider connection record exists, but it is not both active and connected yet. Submission will stay blocked until that configuration is completed.',
+          connection: providerRows[0]
+        };
+      }
+
+      return {
+        className: 'provider-connection-status-blocked',
+        label: 'Connection required before submission',
+        copy: 'No active provider clearinghouse connection is configured for this provider yet. The backend submit guard will block submission until one is added.',
+        connection: null
+      };
+    }
+
+    function getProviderApprovalState(readiness) {
+      const approval = readiness && readiness.provider_approval && typeof readiness.provider_approval === 'object'
+        ? readiness.provider_approval
+        : null;
+
+      if (!approval) {
+        return {
+          label: 'Provider approval unavailable',
+          copy: 'The backend did not return provider approval status for this claim.',
+          approvedAt: null,
+          feeAcknowledgedLabel: 'Unavailable'
+        };
+      }
+
+      if (approval.valid === true) {
+        return {
+          label: 'Provider approval recorded',
+          copy: 'A current provider approval is on file for this claim, including provider fee acknowledgment, and it matches the current provider submit context.',
+          approvedAt: approval.approved_at || null,
+          feeAcknowledgedLabel: 'Acknowledged'
+        };
+      }
+
+      if (approval.issue === 'provider_approval_stale') {
+        return {
+          label: 'Provider approval stale',
+          copy: 'The claim changed after provider approval. A provider must approve the current claim state again before submission.',
+          approvedAt: approval.approved_at || null,
+          feeAcknowledgedLabel: approval.fee_acknowledged === true ? 'Acknowledged' : 'Missing'
+        };
+      }
+
+      if (approval.issue === 'provider_approval_fee_acknowledgment_required') {
+        return {
+          label: 'Provider fee acknowledgment required',
+          copy: 'A provider approval record exists, but fee acknowledgment was not recorded. Submission stays blocked until the provider re-approves with fee acknowledgment.',
+          approvedAt: approval.approved_at || null,
+          feeAcknowledgedLabel: 'Missing'
+        };
+      }
+
+      return {
+        label: 'Provider approval required',
+        copy: 'Submission will remain blocked until a provider records approval for the current claim state.',
+        approvedAt: approval.approved_at || null,
+        feeAcknowledgedLabel: approval.approval_id ? 'Missing' : 'Not recorded'
+      };
+    }
+
+    function renderProviderSubmissionStatus(container, claim, connections, readiness, options = {}) {
+      if (!container) {
+        return;
+      }
+
+      if (options.unavailable || !claim) {
+        container.innerHTML = `
+          <div class="provider-connection-status provider-connection-status-unavailable">Connection status unavailable</div>
+          <div class="provider-connection-copy">The provider connection API could not be reached, so this page cannot confirm whether provider submission setup is complete right now.</div>
+        `;
+        return;
+      }
+
+      const providerContext = getSubmitProviderContext(claim);
+
+      if (!normalizeText(providerContext.provider_name) && !normalizeText(providerContext.provider_id)) {
+        container.innerHTML = `
+          <div class="provider-connection-status provider-connection-status-blocked">Connection required before submission</div>
+          <div class="detail-section">
+            <div class="section-title">Provider Submit Context</div>
+            <div class="detail-row">
+              <div class="detail-label">Provider</div>
+              <div class="detail-value">Unavailable</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Source</div>
+              <div class="detail-value">${escapeHtml(providerContext.source || 'Unavailable')}</div>
+            </div>
+          </div>
+          <div class="provider-connection-copy">
+            Submission is blocked until the claim is tied to a provider upload context with a configured clearinghouse connection.
+            <a class="provider-connection-link" href="provider-connections.html">Manage provider connections</a>
+          </div>
+        `;
+        return;
+      }
+
+      const connectionState = getProviderConnectionState(providerContext, connections);
+      const connection = connectionState.connection || null;
+      const approvalState = getProviderApprovalState(readiness);
+
+      container.innerHTML = `
+        <div class="provider-connection-status ${connectionState.className}">${escapeHtml(connectionState.label)}</div>
+        <div class="detail-section">
+          <div class="section-title">Provider Submit Context</div>
+          <div class="detail-row">
+            <div class="detail-label">Provider</div>
+            <div class="detail-value">${escapeHtml(providerContext.provider_name || providerContext.provider_id || 'Unavailable')}</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Source</div>
+            <div class="detail-value">${escapeHtml(providerContext.source || 'Unavailable')}</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Upload Context</div>
+            <div class="detail-value">${escapeHtml(providerContext.upload_name || 'Unknown upload')}</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Connection</div>
+            <div class="detail-value">${escapeHtml(connection && connection.clearinghouse_name ? connection.clearinghouse_name : 'Not configured')}</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Credential State</div>
+            <div class="detail-value">${escapeHtml(connection && connection.credential_status ? formatStatus(connection.credential_status) : 'Missing')}</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Provider Approval</div>
+            <div class="detail-value">${escapeHtml(approvalState.label)}</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Approved At</div>
+            <div class="detail-value">${approvalState.approvedAt ? escapeHtml(formatDateTime(approvalState.approvedAt)) : 'Not recorded'}</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Fee Acknowledgment</div>
+            <div class="detail-value">${escapeHtml(approvalState.feeAcknowledgedLabel || 'Not recorded')}</div>
+          </div>
+        </div>
+        <div class="provider-connection-copy">
+          ${escapeHtml(connectionState.copy)}
+        </div>
+        <div class="provider-connection-copy">
+          ${escapeHtml(approvalState.copy)}
+          <a class="provider-connection-link" href="provider-connections.html">Manage provider connections</a>
+        </div>
+      `;
+    }
+
+    function getRequiredFieldDisplayValue(claim, field) {
+      if (!claim || !field) return '';
+
+      const topLevelValue = claim[field];
+      if (
+        topLevelValue !== undefined &&
+        topLevelValue !== null &&
+        !(typeof topLevelValue === 'string' && topLevelValue.trim() === '')
+      ) {
+        return String(topLevelValue);
+      }
+
+      const additionalData = getClaimAdditionalData(claim);
+      const externalValue = additionalData[field];
+
+      return externalValue === undefined || externalValue === null
+        ? ''
+        : String(externalValue);
+    }
+
+    function collectAdditionalDataUpdates(claim, container) {
+      const merged = {
+        ...getClaimAdditionalData(claim)
+      };
+
+      if (!container) {
+        return merged;
+      }
+
+      container.querySelectorAll('[data-required-field]').forEach(input => {
+        const field = input && input.dataset ? input.dataset.requiredField : '';
+        if (!field) return;
+        merged[field] = input.value;
+      });
+
+      return merged;
+    }
+
+    function getFixExplanation(fix) {
+      if (fix && fix.explanation) return fix.explanation;
+
+      const type = fix && fix.type ? String(fix.type) : '';
+
+      if (type === 'add_modifier') {
+        return 'A modifier appears to be missing, so the system is suggesting one to improve claim completeness.';
+      }
+
+      if (type === 'set_cpt') {
+        return 'The procedure coding looks incomplete or inconsistent, so a CPT value has been suggested for review.';
+      }
+
+      if (type === 'add_diagnosis') {
+        return 'Diagnosis details appear incomplete, so the system recommended a diagnosis value to support the claim.';
+      }
+
+      if (type === 'update_payer' || type === 'set_payer') {
+        return 'The payer information may be mismatched, so this update is recommended before submission.';
+      }
+
+      if (type === 'normalize_status') {
+        return 'The claim status appears inconsistent and has been normalized to fit the submission workflow.';
+      }
+
+      return 'This recommendation was generated to improve claim completeness and reduce the chance of manual review.';
+    }
+
+    function renderAppliedFixes(claim) {
+      const container = document.getElementById('appliedFixes');
+      if (!container) return;
+
+      const fixes = Array.isArray(claim && claim.applied_fixes)
+        ? claim.applied_fixes
+        : [];
+
+      if (!fixes.length) {
+        container.innerHTML = '<div class="empty-state">No AI fixes suggested for this case.</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="fix-list">
+          ${fixes.map((fix, index) => {
+            const suggestedValue = fix && (fix.suggested_value ?? fix.value);
+            const decision = fix && fix.decision ? String(fix.decision).toLowerCase() : 'pending';
+            const decisionClass = `fix-decision-${decision}`;
+            const hasDecision = decision === 'approved' || decision === 'rejected';
+            const confidence = fix && fix.confidence;
+            const confidenceDisplay = confidence === undefined || confidence === null || confidence === ''
+              ? '-'
+              : String(confidence);
+
+            return `
+              <div class="fix-card">
+                <div class="fix-header">
+                  <div class="fix-type">${formatLabel(fix && fix.type ? fix.type : 'suggested_fix')}</div>
+                  <span class="fix-decision ${decisionClass}">${formatLabel(decision)}</span>
+                </div>
+                <div class="fix-meta">
+                  <div class="detail-row">
+                    <div class="detail-label">Suggested Value</div>
+                    <div class="detail-value">${suggestedValue || '-'}</div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-label">Confidence</div>
+                    <div class="detail-value">${confidenceDisplay}</div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-label">Decision</div>
+                    <div class="detail-value">${formatLabel(decision)}</div>
+                  </div>
+                </div>
+                <div class="fix-explanation">${getFixExplanation(fix)}</div>
+                <div class="fix-actions">
+                  <button type="button" class="fix-action" onclick="approveFix(${index})" ${hasDecision ? 'disabled' : ''}>Approve</button>
+                  <button type="button" class="fix-action" onclick="rejectFix(${index})" ${hasDecision ? 'disabled' : ''}>Reject</button>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function renderFixSuggestions(container, claim) {
+      if (!container) return;
+
+      const actions = Array.isArray(claim && claim.recommended_actions)
+        ? claim.recommended_actions.filter(action => action && typeof action === 'object')
+        : [];
+
+      if (!actions.length) {
+        container.innerHTML = '<div class="empty-state">No recommendations available</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="fix-suggestions-list">
+          ${actions.map(action => `
+            <button
+              type="button"
+              class="fix-suggestion-item"
+              style="width:100%; text-align:left; cursor:pointer;"
+              onclick='handleFixClick(${JSON.stringify(action.field || '')}, ${serializeFixAction(action)})'
+            >
+              <div class="fix-suggestion-message">${action.message || 'Issue detected'}</div>
+              ${action.field ? `<div class="fix-suggestion-field">${formatLabel(action.field)}</div>` : ''}
+            </button>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderRequiredFieldStatus(container, claim) {
+      if (!container) return;
+
+      const requiredFieldStatus = Array.isArray(claim && claim.required_field_status)
+        ? claim.required_field_status.filter(item => item && typeof item === 'object')
+        : [];
+      const additionalData = getClaimAdditionalData(claim);
+
+      if (!requiredFieldStatus.length) {
+        container.innerHTML = '<div class="empty-state">No required fields</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="required-fields-list">
+          ${requiredFieldStatus.map(item => `
+            <div class="required-field-item">
+              <div class="required-field-content">
+                <div class="required-field-header">
+                  <div class="required-field-name">${formatLabel(item.field || 'field')}</div>
+                  ${item.in_schema === false ? '<div class="required-field-meta">(external field)</div>' : ''}
+                </div>
+                ${item.present
+                  ? `<div class="required-field-current">${escapeHtml(getRequiredFieldDisplayValue(claim, item.field)) || 'Value available'}</div>`
+                  : `
+                    <label class="required-field-input-wrap">
+                      <span class="required-field-input-label">Provide Value</span>
+                      <input
+                        type="text"
+                        class="required-field-input"
+                        data-required-field="${escapeHtml(item.field || '')}"
+                        value="${escapeHtml(additionalData[item.field] ?? '')}"
+                      />
+                    </label>
+                  `}
+              </div>
+              <span class="fix-decision ${item.present ? 'fix-decision-approved' : 'fix-decision-rejected'}">
+                ${item.present ? 'Present' : 'Missing'}
+              </span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function serializeFixAction(action) {
+      return JSON.stringify(action || {})
+        .replaceAll('&', '\\u0026')
+        .replaceAll("'", '\\u0027')
+        .replaceAll('<', '\\u003c')
+        .replaceAll('>', '\\u003e');
+    }
+
+    function handleFixClick(field, action) {
+      const map = {
+        patient: 'editPatient',
+        payer: 'editPayer',
+        amount: 'editAmount',
+        date_of_service: 'editDateOfService',
+        denial_reason: 'editDenialReason'
+      };
+
+      const id = map[field];
+      if (!id) return;
+
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      el.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+
+      if (action && action.type === 'suggest_value') {
+        el.value = action.value;
+      }
+
+      el.focus();
+    }
+
+    window.currentClaim = null;
+    window.currentMatch = null;
+
+    window.approveFix = function(index) {
+      const fixes = Array.isArray(window.currentClaim && window.currentClaim.applied_fixes)
+        ? window.currentClaim.applied_fixes
+        : [];
+      const fix = fixes[index];
+
+      if (!fix || fix.decision) return;
+
+      fix.decision = 'approved';
+      renderAppliedFixes(window.currentClaim);
+    };
+
+    window.rejectFix = function(index) {
+      const fixes = Array.isArray(window.currentClaim && window.currentClaim.applied_fixes)
+        ? window.currentClaim.applied_fixes
+        : [];
+      const fix = fixes[index];
+
+      if (!fix) return;
+      if (fix.decision) return;
+
+      fix.decision = 'rejected';
+      renderAppliedFixes(window.currentClaim);
+    }
+
+    function formatStatus(status) {
+      return String(status || '-')
+        .replaceAll('_', ' ')
+        .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function formatLifecycleStatus(status) {
+      const statusLabels = {
+        processing: 'Processing',
+        in_review: 'In Review',
+        needs_review: 'Needs Review',
+        ready_for_submission: 'Ready for Submission',
+        approved: 'Ready for Submission',
+        pending_clearinghouse: 'Pending Clearinghouse',
+        submitted: 'Submitted',
+        submission_retry_pending: 'Submission Retry Pending',
+        recovered: 'Recovered',
+        paid: 'Recovered',
+        not_recoverable: 'Not Recoverable',
+        failed: 'Not Recoverable'
+      };
+      const normalized = String(status || '').trim().toLowerCase();
+
+      return statusLabels[normalized] || formatStatus(status);
+    }
+
+    function getStatusPillClass(status) {
+      const normalized = String(status || '').trim().toLowerCase();
+
+      if (normalized === 'processing' || normalized === 'in_review' || normalized === 'needs_review') {
+        return 'status-pill-needs-review';
+      }
+      if (normalized === 'ready_for_submission' || normalized === 'approved') return 'status-pill-approved';
+      if (normalized === 'submitted') return 'status-pill-submitted';
+      if (normalized === 'recovered' || normalized === 'paid') return 'status-pill-paid';
+      if (normalized === 'not_recoverable' || normalized === 'failed') return 'status-pill-failed';
+      return 'status-pill-submitted';
+    }
+
+    function formatAmount(amount) {
+      return `$${Number(amount || 0).toLocaleString()}`;
+    }
+
+    function formatDate(value) {
+      if (!value) return '-';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      return date.toLocaleDateString();
+    }
+
+    function formatDateTime(value) {
+      if (!value) return '-';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return String(value);
+      return date.toLocaleString();
+    }
+
+    function getSubmissionSummary(submission) {
+      const response = submission && submission.response ? submission.response : {};
+      const errors = Array.isArray(submission && submission.errors)
+        ? submission.errors
+        : Array.isArray(response.errors)
+          ? response.errors
+          : [];
+
+      if (submission && (submission.status === 'paid' || submission.status === 'recovered')) {
+        return response.clearinghouse_id
+          ? `Recovered through clearinghouse ${response.clearinghouse_id}`
+          : 'Recovered successfully';
+      }
+
+      if (submission && (
+        submission.status === 'submission_retry_pending'
+        || submission.status === 'pending_clearinghouse'
+      )) {
+        if (errors.length) {
+          return `Retry pending: ${errors.join(', ')}`;
+        }
+
+        return response.clearinghouse_id
+          ? `Submission retry pending under ${response.clearinghouse_id}`
+          : 'Submission retry pending';
+      }
+
+      if (submission && submission.status === 'submitted') {
+        return response.clearinghouse_id
+          ? `Submitted to clearinghouse ${response.clearinghouse_id}`
+          : 'Submitted to clearinghouse';
+      }
+
+      if (submission && (submission.status === 'failed' || submission.status === 'not_recoverable')) {
+        if (errors.length) {
+          return errors.join(', ');
+        }
+
+        return 'Case reached a final not recoverable outcome';
+      }
+
+      if (errors.length) {
+        return errors.join(', ');
+      }
+
+      if (response.clearinghouse_id) {
+        return `Processed under ${response.clearinghouse_id}`;
+      }
+
+      return 'Submission processed';
+    }
+
+    function renderSubmissionHistory(container, submissions) {
+      if (!container) return;
+
+      if (!Array.isArray(submissions) || submissions.length === 0) {
+        container.innerHTML = '<div class="empty-state">No submissions yet</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="submission-history-list">
+          ${submissions.map(submission => {
+            const status = String(submission.status || 'unknown').toLowerCase();
+            const statusClass = {
+              pending_clearinghouse: 'submission-history-status-submitted',
+              submitted: 'submission-history-status-submitted',
+              submission_retry_pending: 'submission-history-status-retry',
+              recovered: 'submission-history-status-paid',
+              paid: 'submission-history-status-paid',
+              not_recoverable: 'submission-history-status-failed',
+              failed: 'submission-history-status-failed'
+            }[status] || 'submission-history-status-submitted';
+
+            return `
+              <div class="submission-history-item">
+                <div class="submission-history-header">
+                  <span class="submission-history-status ${statusClass}">${formatLifecycleStatus(status)}</span>
+                  <div class="submission-history-time">${formatDateTime(submission.created_at)}</div>
+                </div>
+                <div class="submission-history-summary">${getSubmissionSummary(submission)}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function renderOutcome(container, claim, submissions) {
+      if (!container) return;
+
+      if (!claim || typeof claim !== 'object') {
+        container.innerHTML = '<div class="empty-state">No outcome available</div>';
+        return;
+      }
+
+      const status = String(claim.status || '').toLowerCase();
+      const latestSubmission = Array.isArray(submissions) && submissions.length
+        ? submissions[0]
+        : null;
+      const latestSummary = latestSubmission ? getSubmissionSummary(latestSubmission) : '';
+
+      let title = `Current status: ${formatLifecycleStatus(status || 'unknown')}`;
+      let detailLabel = 'Current Status';
+      let detailValue = formatLifecycleStatus(status || 'unknown');
+
+      if (status === 'recovered' || status === 'paid') {
+        title = 'Claim successfully recovered';
+        detailLabel = 'Recovered Amount';
+        detailValue = formatAmount(claim.recovered_amount ?? claim.amount);
+      } else if (status === 'submitted') {
+        title = 'Submitted to clearinghouse';
+        detailLabel = 'Last Submission';
+        detailValue = latestSubmission ? formatDateTime(latestSubmission.created_at) : '-';
+      } else if (status === 'not_recoverable' || status === 'failed') {
+        title = 'Case is not recoverable';
+        detailLabel = 'Failure Detail';
+        detailValue = latestSummary || 'No failure detail available';
+      } else if (status === 'processing') {
+        title = 'Claim is processing internally';
+        detailLabel = 'Current Status';
+        detailValue = formatLifecycleStatus(status);
+      } else if (status === 'in_review' || status === 'needs_review') {
+        title = 'Awaiting review';
+        detailLabel = 'Current Status';
+        detailValue = formatLifecycleStatus(status);
+      } else if (status === 'ready_for_submission' || status === 'approved') {
+        title = 'Ready for provider submission';
+        detailLabel = 'Current Status';
+        detailValue = formatLifecycleStatus(status);
+      }
+
+      container.innerHTML = `
+        <div class="detail-section">
+          <div class="section-title">${title}</div>
+          <div class="detail-row">
+            <div class="detail-label">System Result</div>
+            <div class="detail-value">${formatLifecycleStatus(status || 'unknown')}</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">${detailLabel}</div>
+            <div class="detail-value">${detailValue}</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Context</div>
+            <div class="detail-value">This result reflects the system&apos;s last action</div>
+          </div>
+        </div>
+
+        ${latestSubmission ? `
+          <div class="detail-section">
+            <div class="section-title">Most Recent Submission</div>
+            <div class="detail-row">
+              <div class="detail-label">Status</div>
+              <div class="detail-value">${formatLifecycleStatus(latestSubmission.status)}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Submitted At</div>
+              <div class="detail-value">${formatDateTime(latestSubmission.created_at)}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Response</div>
+              <div class="detail-value">${latestSummary || '-'}</div>
+            </div>
+          </div>
+        ` : ''}
+      `;
+    }
+
+    function formatLifecycleHistoryContext(context) {
+      if (!context || typeof context !== 'object') {
+        return '';
+      }
+
+      const entries = Object.entries(context)
+        .filter(([, value]) => value !== undefined && value !== null && value !== '');
+
+      if (!entries.length) {
+        return '';
+      }
+
+      return entries
+        .map(([key, value]) => `${formatLabel(key)}: ${Array.isArray(value) ? value.join(', ') : String(value)}`)
+        .join(' • ');
+    }
+
+    function safeParseLifecycleContext(context) {
+      if (!context) {
+        return null;
+      }
+
+      if (typeof context === 'object') {
+        return context;
+      }
+
+      try {
+        const parsed = JSON.parse(context);
+        return parsed && typeof parsed === 'object' ? parsed : null;
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function renderLifecycleHistory(container, history) {
+      if (!container) return;
+
+      if (!Array.isArray(history) || history.length === 0) {
+        container.innerHTML = '<div class="empty-state">No lifecycle history available</div>';
+        return;
+      }
+
+      const seenEntries = new Set();
+      const normalizedHistory = history.filter(entry => {
+        const parsedContext = safeParseLifecycleContext(entry && entry.context);
+        const entryKey = [
+          entry && entry.created_at ? entry.created_at : '',
+          entry && entry.previous_status ? entry.previous_status : '',
+          entry && entry.new_status ? entry.new_status : '',
+          entry && entry.trigger ? entry.trigger : '',
+          JSON.stringify(parsedContext || {})
+        ].join('|');
+
+        if (seenEntries.has(entryKey)) {
+          return false;
+        }
+
+        seenEntries.add(entryKey);
+        return true;
+      });
+
+      if (!normalizedHistory.length) {
+        container.innerHTML = '<div class="empty-state">No lifecycle history available</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="submission-history-list">
+          ${normalizedHistory.map(entry => {
+            const parsedContext = safeParseLifecycleContext(entry && entry.context);
+            const contextNote = formatLifecycleHistoryContext(parsedContext);
+
+            return `
+            <div class="submission-history-item">
+              <div class="submission-history-header">
+                <span class="submission-history-status submission-history-status-submitted">${formatStatus(entry.trigger || '-')}</span>
+                <div class="submission-history-time">${formatDateTime(entry.created_at)}</div>
+              </div>
+              <div class="submission-history-summary">
+                ${formatLifecycleStatus(entry.previous_status || 'unknown')} → ${formatLifecycleStatus(entry.new_status || 'unknown')} (${formatStatus(entry.trigger || '-')})
+              </div>
+              ${contextNote
+                ? `<div class="lifecycle-history-note">${contextNote}</div>`
+                : ''}
+            </div>
+          `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function renderSourceEvidence(container, documents = []) {
+      if (!container) return;
+
+      if (!Array.isArray(documents) || documents.length === 0) {
+        container.innerHTML = '<div class="empty-state">No source files available.</div>';
+        return;
+      }
+
+      function formatFileSize(value) {
+        const numeric = Number(value);
+
+        if (!Number.isFinite(numeric) || numeric < 0) {
+          return null;
+        }
+
+        if (numeric < 1024) {
+          return `${numeric} B`;
+        }
+
+        if (numeric < 1024 * 1024) {
+          return `${(numeric / 1024).toFixed(1)} KB`;
+        }
+
+        return `${(numeric / (1024 * 1024)).toFixed(1)} MB`;
+      }
+
+      container.innerHTML = documents.map(doc => `
+        <div class="source-file-item">
+          <div class="source-file-title">${doc.original_filename || doc.filename || 'Unnamed file'}</div>
+          <div class="source-file-meta">
+            Match: ${Math.round((doc.match_confidence || 0) * 100)}%
+          </div>
+          <div class="source-file-meta">
+            ${[
+              doc.file_type || null,
+              formatFileSize(doc.file_size),
+              doc.uploaded_at ? formatDateTime(doc.uploaded_at) : null
+            ].filter(Boolean).join(' • ') || 'Private file'}
+          </div>
+          ${doc.access?.access_available && doc.access?.access_url
+            ? `<a class="source-file-link" href="${doc.access.access_url}" target="_blank" rel="noopener noreferrer">Open file</a>`
+            : ''}
+        </div>
+      `).join('');
+    }
+
+    async function fetchFileAccessDescriptor(fileId, claimId) {
+      if (!fileId) {
+        return null;
+      }
+
+      try {
+        const params = new URLSearchParams();
+        if (claimId) {
+          params.set('claim_id', claimId);
+        }
+
+        const res = await fetch(`/api/files/${encodeURIComponent(fileId)}/access${params.toString() ? `?${params.toString()}` : ''}`);
+        const data = await res.json();
+
+        if (!res.ok || !data?.ok || !data.file) {
+          return null;
+        }
+
+        return data.file;
+      } catch (err) {
+        return null;
+      }
+    }
+
+    async function enrichDocumentsWithAccess(documents, claimId) {
+      const items = Array.isArray(documents) ? documents : [];
+
+      return Promise.all(items.map(async doc => ({
+        ...doc,
+        access: doc?.file_id
+          ? await fetchFileAccessDescriptor(doc.file_id, claimId)
+          : null
+      })));
+    }
+
+    function getReadinessIndicator(readiness) {
+      if (!readiness) {
+        return {
+          text: 'Readiness unavailable',
+          className: 'readiness-indicator-not-ready'
+        };
+      }
+
+      if (readiness.ready_for_submission) {
+        return {
+          text: 'Ready for submission',
+          className: 'readiness-indicator-ready'
+        };
+      }
+
+      return {
+        text: 'Not ready yet',
+        className: 'readiness-indicator-not-ready'
+      };
+    }
+
+    function renderReadiness(card, readiness, claimStatus, sendToReviewBtn) {
+      if (card) {
+        if (!readiness) {
+          card.innerHTML = `
+            <div class="empty-state">Unable to load readiness data</div>
+          `;
+        } else {
+          const indicator = getReadinessIndicator(readiness);
+
+          card.innerHTML = `
+            <div class="${`readiness-indicator ${indicator.className}`}">
+              <span class="readiness-dot"></span>
+              <span>${indicator.text}</span>
+            </div>
+
+            <div class="detail-section">
+              <div class="section-title">Summary</div>
+
+              <div class="detail-row">
+                <div class="detail-label">Required Fields Complete</div>
+                <div class="detail-value">
+                  ${readiness.required_fields_complete} / ${readiness.total_required_fields}
+                </div>
+              </div>
+
+              <div class="detail-row">
+                <div class="detail-label">Documents Linked</div>
+                <div class="detail-value">${readiness.document_count ?? readiness.source_file_count ?? 0}</div>
+              </div>
+
+              <div class="detail-row">
+                <div class="detail-label">Validation Issues</div>
+                <div class="detail-value">${readiness.validation_issues}</div>
+              </div>
+
+              <div class="detail-row">
+                <div class="detail-label">Submission Package</div>
+                <div class="detail-value">
+                  ${readiness.ready_for_submission ? 'Ready' : 'Incomplete'}
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      if (sendToReviewBtn && readiness) {
+        const reviewState = getReviewActionState(claimStatus);
+        sendToReviewBtn.textContent = reviewState.text;
+        sendToReviewBtn.disabled = reviewState.disabled;
+      }
+    }
+
+    function renderCaseDetail(detail, claim, enrichment, editedCase, id) {
+      const normalizedStatus = editedCase.status || claim.status || '';
+      const denialType = claim.denial_type || enrichment.denial_type || '-';
+      const confidence = enrichment.confidence ?? claim.confidence ?? '-';
+
+      detail.innerHTML = `
+        <div class="overview-shell">
+          <div class="overview-banner">
+            <div class="overview-identity">
+              <div class="overview-caption">Claim Reference</div>
+              <div class="overview-title">${editedCase.patient || 'Unknown Patient'}</div>
+              <div class="overview-subtitle">Claim ID ${claim.claim_id || id}</div>
+            </div>
+            <div class="status-pill ${getStatusPillClass(normalizedStatus)}">
+              ${formatLifecycleStatus(normalizedStatus)}
+            </div>
+          </div>
+
+          <div class="overview-grid">
+            <div class="overview-metric">
+              <div class="overview-label">Payer</div>
+              <div class="overview-value">${editedCase.payer || 'Unknown Payer'}</div>
+            </div>
+            <div class="overview-metric">
+              <div class="overview-label">Date of Service</div>
+              <div class="overview-value">${formatDate(editedCase.date_of_service)}</div>
+            </div>
+            <div class="overview-metric">
+              <div class="overview-label">Amount</div>
+              <div class="overview-value overview-value-amount">${formatAmount(editedCase.amount)}</div>
+            </div>
+            <div class="overview-metric">
+              <div class="overview-label">Denial Type</div>
+              <div class="overview-value">${formatStatus(denialType)}</div>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <div class="section-title">Claim Context</div>
+            <div class="detail-row">
+              <div class="detail-label">Denial Reason</div>
+              <div class="detail-value">${editedCase.denial_reason || '-'}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Recovery Route</div>
+              <div class="detail-value">${formatStatus(enrichment.recovery_route || '-')}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Likely Fix Type</div>
+              <div class="detail-value">${formatStatus(enrichment.likely_fix_type || '-')}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Confidence</div>
+              <div class="detail-value confidence-emphasis">${confidence}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function formatLearningWeights(weights) {
+      if (!weights || typeof weights !== 'object') {
+        return '';
+      }
+
+      const lines = [];
+
+      if (weights.patient !== undefined) {
+        lines.push(`Patient weight: ${weights.patient}`);
+      }
+
+      if (weights.amount !== undefined) {
+        lines.push(`Amount weight: ${weights.amount}`);
+      }
+
+      if (weights.date !== undefined) {
+        lines.push(`Date weight: ${weights.date}`);
+      }
+
+      if (weights.payer !== undefined) {
+        lines.push(`Payer weight: ${weights.payer}`);
+      }
+
+      return lines.length ? lines.join('\n') : '';
+    }
+
+    function formatLearningExplanation(explanation) {
+      if (typeof explanation === 'string' && explanation.trim()) {
+        return explanation;
+      }
+
+      if (explanation && typeof explanation === 'object') {
+        return JSON.stringify(explanation, null, 2);
+      }
+
+      return 'No explanation available';
+    }
+
+    function consumeStoredLearningImpact() {
+      try {
+        const raw = window.sessionStorage.getItem(MATCH_FEEDBACK_IMPACT_KEY);
+        if (!raw) return null;
+        window.sessionStorage.removeItem(MATCH_FEEDBACK_IMPACT_KEY);
+        return JSON.parse(raw);
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function formatWeightDeltaValue(value) {
+      const numeric = Number(value || 0);
+      const sign = numeric > 0 ? '+' : '';
+      return `${sign}${numeric.toFixed(2)}`;
+    }
+
+    function renderLearningImpact(impact) {
+      if (!impact || typeof impact !== 'object' || !impact.delta) {
+        return '';
+      }
+
+      const deltaEntries = Object.entries(impact.delta)
+        .filter(([, value]) => Number.isFinite(Number(value)));
+
+      if (!deltaEntries.length) {
+        return '';
+      }
+
+      const totalFeedbackSamples = Number.isFinite(Number(impact.sample_size))
+        ? Number(impact.sample_size)
+        : Number.isFinite(Number(impact.new_sample_size))
+          ? Number(impact.new_sample_size)
+          : null;
+
+      return `
+        <div class="learning-block">
+          <strong>Learning Impact</strong>
+          <div class="learning-impact-copy">Your decision updated the matching system</div>
+          <div class="learning-impact-list">
+            ${deltaEntries.map(([key, value]) => `
+              <div class="learning-impact-item ${
+                Number(value) > 0
+                  ? 'learning-impact-item-positive'
+                  : Number(value) < 0
+                    ? 'learning-impact-item-negative'
+                    : 'learning-impact-item-neutral'
+              }">
+                ${formatLabel(key)}: ${formatWeightDeltaValue(value)}
+              </div>
+            `).join('')}
+          </div>
+          ${totalFeedbackSamples !== null ? `
+            <div class="learning-impact-copy">Based on ${totalFeedbackSamples} total feedback samples</div>
+          ` : ''}
+          <div class="learning-impact-copy">This adjustment will influence future matches</div>
+        </div>
+      `;
+    }
+
+    function renderLearningPanel(learning, impact = null, options = {}) {
+      const learningPanel = document.getElementById('learning-panel');
+      const learningPanelContent = document.getElementById('learning-panel-content');
+      const unavailable = Boolean(options.unavailable);
+
+      if (!learningPanel || !learningPanelContent) {
+        return;
+      }
+
+      if (unavailable || !learning || typeof learning !== 'object') {
+        learningPanelContent.innerHTML = '<em>Match intelligence unavailable</em>';
+        return;
+      }
+
+      const sampleSize = Number(learning.sample_size);
+      const weightsText = formatLearningWeights(learning.weights);
+      const hasWeights = Boolean(weightsText);
+      const hasSampleSize = Number.isFinite(sampleSize);
+      const hasExplanation = (
+        (typeof learning.explanation === 'string' && learning.explanation.trim()) ||
+        (learning.explanation && typeof learning.explanation === 'object')
+      );
+
+      if (!hasWeights && !hasSampleSize && !hasExplanation && !renderLearningImpact(impact)) {
+        learningPanelContent.innerHTML = '<em>Match intelligence unavailable</em>';
+        return;
+      }
+
+      learningPanelContent.innerHTML = `
+        ${renderLearningImpact(impact)}
+
+        ${hasWeights ? `
+        <div class="learning-block">
+          <strong>Weights</strong>
+          <pre id="learning-weights" class="learning-pre">${weightsText}</pre>
+        </div>
+        ` : ''}
+
+        ${hasSampleSize ? `
+        <div class="learning-block">
+          <strong>Stats</strong>
+          <pre id="learning-stats" class="learning-pre">Based on ${sampleSize} feedback samples</pre>
+        </div>
+        ` : ''}
+
+        ${hasExplanation ? `
+        <div class="learning-block">
+          <strong>Why the system adjusted</strong>
+          <pre id="learning-explanation" class="learning-pre">${formatLearningExplanation(learning.explanation)}</pre>
+        </div>
+        ` : ''}
+      `;
+    }
+
+    async function loadMatchLearningPanel(impact = null) {
+      const learningPanelContent = document.getElementById('learning-panel-content');
+
+      if (learningPanelContent) {
+        learningPanelContent.innerHTML = '<em>Loading match intelligence...</em>';
+      }
+
+      try {
+        const response = await fetch('/api/match-learning');
+
+        if (!response.ok) {
+          throw new Error('Match intelligence unavailable');
+        }
+
+        const learningData = await response.json();
+        renderLearningPanel(learningData, impact);
+      } catch (err) {
+        renderLearningPanel(null, impact, { unavailable: true });
+      }
+    }
+
+    function renderMatchPanel(match) {
+      const matchPanel = document.getElementById('match-panel');
+      const matchPanelContent = document.getElementById('match-panel-content');
+
+      if (!matchPanel || !matchPanelContent) {
+        return;
+      }
+
+      if (!match) {
+        matchPanelContent.innerHTML = '<em>No match data available. This claim has not been matched to a document yet.</em>';
+        return;
+      }
+
+      const confidence = Number(match.confidence);
+      const reasons = Array.isArray(match.reasons) ? match.reasons : [];
+      const competingMatches = Array.isArray(match.competing_matches)
+        ? match.competing_matches
+        : [];
+      const flags = match && match.flags && typeof match.flags === 'object'
+        ? match.flags
+        : null;
+      const riskSignals = [];
+
+      if (flags && flags.duplicate === true) {
+        riskSignals.push('Potential duplicate case');
+      }
+
+      if (flags && flags.already_submitted === true) {
+        riskSignals.push('Case may already be pending/submitted');
+      }
+
+      if (flags && flags.already_recovered === true) {
+        riskSignals.push('Case may already be recovered');
+      }
+
+      const strongSignals = reasons.slice(0, 2);
+      const supportingSignals = reasons.slice(2);
+      const showAmbiguity = competingMatches.length > 0 || (Number.isFinite(confidence) && confidence < 0.8);
+      const confidenceDisplay = Number.isFinite(confidence)
+        ? String(confidence)
+        : '-';
+      const riskSignalsMarkup = riskSignals.length
+        ? `
+          <div class="learning-block">
+            <strong>Risk Signals</strong>
+            <div class="match-risk-list">
+              ${riskSignals.map(signal => `
+                <div class="match-risk-item">${signal}</div>
+              `).join('')}
+            </div>
+          </div>
+        `
+        : '';
+      const strongSignalsMarkup = strongSignals.length
+        ? `
+          <div class="match-signal-list">
+            ${strongSignals.map((reason, index) => `
+              <div class="match-signal-item">
+                <span class="match-signal-label">Strong Signal ${index + 1}</span>
+                <div class="match-signal-copy">${reason}</div>
+              </div>
+            `).join('')}
+          </div>
+        `
+        : '<div class="empty-state">No match reasons available</div>';
+      const supportingSignalsMarkup = supportingSignals.length
+        ? `
+          <div class="match-support-list">
+            ${supportingSignals.map(reason => `
+              <div class="match-support-item">${reason}</div>
+            `).join('')}
+          </div>
+        `
+        : '<div class="empty-state">No supporting signals available</div>';
+      const competitionMarkup = competingMatches.length
+        ? `
+          <div id="match-competition" class="learning-block">
+            <strong>Alternative Matches</strong>
+            <div id="match-options" class="match-option-list">
+              ${competingMatches.map(option => `
+                <div class="match-option-item">
+                  <div class="match-option-title">
+                    ${option.patient || option.patient_name || option.claim_id || 'Alternative claim'} — ${(Number(option.confidence || 0) * 100).toFixed(1)}%
+                  </div>
+                  <div class="match-option-reason">
+                    ${(Array.isArray(option.reasons) && option.reasons[0]) ? option.reasons[0] : 'No additional reasoning available'}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `
+        : '';
+
+      matchPanelContent.innerHTML = `
+        ${showAmbiguity ? `
+          <div class="match-warning">⚠️ This match has ambiguity and may require review</div>
+        ` : ''}
+
+        <div class="learning-block">
+          <strong>Confidence</strong>
+          <div id="match-confidence" class="learning-pre confidence-emphasis">${confidenceDisplay}</div>
+        </div>
+
+        ${riskSignalsMarkup}
+
+        <div class="learning-block">
+          <strong>Why this matched</strong>
+          ${strongSignalsMarkup}
+        </div>
+
+        <div class="learning-block">
+          <strong>Supporting Signals</strong>
+          ${supportingSignalsMarkup}
+        </div>
+
+        ${competitionMarkup}
+      `;
+    }
+
+    function initializeMatchActions() {
+      const acceptMatchButton = document.getElementById('accept-match');
+      const reviewMatchButton = document.getElementById('review-match');
+
+      if (acceptMatchButton) {
+        acceptMatchButton.onclick = async () => {
+          const claim = window.currentClaim;
+          const match = window.currentMatch;
+
+          if (!claim || !match) {
+            alert('No match data available yet');
+            return;
+          }
+
+          try {
+            const response = await fetch('/api/match-feedback', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                claim_id: claim.claim_id,
+                matched_claim_id: match.claim_id || match.matched_claim_id || claim.claim_id,
+                file_id: match.file_id || null,
+                action: 'accept',
+                confidence: match.confidence,
+                reasons: Array.isArray(match.reasons) ? match.reasons : []
+              })
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.ok) {
+              throw new Error(result.error || 'Failed to record feedback');
+            }
+
+            if (result.learning_impact) {
+              window.sessionStorage.setItem(
+                MATCH_FEEDBACK_IMPACT_KEY,
+                JSON.stringify(result.learning_impact)
+              );
+            }
+
+            alert('Feedback recorded');
+            window.location.reload();
+          } catch (err) {
+            alert('Failed to record feedback');
+          }
+        };
+      }
+
+      if (reviewMatchButton) {
+        reviewMatchButton.onclick = async () => {
+          const claim = window.currentClaim;
+          const match = window.currentMatch;
+
+          if (!claim || !match) {
+            alert('No match data available yet');
+            return;
+          }
+
+          try {
+            const response = await fetch('/api/match-feedback', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                claim_id: claim.claim_id,
+                matched_claim_id: match.claim_id || match.matched_claim_id || claim.claim_id,
+                file_id: match.file_id || null,
+                action: 'reject',
+                confidence: match.confidence,
+                reasons: Array.isArray(match.reasons) ? match.reasons : []
+              })
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.ok) {
+              throw new Error(result.error || 'Failed to record feedback');
+            }
+
+            if (result.learning_impact) {
+              window.sessionStorage.setItem(
+                MATCH_FEEDBACK_IMPACT_KEY,
+                JSON.stringify(result.learning_impact)
+              );
+            }
+
+            alert('Feedback recorded');
+            window.location.reload();
+          } catch (err) {
+            alert('Failed to record feedback');
+          }
+        };
+      }
+    }
+
+    function getReviewActionState(status) {
+      const normalized = String(status || '').trim().toLowerCase();
+
+      if (normalized === 'processing') {
+        return {
+          text: 'Processing Internally',
+          disabled: true
+        };
+      }
+
+      if (normalized === 'in_review' || normalized === 'needs_review') {
+        return {
+          text: 'Already In Review',
+          disabled: true
+        };
+      }
+
+      if (normalized === 'ready_for_submission' || normalized === 'approved') {
+        return {
+          text: 'Override and Send to Review',
+          disabled: false
+        };
+      }
+
+      if (normalized) {
+        return {
+          text: formatLifecycleStatus(normalized),
+          disabled: true
+        };
+      }
+
+      return {
+        text: 'Complete Required Fields',
+        disabled: true
+      };
+    }
+
+    function setActionButtonPriority(button, isPrimary) {
+      if (!button) return;
+
+      button.classList.toggle('action-button-primary', Boolean(isPrimary));
+      button.classList.toggle('action-button-secondary', !isPrimary);
+    }
+
+    function getTopRecommendedActionMessage(recommendedActions) {
+      if (!Array.isArray(recommendedActions) || !recommendedActions.length) {
+        return '';
+      }
+
+      const topAction = recommendedActions[0];
+
+      if (topAction && typeof topAction.message === 'string' && topAction.message.trim()) {
+        return topAction.message.trim();
+      }
+
+      return '';
+    }
+
+    function renderActionDecision(decisionEl, options = {}) {
+      if (!decisionEl) return;
+
+      const claim = options.claim || {};
+      const enrichment = options.enrichment || {};
+      const readiness = options.readiness || null;
+      const match = options.match || null;
+      const submitClaimBtn = options.submitClaimBtn || null;
+      const saveAdjustmentsBtn = options.saveAdjustmentsBtn || null;
+      const sendToReviewBtn = options.sendToReviewBtn || null;
+      const recommendedActions = Array.isArray(enrichment.recommended_actions)
+        ? enrichment.recommended_actions
+        : Array.isArray(claim.recommended_actions)
+          ? claim.recommended_actions
+          : [];
+      const competingMatches = Array.isArray(match && match.competing_matches)
+        ? match.competing_matches
+        : [];
+      const confidence = Number(match && match.confidence);
+      const ambiguityExists = competingMatches.length > 0 || (Number.isFinite(confidence) && confidence < 0.8);
+      const submissionReady = Boolean(
+        readiness && (
+          readiness.submission_ready === true ||
+          readiness.ready_for_submission === true
+        )
+      );
+
+      let title = 'System requires additional review';
+      let copy = 'The current claim state is not ready for submission.';
+      let primaryAction = 'review';
+
+      if (submissionReady) {
+        title = 'System has prepared this claim for submission';
+        copy = 'No blocking issues detected.';
+        primaryAction = 'submit';
+      } else if (recommendedActions.length) {
+        title = 'System identified required fixes before submission';
+        copy = getTopRecommendedActionMessage(recommendedActions) || 'System recommendations are available for review before submission.';
+        primaryAction = 'confirm';
+      } else if (ambiguityExists) {
+        title = 'System detected ambiguity in matching';
+        copy = 'Review recommended.';
+        primaryAction = 'review';
+      }
+
+      decisionEl.innerHTML = `
+        <div class="system-recommendation-label">System Decision</div>
+        <div class="system-recommendation-title">${title}</div>
+        <div class="system-recommendation-copy">${copy}</div>
+      `;
+
+      setActionButtonPriority(submitClaimBtn, primaryAction === 'submit');
+      setActionButtonPriority(saveAdjustmentsBtn, primaryAction === 'confirm');
+      setActionButtonPriority(sendToReviewBtn, primaryAction === 'review');
+    }
+
+    async function loadClaimDetail() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const learningImpact = consumeStoredLearningImpact();
+      const detail = document.querySelector('.claim-detail');
+      const actionRecommendation = document.getElementById('actionRecommendation');
+      const submitClaimBtn = document.getElementById('submitClaimBtn');
+      const sendToReviewBtn = document.getElementById('sendToReviewBtn');
+      const saveAdjustmentsBtn = document.getElementById('saveAdjustmentsBtn');
+      const sourceFilesList = document.getElementById('sourceFilesList');
+      const outcomeSummaryEl = document.getElementById('outcomeSummary');
+      const reviewReadinessCard = document.getElementById('reviewReadinessCard');
+      const providerSubmissionStatus = document.getElementById('providerSubmissionStatus');
+      const submissionHistoryEl = document.getElementById('submissionHistory');
+      const lifecycleHistoryEl = document.getElementById('lifecycleHistory');
+      const fixSuggestionsEl = document.getElementById('fixSuggestions');
+      const requiredFieldStatusEl = document.getElementById('requiredFieldStatus');
+      const learningPanel = document.getElementById('learning-panel');
+      const learningPanelContent = document.getElementById('learning-panel-content');
+      const matchPanel = document.getElementById('match-panel');
+      const matchPanelContent = document.getElementById('match-panel-content');
+      if (!detail) return;
+      initializeMatchActions();
+      if (actionRecommendation) {
+        actionRecommendation.innerHTML = `
+          <div class="system-recommendation-label">System Decision</div>
+          <div class="system-recommendation-title">Loading system decision...</div>
+          <div class="system-recommendation-copy">Checking readiness, match confidence, and current guidance.</div>
+        `;
+      }
+      if (submitClaimBtn) {
+        submitClaimBtn.textContent = 'Submit to Clearinghouse';
+        setActionButtonPriority(submitClaimBtn, false);
+      }
+      if (sendToReviewBtn) {
+        sendToReviewBtn.disabled = true;
+        sendToReviewBtn.textContent = 'Override and Send to Review';
+        sendToReviewBtn.dataset.claimId = '';
+        setActionButtonPriority(sendToReviewBtn, false);
+      }
+      if (saveAdjustmentsBtn) {
+        saveAdjustmentsBtn.disabled = true;
+        saveAdjustmentsBtn.textContent = 'Confirm System Decision';
+        setActionButtonPriority(saveAdjustmentsBtn, false);
+      }
+      if (sourceFilesList) {
+        sourceFilesList.innerHTML = '<div class="empty-state">No source files available.</div>';
+      }
+      if (outcomeSummaryEl) {
+        outcomeSummaryEl.innerHTML = '<div class="empty-state">Loading outcome...</div>';
+      }
+      if (reviewReadinessCard) {
+        reviewReadinessCard.innerHTML = '<div class="empty-state">Loading review readiness...</div>';
+      }
+      if (providerSubmissionStatus) {
+        providerSubmissionStatus.innerHTML = '<div class="empty-state">Loading provider submission context...</div>';
+      }
+      if (submissionHistoryEl) {
+        submissionHistoryEl.innerHTML = '<div class="empty-state">Loading submission history...</div>';
+      }
+      if (lifecycleHistoryEl) {
+        lifecycleHistoryEl.innerHTML = '<div class="empty-state">Loading history...</div>';
+      }
+      if (fixSuggestionsEl) {
+        fixSuggestionsEl.innerHTML = '<div class="empty-state">Loading fix suggestions...</div>';
+      }
+      if (requiredFieldStatusEl) {
+        requiredFieldStatusEl.innerHTML = '<div class="empty-state">No required fields</div>';
+      }
+      if (learningPanel && learningPanelContent) {
+        learningPanelContent.innerHTML = '<em>Loading match intelligence...</em>';
+      }
+      if (matchPanel && matchPanelContent) {
+        matchPanelContent.innerHTML = '<em>Loading match reasoning...</em>';
+      }
+      detail.innerHTML = '<div class="empty-state">Loading claim detail...</div>';
+
+      // GUARD: if no id, show empty state and return
+      if (!id) {
+        detail.innerHTML = '<div class="empty-state">No case ID provided.</div>';
+        return;
+      }
+
+      loadMatchLearningPanel(learningImpact);
+
+      try {
+        const res = await fetch(`/api/claims/${encodeURIComponent(id)}?customer_id=${encodeURIComponent(CUSTOMER_ID)}`);
+        const data = await res.json();
+
+        // REPLACE: claim extraction with error guard
+        if (!data.ok || !data.claim) {
+          throw new Error('Failed to load claim');
+        }
+        const claim = normalizeClaimUIData(data.claim);
+        const match = claim.match || null;
+        let documents = [];
+        try {
+          const docsRes = await fetch(`/api/claims/${encodeURIComponent(id)}/documents`);
+          const docsData = await docsRes.json();
+          documents = await enrichDocumentsWithAccess(docsData.documents || [], id);
+        } catch (e) {
+          documents = [];
+        }
+        let providerConnections = [];
+        let providerConnectionsLoaded = false;
+        try {
+          const providerConnectionsRes = await fetch('/api/provider-connections');
+          const providerConnectionsData = await providerConnectionsRes.json();
+
+          if (
+            providerConnectionsRes.ok &&
+            providerConnectionsData &&
+            providerConnectionsData.ok !== false &&
+            Array.isArray(providerConnectionsData.connections)
+          ) {
+            providerConnections = providerConnectionsData.connections;
+            providerConnectionsLoaded = true;
+          }
+        } catch (e) {
+          providerConnections = [];
+          providerConnectionsLoaded = false;
+        }
+        window.currentClaim = claim;
+        window.currentMatch = match;
+        const enrichment = data.enrichment || claim.enrichment || {};
+        const originalCase = { ...(claim || {}) };
+        const editedCase = {
+          patient: claim.patient || '',
+          payer: claim.payer || '',
+          status: claim.status || '',
+          denial_reason: claim.denial_reason || '',
+          amount: claim.amount ?? '',
+          date_of_service: claim.date_of_service || ''
+        };
+
+        const editPatient = document.getElementById('editPatient');
+        const editPayer = document.getElementById('editPayer');
+        const editStatus = document.getElementById('editStatus');
+        const editDenialReason = document.getElementById('editDenialReason');
+        const editAmount = document.getElementById('editAmount');
+        const editDateOfService = document.getElementById('editDateOfService');
+
+        if (editPatient) editPatient.value = claim.patient || '';
+        if (editPayer) editPayer.value = claim.payer || '';
+        if (editStatus) editStatus.value = claim.status || '';
+        if (editDenialReason) editDenialReason.value = claim.denial_reason || '';
+        if (editAmount) editAmount.value = claim.amount ?? '';
+        if (editDateOfService) editDateOfService.value = claim.date_of_service || '';
+
+        // SAVE ADJUSTMENTS HANDLER
+        if (saveAdjustmentsBtn) {
+          saveAdjustmentsBtn.disabled = false;
+          saveAdjustmentsBtn.onclick = async () => {
+            try {
+              saveAdjustmentsBtn.disabled = true;
+              saveAdjustmentsBtn.textContent = 'Saving...';
+
+              const updatedAdditionalData = collectAdditionalDataUpdates(claim, requiredFieldStatusEl);
+
+              const payload = {
+                patient: document.getElementById('editPatient').value,
+                payer: document.getElementById('editPayer').value,
+                status: document.getElementById('editStatus').value,
+                denial_reason: document.getElementById('editDenialReason').value,
+                amount: document.getElementById('editAmount').value,
+                date_of_service: document.getElementById('editDateOfService').value,
+                additional_data: updatedAdditionalData
+              };
+
+              const res = await fetch(`/api/claims/${encodeURIComponent(id)}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+
+              const result = await res.json();
+
+              if (!res.ok || !result.ok || !result.claim) {
+                throw new Error('Failed to save');
+              }
+
+              Object.assign(claim, normalizeClaimUIData(result.claim));
+              window.currentClaim = claim;
+              window.currentMatch = claim.match || match || null;
+              Object.assign(editedCase, result.claim);
+
+              // Fetch and update review readiness after saving adjustments
+              const readinessRes = await fetch(`/api/claims/${encodeURIComponent(id)}/readiness`);
+              const readinessJson = await readinessRes.json();
+
+              if (readinessRes.ok && readinessJson.ok && readinessJson.readiness) {
+                renderReadiness(
+                  reviewReadinessCard,
+                  readinessJson.readiness,
+                  claim.status,
+                  sendToReviewBtn
+                );
+              }
+
+              renderActionDecision(actionRecommendation, {
+                claim,
+                enrichment,
+                readiness: readinessJson && readinessJson.readiness ? readinessJson.readiness : null,
+                match: claim.match || match || null,
+                submitClaimBtn,
+                saveAdjustmentsBtn,
+                sendToReviewBtn
+              });
+
+              renderProviderSubmissionStatus(
+                providerSubmissionStatus,
+                claim,
+                providerConnections,
+                readinessJson && readinessJson.readiness ? readinessJson.readiness : null,
+                { unavailable: !providerConnectionsLoaded }
+              );
+              renderCaseDetail(detail, claim, enrichment, editedCase, id, documents);
+              renderAppliedFixes(claim);
+              renderFixSuggestions(fixSuggestionsEl, claim);
+              renderRequiredFieldStatus(requiredFieldStatusEl, claim);
+              renderMatchPanel(claim.match || match || null);
+              if (typeof renderSubmissionPreview === 'function') {
+                renderSubmissionPreview(submissionPreview, editedCase);
+              }
+              if (typeof renderSubmissionPackage === 'function') {
+                renderSubmissionPackage(submissionPackage, editedCase);
+              }
+              if (typeof updateFieldValidation === 'function') {
+                updateFieldValidation(editedCase);
+              }
+              if (typeof updateFieldSources === 'function') {
+                updateFieldSources(editedCase, originalCase);
+              }
+              if (typeof updateSendToReviewState === 'function') {
+                updateSendToReviewState(sendToReviewBtn, claim, editedCase);
+              }
+
+              saveAdjustmentsBtn.textContent = 'Saved';
+              setTimeout(() => {
+                saveAdjustmentsBtn.textContent = 'Confirm System Decision';
+                saveAdjustmentsBtn.disabled = false;
+              }, 1200);
+            } catch (err) {
+              saveAdjustmentsBtn.textContent = 'Confirm System Decision';
+              saveAdjustmentsBtn.disabled = false;
+              alert('Failed to save adjustments');
+            }
+          };
+        }
+
+        renderSourceEvidence(sourceFilesList, documents);
+
+        let submissionHistory = [];
+        try {
+          const historyRes = await fetch(`/api/claims/${encodeURIComponent(id)}/history`);
+          const historyData = await historyRes.json();
+
+          if (historyRes.ok && historyData.ok && Array.isArray(historyData.history)) {
+            submissionHistory = historyData.history;
+          }
+        } catch (e) {
+          submissionHistory = [];
+        }
+
+        renderOutcome(outcomeSummaryEl, claim, submissionHistory);
+        renderSubmissionHistory(submissionHistoryEl, submissionHistory);
+
+        let lifecycleHistory = [];
+        try {
+          const lifecycleHistoryRes = await fetch(`/api/claims/${encodeURIComponent(id)}/lifecycle-history`);
+          const lifecycleHistoryData = await lifecycleHistoryRes.json();
+
+          if (
+            lifecycleHistoryRes.ok &&
+            lifecycleHistoryData.ok &&
+            Array.isArray(lifecycleHistoryData.history)
+          ) {
+            lifecycleHistory = lifecycleHistoryData.history;
+          }
+        } catch (e) {
+          lifecycleHistory = [];
+        }
+
+        renderLifecycleHistory(lifecycleHistoryEl, lifecycleHistory);
+
+        // READINESS FETCH BLOCK (backend-driven)
+        let readinessData = null;
+        try {
+          const readinessRes = await fetch(`/api/claims/${encodeURIComponent(id)}/readiness`);
+          const readinessJson = await readinessRes.json();
+
+          if (readinessRes.ok && readinessJson.ok && readinessJson.readiness) {
+            readinessData = readinessJson.readiness;
+          }
+        } catch (e) {
+          readinessData = null;
+        }
+
+        if (sendToReviewBtn && claim.claim_id) {
+          sendToReviewBtn.dataset.claimId = claim.claim_id;
+
+          if (!sendToReviewBtn.__handlerAttached) {
+            sendToReviewBtn.addEventListener('click', async () => {
+              try {
+                const currentClaimId = sendToReviewBtn.dataset.claimId;
+                if (!currentClaimId) return;
+
+                const res = await fetch('/api/review-queue', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ claim_id: currentClaimId })
+                });
+
+                const result = await res.json();
+                if (result && result.ok) {
+                  sendToReviewBtn.textContent = 'Sent to Review';
+                  sendToReviewBtn.disabled = true;
+                } else {
+                  alert('Failed to send to review');
+                }
+              } catch (e) {
+                alert('Failed to send to review');
+              }
+            });
+
+            sendToReviewBtn.__handlerAttached = true;
+          }
+        }
+
+        renderReadiness(
+          reviewReadinessCard,
+          readinessData,
+          claim.status,
+          sendToReviewBtn && claim.claim_id ? sendToReviewBtn : null
+        );
+        renderProviderSubmissionStatus(
+          providerSubmissionStatus,
+          claim,
+          providerConnections,
+          readinessData,
+          { unavailable: !providerConnectionsLoaded }
+        );
+
+        renderActionDecision(actionRecommendation, {
+          claim,
+          enrichment,
+          readiness: readinessData,
+          match,
+          submitClaimBtn,
+          saveAdjustmentsBtn,
+          sendToReviewBtn
+        });
+
+        renderCaseDetail(detail, claim, enrichment, editedCase, id, documents);
+        renderAppliedFixes(claim);
+        renderFixSuggestions(fixSuggestionsEl, claim);
+        renderRequiredFieldStatus(requiredFieldStatusEl, claim);
+        renderMatchPanel(match);
+      } catch (err) {
+        detail.innerHTML = '<div class="empty-state">Unable to load claim detail.</div>';
+        window.currentMatch = null;
+        renderActionDecision(document.getElementById('actionRecommendation'), {
+          claim: null,
+          enrichment: null,
+          readiness: null,
+          match: null,
+          submitClaimBtn: document.getElementById('submitClaimBtn'),
+          saveAdjustmentsBtn: document.getElementById('saveAdjustmentsBtn'),
+          sendToReviewBtn: document.getElementById('sendToReviewBtn')
+        });
+        renderOutcome(document.getElementById('outcomeSummary'), null, []);
+        renderAppliedFixes(null);
+        renderFixSuggestions(document.getElementById('fixSuggestions'), null);
+        renderRequiredFieldStatus(document.getElementById('requiredFieldStatus'), null);
+        renderSubmissionHistory(document.getElementById('submissionHistory'), []);
+        renderLifecycleHistory(document.getElementById('lifecycleHistory'), []);
+        renderProviderSubmissionStatus(document.getElementById('providerSubmissionStatus'), null, [], { unavailable: true });
+        renderMatchPanel(null);
+      }
+    }
+
+    loadClaimDetail();
+  </script>
+</body>
+</html>

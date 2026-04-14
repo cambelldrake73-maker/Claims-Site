@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claim Detail</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+    body { background: #f3f4f6; color: #1f2937; line-height: 1.45; }
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .logo { font-size: 1rem; font-weight: 700; color: #111827; }
+    .nav-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; color: #4b5563; font-size: 0.9rem; font-weight: 500; }
+    .nav-links a.active { color: #111827; font-weight: 700; }
+    .page { max-width: 1200px; margin: 0 auto; padding: 24px 20px 48px; }
+    .hero { margin-bottom: 24px; display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+    .hero h1 { font-size: 1.7rem; margin-bottom: 6px; color: #111827; }
+    .hero p { color: #6b7280; font-size: 0.95rem; max-width: 720px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #ffffff;
+      color: #111827;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; align-items: start; }
+    .stack { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .card h2 { font-size: 1rem; color: #111827; margin-bottom: 8px; }
+    .card p.section-copy { color: #6b7280; font-size: 0.9rem; margin-bottom: 16px; }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+    }
+    .summary-item small {
+      display: block;
+      color: #6b7280;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+    }
+    .summary-item strong, .summary-item span { color: #111827; font-size: 0.95rem; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: #eef2ff;
+      color: #3730a3;
+    }
+    .pill.blocked { background: #fff1f2; color: #be123c; }
+    .pill.ready { background: #ecfdf5; color: #047857; }
+    .pill.review { background: #fff7ed; color: #c2410c; }
+    .plain-list { display: flex; flex-direction: column; gap: 10px; }
+    .plain-list-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: #f9fafb;
+    }
+    .plain-list-item strong { display: block; margin-bottom: 6px; color: #111827; }
+    .muted { color: #6b7280; font-size: 0.88rem; }
+    .empty-state { color: #6b7280; font-size: 0.92rem; }
+    .prose { color: #374151; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      color: #374151;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px;
+      color: #374151;
+      font-size: 0.84rem;
+    }
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero { flex-direction: column; }
+      .summary-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Claims Operations</div>
+    <div class="nav-links">
+      <a href="upload-history.html">Uploads</a>
+      <a href="review-queue.html">Review Queue</a>
+      <a href="claims.html" class="active">Claims</a>
+      <a href="provider-connections.html">Provider Connections</a>
+      <a href="billing.html">Billing</a>
+      <a href="reports.html">Operations</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <h1>Claim Detail</h1>
+        <p>One operational view of claim lifecycle status, recommendation context, linked documents, and submission history.</p>
+      </div>
+      <a class="back-link" href="claims.html">Back to Claims</a>
+    </section>
+
+    <section class="grid">
+      <div class="stack">
+        <article class="card">
+          <h2>Overview</h2>
+          <p class="section-copy">Core claim fields and the current lifecycle state.</p>
+          <div id="claimOverview" class="empty-state">Loading claim details...</div>
+        </article>
+
+        <article class="card">
+          <h2>Recommendation Context</h2>
+          <p class="section-copy">Canonical recommendation semantics and operator-facing explanation.</p>
+          <div id="recommendationSummary" class="empty-state">Loading recommendation context...</div>
+        </article>
+
+        <article class="card">
+          <h2>Documents</h2>
+          <p class="section-copy">Files currently linked to this claim.</p>
+          <div id="documentList" class="empty-state">Loading linked documents...</div>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="card">
+          <h2>Submission History</h2>
+          <p class="section-copy">Recorded submission attempts and payer responses.</p>
+          <div id="submissionHistory" class="empty-state">Loading submission history...</div>
+        </article>
+
+        <article class="card">
+          <h2>Submission Payload</h2>
+          <p class="section-copy">Current formatted submission payload for operator inspection.</p>
+          <div id="submissionPayload" class="empty-state">Loading submission payload...</div>
+        </article>
+
+        <article class="card">
+          <h2>Session Scope</h2>
+          <p class="section-copy">Authentication context used for this operator page.</p>
+          <div id="sessionScope" class="empty-state">Loading session scope...</div>
+        </article>
+      </aside>
+    </section>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script>
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function formatAmount(value) {
+      const numeric = Number(value);
+      return Number.isFinite(numeric)
+        ? `$${numeric.toLocaleString()}`
+        : '-';
+    }
+
+    function formatTimestamp(value) {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric) || numeric <= 0) {
+        return 'Unknown';
+      }
+
+      return new Intl.DateTimeFormat(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      }).format(new Date(numeric));
+    }
+
+    function formatLabel(value) {
+      return String(value || 'unknown')
+        .replaceAll('_', ' ')
+        .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function getClaimIdFromLocation() {
+      const url = new URL(window.location.href);
+      return url.searchParams.get('id');
+    }
+
+    function getRecommendationPill(decision) {
+      if (!decision || !decision.recommendation_state) {
+        return '<span class="pill review">No recommendation decision logged</span>';
+      }
+
+      if (decision.actionable === true) {
+        return `<span class="pill ready">${escapeHtml(formatLabel(decision.recommendation_state))}</span>`;
+      }
+
+      if (decision.blocked === true) {
+        return `<span class="pill blocked">${escapeHtml(formatLabel(decision.recommendation_state))}</span>`;
+      }
+
+      return `<span class="pill review">${escapeHtml(formatLabel(decision.recommendation_state))}</span>`;
+    }
+
+    function renderOverview(claim) {
+      const container = document.getElementById('claimOverview');
+
+      if (!claim) {
+        container.innerHTML = '<div class="empty-state">Claim not found.</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="summary-grid">
+          <div class="summary-item"><small>Claim ID</small><strong>${escapeHtml(claim.claim_id || '-')}</strong></div>
+          <div class="summary-item"><small>Status</small><span>${escapeHtml(formatLabel(claim.status || '-'))}</span></div>
+          <div class="summary-item"><small>Patient</small><span>${escapeHtml(claim.patient || '-')}</span></div>
+          <div class="summary-item"><small>Payer</small><span>${escapeHtml(claim.payer || '-')}</span></div>
+          <div class="summary-item"><small>Amount</small><span>${escapeHtml(formatAmount(claim.amount))}</span></div>
+          <div class="summary-item"><small>Date of Service</small><span>${escapeHtml(claim.date_of_service || '-')}</span></div>
+          <div class="summary-item"><small>Denial Reason</small><span>${escapeHtml(claim.denial_reason || '-')}</span></div>
+          <div class="summary-item"><small>Upload ID</small><span>${escapeHtml(claim.upload_id || '-')}</span></div>
+        </div>
+      `;
+    }
+
+    function renderRecommendation(explanationPayload, summaryPayload) {
+      const container = document.getElementById('recommendationSummary');
+      const decision = explanationPayload?.recommendation_decision || null;
+      const explanation = explanationPayload?.explanation || null;
+      const summary = summaryPayload?.summary || null;
+      const blockers = Array.isArray(decision?.blocker_types) ? decision.blocker_types : [];
+
+      container.innerHTML = `
+        <div class="plain-list">
+          <div class="plain-list-item">
+            <strong>Recommendation State</strong>
+            <div class="tag-row" style="margin-top:8px;">
+              ${getRecommendationPill(decision)}
+              ${decision?.prerequisites_met === false ? '<span class="tag">Prerequisites not met</span>' : ''}
+              ${decision?.recoverable_now === false ? '<span class="tag">Not recoverable now</span>' : ''}
+            </div>
+            ${blockers.length ? `<div class="tag-row" style="margin-top:10px;">${blockers.map(blocker => `<span class="tag">${escapeHtml(formatLabel(blocker))}</span>`).join('')}</div>` : '<div class="muted" style="margin-top:10px;">No explicit blocker types logged.</div>'}
+          </div>
+          <div class="plain-list-item">
+            <strong>Operator Explanation</strong>
+            <div class="prose">${escapeHtml(explanation || 'No explanation available.')}</div>
+          </div>
+          <div class="plain-list-item">
+            <strong>Claim Summary</strong>
+            <div class="prose">${escapeHtml(summary || 'No summary available.')}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderDocuments(documents) {
+      const container = document.getElementById('documentList');
+
+      if (!Array.isArray(documents) || !documents.length) {
+        container.innerHTML = '<div class="empty-state">No linked documents found.</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="plain-list">
+          ${documents.map(document => `
+            <div class="plain-list-item">
+              <strong>${escapeHtml(document.filename || document.file_id || 'Document')}</strong>
+              <div class="muted">Matched at ${document.match_confidence ?? '-'} confidence</div>
+              <div class="muted">Uploaded ${escapeHtml(formatTimestamp(document.uploaded_at))}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderSubmissionHistory(submissions) {
+      const container = document.getElementById('submissionHistory');
+
+      if (!Array.isArray(submissions) || !submissions.length) {
+        container.innerHTML = '<div class="empty-state">No submission history recorded.</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="plain-list">
+          ${submissions.map(submission => `
+            <div class="plain-list-item">
+              <strong>${escapeHtml(formatLabel(submission.status || 'unknown'))}</strong>
+              <div class="muted">Created ${escapeHtml(formatTimestamp(submission.created_at))}</div>
+              <div class="muted">Clearinghouse: ${escapeHtml(submission.clearinghouse_status || '-')}</div>
+              <div class="muted">Error: ${escapeHtml(submission.error || '-')}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderSubmissionPayload(submissionPayload) {
+      const container = document.getElementById('submissionPayload');
+
+      if (!submissionPayload) {
+        container.innerHTML = '<div class="empty-state">No submission payload available.</div>';
+        return;
+      }
+
+      container.innerHTML = `<pre>${escapeHtml(JSON.stringify(submissionPayload, null, 2))}</pre>`;
+    }
+
+    function renderSessionScope(user) {
+      const container = document.getElementById('sessionScope');
+
+      if (!user) {
+        container.innerHTML = '<div class="empty-state">No authenticated session available.</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="summary-grid">
+          <div class="summary-item"><small>User ID</small><span>${escapeHtml(user.user_id || '-')}</span></div>
+          <div class="summary-item"><small>Role</small><span>${escapeHtml(user.role || '-')}</span></div>
+          <div class="summary-item"><small>Customer ID</small><span>${escapeHtml(user.customer_id || '-')}</span></div>
+          <div class="summary-item"><small>Provider ID</small><span>${escapeHtml(user.provider_id || '-')}</span></div>
+        </div>
+      `;
+    }
+
+    async function loadClaimDetailPage() {
+      const claimId = getClaimIdFromLocation();
+
+      if (!claimId) {
+        renderOverview(null);
+        document.getElementById('recommendationSummary').innerHTML = '<div class="empty-state">No claim id provided.</div>';
+        return;
+      }
+
+      try {
+        const [
+          meResponse,
+          claimResponse,
+          explanationResponse,
+          summaryResponse,
+          documentsResponse,
+          historyResponse,
+          submissionResponse
+        ] = await Promise.all([
+          fetch('/api/auth/me'),
+          fetch(`/api/claims/${encodeURIComponent(claimId)}`),
+          fetch('/api/claims/explanation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ claim_id: claimId })
+          }),
+          fetch('/api/claims/summary', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ claim_id: claimId })
+          }),
+          fetch(`/api/claims/${encodeURIComponent(claimId)}/documents`),
+          fetch(`/api/claims/${encodeURIComponent(claimId)}/history`),
+          fetch(`/api/claims/${encodeURIComponent(claimId)}/submission`)
+        ]);
+
+        const [
+          mePayload,
+          claimPayload,
+          explanationPayload,
+          summaryPayload,
+          documentsPayload,
+          historyPayload,
+          submissionPayload
+        ] = await Promise.all([
+          meResponse.json().catch(() => null),
+          claimResponse.json().catch(() => null),
+          explanationResponse.json().catch(() => null),
+          summaryResponse.json().catch(() => null),
+          documentsResponse.json().catch(() => null),
+          historyResponse.json().catch(() => null),
+          submissionResponse.json().catch(() => null)
+        ]);
+
+        if (!claimResponse.ok || !claimPayload?.ok || !claimPayload.claim) {
+          throw new Error(claimPayload?.error || 'Unable to load claim detail');
+        }
+
+        renderOverview(claimPayload.claim);
+        renderRecommendation(explanationPayload, summaryPayload);
+        renderDocuments(documentsPayload?.documents || []);
+        renderSubmissionHistory(historyPayload?.submissions || []);
+        renderSubmissionPayload(submissionPayload?.submission || null);
+        renderSessionScope(mePayload?.user || null);
+      } catch (err) {
+        document.getElementById('claimOverview').innerHTML = `<div class="empty-state">${escapeHtml(err.message || 'Unable to load claim detail.')}</div>`;
+        document.getElementById('recommendationSummary').innerHTML = '<div class="empty-state">Recommendation context unavailable.</div>';
+        document.getElementById('documentList').innerHTML = '<div class="empty-state">Document details unavailable.</div>';
+        document.getElementById('submissionHistory').innerHTML = '<div class="empty-state">Submission history unavailable.</div>';
+        document.getElementById('submissionPayload').innerHTML = '<div class="empty-state">Submission payload unavailable.</div>';
+        document.getElementById('sessionScope').innerHTML = '<div class="empty-state">Session scope unavailable.</div>';
+      }
+    }
+
+    loadClaimDetailPage();
+  </script>
+</body>
+</html>

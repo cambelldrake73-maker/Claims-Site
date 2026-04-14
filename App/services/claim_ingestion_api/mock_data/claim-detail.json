@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "claim": {
+    "id": "CLM-1002",
+    "status": "failed",
+    "denialReason": "Missing modifier",
+    "amount": 980.00,
+    "patient": "Jane Doe",
+    "payer": "Example Health"
+  }
+}

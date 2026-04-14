@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cases</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.4;
+    }
+
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+      color: #111827;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 2px 0;
+    }
+
+    .nav-links a.active {
+      color: #111827;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px 20px 44px;
+    }
+
+    .hero {
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      color: #111827;
+    }
+
+    .hero p {
+      color: #6b7280;
+      font-size: 0.88rem;
+      max-width: 620px;
+    }
+
+    .filter-bar {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .filter-field label {
+      color: #6b7280;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .filter-field input {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 9px 10px;
+      font-size: 0.88rem;
+      color: #111827;
+      background: #ffffff;
+    }
+
+    .filter-field input:focus {
+      outline: none;
+      border-color: #9ca3af;
+      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.06);
+    }
+
+    .filter-actions {
+      display: flex;
+      align-items: end;
+    }
+
+    .filter-button {
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .filter-button:hover {
+      background: #f9fafb;
+    }
+
+    .table-shell {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .priority-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .priority-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .priority-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .priority-section-title {
+      color: #111827;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .priority-section-count {
+      color: #6b7280;
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 920px;
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: middle;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: #f9fafb;
+      color: #6b7280;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    tbody td {
+      color: #4b5563;
+    }
+
+    tbody tr {
+      cursor: pointer;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .claim-id {
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .status-text {
+      color: #374151;
+      white-space: nowrap;
+    }
+
+    .status-subtext {
+      margin-top: 4px;
+      font-size: 0.79rem;
+      line-height: 1.35;
+      white-space: normal;
+    }
+
+    .status-subtext-connected {
+      color: #0f766e;
+    }
+
+    .status-subtext-blocked {
+      color: #b42318;
+    }
+
+    .status-subtext-unavailable {
+      color: #6b7280;
+    }
+
+    .amount {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .priority-cell {
+      min-width: 160px;
+    }
+
+    .priority-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .priority-score {
+      color: #111827;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .recovery-value {
+      color: #6b7280;
+      font-size: 0.84rem;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .high-priority .priority-score {
+      color: #b42318;
+      font-weight: 800;
+    }
+
+    .empty-state {
+      padding: 18px 16px;
+      color: #6b7280;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 800px) {
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .filter-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Operations Dashboard</div>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="claims.html">Cases</a>
+      <a href="submit-claims.html">New Case</a>
+      <a href="review-queue.html">Review Queue</a>
+      <a href="upload-history.html">Upload History</a>
+      <a href="provider-connections.html">Provider Connections</a>
+      <a href="reporting.html">Reporting</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Cases</h1>
+      <p>All processed cases and current status.</p>
+    </section>
+
+    <section class="filter-bar">
+      <div class="filter-grid">
+        <div class="filter-field">
+          <label for="filterProvider">Provider</label>
+          <input id="filterProvider" type="text" placeholder="Filter by provider" />
+        </div>
+        <div class="filter-field">
+          <label for="filterUpload">Upload</label>
+          <input id="filterUpload" type="text" placeholder="Filter by upload" />
+        </div>
+        <div class="filter-field">
+          <label for="filterNiche">Niche</label>
+          <input id="filterNiche" type="text" placeholder="Filter by niche" />
+        </div>
+        <div class="filter-field">
+          <label for="filterDateFrom">Upload Date From</label>
+          <input id="filterDateFrom" type="date" />
+        </div>
+        <div class="filter-field">
+          <label for="filterDateTo">Upload Date To</label>
+          <input id="filterDateTo" type="date" />
+        </div>
+        <div class="filter-actions">
+          <button id="clearFiltersBtn" type="button" class="filter-button">Clear Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <div style="margin-bottom:16px;">
+      <a href="submit-claims.html" 
+         style="display:inline-block;
+                background:#111827;
+                color:white;
+                padding:10px 16px;
+                border-radius:8px;
+                font-weight:600;
+                text-decoration:none;">
+        + New Case
+      </a>
+    </div>
+
+    <div id="claimsPrioritySections" class="priority-sections">
+      <section class="priority-section">
+        <div class="priority-section-header">
+          <div class="priority-section-title">🔥 Fix First</div>
+          <div class="priority-section-count">Loading...</div>
+        </div>
+        <div class="table-shell">
+          <div class="empty-state">Loading claims...</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script src="customer-identity.js"></script>
+  <script>
+    const CUSTOMER_ID = getCurrentCustomerId();
+    const claimsFilters = {
+      provider: '',
+      upload: '',
+      niche: '',
+      dateFrom: '',
+      dateTo: ''
+    };
+    let allClaims = [];
+    let providerConnections = [];
+    let providerConnectionsLoaded = false;
+
+    function formatAmount(amount) {
+      return `$${Number(amount || 0).toLocaleString()}`;
+    }
+
+    function formatStatus(status) {
+      const statusLabels = {
+        processing: 'Processing',
+        in_review: 'In Review',
+        needs_review: 'Needs Review',
+        ready_for_submission: 'Ready for Submission',
+        approved: 'Ready for Submission',
+        submitted: 'Submitted',
+        recovered: 'Recovered',
+        paid: 'Recovered',
+        not_recoverable: 'Not Recoverable',
+        failed: 'Not Recoverable'
+      };
+      const normalized = String(status || '').trim().toLowerCase();
+
+      return statusLabels[normalized] || String(status || '-')
+        .replaceAll('_', ' ')
+        .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function getPriorityScore(claim) {
+      return Number(claim && claim.priority_score) || 0;
+    }
+
+    function getEstimatedRecovery(claim) {
+      return Number(claim && (claim.estimated_recovery ?? claim.amount)) || 0;
+    }
+
+    function formatClaimCount(count) {
+      return `${count} ${count === 1 ? 'claim' : 'claims'}`;
+    }
+
+    function normalizeText(value) {
+      return String(value || '').trim().toLowerCase();
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function getUploadContexts(claim) {
+      const contexts = [];
+      const seen = new Set();
+      const candidates = [];
+
+      if (claim && claim.upload && typeof claim.upload === 'object') {
+        candidates.push(claim.upload);
+      }
+
+      if (Array.isArray(claim && claim.linked_uploads)) {
+        candidates.push(...claim.linked_uploads);
+      }
+
+      candidates.forEach(upload => {
+        if (!upload || typeof upload !== 'object') {
+          return;
+        }
+
+        const key = upload.upload_id || JSON.stringify(upload);
+
+        if (seen.has(key)) {
+          return;
+        }
+
+        seen.add(key);
+        contexts.push(upload);
+      });
+
+      return contexts;
+    }
+
+    function getUploadMetadata(claim) {
+      return getUploadContexts(claim)[0] || null;
+    }
+
+    function getProviderContext(claim) {
+      const uploads = getUploadContexts(claim);
+      const firstWithProvider = uploads.find(upload => normalizeText(upload && upload.provider_name));
+      return firstWithProvider || uploads[0] || null;
+    }
+
+    function getProviderConnectionMatch(providerName) {
+      const normalizedProvider = normalizeText(providerName);
+      if (!normalizedProvider) {
+        return null;
+      }
+
+      return providerConnections.find(connection => (
+        normalizeText(connection && connection.provider_name) === normalizedProvider
+        && Boolean(connection && connection.is_active)
+        && normalizeText(connection && connection.credential_status) === 'connected'
+      )) || null;
+    }
+
+    function getClaimConnectionSummary(claim) {
+      if (!providerConnectionsLoaded) {
+        return {
+          className: 'status-subtext-unavailable',
+          text: 'Connection status unavailable'
+        };
+      }
+
+      const providerContext = getProviderContext(claim);
+      const providerName = providerContext && providerContext.provider_name;
+
+      if (!normalizeText(providerName)) {
+        return {
+          className: 'status-subtext-blocked',
+          text: 'Provider missing before submission'
+        };
+      }
+
+      const activeConnection = getProviderConnectionMatch(providerName);
+
+      if (activeConnection) {
+        return {
+          className: 'status-subtext-connected',
+          text: `Clearinghouse connected • ${providerName}`
+        };
+      }
+
+      return {
+        className: 'status-subtext-blocked',
+        text: `Connection required • ${providerName}`
+      };
+    }
+
+    function hasActiveFilters(filters) {
+      return Boolean(
+        normalizeText(filters.provider) ||
+        normalizeText(filters.upload) ||
+        normalizeText(filters.niche) ||
+        filters.dateFrom ||
+        filters.dateTo
+      );
+    }
+
+    function matchesTextFilter(value, filterValue) {
+      const normalizedFilter = normalizeText(filterValue);
+      if (!normalizedFilter) return true;
+      return normalizeText(value).includes(normalizedFilter);
+    }
+
+    function toTimestamp(value) {
+      const numeric = Number(value);
+      if (Number.isFinite(numeric)) {
+        return numeric;
+      }
+
+      const parsed = new Date(value).getTime();
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function getFilterBoundary(dateValue, endOfDay) {
+      if (!dateValue) return null;
+      const suffix = endOfDay ? 'T23:59:59.999' : 'T00:00:00.000';
+      const parsed = new Date(`${dateValue}${suffix}`).getTime();
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function matchesUploadDateFilter(upload, filters) {
+      const fromBoundary = getFilterBoundary(filters.dateFrom, false);
+      const toBoundary = getFilterBoundary(filters.dateTo, true);
+
+      if (fromBoundary === null && toBoundary === null) {
+        return true;
+      }
+
+      const createdAt = toTimestamp(upload && upload.created_at);
+      if (createdAt === null) {
+        return false;
+      }
+
+      if (fromBoundary !== null && createdAt < fromBoundary) {
+        return false;
+      }
+
+      if (toBoundary !== null && createdAt > toBoundary) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function matchesClaimFilters(claim, filters) {
+      if (!hasActiveFilters(filters)) {
+        return true;
+      }
+
+      const uploads = getUploadContexts(claim);
+      if (!uploads.length) {
+        return false;
+      }
+
+      return uploads.some(upload => (
+        matchesTextFilter(upload.provider_name, filters.provider) &&
+        matchesTextFilter(upload.upload_name, filters.upload) &&
+        matchesTextFilter(upload.niche, filters.niche) &&
+        matchesUploadDateFilter(upload, filters)
+      ));
+    }
+
+    function getPriorityGroup(claim) {
+      const priorityScore = getPriorityScore(claim);
+
+      if (priorityScore >= 80) return 'high';
+      if (priorityScore >= 40) return 'medium';
+      return 'low';
+    }
+
+    function renderClaimRows(claims) {
+      return claims.map(claim => {
+        const priorityScore = getPriorityScore(claim);
+        const estimatedRecovery = getEstimatedRecovery(claim);
+        const rowClass = priorityScore > 80 ? 'high-priority' : '';
+        const connectionSummary = getClaimConnectionSummary(claim);
+
+        return `
+          <tr class="${rowClass}" data-claim-id="${claim.claim_id || ''}">
+            <td class="claim-id">${claim.claim_id || '-'}</td>
+            <td>${claim.patient || '-'}</td>
+            <td>${claim.payer || '-'}</td>
+            <td class="status-text">
+              <div>${formatStatus(claim.status)}</div>
+              <div class="status-subtext ${connectionSummary.className}">${escapeHtml(connectionSummary.text)}</div>
+            </td>
+            <td>
+              <div>${claim.denial_reason || '-'}</div>
+              <div style="font-size:0.8rem; color:#6b7280;">Denial Type: ${formatStatus(claim.denial_type || '-')}</div>
+            </td>
+            <td class="amount">${formatAmount(claim.amount)}</td>
+            <td class="priority-cell">
+              <div class="priority-meta">
+                <div class="priority-score">Priority: ${priorityScore}</div>
+                <div class="recovery-value">Recovery: ${formatAmount(estimatedRecovery)}</div>
+              </div>
+            </td>
+            <td>${claim.date_of_service || '-'}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderPrioritySection(title, claims) {
+      return `
+        <section class="priority-section">
+          <div class="priority-section-header">
+            <div class="priority-section-title">${title}</div>
+            <div class="priority-section-count">${formatClaimCount(claims.length)}</div>
+          </div>
+          <div class="table-shell">
+            ${claims.length ? `
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Claim ID</th>
+                      <th>Patient</th>
+                      <th>Payer</th>
+                      <th>Status</th>
+                      <th>Denial Reason</th>
+                      <th>Amount</th>
+                      <th>Priority</th>
+                      <th>Date of Service</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${renderClaimRows(claims)}
+                  </tbody>
+                </table>
+              </div>
+            ` : `
+              <div class="empty-state">No claims in this section</div>
+            `}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderClaims() {
+      const sectionsContainer = document.getElementById('claimsPrioritySections');
+      if (!sectionsContainer) return;
+
+      const claims = Array.isArray(allClaims)
+        ? allClaims.filter(claim => matchesClaimFilters(claim, claimsFilters))
+        : [];
+      claims.sort((a, b) => getPriorityScore(b) - getPriorityScore(a));
+
+      const groups = {
+        high: claims.filter(claim => getPriorityGroup(claim) === 'high'),
+        medium: claims.filter(claim => getPriorityGroup(claim) === 'medium'),
+        low: claims.filter(claim => getPriorityGroup(claim) === 'low')
+      };
+
+      sectionsContainer.innerHTML = [
+        renderPrioritySection('🔥 Fix First', groups.high),
+        renderPrioritySection('🟡 Review Next', groups.medium),
+        renderPrioritySection('⚪ Low Priority', groups.low)
+      ].join('');
+
+      sectionsContainer.querySelectorAll('[data-claim-id]').forEach(row => {
+        row.addEventListener('click', () => {
+          const claimId = row.dataset.claimId;
+          if (!claimId) return;
+          window.location.href = `claim-detail.html?id=${encodeURIComponent(claimId)}`;
+        });
+      });
+    }
+
+    function syncClaimsFiltersFromInputs() {
+      const providerInput = document.getElementById('filterProvider');
+      const uploadInput = document.getElementById('filterUpload');
+      const nicheInput = document.getElementById('filterNiche');
+      const dateFromInput = document.getElementById('filterDateFrom');
+      const dateToInput = document.getElementById('filterDateTo');
+
+      claimsFilters.provider = providerInput ? providerInput.value : '';
+      claimsFilters.upload = uploadInput ? uploadInput.value : '';
+      claimsFilters.niche = nicheInput ? nicheInput.value : '';
+      claimsFilters.dateFrom = dateFromInput ? dateFromInput.value : '';
+      claimsFilters.dateTo = dateToInput ? dateToInput.value : '';
+    }
+
+    function attachClaimsFilterHandlers() {
+      [
+        'filterProvider',
+        'filterUpload',
+        'filterNiche',
+        'filterDateFrom',
+        'filterDateTo'
+      ].forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
+
+        input.addEventListener('input', () => {
+          syncClaimsFiltersFromInputs();
+          renderClaims();
+        });
+
+        input.addEventListener('change', () => {
+          syncClaimsFiltersFromInputs();
+          renderClaims();
+        });
+      });
+
+      const clearButton = document.getElementById('clearFiltersBtn');
+      if (clearButton) {
+        clearButton.addEventListener('click', () => {
+          ['filterProvider', 'filterUpload', 'filterNiche', 'filterDateFrom', 'filterDateTo'].forEach(id => {
+            const input = document.getElementById(id);
+            if (input) input.value = '';
+          });
+          syncClaimsFiltersFromInputs();
+          renderClaims();
+        });
+      }
+    }
+
+    async function loadClaims() {
+      try {
+        const [claimsResult, connectionsResult] = await Promise.allSettled([
+          fetch(`/api/claims?customer_id=${encodeURIComponent(CUSTOMER_ID)}`),
+          fetch('/api/provider-connections')
+        ]);
+
+        if (claimsResult.status !== 'fulfilled') {
+          throw claimsResult.reason;
+        }
+
+        const claimsResponse = claimsResult.value;
+        const data = await claimsResponse.json();
+        allClaims = Array.isArray(data.claims) ? data.claims : [];
+
+        if (connectionsResult.status === 'fulfilled') {
+          try {
+            const connectionsResponse = connectionsResult.value;
+            const connectionsData = await connectionsResponse.json();
+            providerConnections = Array.isArray(connectionsData && connectionsData.connections)
+              ? connectionsData.connections
+              : [];
+            providerConnectionsLoaded = connectionsResponse.ok && (!connectionsData || connectionsData.ok !== false);
+          } catch (err) {
+            providerConnections = [];
+            providerConnectionsLoaded = false;
+          }
+        } else {
+          providerConnections = [];
+          providerConnectionsLoaded = false;
+        }
+
+        renderClaims();
+      } catch (err) {
+        const sectionsContainer = document.getElementById('claimsPrioritySections');
+        if (sectionsContainer) {
+          sectionsContainer.innerHTML = `
+            <section class="priority-section">
+              <div class="priority-section-header">
+                <div class="priority-section-title">🔥 Fix First</div>
+                <div class="priority-section-count">Unavailable</div>
+              </div>
+              <div class="table-shell">
+                <div class="empty-state">No claims available</div>
+              </div>
+            </section>
+          `;
+        }
+      }
+    }
+
+    attachClaimsFilterHandlers();
+    loadClaims();
+  </script>
+</body>
+</html>

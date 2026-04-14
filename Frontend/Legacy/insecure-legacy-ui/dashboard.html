@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operations Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.4;
+    }
+
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+      color: #111827;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 2px 0;
+    }
+
+    .nav-links a.active {
+      color: #111827;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px 20px 44px;
+    }
+
+    .hero {
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      color: #111827;
+    }
+
+    .hero p {
+      color: #6b7280;
+      font-size: 0.88rem;
+      max-width: 620px;
+    }
+
+    .filter-bar {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .filter-field label {
+      color: #6b7280;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .filter-field input {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 9px 10px;
+      font-size: 0.88rem;
+      color: #111827;
+      background: #ffffff;
+    }
+
+    .filter-field input:focus {
+      outline: none;
+      border-color: #9ca3af;
+      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.06);
+    }
+
+    .filter-actions {
+      display: flex;
+      align-items: end;
+    }
+
+    .filter-button {
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .filter-button:hover {
+      background: #f9fafb;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .card h3 {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 8px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .card .value {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #111827;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card .meta {
+      margin-top: 8px;
+      color: #6b7280;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .panel {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .panel h2 {
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      color: #111827;
+    }
+
+    .panel ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .panel li {
+      margin-bottom: 10px;
+      color: #374151;
+      border-bottom: 1px solid #f3f4f6;
+      padding-bottom: 10px;
+    }
+
+    .panel li:last-child {
+      margin-bottom: 0;
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .list-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .list-label {
+      color: #111827;
+      font-weight: 600;
+      line-height: 1.4;
+      font-size: 0.92rem;
+    }
+
+    .list-value {
+      color: #4b5563;
+      flex-shrink: 0;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-size: 0.92rem;
+    }
+
+    .empty {
+      color: #6b7280;
+    }
+
+    .panel-wide {
+      grid-column: span 2;
+    }
+
+    .weights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .weight-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #f9fafb;
+      padding: 12px 14px;
+    }
+
+    .weight-label {
+      color: #6b7280;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 6px;
+    }
+
+    .weight-value {
+      color: #111827;
+      font-size: 1.15rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .panel-note {
+      color: #6b7280;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .flow-row {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 10px;
+      align-items: center;
+    }
+
+    .flow-box {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #f9fafb;
+      padding: 14px 12px;
+      text-align: center;
+    }
+
+    .flow-label {
+      color: #6b7280;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 6px;
+    }
+
+    .flow-count {
+      color: #111827;
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .flow-arrow {
+      text-align: center;
+      color: #98a2b3;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 800px) {
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .panel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-row {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Operations Dashboard</div>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="claims.html">Cases</a>
+      <a href="submit-claims.html">Upload Claims</a>
+      <a href="review-queue.html">Review Queue</a>
+      <a href="upload-history.html">Upload History</a>
+      <a href="provider-connections.html">Provider Connections</a>
+      <a href="reporting.html">Reporting</a>
+      <a href="account.html">Account</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div style="margin-bottom:20px;">
+      <a href="submit-claims.html" 
+         style="display:inline-block;
+                background:#111827;
+                color:white;
+                padding:12px 18px;
+                border-radius:10px;
+                font-weight:600;
+                text-decoration:none;">
+        Upload Claims
+      </a>
+    </div>
+
+    <section class="hero">
+      <h1>System Performance</h1>
+      <p>Operational view of claim throughput, review load, recovery outcomes, confidence spread, and adaptive matching behavior.</p>
+    </section>
+
+    <section class="filter-bar">
+      <div class="filter-grid">
+        <div class="filter-field">
+          <label for="filterProvider">Provider</label>
+          <input id="filterProvider" type="text" placeholder="Filter by provider" />
+        </div>
+        <div class="filter-field">
+          <label for="filterUpload">Upload</label>
+          <input id="filterUpload" type="text" placeholder="Filter by upload" />
+        </div>
+        <div class="filter-field">
+          <label for="filterNiche">Niche</label>
+          <input id="filterNiche" type="text" placeholder="Filter by niche" />
+        </div>
+        <div class="filter-field">
+          <label for="filterDateFrom">Upload Date From</label>
+          <input id="filterDateFrom" type="date" />
+        </div>
+        <div class="filter-field">
+          <label for="filterDateTo">Upload Date To</label>
+          <input id="filterDateTo" type="date" />
+        </div>
+        <div class="filter-actions">
+          <button id="clearFiltersBtn" type="button" class="filter-button">Clear Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h3>Total Claims Processed</h3>
+        <div class="value" id="total-claims-processed">-</div>
+        <div class="meta" id="total-claims-note">Loading system totals...</div>
+      </div>
+      <div class="card">
+        <h3>Auto-Resolved Claims</h3>
+        <div class="value" id="auto-resolved-count">-</div>
+        <div class="meta" id="auto-resolved-note">Loading auto-resolved count...</div>
+      </div>
+      <div class="card">
+        <h3>Automation Rate</h3>
+        <div class="value" id="automation-rate">-</div>
+        <div class="meta" id="automation-rate-note">Loading automation rate...</div>
+      </div>
+      <div class="card">
+        <h3>In Review</h3>
+        <div class="value" id="needs-review-count">-</div>
+        <div class="meta" id="needs-review-note">Loading review count...</div>
+      </div>
+      <div class="card">
+        <h3>$ Recovered</h3>
+        <div class="value" id="recovered-value">-</div>
+        <div class="meta" id="recovered-value-note">Loading recovered value...</div>
+      </div>
+    </section>
+
+    <section class="panel-grid">
+      <div class="panel">
+        <h2>Confidence Distribution</h2>
+        <ul id="confidence-distribution">
+          <li class="empty">Loading...</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h2>Outcome Breakdown</h2>
+        <ul id="outcome-breakdown">
+          <li class="empty">Loading...</li>
+        </ul>
+      </div>
+
+      <div class="panel panel-wide">
+        <h2>System Flow</h2>
+        <div id="system-flow">
+          <div class="flow-row">
+            <div class="flow-box">
+              <div class="flow-label">Ingested</div>
+              <div class="flow-count">0</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box">
+              <div class="flow-label">Needs Review</div>
+              <div class="flow-count">0</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box">
+              <div class="flow-label">Submitted</div>
+              <div class="flow-count">0</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box">
+              <div class="flow-label">Paid</div>
+              <div class="flow-count">0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-wide">
+        <h2>Learning Summary</h2>
+        <div id="learning-summary">
+          <div class="empty">Loading adaptive matcher state...</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script src="customer-identity.js"></script>
+  <script>
+    const CUSTOMER_ID = getCurrentCustomerId();
+    const dashboardFilters = {
+      provider: '',
+      upload: '',
+      niche: '',
+      dateFrom: '',
+      dateTo: ''
+    };
+    let dashboardClaims = null;
+    let dashboardLearning = null;
+
+    function formatLabel(value) {
+      return String(value || '')
+        .replaceAll('_', ' ')
+        .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function formatPercent(value) {
+      if (!Number.isFinite(value)) return '-';
+      return `${Math.round(value * 100)}%`;
+    }
+
+    function formatCurrency(amount) {
+      if (!Number.isFinite(amount)) return '-';
+      return `$${amount.toLocaleString()}`;
+    }
+
+    function setMetric(id, value, noteId, note) {
+      const valueEl = document.getElementById(id);
+      const noteEl = document.getElementById(noteId);
+
+      if (valueEl) {
+        valueEl.textContent = value;
+      }
+
+      if (noteEl) {
+        noteEl.textContent = note;
+      }
+    }
+
+    function normalizeText(value) {
+      return String(value || '').trim().toLowerCase();
+    }
+
+    function getUploadContexts(claim) {
+      const contexts = [];
+      const seen = new Set();
+      const candidates = [];
+
+      if (claim && claim.upload && typeof claim.upload === 'object') {
+        candidates.push(claim.upload);
+      }
+
+      if (Array.isArray(claim && claim.linked_uploads)) {
+        candidates.push(...claim.linked_uploads);
+      }
+
+      candidates.forEach(upload => {
+        if (!upload || typeof upload !== 'object') {
+          return;
+        }
+
+        const key = upload.upload_id || JSON.stringify(upload);
+
+        if (seen.has(key)) {
+          return;
+        }
+
+        seen.add(key);
+        contexts.push(upload);
+      });
+
+      return contexts;
+    }
+
+    function getUploadMetadata(claim) {
+      return getUploadContexts(claim)[0] || null;
+    }
+
+    function hasActiveFilters(filters) {
+      return Boolean(
+        normalizeText(filters.provider) ||
+        normalizeText(filters.upload) ||
+        normalizeText(filters.niche) ||
+        filters.dateFrom ||
+        filters.dateTo
+      );
+    }
+
+    function matchesTextFilter(value, filterValue) {
+      const normalizedFilter = normalizeText(filterValue);
+      if (!normalizedFilter) return true;
+      return normalizeText(value).includes(normalizedFilter);
+    }
+
+    function toTimestamp(value) {
+      const numeric = Number(value);
+      if (Number.isFinite(numeric)) {
+        return numeric;
+      }
+
+      const parsed = new Date(value).getTime();
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function getFilterBoundary(dateValue, endOfDay) {
+      if (!dateValue) return null;
+      const suffix = endOfDay ? 'T23:59:59.999' : 'T00:00:00.000';
+      const parsed = new Date(`${dateValue}${suffix}`).getTime();
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function matchesUploadDateFilter(upload, filters) {
+      const fromBoundary = getFilterBoundary(filters.dateFrom, false);
+      const toBoundary = getFilterBoundary(filters.dateTo, true);
+
+      if (fromBoundary === null && toBoundary === null) {
+        return true;
+      }
+
+      const createdAt = toTimestamp(upload && upload.created_at);
+      if (createdAt === null) {
+        return false;
+      }
+
+      if (fromBoundary !== null && createdAt < fromBoundary) {
+        return false;
+      }
+
+      if (toBoundary !== null && createdAt > toBoundary) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function matchesClaimFilters(claim, filters) {
+      if (!hasActiveFilters(filters)) {
+        return true;
+      }
+
+      const uploads = getUploadContexts(claim);
+      if (!uploads.length) {
+        return false;
+      }
+
+      return uploads.some(upload => (
+        matchesTextFilter(upload.provider_name, filters.provider) &&
+        matchesTextFilter(upload.upload_name, filters.upload) &&
+        matchesTextFilter(upload.niche, filters.niche) &&
+        matchesUploadDateFilter(upload, filters)
+      ));
+    }
+
+    function getStatusCounts(claims) {
+      return (Array.isArray(claims) ? claims : []).reduce((counts, claim) => {
+        const status = normalizeText(claim && claim.status) || 'unknown';
+        counts[status] = (counts[status] || 0) + 1;
+        return counts;
+      }, {});
+    }
+
+    function renderList(containerId, items, emptyMessage) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      if (!Array.isArray(items) || items.length === 0) {
+        container.innerHTML = `<li class="empty">${emptyMessage}</li>`;
+        return;
+      }
+
+      container.innerHTML = items.map(item => `
+        <li>
+          <div class="list-row">
+            <span class="list-label">${item.label}</span>
+            <span class="list-value">${item.value}</span>
+          </div>
+        </li>
+      `).join('');
+    }
+
+    async function fetchJson(url) {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (!response.ok || (data && data.ok === false)) {
+        throw new Error((data && data.error) || `Failed to load ${url}`);
+      }
+
+      return data;
+    }
+
+    function renderSummaryMetrics(claims) {
+      if (!Array.isArray(claims)) {
+        setMetric('total-claims-processed', '-', 'total-claims-note', 'System totals unavailable');
+        setMetric('auto-resolved-count', '-', 'auto-resolved-note', 'Auto-resolved count unavailable');
+        setMetric('automation-rate', '-', 'automation-rate-note', 'Automation rate unavailable');
+        setMetric('needs-review-count', '-', 'needs-review-note', 'Review count unavailable');
+        setMetric('recovered-value', '-', 'recovered-value-note', 'Recovered value unavailable');
+        return;
+      }
+
+      const safeClaims = claims;
+      const totalClaims = safeClaims.length;
+      const statuses = getStatusCounts(safeClaims);
+      const needsReviewCount = Number(statuses.processing || 0)
+        + Number(statuses.in_review || 0)
+        + Number(statuses.needs_review || 0);
+      const autoResolvedCount = Number.isFinite(totalClaims)
+        ? Math.max(0, totalClaims - needsReviewCount)
+        : NaN;
+      const autoResolvedRate = Number.isFinite(totalClaims) && totalClaims > 0
+        ? autoResolvedCount / totalClaims
+        : NaN;
+      const needsReviewRate = Number.isFinite(totalClaims) && totalClaims > 0
+        ? needsReviewCount / totalClaims
+        : NaN;
+
+      let recoveredValue = NaN;
+      let recoveredCount = 0;
+
+      if (Array.isArray(safeClaims)) {
+        recoveredValue = safeClaims.reduce((sum, claim) => {
+          const normalizedStatus = String(claim && claim.status || '').toLowerCase();
+
+          if (normalizedStatus !== 'paid' && normalizedStatus !== 'recovered') {
+            return sum;
+          }
+
+          const amount = Number(
+            claim && claim.recovered_amount !== undefined && claim.recovered_amount !== null
+              ? claim.recovered_amount
+              : claim && claim.amount
+          );
+          if (!Number.isFinite(amount)) {
+            return sum;
+          }
+
+          recoveredCount += 1;
+          return sum + amount;
+        }, 0);
+      }
+
+      setMetric(
+        'total-claims-processed',
+        Number.isFinite(totalClaims) ? String(totalClaims) : '-',
+        'total-claims-note',
+        Number.isFinite(totalClaims) ? 'Current filtered claim count' : 'System totals unavailable'
+      );
+      setMetric(
+        'auto-resolved-count',
+        Number.isFinite(autoResolvedCount) ? String(autoResolvedCount) : '-',
+        'auto-resolved-note',
+        Number.isFinite(totalClaims) ? `${formatPercent(autoResolvedRate)} of all claims were processed without human review` : 'Auto-resolved count unavailable'
+      );
+      setMetric(
+        'automation-rate',
+        formatPercent(autoResolvedRate),
+        'automation-rate-note',
+        Number.isFinite(totalClaims) ? `Claims processed without human review${Number.isFinite(needsReviewRate) ? ` • Review Rate: ${formatPercent(needsReviewRate)}` : ''}` : 'Automation rate unavailable'
+      );
+      setMetric(
+        'needs-review-count',
+        Number.isFinite(needsReviewCount) ? String(needsReviewCount) : '-',
+        'needs-review-note',
+        Number.isFinite(totalClaims) ? `${formatPercent(needsReviewRate)} of all claims currently need review` : 'Review count unavailable'
+      );
+      setMetric(
+        'recovered-value',
+        formatCurrency(recoveredValue),
+        'recovered-value-note',
+        Array.isArray(safeClaims) ? `${recoveredCount} recovered claims in the filtered claim list` : 'Recovered value unavailable'
+      );
+    }
+
+    function renderConfidenceDistribution(claims) {
+      if (!Array.isArray(claims)) {
+        renderList('confidence-distribution', [], 'Confidence distribution unavailable');
+        return;
+      }
+
+      const confidenceValues = claims
+        .map(claim => Number(claim && claim.confidence))
+        .filter(value => Number.isFinite(value));
+
+      if (!confidenceValues.length) {
+        renderList('confidence-distribution', [], 'No confidence values available yet');
+        return;
+      }
+
+      const distribution = {
+        high: 0,
+        medium: 0,
+        low: 0
+      };
+
+      confidenceValues.forEach(confidence => {
+        if (confidence >= 0.8) {
+          distribution.high += 1;
+        } else if (confidence >= 0.5) {
+          distribution.medium += 1;
+        } else {
+          distribution.low += 1;
+        }
+      });
+
+      renderList(
+        'confidence-distribution',
+        [
+          { label: 'High', value: distribution.high },
+          { label: 'Medium', value: distribution.medium },
+          { label: 'Low', value: distribution.low }
+        ],
+        'No confidence values available yet'
+      );
+    }
+
+    function renderOutcomeBreakdown(claims) {
+      if (!Array.isArray(claims)) {
+        renderList('outcome-breakdown', [], 'Outcome breakdown unavailable');
+        return;
+      }
+
+      const statuses = getStatusCounts(claims);
+
+      renderList(
+        'outcome-breakdown',
+        [
+          { label: 'Recovered', value: Number(statuses.recovered || 0) + Number(statuses.paid || 0) },
+          { label: 'Submitted', value: Number(statuses.submitted || 0) },
+          { label: 'Not Recoverable', value: Number(statuses.not_recoverable || 0) + Number(statuses.failed || 0) }
+        ],
+        'No outcome data available yet'
+      );
+    }
+
+    function renderSystemFlow(claims) {
+      const container = document.getElementById('system-flow');
+      if (!container) return;
+
+      if (!Array.isArray(claims)) {
+        container.innerHTML = '<div class="empty">System flow unavailable</div>';
+        return;
+      }
+
+      const safeClaims = claims;
+      const totalClaims = safeClaims.length;
+      const statuses = getStatusCounts(safeClaims);
+      const inReview = Number(statuses.processing || 0)
+        + Number(statuses.in_review || 0)
+        + Number(statuses.needs_review || 0);
+      const readyForSubmission = Number(statuses.ready_for_submission || 0) + Number(statuses.approved || 0);
+      const submitted = Number(statuses.submitted || 0);
+      const recovered = Number(statuses.recovered || 0) + Number(statuses.paid || 0);
+
+      container.innerHTML = `
+        <div class="flow-row">
+          <div class="flow-box">
+            <div class="flow-label">Ingested</div>
+            <div class="flow-count">${totalClaims}</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-label">In Review</div>
+            <div class="flow-count">${inReview}</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-label">Ready for Provider</div>
+            <div class="flow-count">${readyForSubmission}</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-label">Submitted</div>
+            <div class="flow-count">${submitted}</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-label">Recovered</div>
+            <div class="flow-count">${recovered}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderLearningSummary(learning) {
+      const container = document.getElementById('learning-summary');
+      if (!container) return;
+
+      if (!learning || typeof learning !== 'object') {
+        container.innerHTML = '<div class="empty">Learning summary unavailable</div>';
+        return;
+      }
+
+      const weights = learning.weights && typeof learning.weights === 'object'
+        ? learning.weights
+        : null;
+      const sampleSize = Number(learning.sample_size);
+
+      if (!weights) {
+        container.innerHTML = '<div class="empty">No learning weights available yet</div>';
+        return;
+      }
+
+      const weightOrder = [
+        ['patient', 'Patient'],
+        ['amount', 'Amount'],
+        ['date', 'Date'],
+        ['payer', 'Payer']
+      ];
+
+      container.innerHTML = `
+        <div class="weights-grid">
+          ${weightOrder
+            .filter(([key]) => weights[key] !== undefined)
+            .map(([key, label]) => `
+              <div class="weight-item">
+                <div class="weight-label">${label}</div>
+                <div class="weight-value">${weights[key]}</div>
+              </div>
+            `).join('')}
+        </div>
+        <div class="panel-note">
+          ${Number.isFinite(sampleSize) ? `Based on ${sampleSize} feedback samples` : 'Feedback sample size unavailable'}
+        </div>
+      `;
+    }
+
+    function getFilteredDashboardClaims() {
+      return Array.isArray(dashboardClaims)
+        ? dashboardClaims.filter(claim => matchesClaimFilters(claim, dashboardFilters))
+        : null;
+    }
+
+    function renderDashboardPerformance() {
+      const filteredClaims = getFilteredDashboardClaims();
+      renderSummaryMetrics(filteredClaims);
+      renderConfidenceDistribution(filteredClaims);
+      renderOutcomeBreakdown(filteredClaims);
+      renderSystemFlow(filteredClaims);
+      renderLearningSummary(dashboardLearning);
+    }
+
+    function syncDashboardFiltersFromInputs() {
+      const providerInput = document.getElementById('filterProvider');
+      const uploadInput = document.getElementById('filterUpload');
+      const nicheInput = document.getElementById('filterNiche');
+      const dateFromInput = document.getElementById('filterDateFrom');
+      const dateToInput = document.getElementById('filterDateTo');
+
+      dashboardFilters.provider = providerInput ? providerInput.value : '';
+      dashboardFilters.upload = uploadInput ? uploadInput.value : '';
+      dashboardFilters.niche = nicheInput ? nicheInput.value : '';
+      dashboardFilters.dateFrom = dateFromInput ? dateFromInput.value : '';
+      dashboardFilters.dateTo = dateToInput ? dateToInput.value : '';
+    }
+
+    function attachDashboardFilterHandlers() {
+      [
+        'filterProvider',
+        'filterUpload',
+        'filterNiche',
+        'filterDateFrom',
+        'filterDateTo'
+      ].forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
+
+        input.addEventListener('input', () => {
+          syncDashboardFiltersFromInputs();
+          renderDashboardPerformance();
+        });
+
+        input.addEventListener('change', () => {
+          syncDashboardFiltersFromInputs();
+          renderDashboardPerformance();
+        });
+      });
+
+      const clearButton = document.getElementById('clearFiltersBtn');
+      if (clearButton) {
+        clearButton.addEventListener('click', () => {
+          ['filterProvider', 'filterUpload', 'filterNiche', 'filterDateFrom', 'filterDateTo'].forEach(id => {
+            const input = document.getElementById(id);
+            if (input) input.value = '';
+          });
+          syncDashboardFiltersFromInputs();
+          renderDashboardPerformance();
+        });
+      }
+    }
+
+    async function loadDashboardPerformance() {
+      const [claimsResult, learningResult] = await Promise.allSettled([
+        fetchJson(`/api/claims?customer_id=${encodeURIComponent(CUSTOMER_ID)}`),
+        fetchJson('/api/match-learning')
+      ]);
+
+      const claimsData = claimsResult.status === 'fulfilled' ? claimsResult.value : null;
+      dashboardClaims = claimsData && Array.isArray(claimsData.claims) ? claimsData.claims : null;
+      dashboardLearning = learningResult.status === 'fulfilled' ? learningResult.value : null;
+
+      if (claimsResult.status === 'rejected') {
+        console.error('Claims list load failed:', claimsResult.reason);
+      }
+      if (learningResult.status === 'rejected') {
+        console.error('Match learning load failed:', learningResult.reason);
+      }
+
+      renderDashboardPerformance();
+    }
+
+    attachDashboardFilterHandlers();
+    loadDashboardPerformance();
+  </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "ok": true,
+  "claims": [
+    { "id": "CLM-1001", "status": "submitted", "denialReason": "", "amount": 1250.00 },
+    { "id": "CLM-1002", "status": "failed", "denialReason": "Missing modifier", "amount": 980.00 },
+    { "id": "CLM-1003", "status": "needs_review", "denialReason": "", "amount": 430.00 }
+  ]
+}

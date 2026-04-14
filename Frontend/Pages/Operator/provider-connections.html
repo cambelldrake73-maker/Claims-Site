@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Provider Connections</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.4;
+    }
+
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+      color: #111827;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 2px 0;
+    }
+
+    .nav-links a.active {
+      color: #111827;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 22px 20px 44px;
+    }
+
+    .hero {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero h1 {
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      color: #111827;
+    }
+
+    .hero p {
+      color: #6b7280;
+      font-size: 0.88rem;
+      max-width: 720px;
+    }
+
+    .page-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .primary-button,
+    .secondary-button {
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .primary-button {
+      background: #111827;
+      color: #ffffff;
+    }
+
+    .secondary-button {
+      background: #ffffff;
+      color: #111827;
+      border-color: #d1d5db;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 380px) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 16px 18px 0;
+    }
+
+    .card-header h2 {
+      font-size: 1rem;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    .card-header p {
+      color: #6b7280;
+      font-size: 0.84rem;
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-field-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label,
+    .checkbox-field label {
+      color: #6b7280;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .form-field input,
+    .form-field select {
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 10px 11px;
+      font-size: 0.9rem;
+      color: #111827;
+      background: #ffffff;
+      width: 100%;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus {
+      outline: none;
+      border-color: #9ca3af;
+      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.06);
+    }
+
+    .checkbox-field {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 4px;
+    }
+
+    .checkbox-field input {
+      width: 16px;
+      height: 16px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-start;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .form-status {
+      margin-top: 12px;
+      font-size: 0.84rem;
+      color: #6b7280;
+      min-height: 1.2em;
+    }
+
+    .form-status.error {
+      color: #b42318;
+    }
+
+    .form-status.success {
+      color: #0f766e;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 1060px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 13px 16px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: middle;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #f9fafb;
+      color: #6b7280;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    tbody td {
+      color: #4b5563;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      font-size: 0.79rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .status-pill-connected,
+    .status-pill-active {
+      background: #ecfdf3;
+      border-color: #a7f3d0;
+      color: #0f766e;
+    }
+
+    .status-pill-disconnected,
+    .status-pill-inactive {
+      background: #fef3f2;
+      border-color: #fecaca;
+      color: #b42318;
+    }
+
+    .status-pill-pending {
+      background: #fffaeb;
+      border-color: #fde68a;
+      color: #b45309;
+    }
+
+    .status-pill-invalid {
+      background: #fef2f2;
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+
+    .row-action {
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
+      border-radius: 8px;
+      padding: 7px 11px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .empty-state {
+      padding: 28px 20px;
+      color: #6b7280;
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .navbar {
+        align-items: flex-start;
+        gap: 12px;
+        flex-direction: column;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Claims Operations</div>
+    <div class="nav-links">
+      <a href="upload-history.html">Uploads</a>
+      <a href="review-queue.html">Review Queue</a>
+      <a href="claims.html">Claims</a>
+      <a href="provider-connections.html" class="active">Provider Connections</a>
+      <a href="billing.html">Billing</a>
+      <a href="reports.html">Operations</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <h1>Provider Connections</h1>
+        <p>Manage the provider-specific clearinghouse configurations that allow cases to move from ready for submission into the submitted workflow.</p>
+      </div>
+      <div class="page-actions">
+        <button id="newConnectionBtn" type="button" class="primary-button">New Connection</button>
+      </div>
+    </section>
+
+    <section class="layout">
+      <section class="card">
+        <div class="card-header">
+          <h2 id="formTitle">New Connection</h2>
+          <p>Create or update the provider clearinghouse record used by the submit guard.</p>
+        </div>
+        <div class="card-body">
+          <form id="connectionForm">
+            <input type="hidden" id="connectionId" />
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="providerName">Provider Name</label>
+                <input id="providerName" name="provider_name" type="text" required />
+              </div>
+              <div class="form-field">
+                <label for="clearinghouseName">Clearinghouse Name</label>
+                <input id="clearinghouseName" name="clearinghouse_name" type="text" />
+              </div>
+              <div class="form-field">
+                <label for="connectionType">Connection Type</label>
+                <select id="connectionType" name="connection_type">
+                  <option value="manual">manual</option>
+                  <option value="api">api</option>
+                  <option value="sftp">sftp</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="credentialStatus">Credential Status</label>
+                <select id="credentialStatus" name="credential_status">
+                  <option value="pending">pending</option>
+                  <option value="connected">connected</option>
+                  <option value="disconnected">disconnected</option>
+                  <option value="invalid">invalid</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="providerNpi">Provider NPI</label>
+                <input id="providerNpi" name="provider_npi" type="text" />
+              </div>
+              <div class="form-field">
+                <label for="taxId">Tax ID</label>
+                <input id="taxId" name="tax_id" type="text" />
+              </div>
+              <div class="form-field">
+                <label for="submitterId">Submitter ID</label>
+                <input id="submitterId" name="submitter_id" type="text" />
+              </div>
+              <div class="form-field">
+                <label for="receiverId">Receiver ID</label>
+                <input id="receiverId" name="receiver_id" type="text" />
+              </div>
+              <div class="form-field form-field-full">
+                <div class="checkbox-field">
+                  <input id="isActive" name="is_active" type="checkbox" />
+                  <label for="isActive">Active connection</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="primary-button" id="saveConnectionBtn">Save Connection</button>
+              <button type="button" class="secondary-button" id="cancelEditBtn" hidden>Cancel Edit</button>
+            </div>
+            <div id="formStatus" class="form-status"></div>
+          </form>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-header">
+          <h2>Configured Providers</h2>
+          <p>Operators can create and update provider-owned submission connections here without exposing any of this config to customers.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Provider Name</th>
+                <th>Clearinghouse Name</th>
+                <th>Connection Type</th>
+                <th>Credential Status</th>
+                <th>Active</th>
+                <th>Provider NPI</th>
+                <th>Tax ID</th>
+                <th>Submitter ID</th>
+                <th>Receiver ID</th>
+                <th>Updated At</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="providerConnectionsBody">
+              <tr>
+                <td colspan="11" class="empty-state">Loading provider connections...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script>
+    let providerConnections = [];
+    let editingConnectionId = null;
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function formatDateTime(value) {
+      const timestamp = Number(value);
+
+      if (!Number.isFinite(timestamp) || timestamp <= 0) {
+        return 'Unknown';
+      }
+
+      return new Intl.DateTimeFormat(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      }).format(new Date(timestamp));
+    }
+
+    function getCredentialStatusClass(status) {
+      const normalized = String(status || '').trim().toLowerCase();
+      if (normalized === 'connected') return 'status-pill-connected';
+      if (normalized === 'pending') return 'status-pill-pending';
+      if (normalized === 'invalid') return 'status-pill-invalid';
+      return 'status-pill-disconnected';
+    }
+
+    function getActiveClass(isActive) {
+      return isActive ? 'status-pill-active' : 'status-pill-inactive';
+    }
+
+    function setFormStatus(message, tone) {
+      const statusEl = document.getElementById('formStatus');
+      if (!statusEl) return;
+      statusEl.textContent = message || '';
+      statusEl.className = `form-status${tone ? ` ${tone}` : ''}`;
+    }
+
+    function resetForm() {
+      editingConnectionId = null;
+      const form = document.getElementById('connectionForm');
+      if (form) {
+        form.reset();
+      }
+      document.getElementById('connectionId').value = '';
+      document.getElementById('connectionType').value = 'manual';
+      document.getElementById('credentialStatus').value = 'pending';
+      document.getElementById('formTitle').textContent = 'New Connection';
+      document.getElementById('saveConnectionBtn').textContent = 'Save Connection';
+      document.getElementById('cancelEditBtn').hidden = true;
+      setFormStatus('', '');
+    }
+
+    function populateForm(connection) {
+      if (!connection) {
+        resetForm();
+        return;
+      }
+
+      editingConnectionId = connection.id;
+      document.getElementById('connectionId').value = String(connection.id || '');
+      document.getElementById('providerName').value = connection.provider_name || '';
+      document.getElementById('clearinghouseName').value = connection.clearinghouse_name || '';
+      document.getElementById('connectionType').value = connection.connection_type || 'manual';
+      document.getElementById('credentialStatus').value = connection.credential_status || 'pending';
+      document.getElementById('providerNpi').value = connection.provider_npi || '';
+      document.getElementById('taxId').value = connection.tax_id || '';
+      document.getElementById('submitterId').value = connection.submitter_id || '';
+      document.getElementById('receiverId').value = connection.receiver_id || '';
+      document.getElementById('isActive').checked = Boolean(connection.is_active);
+      document.getElementById('formTitle').textContent = `Edit Connection: ${connection.provider_name || 'Provider'}`;
+      document.getElementById('saveConnectionBtn').textContent = 'Update Connection';
+      document.getElementById('cancelEditBtn').hidden = false;
+      setFormStatus('', '');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function readFormPayload() {
+      return {
+        provider_name: document.getElementById('providerName').value.trim(),
+        clearinghouse_name: document.getElementById('clearinghouseName').value.trim(),
+        connection_type: document.getElementById('connectionType').value,
+        credential_status: document.getElementById('credentialStatus').value,
+        provider_npi: document.getElementById('providerNpi').value.trim(),
+        tax_id: document.getElementById('taxId').value.trim(),
+        submitter_id: document.getElementById('submitterId').value.trim(),
+        receiver_id: document.getElementById('receiverId').value.trim(),
+        is_active: document.getElementById('isActive').checked
+      };
+    }
+
+    function renderConnections() {
+      const tbody = document.getElementById('providerConnectionsBody');
+      if (!tbody) return;
+
+      if (!Array.isArray(providerConnections) || !providerConnections.length) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="11" class="empty-state">No provider connections configured yet.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = providerConnections.map(connection => `
+        <tr>
+          <td>${escapeHtml(connection.provider_name || '-')}</td>
+          <td>${escapeHtml(connection.clearinghouse_name || '-')}</td>
+          <td>${escapeHtml(connection.connection_type || '-')}</td>
+          <td>
+            <span class="status-pill ${getCredentialStatusClass(connection.credential_status)}">
+              ${escapeHtml(connection.credential_status || 'unknown')}
+            </span>
+          </td>
+          <td>
+            <span class="status-pill ${getActiveClass(Boolean(connection.is_active))}">
+              ${connection.is_active ? 'Active' : 'Inactive'}
+            </span>
+          </td>
+          <td>${escapeHtml(connection.provider_npi || '-')}</td>
+          <td>${escapeHtml(connection.tax_id || '-')}</td>
+          <td>${escapeHtml(connection.submitter_id || '-')}</td>
+          <td>${escapeHtml(connection.receiver_id || '-')}</td>
+          <td>${escapeHtml(formatDateTime(connection.updated_at))}</td>
+          <td>
+            <button type="button" class="row-action" data-edit-id="${escapeHtml(connection.id)}">Edit</button>
+          </td>
+        </tr>
+      `).join('');
+
+      tbody.querySelectorAll('[data-edit-id]').forEach(button => {
+        button.addEventListener('click', () => {
+          const connection = providerConnections.find(item => String(item.id) === String(button.dataset.editId));
+          populateForm(connection || null);
+        });
+      });
+    }
+
+    async function loadConnections() {
+      const tbody = document.getElementById('providerConnectionsBody');
+
+      try {
+        const response = await fetch('/api/provider-connections');
+        const data = await response.json();
+
+        if (!response.ok || (data && data.ok === false)) {
+          throw new Error((data && data.error) || 'Failed to load provider connections');
+        }
+
+        providerConnections = Array.isArray(data.connections) ? data.connections : [];
+        renderConnections();
+      } catch (err) {
+        providerConnections = [];
+        if (tbody) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="11" class="empty-state">Unable to load provider connections.</td>
+            </tr>
+          `;
+        }
+      }
+    }
+
+    async function saveConnection(event) {
+      event.preventDefault();
+      const payload = readFormPayload();
+
+      if (!payload.provider_name) {
+        setFormStatus('Provider name is required.', 'error');
+        return;
+      }
+
+      const isEditing = Boolean(editingConnectionId);
+      const endpoint = isEditing
+        ? `/api/provider-connections/${encodeURIComponent(editingConnectionId)}`
+        : '/api/provider-connections';
+      const method = isEditing ? 'PUT' : 'POST';
+
+      setFormStatus(isEditing ? 'Updating connection...' : 'Saving connection...', '');
+
+      try {
+        const response = await fetch(endpoint, {
+          method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await response.json();
+
+        if (!response.ok || !data || data.ok === false) {
+          throw new Error((data && data.error) || 'Failed to save provider connection');
+        }
+
+        await loadConnections();
+        resetForm();
+        setFormStatus(isEditing ? 'Connection updated.' : 'Connection created.', 'success');
+      } catch (err) {
+        setFormStatus(err.message || 'Failed to save provider connection', 'error');
+      }
+    }
+
+    document.getElementById('connectionForm').addEventListener('submit', saveConnection);
+    document.getElementById('newConnectionBtn').addEventListener('click', resetForm);
+    document.getElementById('cancelEditBtn').addEventListener('click', resetForm);
+
+    resetForm();
+    loadConnections();
+  </script>
+</body>
+</html>

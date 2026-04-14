@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Review Queue</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.4;
+    }
+
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 2px 0;
+    }
+
+    .nav-links a[aria-current="page"] {
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    .hero {
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+      color: #111827;
+    }
+
+    .hero p {
+      color: #6b7280;
+      font-size: 0.9rem;
+      max-width: 680px;
+    }
+
+    .filter-bar {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 24px;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .filter-field label {
+      color: #6b7280;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .filter-field input {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 9px 10px;
+      font-size: 0.88rem;
+      color: #111827;
+      background: #ffffff;
+    }
+
+    .filter-field input:focus {
+      outline: none;
+      border-color: #9ca3af;
+      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.06);
+    }
+
+    .filter-actions {
+      display: flex;
+      align-items: end;
+    }
+
+    .filter-button {
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .filter-button:hover {
+      background: #f9fafb;
+    }
+
+    .queue-section {
+      margin-top: 24px;
+    }
+
+    .queue-section:first-of-type {
+      margin-top: 0;
+    }
+
+    .queue-section h2 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    #reviewQueueList {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    #matchReviewList {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .queue-item,
+    .empty-state {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .queue-item {
+      cursor: pointer;
+    }
+
+    .queue-item:hover {
+      background: #f9fafb;
+    }
+
+    .queue-item strong {
+      display: block;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      color: #111827;
+    }
+
+    .queue-meta {
+      font-size: 0.92rem;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    .queue-row {
+      margin-top: 8px;
+    }
+
+    .queue-label {
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 999px;
+      background: #f9fafb;
+      color: #374151;
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+
+    .signal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .signal-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border: 1px solid #f2d39b;
+      border-radius: 999px;
+      background: #fff7e8;
+      color: #9a6700;
+      font-size: 0.76rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .actions-row {
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .queue-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .source-file-block {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #f9fafb;
+    }
+
+    .source-file-title {
+      color: #111827;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .source-file-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 12px;
+    }
+
+    .source-file-value {
+      color: #374151;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .source-file-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #1d4ed8;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .source-file-link:hover {
+      text-decoration: underline;
+    }
+
+    .candidate-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .candidate-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 12px;
+    }
+
+    .candidate-card-title {
+      color: #111827;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .candidate-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .candidate-empty {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid #f2d39b;
+      border-radius: 8px;
+      background: #fff7e8;
+      color: #9a6700;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .queue-action-btn {
+      padding: 7px 12px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .queue-action-btn:hover {
+      background: #f9fafb;
+    }
+
+    .empty-state {
+      color: #6b7280;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 800px) {
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .filter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .source-file-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Claims Operations</div>
+    <div class="nav-links">
+      <a href="upload-history.html">Uploads</a>
+      <a href="review-queue.html" aria-current="page">Review Queue</a>
+      <a href="claims.html">Claims</a>
+      <a href="provider-connections.html">Provider Connections</a>
+      <a href="billing.html">Billing</a>
+      <a href="reports.html">Operations</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Review Queue</h1>
+      <p>Claims requiring manual review and operational follow-up.</p>
+    </section>
+
+    <section class="filter-bar">
+      <div class="filter-grid">
+        <div class="filter-field">
+          <label for="filterProvider">Provider</label>
+          <input id="filterProvider" type="text" placeholder="Filter by provider" />
+        </div>
+        <div class="filter-field">
+          <label for="filterUpload">Upload</label>
+          <input id="filterUpload" type="text" placeholder="Filter by upload" />
+        </div>
+        <div class="filter-field">
+          <label for="filterNiche">Niche</label>
+          <input id="filterNiche" type="text" placeholder="Filter by niche" />
+        </div>
+        <div class="filter-field">
+          <label for="filterDateFrom">Upload Date From</label>
+          <input id="filterDateFrom" type="date" />
+        </div>
+        <div class="filter-field">
+          <label for="filterDateTo">Upload Date To</label>
+          <input id="filterDateTo" type="date" />
+        </div>
+        <div class="filter-actions">
+          <button id="clearFiltersBtn" type="button" class="filter-button">Clear Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="queue-section">
+      <h2>Claim Review</h2>
+      <div id="reviewQueueList">
+        <div class="empty-state">Loading review queue...</div>
+      </div>
+    </section>
+
+    <section class="queue-section">
+      <h2>Match Review</h2>
+      <div id="matchReviewList">
+        <div class="empty-state">Loading match review queue...</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script>
+    let sessionCustomerId = null;
+    const reviewFilters = {
+      provider: '',
+      upload: '',
+      niche: '',
+      dateFrom: '',
+      dateTo: ''
+    };
+    let reviewQueueItems = [];
+    let matchReviewItems = [];
+    let claimUploadMap = new Map();
+
+    function normalizeText(value) {
+      return String(value || '').trim().toLowerCase();
+    }
+
+    function hasActiveFilters(filters) {
+      return Boolean(
+        normalizeText(filters.provider) ||
+        normalizeText(filters.upload) ||
+        normalizeText(filters.niche) ||
+        filters.dateFrom ||
+        filters.dateTo
+      );
+    }
+
+    function matchesTextFilter(value, filterValue) {
+      const normalizedFilter = normalizeText(filterValue);
+      if (!normalizedFilter) return true;
+      return normalizeText(value).includes(normalizedFilter);
+    }
+
+    function toTimestamp(value) {
+      const numeric = Number(value);
+      if (Number.isFinite(numeric)) {
+        return numeric;
+      }
+
+      const parsed = new Date(value).getTime();
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function getFilterBoundary(dateValue, endOfDay) {
+      if (!dateValue) return null;
+      const suffix = endOfDay ? 'T23:59:59.999' : 'T00:00:00.000';
+      const parsed = new Date(`${dateValue}${suffix}`).getTime();
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function getUploadMetadataByClaimId(claimId) {
+      return claimId ? claimUploadMap.get(claimId) || null : null;
+    }
+
+    function matchesUploadFilters(upload, filters, allowMissingMetadata) {
+      if (!hasActiveFilters(filters)) {
+        return true;
+      }
+
+      if (!upload) {
+        return Boolean(allowMissingMetadata);
+      }
+
+      const providerMatches = !normalizeText(filters.provider)
+        || (!upload.provider_name ? allowMissingMetadata : matchesTextFilter(upload.provider_name, filters.provider));
+      const uploadMatches = !normalizeText(filters.upload)
+        || (!upload.upload_name ? allowMissingMetadata : matchesTextFilter(upload.upload_name, filters.upload));
+      const nicheMatches = !normalizeText(filters.niche)
+        || (!upload.niche ? allowMissingMetadata : matchesTextFilter(upload.niche, filters.niche));
+
+      const fromBoundary = getFilterBoundary(filters.dateFrom, false);
+      const toBoundary = getFilterBoundary(filters.dateTo, true);
+      const createdAt = toTimestamp(upload.created_at);
+      const dateMatches = (fromBoundary === null && toBoundary === null)
+        || (
+          createdAt === null
+            ? Boolean(allowMissingMetadata)
+            : (fromBoundary === null || createdAt >= fromBoundary)
+              && (toBoundary === null || createdAt <= toBoundary)
+        );
+
+      return providerMatches && uploadMatches && nicheMatches && dateMatches;
+    }
+
+    function formatMatchReasons(reasons) {
+      const reasonList = Array.isArray(reasons)
+        ? reasons.filter(reason => typeof reason === 'string' && reason.trim())
+        : [];
+
+      if (reasonList.length === 0) {
+        return 'No matching reasons provided';
+      }
+
+      return reasonList.join(', ');
+    }
+
+    function renderMatchFlags(flags) {
+      if (!flags || typeof flags !== 'object') {
+        return '';
+      }
+
+      const signals = [];
+
+      if (flags.duplicate === true) {
+        signals.push('Potential duplicate claim');
+      }
+
+      if (flags.already_submitted === true) {
+        signals.push('Claim may already be pending/submitted');
+      }
+
+      if (flags.already_recovered === true) {
+        signals.push('Claim may already be recovered');
+      }
+
+      if (!signals.length) {
+        return '';
+      }
+
+      return `
+        <div class="queue-meta queue-row">
+          <span class="queue-label">Risk Signals:</span>
+          <div class="signal-tags">
+            ${signals.map(signal => `<span class="signal-tag">${signal}</span>`).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function formatDateTime(value) {
+      const timestamp = toTimestamp(value);
+      if (timestamp === null) {
+        return 'Unknown';
+      }
+
+      return new Intl.DateTimeFormat(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      }).format(new Date(timestamp));
+    }
+
+    function formatFileSize(value) {
+      const numeric = Number(value);
+
+      if (!Number.isFinite(numeric) || numeric < 0) {
+        return null;
+      }
+
+      if (numeric < 1024) {
+        return `${numeric} B`;
+      }
+
+      if (numeric < 1024 * 1024) {
+        return `${(numeric / 1024).toFixed(1)} KB`;
+      }
+
+      return `${(numeric / (1024 * 1024)).toFixed(1)} MB`;
+    }
+
+    async function fetchFileAccessDescriptor(fileId, claimId) {
+      if (!fileId) {
+        return null;
+      }
+
+      try {
+        const params = new URLSearchParams();
+        if (claimId) {
+          params.set('claim_id', claimId);
+        }
+
+        const res = await fetch(`/api/files/${encodeURIComponent(fileId)}/access${params.toString() ? `?${params.toString()}` : ''}`);
+        const data = await res.json();
+
+        if (!res.ok || !data?.ok || !data.file) {
+          return null;
+        }
+
+        return data.file;
+      } catch (err) {
+        return null;
+      }
+    }
+
+    async function enrichMatchReviewFiles(matches) {
+      const items = Array.isArray(matches) ? matches : [];
+
+      return Promise.all(items.map(async match => {
+        if (!match?.file?.file_id) {
+          return match;
+        }
+
+        const access = await fetchFileAccessDescriptor(
+          match.file.file_id,
+          match.suggested_claim_id || match.claim_id || ''
+        );
+
+        return {
+          ...match,
+          file: {
+            ...match.file,
+            access
+          }
+        };
+      }));
+    }
+
+    function renderMatchFileDetails(file) {
+      if (!file || typeof file !== 'object') {
+        return `
+          <div class="source-file-block">
+            <div class="source-file-title">Source File</div>
+            <div class="source-file-value">File details unavailable</div>
+          </div>
+        `;
+      }
+
+      const fields = [
+        {
+          label: 'Filename',
+          value: file.original_filename || file.filename || null
+        },
+        {
+          label: 'File Type',
+          value: file.file_type || null
+        },
+        {
+          label: 'Size',
+          value: formatFileSize(file.file_size)
+        },
+        {
+          label: 'Uploaded',
+          value: file.uploaded_at ? formatDateTime(file.uploaded_at) : null
+        },
+        {
+          label: 'Patient',
+          value: file.parsed_patient || null
+        },
+        {
+          label: 'Payer',
+          value: file.parsed_payer || null
+        },
+        {
+          label: 'Amount',
+          value: file.parsed_amount !== null && file.parsed_amount !== undefined && file.parsed_amount !== ''
+            ? file.parsed_amount
+            : null
+        },
+        {
+          label: 'Date of Service',
+          value: file.parsed_date_of_service || null
+        }
+      ].filter(field => field.value !== null && field.value !== undefined && field.value !== '');
+
+      if (!fields.length) {
+        return `
+          <div class="source-file-block">
+            <div class="source-file-title">Source File</div>
+            <div class="source-file-value">File details unavailable</div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="source-file-block">
+          <div class="source-file-title">Source File</div>
+          <div class="source-file-grid">
+            ${fields.map(field => `
+              <div class="queue-meta">
+                <span class="queue-label">${field.label}:</span>
+                <div class="source-file-value">${field.value}</div>
+              </div>
+            `).join('')}
+          </div>
+          ${file.access?.access_available && file.access?.access_url ? `<a class="source-file-link" href="${file.access.access_url}" target="_blank" rel="noopener noreferrer">Open file</a>` : ''}
+        </div>
+      `;
+    }
+
+    function renderCandidateBlocks(match) {
+      const candidates = Array.isArray(match?.candidates) ? match.candidates : [];
+
+      if (!candidates.length) {
+        return `
+          <div class="candidate-empty">
+            No remaining candidates — manual review required
+          </div>
+        `;
+      }
+
+      return `
+        <div class="candidate-list">
+          ${candidates.map(candidate => {
+            const confidence = Math.round(Number(candidate?.confidence || 0) * 100);
+
+            return `
+              <div class="candidate-card">
+                <div class="candidate-card-title">Candidate Claim</div>
+                <div class="queue-meta queue-row">
+                  <span class="queue-label">Claim ID:</span> ${candidate.claim_id || 'Unknown'}
+                </div>
+                <div class="queue-meta queue-row">
+                  <span class="queue-label">Patient:</span> ${candidate.patient || 'Unknown patient'}
+                </div>
+                <div class="queue-meta queue-row">
+                  <span class="queue-label">Payer:</span> ${candidate.payer || 'Unknown payer'}
+                </div>
+                <div class="queue-meta queue-row">
+                  <span class="queue-label">Confidence:</span> ${confidence}%
+                </div>
+                <div class="queue-meta queue-row">
+                  <span class="queue-label">Reasons:</span> ${formatMatchReasons(candidate.reasons)}
+                </div>
+                <div class="candidate-actions">
+                  <button
+                    class="queue-action-btn match-accept-btn"
+                    data-match-id="${match.id}"
+                    data-claim-id="${candidate.claim_id || ''}"
+                    ${candidate.claim_id ? '' : 'disabled'}
+                  >
+                    Accept
+                  </button>
+                  <button
+                    class="queue-action-btn match-reject-candidate-btn"
+                    data-match-id="${match.id}"
+                    data-claim-id="${candidate.claim_id || ''}"
+                    ${candidate.claim_id ? '' : 'disabled'}
+                  >
+                    Reject Candidate
+                  </button>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function renderReviewQueueList() {
+      const list = document.getElementById('reviewQueueList');
+      if (!list) return;
+
+      const reviewCases = (Array.isArray(reviewQueueItems) ? reviewQueueItems : [])
+        .filter(item => ['needs_review', 'in_review'].includes(String(item?.claim?.status || '').toLowerCase()))
+        .filter(item => matchesUploadFilters(getUploadMetadataByClaimId(item.claim_id), reviewFilters, true));
+
+      if (reviewCases.length === 0) {
+        list.innerHTML = '<div class="empty-state">No claims currently require manual review.</div>';
+        return;
+      }
+
+      list.innerHTML = reviewCases.map(item => {
+        const claim = item.claim || {};
+        const enrichment = item.enrichment || {};
+        const actions = Array.isArray(enrichment.recommended_actions)
+          ? enrichment.recommended_actions.slice(0, 2).join(' • ')
+          : 'No recommended actions available';
+
+        return `
+          <div class="queue-item" onclick="if ('${item.claim_id}') window.location.href='claim-detail.html?id=${encodeURIComponent(item.claim_id)}'">
+            <strong>Claim ${item.claim_id}</strong>
+            <div class="queue-meta queue-row">
+              <span class="queue-label">Patient:</span> ${claim.patient || 'Unknown Patient'}
+            </div>
+            <div class="queue-meta queue-row">
+              <span class="queue-label">Payer:</span> ${claim.payer || 'Unknown Payer'}
+            </div>
+            <div class="queue-meta queue-row">
+              <span class="queue-label">Status:</span> ${String(claim.status || 'unknown').replaceAll('_', ' ').replace(/\b\w/g, c => c.toUpperCase())}
+            </div>
+            <div class="queue-meta queue-row">
+              <span class="queue-label">Denial Reason:</span> ${claim.denial_reason || 'unspecified'}
+            </div>
+            <div class="queue-meta queue-row">
+              <span class="queue-label">Denial Type:</span> ${String(enrichment.denial_type || '-').replaceAll('_', ' ').replace(/\b\w/g, c => c.toUpperCase())}
+            </div>
+            <div class="queue-meta queue-row">
+              <span class="queue-label">Confidence:</span> ${enrichment.confidence ?? 'n/a'}
+            </div>
+            <div class="tag">${enrichment.likely_fix_type || 'manual_review'}</div>
+            <div class="queue-meta queue-row actions-row">
+              <span class="queue-label">Recommended Actions:</span> ${actions}
+            </div>
+            <div class="queue-actions">
+              <button class="queue-action-btn approve-btn" data-claim-id="${item.claim_id}">Approve</button>
+              <button class="queue-action-btn reject-btn" data-claim-id="${item.claim_id}">Reject</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      list.querySelectorAll('.approve-btn, .reject-btn').forEach(button => {
+        button.addEventListener('click', async event => {
+          event.stopPropagation();
+
+          const claimId = button.dataset.claimId;
+          const action = button.classList.contains('approve-btn') ? 'approve' : 'reject';
+          const queueItem = button.closest('.queue-item');
+
+          if (!claimId || !queueItem) {
+            return;
+          }
+
+          const siblingButtons = queueItem.querySelectorAll('.queue-action-btn');
+          siblingButtons.forEach(actionButton => {
+            actionButton.disabled = true;
+          });
+          button.textContent = action === 'approve' ? 'Approving...' : 'Rejecting...';
+
+          try {
+            const res = await fetch(`/api/review-queue/${encodeURIComponent(claimId)}/${action}`, {
+              method: 'POST'
+            });
+            const result = await res.json();
+
+            if (!res.ok || !result.ok) {
+              throw new Error(result.error || 'Failed to update review decision');
+            }
+
+            reviewQueueItems = reviewQueueItems.filter(item => item.claim_id !== claimId);
+            renderReviewQueueList();
+          } catch (err) {
+            siblingButtons.forEach(actionButton => {
+              actionButton.disabled = false;
+            });
+            const approveButton = queueItem.querySelector('.approve-btn');
+            const rejectButton = queueItem.querySelector('.reject-btn');
+            if (approveButton) approveButton.textContent = 'Approve';
+            if (rejectButton) rejectButton.textContent = 'Reject';
+            alert('Failed to update review decision');
+          }
+        });
+      });
+    }
+
+    function renderMatchReviewQueueList() {
+      const list = document.getElementById('matchReviewList');
+      if (!list) return;
+
+      const matches = (Array.isArray(matchReviewItems) ? matchReviewItems : [])
+        .filter(match => matchesUploadFilters(
+          getUploadMetadataByClaimId(match.suggested_claim_id || match.claim_id || ''),
+          reviewFilters,
+          true
+        ));
+
+      if (matches.length === 0) {
+        list.innerHTML = '<div class="empty-state">No uncertain matches awaiting review.</div>';
+        return;
+      }
+
+      list.innerHTML = matches.map(match => {
+        const confidence = Math.round(Number(match.confidence || 0) * 100);
+
+        return `
+          <div class="queue-item">
+            <strong>File ${match.file_id}</strong>
+            <div class="queue-meta queue-row">
+              <span class="queue-label">Filename:</span> ${match.file?.filename || 'Unknown file'}
+            </div>
+            <div class="queue-meta queue-row">
+              <span class="queue-label">Match Confidence:</span> ${confidence}%
+            </div>
+            ${renderMatchFileDetails(match.file)}
+            ${renderMatchFlags(match.flags)}
+            ${renderCandidateBlocks(match)}
+          </div>
+        `;
+      }).join('');
+
+      list.querySelectorAll('.match-accept-btn, .match-reject-candidate-btn').forEach(button => {
+        button.addEventListener('click', async event => {
+          event.stopPropagation();
+
+          const matchId = button.dataset.matchId;
+          const claimId = button.dataset.claimId;
+          const isAccept = button.classList.contains('match-accept-btn');
+          const queueItem = button.closest('.queue-item');
+
+          if (!matchId || !queueItem) {
+            return;
+          }
+
+          const siblingButtons = queueItem.querySelectorAll('.queue-action-btn');
+          siblingButtons.forEach(actionButton => {
+            actionButton.disabled = true;
+          });
+          button.textContent = isAccept ? 'Accepting...' : 'Rejecting...';
+
+          try {
+            const endpoint = isAccept
+              ? `/api/match-review/${encodeURIComponent(matchId)}/resolve`
+              : `/api/match-review/${encodeURIComponent(matchId)}/reject-candidate`;
+            const payload = isAccept
+              ? {
+                  action: 'accept',
+                  claim_id: claimId || undefined
+                }
+              : {
+                  claim_id: claimId || undefined
+                };
+            const res = await fetch(endpoint, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(payload)
+            });
+            const result = await res.json();
+
+            if (!res.ok || !result.ok) {
+              throw new Error(result.error || 'Failed to update match review');
+            }
+
+            if (isAccept) {
+              matchReviewItems = matchReviewItems.filter(item => String(item.id) !== String(matchId));
+            } else {
+              const [enrichedReview] = await enrichMatchReviewFiles(result.review ? [result.review] : []);
+              matchReviewItems = matchReviewItems.map(item => (
+                String(item.id) === String(matchId) && (enrichedReview || result.review)
+                  ? (enrichedReview || result.review)
+                  : item
+              ));
+            }
+
+            renderMatchReviewQueueList();
+          } catch (err) {
+            siblingButtons.forEach(actionButton => {
+              if (actionButton.dataset.claimId || !actionButton.classList.contains('match-accept-btn')) {
+                actionButton.disabled = false;
+              }
+            });
+            queueItem.querySelectorAll('.match-accept-btn').forEach(actionButton => {
+              actionButton.textContent = 'Accept';
+            });
+            queueItem.querySelectorAll('.match-reject-candidate-btn').forEach(actionButton => {
+              actionButton.textContent = 'Reject Candidate';
+            });
+            alert('Failed to update match review');
+          }
+        });
+      });
+    }
+
+    function renderReviewQueuePage() {
+      renderReviewQueueList();
+      renderMatchReviewQueueList();
+    }
+
+    function syncReviewFiltersFromInputs() {
+      const providerInput = document.getElementById('filterProvider');
+      const uploadInput = document.getElementById('filterUpload');
+      const nicheInput = document.getElementById('filterNiche');
+      const dateFromInput = document.getElementById('filterDateFrom');
+      const dateToInput = document.getElementById('filterDateTo');
+
+      reviewFilters.provider = providerInput ? providerInput.value : '';
+      reviewFilters.upload = uploadInput ? uploadInput.value : '';
+      reviewFilters.niche = nicheInput ? nicheInput.value : '';
+      reviewFilters.dateFrom = dateFromInput ? dateFromInput.value : '';
+      reviewFilters.dateTo = dateToInput ? dateToInput.value : '';
+    }
+
+    function attachReviewFilterHandlers() {
+      [
+        'filterProvider',
+        'filterUpload',
+        'filterNiche',
+        'filterDateFrom',
+        'filterDateTo'
+      ].forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
+
+        input.addEventListener('input', () => {
+          syncReviewFiltersFromInputs();
+          renderReviewQueuePage();
+        });
+
+        input.addEventListener('change', () => {
+          syncReviewFiltersFromInputs();
+          renderReviewQueuePage();
+        });
+      });
+
+      const clearButton = document.getElementById('clearFiltersBtn');
+      if (clearButton) {
+        clearButton.addEventListener('click', () => {
+          ['filterProvider', 'filterUpload', 'filterNiche', 'filterDateFrom', 'filterDateTo'].forEach(id => {
+            const input = document.getElementById(id);
+            if (input) input.value = '';
+          });
+          syncReviewFiltersFromInputs();
+          renderReviewQueuePage();
+        });
+      }
+    }
+
+    async function loadReviewQueuePage() {
+      const meResponse = await fetch('/api/auth/me');
+      const mePayload = await meResponse.json();
+
+      if (!meResponse.ok || !mePayload || mePayload.ok === false || !mePayload.user?.customer_id) {
+        throw new Error('Unable to resolve authenticated customer scope');
+      }
+
+      sessionCustomerId = String(mePayload.user.customer_id);
+
+      const [reviewResult, matchResult, claimsResult] = await Promise.allSettled([
+        fetch('/api/review-queue').then(res => res.json().then(data => ({ response: res, data }))),
+        fetch('/api/match-review').then(res => res.json().then(data => ({ response: res, data }))),
+        fetch(`/api/claims?customer_id=${encodeURIComponent(sessionCustomerId)}`).then(res => res.json().then(data => ({ response: res, data })))
+      ]);
+
+      if (reviewResult.status === 'fulfilled' && reviewResult.value.response.ok && reviewResult.value.data.ok && Array.isArray(reviewResult.value.data.queue)) {
+        reviewQueueItems = reviewResult.value.data.queue;
+      } else {
+        reviewQueueItems = [];
+        const list = document.getElementById('reviewQueueList');
+        if (list) {
+          list.innerHTML = '<div class="empty-state">Unable to load review queue.</div>';
+        }
+      }
+
+      if (matchResult.status === 'fulfilled' && matchResult.value.response.ok && matchResult.value.data.ok && Array.isArray(matchResult.value.data.matches)) {
+        matchReviewItems = await enrichMatchReviewFiles(matchResult.value.data.matches);
+      } else {
+        matchReviewItems = [];
+        const list = document.getElementById('matchReviewList');
+        if (list) {
+          list.innerHTML = '<div class="empty-state">Unable to load match review queue.</div>';
+        }
+      }
+
+      claimUploadMap = new Map();
+      if (claimsResult.status === 'fulfilled' && claimsResult.value.response.ok && claimsResult.value.data.ok && Array.isArray(claimsResult.value.data.claims)) {
+        claimsResult.value.data.claims.forEach(claim => {
+          claimUploadMap.set(claim.claim_id, claim.upload || null);
+        });
+      }
+
+      renderReviewQueuePage();
+    }
+
+    attachReviewFilterHandlers();
+    loadReviewQueuePage();
+  </script>
+</body>
+</html>

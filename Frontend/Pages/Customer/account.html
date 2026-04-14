@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+    :root {
+      --page-bg: #f7f8fb;
+      --surface: #ffffff;
+      --surface-muted: #f8fafc;
+      --border: #e6eaf0;
+      --line: #edf1f5;
+      --text: #0f172a;
+      --text-soft: #667085;
+      --accent: #0f766e;
+    }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 28%),
+        linear-gradient(180deg, #fcfdff 0%, var(--page-bg) 100%);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    .topbar {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(230, 234, 240, 0.8);
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+    }
+    .topbar-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .brand-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+    .nav-links a.active {
+      color: var(--text);
+    }
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 28px 24px 56px;
+      display: grid;
+      gap: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      color: var(--text-soft);
+      max-width: 620px;
+    }
+    .card {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.05);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+    .card-head {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(248, 250, 252, 0.9), rgba(255, 255, 255, 0.85));
+    }
+    .card-head h2 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .card-head p {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+    .card-body {
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+    .row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .label {
+      color: var(--text-soft);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .value {
+      color: var(--text);
+      font-size: 0.96rem;
+      word-break: break-word;
+    }
+    .supporting-note {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+    .agreement-summary {
+      display: grid;
+      gap: 12px;
+    }
+    .agreement-summary strong {
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .action-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    button {
+      border: 0;
+      border-radius: 12px;
+      background: #111827;
+      color: #ffffff;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .secondary {
+      background: #ffffff;
+      color: #111827;
+      border: 1px solid #d1d5db;
+    }
+    @media (max-width: 860px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .page {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .topbar {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-name">Claims Portal</div>
+      <nav class="nav-links" aria-label="Customer navigation">
+        <a href="upload.html">Upload</a>
+        <a href="cases.html">Cases</a>
+        <a href="customer-billing.html">Billing</a>
+        <a href="agreements.html">Agreements</a>
+        <a href="account.html" class="active">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Account</h1>
+      <p>View the account details tied to your portal access and use this page for simple account-level actions.</p>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Account details</h2>
+        <p>Your contact and account information for this portal.</p>
+      </div>
+      <div class="card-body" id="accountDetails">
+        <div class="supporting-note">Loading account details...</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Session actions</h2>
+        <p>Use these actions to safely leave the portal or continue to another part of your account.</p>
+      </div>
+      <div class="card-body">
+        <div class="action-row">
+          <a href="upload.html"><button type="button">Go to Uploads</button></a>
+          <button type="button" class="secondary" id="logoutButton">Log Out</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Agreement status</h2>
+        <p>Review whether the latest account agreements still need your attention.</p>
+      </div>
+      <div class="card-body" id="agreementStatusSummary">
+        <div class="supporting-note">Loading agreement status...</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/auth-client.js"></script>
+  <script>
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function renderAccount(user) {
+      const container = document.getElementById('accountDetails');
+
+      container.innerHTML = `
+        <div class="row">
+          <div class="label">Email</div>
+          <div class="value">${escapeHtml(user.email || '-')}</div>
+        </div>
+        <div class="row">
+          <div class="label">Role</div>
+          <div class="value">${escapeHtml(String(user.role || 'customer').replace(/\b\w/g, char => char.toUpperCase()))}</div>
+        </div>
+        <div class="row">
+          <div class="label">Customer Scope</div>
+          <div class="value">${escapeHtml(user.customer_id || '-')}</div>
+        </div>
+        <div class="row">
+          <div class="label">Provider Scope</div>
+          <div class="value">${escapeHtml(user.provider_id || '-')}</div>
+        </div>
+      `;
+    }
+
+    async function loadAccount() {
+      const container = document.getElementById('accountDetails');
+
+      try {
+        const response = await fetch('/api/auth/me');
+        const payload = await response.json();
+
+        if (!response.ok || !payload?.ok || !payload.user) {
+          throw new Error('Unable to load account details');
+        }
+
+        renderAccount(payload.user);
+      } catch (err) {
+        container.innerHTML = '<div class="supporting-note">We could not load your account details right now. Please try again later.</div>';
+      }
+    }
+
+    async function loadAgreementStatus() {
+      const container = document.getElementById('agreementStatusSummary');
+
+      try {
+        const response = await fetch('/api/agreements/status');
+        const payload = await response.json();
+        const status = payload?.status;
+
+        if (!response.ok || !payload?.ok || !status) {
+          throw new Error('Unable to load agreement status');
+        }
+
+        const acceptedAll = status.accepted_all === true;
+        const missingTypes = Array.isArray(status.missing_types) ? status.missing_types : [];
+        const acceptedTypes = Array.isArray(status.accepted_types) ? status.accepted_types : [];
+
+        container.innerHTML = `
+          <div class="agreement-summary">
+            <strong>${acceptedAll ? 'All current agreements have been accepted.' : 'Some agreements still need your attention.'}</strong>
+            <div class="supporting-note">Accepted: ${acceptedTypes.length ? escapeHtml(acceptedTypes.join(', ')) : 'None yet'}</div>
+            <div class="supporting-note">Pending: ${missingTypes.length ? escapeHtml(missingTypes.join(', ')) : 'None'}</div>
+            <div><a href="agreements.html">Review agreements</a></div>
+          </div>
+        `;
+      } catch (err) {
+        container.innerHTML = '<div class="supporting-note">We could not load agreement status right now.</div>';
+      }
+    }
+
+    document.getElementById('logoutButton').addEventListener('click', async () => {
+      try {
+        await window.logoutSession();
+      } finally {
+        window.location.href = 'login.html';
+      }
+    });
+
+    loadAccount();
+    loadAgreementStatus();
+  </script>
+</body>
+</html>
