@@ -3,116 +3,235 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uploads</title>
+  <title>Operator Case Upload</title>
   <style>
+    :root {
+      --brand-navy: #0d4f8c;
+      --brand-blue: #1f78c8;
+      --brand-teal: #2eb8b0;
+      --brand-green: #59c84c;
+      --ink: #1f3648;
+      --muted: #5e7282;
+      --line: #cbdce6;
+      --line-soft: #dfeaf0;
+      --surface: rgba(255, 255, 255, 0.95);
+      --surface-alt: #f6fbfd;
+      --surface-muted: #f1f7fa;
+      --shadow: 0 14px 28px rgba(16, 53, 83, 0.07);
+      --success: #117b6a;
+      --warning: #9d6400;
+      --danger: #bb3c33;
+      --radius-xl: 16px;
+      --radius-lg: 12px;
+      --radius-md: 10px;
+      --radius-sm: 8px;
+      --history-col-id: 15%;
+      --history-col-name: 20%;
+      --history-col-provider: 16%;
+      --history-col-branch: 13%;
+      --history-col-date: 18%;
+      --history-col-connection: 18%;
+      --history-table-min-width: 920px;
+      --history-cell-pad-x: 12px;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
     }
 
     body {
-      background: #f3f4f6;
-      color: #1f2937;
-      line-height: 1.4;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(46, 184, 176, 0.09), transparent 30%),
+        radial-gradient(circle at top right, rgba(31, 120, 200, 0.08), transparent 24%),
+        linear-gradient(180deg, #eef7fc 0%, #f6fafd 24%, #f4f7fb 100%);
+      color: var(--ink);
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    a {
+      color: inherit;
     }
 
     .navbar {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-      padding: 12px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 16px 24px;
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid rgba(203, 220, 230, 0.9);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 4px 14px rgba(13, 79, 140, 0.04);
     }
 
-    .logo {
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-      font-weight: 700;
-      color: #111827;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 40px;
+      height: 46px;
+      flex: 0 0 auto;
+      clip-path: polygon(50% 0%, 90% 14%, 90% 58%, 50% 100%, 10% 58%, 10% 14%);
+      border-radius: 14px;
+      background: linear-gradient(145deg, #2452bc 0%, #1f78c8 40%, #2eb8b0 64%, #59c84c 100%);
+      box-shadow: 0 10px 22px rgba(24, 52, 74, 0.16);
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 8px;
+      width: 10px;
+      height: 19px;
+      border-right: 5px solid #ffffff;
+      border-bottom: 5px solid #ffffff;
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      min-width: 0;
+    }
+
+    .brand-wordmark {
+      display: flex;
+      align-items: baseline;
+      gap: 1px;
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+    }
+
+    .brand-rev {
+      color: var(--brand-navy);
+    }
+
+    .brand-capture {
+      color: var(--brand-green);
+    }
+
+    .brand-subtitle {
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
-      gap: 14px;
+      align-items: center;
       flex-wrap: wrap;
+      gap: 8px;
     }
 
     .nav-links a {
       text-decoration: none;
-      color: #4b5563;
-      font-size: 0.88rem;
-      font-weight: 500;
-      padding: 2px 0;
+      color: #38516a;
+      font-size: 0.86rem;
+      font-weight: 700;
+      padding: 9px 13px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--brand-navy);
+      background: rgba(255, 255, 255, 0.92);
+      border-color: rgba(203, 220, 230, 0.9);
     }
 
     .nav-links a.active {
-      color: #111827;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--brand-navy), var(--brand-blue) 58%, var(--brand-teal));
+      box-shadow: 0 8px 16px rgba(13, 79, 140, 0.18);
     }
 
     .page {
-      max-width: 1100px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 22px 20px 44px;
+      padding: 24px 20px 42px;
     }
 
     .hero {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .hero h1 {
-      font-size: 1.35rem;
-      margin-bottom: 4px;
-      letter-spacing: -0.01em;
-      color: #111827;
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+      color: #17344b;
+      margin-bottom: 6px;
     }
 
     .hero p {
-      color: #6b7280;
-      font-size: 0.88rem;
-      max-width: 620px;
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
-    .filter-bar {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      padding: 14px 16px;
-      margin-bottom: 18px;
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(203, 220, 230, 0.92);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
     .upload-shell {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      padding: 18px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
-    .upload-shell h2 {
-      font-size: 1rem;
+    .upload-head,
+    .table-head {
+      padding: 16px 18px 12px;
+      border-bottom: 1px solid rgba(223, 234, 240, 0.9);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 251, 253, 0.94));
+    }
+
+    .upload-head h2,
+    .table-head h2 {
+      font-size: 1.08rem;
+      letter-spacing: -0.02em;
       color: #111827;
       margin-bottom: 4px;
+      font-weight: 700;
     }
 
-    .upload-shell p {
-      color: #6b7280;
-      font-size: 0.88rem;
-      margin-bottom: 14px;
-      max-width: 720px;
+    .upload-head p,
+    .table-head p {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .upload-body {
+      padding: 16px 18px 18px;
     }
 
     .upload-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      align-items: end;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .upload-field {
+    .upload-field,
+    .filter-field {
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -124,207 +243,395 @@
     }
 
     .upload-field label {
-      color: #6b7280;
-      font-size: 0.76rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    .upload-field input {
-      width: 100%;
-      border: 1px solid #d1d5db;
-      border-radius: 6px;
-      padding: 9px 10px;
-      font-size: 0.88rem;
       color: #111827;
-      background: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-transform: none;
     }
 
-    .upload-field input:focus {
+    .upload-field input,
+    .upload-field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      font-size: 0.88rem;
+      color: var(--ink);
+      background: #ffffff;
+      transition: border-color 140ms ease, box-shadow 140ms ease;
+    }
+
+    .filter-field label {
+      color: #111827;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-transform: none;
+    }
+
+    .filter-field input,
+    .filter-field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 0.78rem;
+      color: var(--ink);
+      background: #ffffff;
+      height: 30px;
+      line-height: 1.2;
+    }
+
+    .filter-multiselect {
+      position: relative;
+      width: 100%;
+    }
+
+    .filter-multiselect-control {
+      position: relative;
+      width: 100%;
+    }
+
+    .filter-multiselect-trigger {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 28px 6px 8px;
+      font-size: 0.78rem;
+      color: var(--ink);
+      background: #ffffff;
+      height: 30px;
+      line-height: 1.2;
+      cursor: text;
+      text-align: left;
+    }
+
+    .filter-multiselect-trigger:focus {
       outline: none;
-      border-color: #9ca3af;
-      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.06);
+      border-color: rgba(31, 120, 200, 0.72);
+      box-shadow: 0 0 0 3px rgba(31, 120, 200, 0.1);
+    }
+
+    .filter-multiselect.is-open .filter-multiselect-trigger {
+      border-color: rgba(31, 120, 200, 0.72);
+      box-shadow: 0 0 0 3px rgba(31, 120, 200, 0.1);
+    }
+
+    .filter-multiselect-trigger::placeholder {
+      color: #6c7f8f;
+    }
+
+    .filter-multiselect-toggle {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 28px;
+      height: 30px;
+      border: none;
+      background: transparent;
+      color: #516678;
+      font-size: 0.72rem;
+      cursor: pointer;
+    }
+
+    .filter-multiselect-toggle:focus {
+      outline: none;
+    }
+
+    .filter-multiselect-panel {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      z-index: 20;
+      padding: 8px;
+      border: 1px solid rgba(203, 220, 230, 0.98);
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 14px 28px rgba(16, 53, 83, 0.12);
+    }
+
+    .filter-option-list {
+      display: grid;
+      gap: 2px;
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 4px;
+      color: #304352;
+      font-size: 0.77rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .filter-option:hover {
+      background: rgba(238, 245, 249, 0.92);
+    }
+
+    .filter-option input {
+      width: 14px;
+      height: 14px;
+      margin: 0;
+      flex: 0 0 auto;
+    }
+
+    .filter-option span {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .filter-option-empty {
+      padding: 8px 4px;
+      color: #6f8190;
+      font-size: 0.75rem;
+    }
+
+    .upload-field input:focus,
+    .upload-field select:focus,
+    .filter-field input:focus,
+    .filter-field select:focus {
+      outline: none;
+      border-color: rgba(31, 120, 200, 0.72);
+      box-shadow: 0 0 0 3px rgba(31, 120, 200, 0.1);
+    }
+
+    .sr-only-input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .upload-dropzone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 132px;
+      padding: 18px;
+      border: 1px dashed rgba(31, 120, 200, 0.42);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(31, 120, 200, 0.04), rgba(46, 184, 176, 0.06));
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 140ms ease, background-color 140ms ease, box-shadow 140ms ease;
+    }
+
+    .upload-dropzone:hover,
+    .upload-dropzone.drag-active {
+      border-color: rgba(31, 120, 200, 0.72);
+      box-shadow: 0 10px 18px rgba(13, 79, 140, 0.08);
+      background: linear-gradient(180deg, rgba(31, 120, 200, 0.06), rgba(46, 184, 176, 0.08));
+    }
+
+    .upload-dropzone.has-files {
+      border-style: solid;
+      border-color: rgba(89, 200, 76, 0.6);
+      background: linear-gradient(180deg, rgba(89, 200, 76, 0.05), rgba(46, 184, 176, 0.06));
+    }
+
+    .upload-dropzone-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: rgba(31, 120, 200, 0.12);
+      color: var(--brand-blue);
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .upload-dropzone-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #18344a;
+    }
+
+    .file-summary {
+      padding: 9px 11px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-muted);
+      border: 1px solid rgba(203, 220, 230, 0.9);
+      color: #3f596e;
+      font-size: 0.82rem;
+      font-weight: 600;
     }
 
     .upload-actions {
       display: flex;
-      gap: 10px;
       align-items: center;
+      gap: 12px;
       flex-wrap: wrap;
       margin-top: 14px;
     }
 
-    .session-banner {
-      margin-top: 14px;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      background: #f9fafb;
-      padding: 12px 14px;
-      color: #4b5563;
-      font-size: 0.84rem;
-      line-height: 1.45;
+    .primary-button {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 140ms ease, opacity 140ms ease, box-shadow 140ms ease;
     }
 
     .primary-button {
-      border: none;
-      border-radius: 6px;
-      padding: 10px 14px;
-      background: #111827;
       color: #ffffff;
-      font-size: 0.88rem;
-      font-weight: 700;
-      cursor: pointer;
+      background: linear-gradient(135deg, var(--brand-navy), var(--brand-blue) 58%, var(--brand-teal));
+      box-shadow: 0 10px 18px rgba(13, 79, 140, 0.18);
+    }
+
+    .primary-button:hover {
+      transform: translateY(-1px);
     }
 
     .primary-button:disabled {
       cursor: wait;
-      opacity: 0.7;
+      opacity: 0.75;
+      transform: none;
+    }
+
+    .filter-button {
+      border: none;
+      background: transparent;
+      color: #5e7282;
+      padding: 0 4px;
+      font-size: 0.72rem;
+      font-weight: 400;
+      cursor: pointer;
+      height: 30px;
+      line-height: 30px;
     }
 
     .upload-status {
-      color: #6b7280;
+      color: var(--muted);
       font-size: 0.84rem;
       min-height: 1.2em;
     }
 
     .upload-status.error {
-      color: #b42318;
+      color: var(--danger);
     }
 
     .upload-status.success {
-      color: #0f766e;
+      color: var(--success);
     }
 
     .session-shell {
-      margin-top: 18px;
-      border-top: 1px solid #e5e7eb;
-      padding-top: 16px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(223, 234, 240, 0.9);
     }
 
     .session-meta {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 14px;
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
     .session-meta-item {
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      padding: 10px 12px;
-      background: #f9fafb;
+      padding: 11px 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(203, 220, 230, 0.88);
+      background: #f9fcfd;
     }
 
     .session-meta-item small {
       display: block;
-      color: #6b7280;
-      font-size: 0.72rem;
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
     .session-meta-item strong {
-      color: #111827;
-      font-size: 0.92rem;
+      color: #163349;
+      font-size: 0.9rem;
       word-break: break-word;
     }
 
-    .result-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5px 10px;
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      font-size: 0.8rem;
-      font-weight: 700;
-      white-space: nowrap;
+    .table-shell {
+      position: relative;
+      overflow: visible;
     }
 
-    .result-pill-accepted {
-      color: #0f766e;
-      background: #ecfdf3;
-      border-color: #a7f3d0;
-    }
-
-    .result-pill-review {
-      color: #b45309;
-      background: #fffbeb;
-      border-color: #fde68a;
-    }
-
-    .result-pill-rejected {
-      color: #b42318;
-      background: #fef3f2;
-      border-color: #fecaca;
+    .history-controls {
+      padding: 12px 0 8px;
+      border-bottom: 1px solid rgba(223, 234, 240, 0.9);
+      background: #fbfdfe;
+      position: relative;
+      z-index: 8;
+      overflow: visible;
     }
 
     .filter-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
-      gap: 12px;
+      grid-template-columns:
+        var(--history-col-id)
+        var(--history-col-name)
+        var(--history-col-provider)
+        var(--history-col-branch)
+        var(--history-col-date)
+        var(--history-col-connection);
+      width: 100%;
+      min-width: var(--history-table-min-width);
+      gap: 0;
       align-items: end;
+      box-sizing: border-box;
     }
 
-    .filter-field {
-      display: flex;
-      flex-direction: column;
+    .filter-field-compact {
+      min-width: 140px;
+    }
+
+    .filter-grid > .filter-field {
+      padding: 0 var(--history-cell-pad-x);
+    }
+
+    .filter-field-date-stack {
       gap: 6px;
+    }
+
+    .filter-date-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .filter-date-stack input {
       min-width: 0;
     }
 
-    .filter-field label {
-      color: #6b7280;
-      font-size: 0.76rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    .filter-field input {
-      width: 100%;
-      border: 1px solid #d1d5db;
-      border-radius: 6px;
-      padding: 9px 10px;
-      font-size: 0.88rem;
-      color: #111827;
-      background: #ffffff;
-    }
-
-    .filter-field input:focus {
-      outline: none;
-      border-color: #9ca3af;
-      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.06);
-    }
-
-    .filter-actions {
+    .filter-field-header {
       display: flex;
-      align-items: end;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
     }
 
-    .filter-button {
-      border: 1px solid #d1d5db;
-      background: #ffffff;
-      color: #111827;
-      border-radius: 6px;
-      padding: 9px 12px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .filter-button:hover {
-      background: #f9fafb;
-    }
-
-    .table-shell {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      overflow: hidden;
+    .filter-button-inline {
+      height: auto;
+      line-height: 1;
+      padding: 0;
+      font-size: 0.7rem;
     }
 
     .table-wrap {
@@ -334,204 +641,363 @@
 
     table {
       width: 100%;
+      min-width: var(--history-table-min-width);
       border-collapse: collapse;
-      min-width: 1020px;
+      table-layout: fixed;
+    }
+
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: var(--history-col-id);
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: var(--history-col-name);
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: var(--history-col-provider);
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+      width: var(--history-col-branch);
+    }
+
+    th:nth-child(5),
+    td:nth-child(5) {
+      width: var(--history-col-date);
+    }
+
+    th:nth-child(6),
+    td:nth-child(6) {
+      width: var(--history-col-connection);
     }
 
     th,
     td {
-      padding: 14px 16px;
-      border-bottom: 1px solid #e5e7eb;
+      padding: 10px var(--history-cell-pad-x);
+      border-bottom: 1px solid rgba(223, 234, 240, 0.9);
       text-align: left;
-      vertical-align: middle;
-      font-size: 0.92rem;
+      font-size: 0.81rem;
     }
 
     th {
-      background: #f9fafb;
-      color: #6b7280;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
+      background: linear-gradient(180deg, #f7fbfd, #eef5f9);
+      color: #111827;
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-transform: none;
       white-space: nowrap;
     }
 
     tbody td {
-      color: #4b5563;
+      color: #41596c;
     }
 
-    .count-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 42px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: #f3f4f6;
-      border: 1px solid #e5e7eb;
-      color: #111827;
-      font-size: 0.82rem;
-      font-weight: 700;
+    tbody tr:hover {
+      background: rgba(46, 184, 176, 0.025);
     }
 
-    .count-detail {
-      display: block;
-      margin-top: 6px;
-      color: #6b7280;
-      font-size: 0.78rem;
-      line-height: 1.35;
-      max-width: 220px;
-      white-space: normal;
-    }
-
+    .result-pill,
     .connection-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 5px 10px;
+      padding: 5px 9px;
       border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      font-size: 0.8rem;
-      font-weight: 700;
+      border: 1px solid rgba(203, 220, 230, 0.9);
+      font-size: 0.76rem;
+      font-weight: 800;
       white-space: nowrap;
     }
 
-    .connection-pill-connected {
-      color: #0f766e;
-      background: #ecfdf3;
-      border-color: #a7f3d0;
+    .count-detail,
+    .session-note {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.4;
+      max-width: 260px;
+      white-space: normal;
     }
 
-    .connection-pill-blocked {
-      color: #b42318;
-      background: #fef3f2;
-      border-color: #fecaca;
+    .result-pill-accepted,
+    .connection-pill-connected {
+      color: var(--success);
+      background: #eefaf6;
+      border-color: rgba(17, 123, 106, 0.16);
+    }
+
+    .result-pill-review,
+    .connection-pill-needs-setup {
+      color: var(--warning);
+      background: #fff6e6;
+      border-color: rgba(157, 100, 0, 0.16);
+    }
+
+    .result-pill-rejected,
+    .connection-pill-provider-missing {
+      color: var(--danger);
+      background: #fff1ef;
+      border-color: rgba(187, 60, 51, 0.16);
     }
 
     .empty-state {
-      padding: 28px 20px;
-      color: #6b7280;
+      padding: 24px 20px;
+      color: var(--muted);
       text-align: center;
-      font-size: 0.92rem;
+      font-size: 0.86rem;
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 860px) {
       .upload-grid,
       .session-meta {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
-      .filter-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 680px) {
       .navbar {
-        align-items: flex-start;
-        gap: 12px;
-        flex-direction: column;
+        padding: 14px 16px;
+      }
+
+      .page {
+        padding: 20px 14px 34px;
       }
 
       .upload-grid,
-      .session-meta,
-      .filter-grid {
+      .session-meta {
         grid-template-columns: 1fr;
+      }
+
+      .upload-head,
+      .table-head,
+      .upload-body,
+      .history-controls {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links {
+        width: 100%;
+      }
+
+      .nav-links a {
+        flex: 1 0 auto;
+        text-align: center;
+      }
+
+      .upload-actions {
+        align-items: stretch;
+      }
+
+      .primary-button {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
   <nav class="navbar">
-    <div class="logo">Claims Operations</div>
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div class="brand-copy">
+        <div class="brand-wordmark">
+          <span class="brand-rev">Rev</span><span class="brand-capture">Capture</span>
+        </div>
+        <div class="brand-subtitle">Operator Workspace</div>
+      </div>
+    </div>
     <div class="nav-links">
-      <a href="upload-history.html" class="active">Uploads</a>
-      <a href="review-queue.html">Review Queue</a>
-      <a href="claims.html">Claims</a>
-      <a href="provider-connections.html">Provider Connections</a>
-      <a href="billing.html">Billing</a>
-      <a href="reports.html">Operations</a>
+      <a href="/upload-history.html" class="active">Uploads</a>
+      <a href="/review-queue.html">Review</a>
+      <a href="/claims.html">Cases</a>
+      <a href="/provider-connections.html">Provider Connections</a>
+      <a href="/billing.html">Billing</a>
+      <a href="/reports.html">Operations</a>
+      <a href="/account.html">Account</a>
     </div>
   </nav>
 
   <main class="page">
     <section class="hero">
-      <h1>Uploads</h1>
-      <p>Submit one or more files, then review recent upload activity in one place.</p>
+      <h1>Case Upload</h1>
+      <p>Mass upload denied claims and supporting files.</p>
     </section>
 
-    <section class="upload-shell">
-      <h2>New Upload</h2>
-      <p>One upload can contain multiple files, and each file will be tracked separately in the results below.</p>
-      <form id="uploadForm">
-        <div class="upload-grid">
-          <div class="upload-field upload-field-wide">
-            <label for="uploadNiche">Niche</label>
-            <input id="uploadNiche" name="niche" type="text" autocomplete="off" />
-          </div>
-          <div class="upload-field upload-field-wide">
-            <label for="uploadFiles">Files</label>
-            <input id="uploadFiles" name="files" type="file" multiple required />
-          </div>
-        </div>
-        <div class="upload-actions">
-          <button id="uploadSubmitButton" class="primary-button" type="submit">Start Upload</button>
-          <div id="uploadStatus" class="upload-status"></div>
-        </div>
-      </form>
-      <div id="uploadSessionBanner" class="session-banner">
-        Signed in and ready to upload.
+    <section class="card upload-shell">
+      <div class="upload-head">
+        <h2>New Case Upload</h2>
       </div>
-      <div id="latestUploadSession" class="session-shell" hidden></div>
-    </section>
 
-    <section class="filter-bar">
-      <div class="filter-grid">
-        <div class="filter-field">
-          <label for="filterProvider">Provider</label>
-          <input id="filterProvider" type="text" placeholder="Filter by provider" />
-        </div>
-        <div class="filter-field">
-          <label for="filterUpload">Upload ID / Name</label>
-          <input id="filterUpload" type="text" placeholder="Filter by upload ID or name" />
-        </div>
-        <div class="filter-field">
-          <label for="filterNiche">Niche</label>
-          <input id="filterNiche" type="text" placeholder="Filter by niche" />
-        </div>
-        <div class="filter-field">
-          <label for="filterDateFrom">Upload Date From</label>
-          <input id="filterDateFrom" type="date" />
-        </div>
-        <div class="filter-field">
-          <label for="filterDateTo">Upload Date To</label>
-          <input id="filterDateTo" type="date" />
-        </div>
-        <div class="filter-actions">
-          <button id="clearFiltersBtn" class="filter-button" type="button">Clear</button>
-        </div>
+      <div class="upload-body">
+        <form id="uploadForm">
+          <div class="upload-grid">
+            <div class="upload-field">
+              <label for="uploadName">Case Upload Name</label>
+              <input
+                id="uploadName"
+                name="upload_name"
+                type="text"
+                autocomplete="off"
+                placeholder="Example: St. Mary ER Batch"
+              />
+            </div>
+
+            <div class="upload-field">
+              <label for="uploadNiche">Case Upload Branch</label>
+              <select id="uploadNiche" name="niche">
+                <option value="Medical" selected>Medical</option>
+                <option value="EMS">EMS</option>
+                <option value="Dental">Dental</option>
+                <option value="Vision">Vision</option>
+                <option value="Workers' Comp">Workers' Comp</option>
+              </select>
+            </div>
+
+            <div class="upload-field upload-field-wide">
+              <label for="uploadFiles">Files</label>
+              <input id="uploadFiles" name="files" class="sr-only-input" type="file" multiple required />
+              <label id="uploadDropZone" class="upload-dropzone" for="uploadFiles">
+                <span class="upload-dropzone-icon" aria-hidden="true">+</span>
+                <span class="upload-dropzone-title">Drop files here or click to browse</span>
+              </label>
+              <div id="uploadFileSummary" class="file-summary">No files selected</div>
+            </div>
+          </div>
+
+          <div class="upload-actions">
+            <button id="uploadSubmitButton" class="primary-button" type="submit">Upload</button>
+            <button id="uploadResetButton" class="filter-button" type="button" hidden>Upload More Files</button>
+            <div id="uploadStatus" class="upload-status"></div>
+          </div>
+        </form>
+
+        <div id="latestUploadSession" class="session-shell" hidden></div>
       </div>
     </section>
 
-    <section class="table-shell">
+    <section class="card table-shell">
+      <div class="table-head">
+        <h2>Upload History</h2>
+        <p>Filter recent case uploads.</p>
+      </div>
+
+      <div class="history-controls">
+        <div class="filter-grid">
+          <div class="filter-field filter-field-compact">
+            <label for="filterUploadIdTrigger">Case Upload ID</label>
+            <div id="filterUploadIdMulti" class="filter-multiselect" data-filter-key="uploadId">
+              <div class="filter-multiselect-control">
+                <input id="filterUploadIdTrigger" class="filter-multiselect-trigger" type="text" value="All IDs" aria-haspopup="dialog" aria-expanded="false" autocomplete="off" />
+                <button class="filter-multiselect-toggle" type="button" aria-label="Open case upload ID filters">▾</button>
+              </div>
+              <div id="filterUploadIdPanel" class="filter-multiselect-panel" hidden>
+                <label class="filter-option">
+                  <input id="filterUploadIdAll" type="checkbox" checked />
+                  <span>All IDs</span>
+                </label>
+                <div id="filterUploadIdOptions" class="filter-option-list">
+                  <div class="filter-option-empty">No IDs available.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-field filter-field-compact">
+            <label for="filterUploadTrigger">Case Upload Name</label>
+            <div id="filterUploadMulti" class="filter-multiselect" data-filter-key="upload">
+              <div class="filter-multiselect-control">
+                <input id="filterUploadTrigger" class="filter-multiselect-trigger" type="text" value="All case upload names" aria-haspopup="dialog" aria-expanded="false" autocomplete="off" />
+                <button class="filter-multiselect-toggle" type="button" aria-label="Open case upload name filters">▾</button>
+              </div>
+              <div id="filterUploadPanel" class="filter-multiselect-panel" hidden>
+                <label class="filter-option">
+                  <input id="filterUploadAll" type="checkbox" checked />
+                  <span>All case upload names</span>
+                </label>
+                <div id="filterUploadOptions" class="filter-option-list">
+                  <div class="filter-option-empty">No case upload names available.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-field filter-field-compact">
+            <label for="filterProviderTrigger">Provider</label>
+            <div id="filterProviderMulti" class="filter-multiselect" data-filter-key="provider">
+              <div class="filter-multiselect-control">
+                <input id="filterProviderTrigger" class="filter-multiselect-trigger" type="text" value="All providers" aria-haspopup="dialog" aria-expanded="false" autocomplete="off" />
+                <button class="filter-multiselect-toggle" type="button" aria-label="Open provider filters">▾</button>
+              </div>
+              <div id="filterProviderPanel" class="filter-multiselect-panel" hidden>
+                <label class="filter-option">
+                  <input id="filterProviderAll" type="checkbox" checked />
+                  <span>All providers</span>
+                </label>
+                <div id="filterProviderOptions" class="filter-option-list">
+                  <div class="filter-option-empty">No providers available.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-field filter-field-compact">
+            <label for="filterNiche">Branch</label>
+            <select id="filterNiche">
+              <option value="">All branches</option>
+              <option value="Medical">Medical</option>
+              <option value="EMS">EMS</option>
+              <option value="Dental">Dental</option>
+              <option value="Vision">Vision</option>
+              <option value="Workers' Comp">Workers' Comp</option>
+            </select>
+          </div>
+
+          <div class="filter-field filter-field-date-stack">
+            <label for="filterDateFrom">Upload Date</label>
+            <div class="filter-date-stack">
+              <input id="filterDateFrom" type="date" aria-label="Upload Date From" />
+              <input id="filterDateTo" type="date" aria-label="Upload Date To" />
+            </div>
+          </div>
+
+          <div class="filter-field filter-field-compact">
+            <div class="filter-field-header">
+              <label for="filterConnectionStatus">Connection Status</label>
+              <button id="clearFiltersBtn" class="filter-button filter-button-inline" type="button">Clear</button>
+            </div>
+            <select id="filterConnectionStatus">
+              <option value="">All statuses</option>
+              <option value="connected">Connected</option>
+              <option value="needs_setup">Needs Setup</option>
+              <option value="provider_missing">Provider Missing</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Upload ID</th>
-              <th>Upload Name</th>
+              <th>Case Upload ID</th>
+              <th>Case Upload Name</th>
               <th>Provider</th>
-              <th>Niche</th>
+              <th>Branch</th>
               <th>Upload Date</th>
-              <th>Files</th>
-              <th>Claims</th>
-              <th>Submission Setup</th>
+              <th>Connection Status</th>
             </tr>
           </thead>
           <tbody id="uploadHistoryBody">
             <tr>
-              <td colspan="8" class="empty-state">Loading upload history...</td>
+              <td colspan="6" class="empty-state">Loading case uploads...</td>
             </tr>
           </tbody>
         </table>
@@ -542,15 +1008,64 @@
   <script src="/static/auth-client.js"></script>
   <script>
     const uploadFilters = {
-      provider: '',
-      upload: '',
+      uploadId: [],
+      provider: [],
+      upload: [],
       niche: '',
       dateFrom: '',
-      dateTo: ''
+      dateTo: '',
+      connectionStatus: '',
+      connectionRequired: false
     };
 
     let allUploads = [];
-    let authUser = null;
+    const multiSelectQueries = {
+      uploadId: '',
+      upload: '',
+      provider: ''
+    };
+
+    const multiSelectConfigs = {
+      uploadId: {
+        triggerId: 'filterUploadIdTrigger',
+        panelId: 'filterUploadIdPanel',
+        listId: 'filterUploadIdOptions',
+        allId: 'filterUploadIdAll',
+        emptyLabel: 'All IDs',
+        searchLabel: 'Search case upload IDs',
+        singularLabel: 'ID',
+        pluralLabel: 'IDs'
+      },
+      upload: {
+        triggerId: 'filterUploadTrigger',
+        panelId: 'filterUploadPanel',
+        listId: 'filterUploadOptions',
+        allId: 'filterUploadAll',
+        emptyLabel: 'All case upload names',
+        searchLabel: 'Search case upload names',
+        singularLabel: 'case upload name',
+        pluralLabel: 'case upload names'
+      },
+      provider: {
+        triggerId: 'filterProviderTrigger',
+        panelId: 'filterProviderPanel',
+        listId: 'filterProviderOptions',
+        allId: 'filterProviderAll',
+        emptyLabel: 'All providers',
+        searchLabel: 'Search providers',
+        singularLabel: 'provider',
+        pluralLabel: 'providers'
+      }
+    };
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
 
     function normalizeText(value) {
       return String(value || '').trim().toLowerCase();
@@ -562,6 +1077,15 @@
       }
 
       return normalizeText(value).includes(normalizeText(filterValue));
+    }
+
+    function matchesSelectedValues(value, selectedValues) {
+      if (!Array.isArray(selectedValues) || !selectedValues.length) {
+        return true;
+      }
+
+      const normalizedValue = normalizeText(value);
+      return selectedValues.some(item => normalizeText(item) === normalizedValue);
     }
 
     function toTimestamp(value) {
@@ -609,14 +1133,43 @@
       return true;
     }
 
+    function getConnectionStatus(upload) {
+      if (!normalizeText(upload && upload.provider_name)) {
+        return {
+          key: 'provider_missing',
+          className: 'connection-pill-provider-missing',
+          label: 'Provider Missing',
+          detail: 'Provider context is required before connection setup can be completed.'
+        };
+      }
+
+      if (upload && upload.has_active_clearinghouse_connection) {
+        return {
+          key: 'connected',
+          className: 'connection-pill-connected',
+          label: 'Connected',
+          detail: 'Clearinghouse connection is active for this provider.'
+        };
+      }
+
+      return {
+        key: 'needs_setup',
+        className: 'connection-pill-needs-setup',
+        label: 'Needs Setup',
+        detail: 'Provider exists, but clearinghouse connection setup is still required.'
+      };
+    }
+
     function matchesUploadFilters(upload, filters) {
-      return matchesTextFilter(upload && upload.provider_name, filters.provider)
-        && (
-          matchesTextFilter(upload && upload.upload_id, filters.upload)
-          || matchesTextFilter(upload && upload.upload_name, filters.upload)
-        )
+      const connectionStatus = getConnectionStatus(upload);
+
+      return matchesSelectedValues(upload && upload.upload_id, filters.uploadId)
+        && matchesSelectedValues(upload && upload.upload_name, filters.upload)
+        && matchesSelectedValues(upload && upload.provider_name, filters.provider)
         && matchesTextFilter(upload && upload.niche, filters.niche)
-        && matchesUploadDateFilter(upload, filters);
+        && matchesUploadDateFilter(upload, filters)
+        && (!filters.connectionStatus || connectionStatus.key === filters.connectionStatus)
+        && (!filters.connectionRequired || connectionStatus.key === 'needs_setup');
     }
 
     function formatDateTime(value) {
@@ -640,6 +1193,388 @@
       if (!statusEl) return;
       statusEl.textContent = message || '';
       statusEl.className = `upload-status${tone ? ` ${tone}` : ''}`;
+    }
+
+    function getUniqueFilterValues(values) {
+      return Array.from(new Set(
+        (Array.isArray(values) ? values : [])
+          .map(value => String(value || '').trim())
+          .filter(Boolean)
+      )).sort((left, right) => left.localeCompare(right));
+    }
+
+    function getMultiSelectConfig(filterKey) {
+      return multiSelectConfigs[filterKey] || null;
+    }
+
+    function getMultiSelectOptionValues(filterKey) {
+      const config = getMultiSelectConfig(filterKey);
+      const list = config ? document.getElementById(config.listId) : null;
+      if (!list) {
+        return [];
+      }
+
+      return Array.from(list.querySelectorAll('input[type="checkbox"][data-filter-value]'))
+        .map(input => input.value);
+    }
+
+    function getSelectedMultiSelectValues(filterKey) {
+      const config = getMultiSelectConfig(filterKey);
+      const list = config ? document.getElementById(config.listId) : null;
+      if (!list) {
+        return [];
+      }
+
+      return Array.from(list.querySelectorAll('input[type="checkbox"][data-filter-value]:checked'))
+        .map(input => input.value);
+    }
+
+    function normalizeSelectedValues(filterKey, values) {
+      const uniqueValues = getUniqueFilterValues(values);
+      const totalOptions = getMultiSelectOptionValues(filterKey).length;
+
+      if (!uniqueValues.length || (totalOptions > 0 && uniqueValues.length === totalOptions)) {
+        return [];
+      }
+
+      return uniqueValues;
+    }
+
+    function getMultiSelectSummaryText(filterKey) {
+      const config = getMultiSelectConfig(filterKey);
+      if (!config) {
+        return '';
+      }
+
+      const selectedValues = normalizeSelectedValues(filterKey, getSelectedMultiSelectValues(filterKey));
+      if (!selectedValues.length) {
+        return config.emptyLabel;
+      }
+
+      if (selectedValues.length === 1) {
+        return selectedValues[0];
+      }
+
+      return `${selectedValues.length} ${selectedValues.length === 1 ? config.singularLabel : config.pluralLabel} selected`;
+    }
+
+    function syncMultiSelectInputDisplay(filterKey) {
+      const config = getMultiSelectConfig(filterKey);
+      const input = config ? document.getElementById(config.triggerId) : null;
+      const panel = config ? document.getElementById(config.panelId) : null;
+      if (!config || !input) {
+        return;
+      }
+
+      if (panel && !panel.hidden) {
+        input.value = multiSelectQueries[filterKey] || getMultiSelectSummaryText(filterKey);
+        input.placeholder = config.searchLabel;
+        return;
+      }
+
+      input.value = getMultiSelectSummaryText(filterKey);
+      input.placeholder = config.emptyLabel;
+    }
+
+    function syncMultiSelectAllState(filterKey) {
+      const config = getMultiSelectConfig(filterKey);
+      const allInput = config ? document.getElementById(config.allId) : null;
+      if (!allInput) {
+        return;
+      }
+
+      allInput.checked = normalizeSelectedValues(filterKey, getSelectedMultiSelectValues(filterKey)).length === 0;
+    }
+
+    function renderMultiSelectOptions(filterKey, values) {
+      const config = getMultiSelectConfig(filterKey);
+      const list = config ? document.getElementById(config.listId) : null;
+      if (!config || !list) {
+        return;
+      }
+
+      const options = getUniqueFilterValues(values);
+      const selected = new Set((Array.isArray(uploadFilters[filterKey]) ? uploadFilters[filterKey] : []).map(normalizeText));
+
+      if (!options.length) {
+        list.innerHTML = '<div class="filter-option-empty">No options available.</div>';
+        uploadFilters[filterKey] = [];
+        syncMultiSelectAllState(filterKey);
+        syncMultiSelectInputDisplay(filterKey);
+        return;
+      }
+
+      list.innerHTML = options.map(value => `
+        <label class="filter-option">
+          <input
+            type="checkbox"
+            data-filter-key="${escapeHtml(filterKey)}"
+            data-filter-value="1"
+            value="${escapeHtml(value)}"
+            ${selected.has(normalizeText(value)) ? 'checked' : ''}
+          />
+          <span>${escapeHtml(value)}</span>
+        </label>
+      `).join('');
+
+      uploadFilters[filterKey] = normalizeSelectedValues(filterKey, getSelectedMultiSelectValues(filterKey));
+      syncMultiSelectAllState(filterKey);
+      syncMultiSelectInputDisplay(filterKey);
+      applyMultiSelectSearch(filterKey);
+    }
+
+    function renderFilterOptionLists() {
+      renderMultiSelectOptions(
+        'uploadId',
+        allUploads.map(upload => upload && upload.upload_id)
+      );
+
+      renderMultiSelectOptions(
+        'upload',
+        allUploads.map(upload => upload && upload.upload_name)
+      );
+
+      renderMultiSelectOptions(
+        'provider',
+        allUploads.map(upload => upload && upload.provider_name)
+      );
+    }
+
+    function applyMultiSelectSearch(filterKey) {
+      const config = getMultiSelectConfig(filterKey);
+      const list = config ? document.getElementById(config.listId) : null;
+      if (!list) {
+        return;
+      }
+
+      const query = normalizeText(multiSelectQueries[filterKey]);
+      Array.from(list.querySelectorAll('.filter-option')).forEach(option => {
+        const text = normalizeText(option.textContent);
+        option.hidden = Boolean(query) && !text.includes(query);
+      });
+    }
+
+    function openMultiSelectPanel(filterKey) {
+      const config = getMultiSelectConfig(filterKey);
+      const root = config ? document.getElementById(config.triggerId)?.closest('.filter-multiselect') : null;
+      const input = config ? document.getElementById(config.triggerId) : null;
+      const panel = config ? document.getElementById(config.panelId) : null;
+      if (!config || !root || !input || !panel) {
+        return;
+      }
+
+      closeAllMultiSelectPanels(filterKey);
+      panel.hidden = false;
+      root.classList.add('is-open');
+      input.setAttribute('aria-expanded', 'true');
+      syncMultiSelectInputDisplay(filterKey);
+      applyMultiSelectSearch(filterKey);
+    }
+
+    function closeMultiSelectPanel(filterKey) {
+      const config = getMultiSelectConfig(filterKey);
+      const root = config ? document.getElementById(config.triggerId)?.closest('.filter-multiselect') : null;
+      const input = config ? document.getElementById(config.triggerId) : null;
+      const panel = config ? document.getElementById(config.panelId) : null;
+      if (!config || !input || !panel) {
+        return;
+      }
+
+      multiSelectQueries[filterKey] = '';
+      panel.hidden = true;
+      if (root) {
+        root.classList.remove('is-open');
+      }
+      input.setAttribute('aria-expanded', 'false');
+      syncMultiSelectInputDisplay(filterKey);
+      applyMultiSelectSearch(filterKey);
+    }
+
+    function closeAllMultiSelectPanels(exceptFilterKey = '') {
+      Object.keys(multiSelectConfigs).forEach(filterKey => {
+        if (filterKey === exceptFilterKey) {
+          return;
+        }
+
+        closeMultiSelectPanel(filterKey);
+      });
+    }
+
+    function attachMultiSelectHandlers() {
+      Object.entries(multiSelectConfigs).forEach(([filterKey, config]) => {
+        const root = document.getElementById(config.triggerId)
+          ? document.getElementById(config.triggerId).closest('.filter-multiselect')
+          : null;
+        const trigger = document.getElementById(config.triggerId);
+        const panel = document.getElementById(config.panelId);
+        const list = document.getElementById(config.listId);
+        const allInput = document.getElementById(config.allId);
+        const toggle = root ? root.querySelector('.filter-multiselect-toggle') : null;
+
+        if (trigger && panel && root) {
+          trigger.addEventListener('focus', () => {
+            openMultiSelectPanel(filterKey);
+            requestAnimationFrame(() => {
+              trigger.select();
+            });
+          });
+
+          trigger.addEventListener('click', () => {
+            openMultiSelectPanel(filterKey);
+          });
+
+          trigger.addEventListener('input', () => {
+            multiSelectQueries[filterKey] = trigger.value;
+            openMultiSelectPanel(filterKey);
+            applyMultiSelectSearch(filterKey);
+          });
+
+          trigger.addEventListener('keydown', event => {
+            if (event.key === 'ArrowDown') {
+              event.preventDefault();
+              openMultiSelectPanel(filterKey);
+            }
+          });
+        }
+
+        if (toggle && trigger && panel) {
+          toggle.addEventListener('click', event => {
+            event.preventDefault();
+            if (panel.hidden) {
+              openMultiSelectPanel(filterKey);
+              trigger.focus();
+            } else {
+              closeMultiSelectPanel(filterKey);
+            }
+          });
+        }
+
+        if (allInput) {
+          allInput.addEventListener('change', () => {
+            if (allInput.checked && list) {
+              Array.from(list.querySelectorAll('input[type="checkbox"][data-filter-value]')).forEach(input => {
+                input.checked = false;
+              });
+            }
+
+            syncFiltersFromInputs();
+            syncMultiSelectAllState(filterKey);
+            syncMultiSelectInputDisplay(filterKey);
+            renderUploads();
+          });
+        }
+
+        if (list) {
+          list.addEventListener('change', event => {
+            const checkbox = event.target;
+            if (!(checkbox instanceof HTMLInputElement) || checkbox.type !== 'checkbox') {
+              return;
+            }
+
+            if (allInput) {
+              allInput.checked = false;
+            }
+
+            syncFiltersFromInputs();
+            syncMultiSelectAllState(filterKey);
+            syncMultiSelectInputDisplay(filterKey);
+            renderUploads();
+          });
+        }
+
+        syncMultiSelectInputDisplay(filterKey);
+      });
+
+      document.addEventListener('click', event => {
+        const target = event.target;
+        if (!(target instanceof Element) || !target.closest('.filter-multiselect')) {
+          closeAllMultiSelectPanels();
+        }
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeAllMultiSelectPanels();
+        }
+      });
+    }
+
+    function resetUploadWorkspace() {
+      const form = document.getElementById('uploadForm');
+      const submitButton = document.getElementById('uploadSubmitButton');
+      const resetButton = document.getElementById('uploadResetButton');
+      const latestUploadSession = document.getElementById('latestUploadSession');
+
+      if (form) {
+        form.reset();
+      }
+
+      updateFileSummary([]);
+      setUploadStatus('', '');
+
+      if (latestUploadSession) {
+        latestUploadSession.hidden = true;
+        latestUploadSession.innerHTML = '';
+      }
+
+      if (submitButton) {
+        submitButton.textContent = 'Upload';
+        submitButton.disabled = false;
+      }
+
+      if (resetButton) {
+        resetButton.hidden = true;
+      }
+    }
+
+    function getSelectedFiles() {
+      const fileInput = document.getElementById('uploadFiles');
+      return fileInput && fileInput.files ? Array.from(fileInput.files) : [];
+    }
+
+    function getFileSummaryText(files) {
+      if (!files.length) {
+        return 'No files selected';
+      }
+
+      if (files.length === 1) {
+        return files[0].name || '1 file selected';
+      }
+
+      return `${files.length} files selected`;
+    }
+
+    function updateFileSummary(files = getSelectedFiles()) {
+      const summary = document.getElementById('uploadFileSummary');
+      const dropZone = document.getElementById('uploadDropZone');
+
+      if (summary) {
+        summary.textContent = getFileSummaryText(files);
+      }
+
+      if (dropZone) {
+        dropZone.classList.toggle('has-files', files.length > 0);
+      }
+    }
+
+    function setDroppedFiles(files) {
+      const fileInput = document.getElementById('uploadFiles');
+
+      if (!fileInput || !files.length) {
+        return false;
+      }
+
+      try {
+        const transfer = new DataTransfer();
+        Array.from(files).forEach(file => {
+          transfer.items.add(file);
+        });
+        fileInput.files = transfer.files;
+        updateFileSummary(Array.from(fileInput.files || []));
+        return true;
+      } catch (err) {
+        return false;
+      }
     }
 
     function normalizeUploadResponseFiles(payload) {
@@ -704,13 +1639,14 @@
       const acceptedCount = files.filter(item => item.accepted).length;
       const manualReviewCount = files.filter(item => item.manual_review_required).length;
       const casesCreated = files.reduce((sum, item) => sum + Number(item.cases_created || 0), 0);
+      const caseUploadId = payload && payload.upload_id ? payload.upload_id : files[0].upload_id || 'Unknown';
 
       shell.hidden = false;
       shell.innerHTML = `
         <div class="session-meta">
           <div class="session-meta-item">
-            <small>Upload ID</small>
-            <strong>${payload.upload_id || files[0].upload_id || 'Unknown'}</strong>
+            <small>Case Upload ID</small>
+            <strong>${escapeHtml(caseUploadId)}</strong>
           </div>
           <div class="session-meta-item">
             <small>Files</small>
@@ -721,7 +1657,7 @@
             <strong>${acceptedCount}</strong>
           </div>
           <div class="session-meta-item">
-            <small>Manual Review</small>
+            <small>Review Needed</small>
             <strong>${manualReviewCount}</strong>
           </div>
         </div>
@@ -731,7 +1667,7 @@
               <tr>
                 <th>File</th>
                 <th>Status</th>
-                <th>Claims Created</th>
+                <th>Cases Created</th>
                 <th>Review Matches</th>
                 <th>Parse Status</th>
                 <th>Normalization Status</th>
@@ -742,62 +1678,37 @@
                 const pill = getResultPill(item);
                 return `
                   <tr>
-                    <td>${item.file_name || item.file_id || 'Uploaded file'}</td>
+                    <td>${escapeHtml(item.file_name || item.file_id || 'Uploaded file')}</td>
                     <td>
-                      <span class="result-pill ${pill.className}">${pill.label}</span>
-                      ${item.error ? `<span class="count-detail">${item.error}</span>` : ''}
+                      <span class="result-pill ${pill.className}">${escapeHtml(pill.label)}</span>
+                      ${item.error ? `<span class="count-detail">${escapeHtml(item.error)}</span>` : ''}
                     </td>
                     <td>${Number(item.cases_created || 0)}</td>
                     <td>${Number(item.review_matches || 0)}</td>
-                    <td>${item.parse_status || '-'}</td>
-                    <td>${item.normalization_status || '-'}</td>
+                    <td>${escapeHtml(item.parse_status || '-')}</td>
+                    <td>${escapeHtml(item.normalization_status || '-')}</td>
                   </tr>
                 `;
               }).join('')}
             </tbody>
           </table>
         </div>
-        <div class="count-detail" style="margin-top:12px;">
-          This upload created ${casesCreated} claim${casesCreated === 1 ? '' : 's'} across ${files.length} file${files.length === 1 ? '' : 's'}.
-        </div>
+        <span class="session-note">
+          This case upload created ${casesCreated} case${casesCreated === 1 ? '' : 's'} across ${files.length} file${files.length === 1 ? '' : 's'}.
+        </span>
       `;
-    }
-
-    async function loadAuthUser() {
-      const banner = document.getElementById('uploadSessionBanner');
-
-      try {
-        const response = await fetch('/api/auth/me');
-        const data = await response.json();
-
-        if (!response.ok || !data || data.ok === false) {
-          if (banner) {
-            banner.textContent = 'Ready to upload files.';
-          }
-          return;
-        }
-
-        authUser = data.user || null;
-        if (banner) {
-          const role = authUser && authUser.role ? String(authUser.role) : 'unknown';
-          banner.textContent = `Signed in as ${role}.`;
-        }
-      } catch (err) {
-        authUser = null;
-        if (banner) {
-          banner.textContent = 'Ready to upload files.';
-        }
-      }
     }
 
     async function submitUpload(event) {
       event.preventDefault();
 
-      const form = document.getElementById('uploadForm');
       const submitButton = document.getElementById('uploadSubmitButton');
-      const niche = document.getElementById('uploadNiche').value.trim();
-      const fileInput = document.getElementById('uploadFiles');
-      const selectedFiles = fileInput && fileInput.files ? Array.from(fileInput.files) : [];
+      const resetButton = document.getElementById('uploadResetButton');
+      const uploadNameInput = document.getElementById('uploadName');
+      const nicheSelect = document.getElementById('uploadNiche');
+      const uploadName = uploadNameInput ? uploadNameInput.value.trim() : '';
+      const niche = nicheSelect ? nicheSelect.value.trim() : '';
+      const selectedFiles = getSelectedFiles();
 
       if (!selectedFiles.length) {
         setUploadStatus('At least one file is required.', 'error');
@@ -805,14 +1716,19 @@
       }
 
       const formData = new FormData();
+      if (uploadName) {
+        formData.append('upload_name', uploadName);
+      }
       if (niche) {
         formData.append('niche', niche);
       }
+
       selectedFiles.forEach(file => {
         formData.append('files', file, file.name);
       });
 
       submitButton.disabled = true;
+      submitButton.textContent = 'Uploading...';
       setUploadStatus(`Uploading ${selectedFiles.length} file${selectedFiles.length === 1 ? '' : 's'}...`, '');
 
       try {
@@ -828,19 +1744,20 @@
 
         renderLatestUploadSession(payload);
         setUploadStatus(
-          `Upload ${payload.upload_id || 'completed'} processed ${selectedFiles.length} file${selectedFiles.length === 1 ? '' : 's'}.`,
+          `Case upload ${payload.upload_id || 'completed'} processed ${selectedFiles.length} file${selectedFiles.length === 1 ? '' : 's'}.`,
           'success'
         );
-
-        if (form) {
-          form.reset();
+        submitButton.textContent = 'Uploaded';
+        submitButton.disabled = true;
+        if (resetButton) {
+          resetButton.hidden = false;
         }
         await loadUploads();
       } catch (err) {
         renderLatestUploadSession(null);
         setUploadStatus(err.message || 'Upload failed', 'error');
-      } finally {
         submitButton.disabled = false;
+        submitButton.textContent = 'Upload';
       }
     }
 
@@ -853,88 +1770,52 @@
       if (!uploads.length) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="8" class="empty-state">No uploads found.</td>
+            <td colspan="6" class="empty-state">No case uploads found.</td>
           </tr>
         `;
         return;
       }
 
-      function getConnectionStatus(upload) {
-        if (!normalizeText(upload && upload.provider_name)) {
-          return {
-            className: 'connection-pill-blocked',
-            label: 'Provider missing',
-            detail: 'Submission setup requires provider context'
-          };
-        }
-
-        if (upload && upload.has_active_clearinghouse_connection) {
-          return {
-            className: 'connection-pill-connected',
-            label: 'Clearinghouse connected',
-            detail: 'Provider submission path is configured'
-          };
-        }
-
-        return {
-          className: 'connection-pill-blocked',
-          label: 'Connection required before submission',
-          detail: 'Configure provider connection before this upload can submit'
-        };
-      }
-
-      tbody.innerHTML = uploads.map(upload => `
-        <tr>
-          <td>${upload.upload_id || 'Unknown'}</td>
-          <td>${upload.upload_name || 'Unnamed upload'}</td>
-          <td>${upload.provider_name || 'Unknown'}</td>
-          <td>${upload.niche || 'Unspecified'}</td>
-          <td>${formatDateTime(upload.created_at)}</td>
-          <td>
-            <span class="count-pill">${Number(upload.file_count || 0)}</span>
-            ${upload.file_type_summary ? `<span class="count-detail">${upload.file_type_summary}</span>` : ''}
-          </td>
-          <td><span class="count-pill">${Number(upload.case_count || 0)}</span></td>
-          <td>
-            <span class="connection-pill ${getConnectionStatus(upload).className}">${getConnectionStatus(upload).label}</span>
-            <span class="count-detail">${getConnectionStatus(upload).detail}</span>
-          </td>
-        </tr>
-      `).join('');
+      tbody.innerHTML = uploads.map(upload => {
+        const connectionStatus = getConnectionStatus(upload);
+        return `
+          <tr>
+            <td>${escapeHtml(upload.upload_id || 'Unknown')}</td>
+            <td>${escapeHtml(upload.upload_name || 'Unnamed case upload')}</td>
+            <td>${escapeHtml(upload.provider_name || 'Unknown')}</td>
+            <td>${escapeHtml(upload.niche || 'Unspecified')}</td>
+            <td>${escapeHtml(formatDateTime(upload.created_at))}</td>
+            <td>
+              <span class="connection-pill ${connectionStatus.className}">${escapeHtml(connectionStatus.label)}</span>
+              <span class="count-detail">${escapeHtml(connectionStatus.detail)}</span>
+            </td>
+          </tr>
+        `;
+      }).join('');
     }
 
     function syncFiltersFromInputs() {
-      const providerInput = document.getElementById('filterProvider');
-      const uploadInput = document.getElementById('filterUpload');
       const nicheInput = document.getElementById('filterNiche');
       const dateFromInput = document.getElementById('filterDateFrom');
       const dateToInput = document.getElementById('filterDateTo');
+      const connectionStatusInput = document.getElementById('filterConnectionStatus');
 
-      uploadFilters.provider = providerInput ? providerInput.value.trim() : '';
-      uploadFilters.upload = uploadInput ? uploadInput.value.trim() : '';
-      uploadFilters.niche = nicheInput ? nicheInput.value.trim() : '';
+      uploadFilters.uploadId = normalizeSelectedValues('uploadId', getSelectedMultiSelectValues('uploadId'));
+      uploadFilters.provider = normalizeSelectedValues('provider', getSelectedMultiSelectValues('provider'));
+      uploadFilters.upload = normalizeSelectedValues('upload', getSelectedMultiSelectValues('upload'));
+      uploadFilters.niche = nicheInput ? nicheInput.value : '';
       uploadFilters.dateFrom = dateFromInput ? dateFromInput.value : '';
       uploadFilters.dateTo = dateToInput ? dateToInput.value : '';
+      uploadFilters.connectionStatus = connectionStatusInput ? connectionStatusInput.value : '';
+      uploadFilters.connectionRequired = false;
     }
 
     function attachFilterHandlers() {
       [
-        'filterProvider',
-        'filterUpload',
-        'filterNiche'
-      ].forEach(id => {
-        const input = document.getElementById(id);
-        if (!input) return;
-
-        input.addEventListener('input', () => {
-          syncFiltersFromInputs();
-          renderUploads();
-        });
-      });
-
-      [
+        'filterNiche',
         'filterDateFrom',
-        'filterDateTo'
+        'filterDateTo',
+        'filterConnectionStatus'
       ].forEach(id => {
         const input = document.getElementById(id);
         if (!input) return;
@@ -948,16 +1829,103 @@
       const clearButton = document.getElementById('clearFiltersBtn');
       if (clearButton) {
         clearButton.addEventListener('click', () => {
-          ['filterProvider', 'filterUpload', 'filterNiche', 'filterDateFrom', 'filterDateTo'].forEach(id => {
+          Object.entries(multiSelectConfigs).forEach(([filterKey, config]) => {
+            const list = document.getElementById(config.listId);
+            const allInput = document.getElementById(config.allId);
+
+            if (list) {
+              Array.from(list.querySelectorAll('input[type="checkbox"][data-filter-value]')).forEach(input => {
+                input.checked = false;
+              });
+            }
+
+            if (allInput) {
+              allInput.checked = true;
+            }
+
+            multiSelectQueries[filterKey] = '';
+            uploadFilters[filterKey] = [];
+            applyMultiSelectSearch(filterKey);
+            syncMultiSelectAllState(filterKey);
+            syncMultiSelectInputDisplay(filterKey);
+          });
+
+          [
+            'filterDateFrom',
+            'filterDateTo'
+          ].forEach(id => {
             const input = document.getElementById(id);
             if (input) {
               input.value = '';
             }
           });
+
+          [
+            'filterNiche',
+            'filterConnectionStatus'
+          ].forEach(id => {
+            const select = document.getElementById(id);
+            if (select) {
+              select.value = '';
+            }
+          });
+
+          closeAllMultiSelectPanels();
           syncFiltersFromInputs();
           renderUploads();
         });
       }
+    }
+
+    function attachUploadZoneHandlers() {
+      const fileInput = document.getElementById('uploadFiles');
+      const dropZone = document.getElementById('uploadDropZone');
+
+      if (fileInput) {
+        fileInput.addEventListener('change', () => {
+          updateFileSummary();
+        });
+      }
+
+      if (!dropZone) {
+        updateFileSummary();
+        return;
+      }
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, event => {
+          event.preventDefault();
+          event.stopPropagation();
+          dropZone.classList.add('drag-active');
+        });
+      });
+
+      ['dragleave', 'dragend', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, event => {
+          event.preventDefault();
+          event.stopPropagation();
+          if (eventName !== 'drop') {
+            dropZone.classList.remove('drag-active');
+          }
+        });
+      });
+
+      dropZone.addEventListener('drop', event => {
+        dropZone.classList.remove('drag-active');
+        const files = event.dataTransfer && event.dataTransfer.files
+          ? Array.from(event.dataTransfer.files)
+          : [];
+
+        if (!files.length) {
+          return;
+        }
+
+        if (!setDroppedFiles(files)) {
+          setUploadStatus('Drag and drop is not available in this browser. Click to browse instead.', 'error');
+        }
+      });
+
+      updateFileSummary();
     }
 
     async function loadUploads() {
@@ -967,20 +1935,25 @@
         const response = await fetch('/api/uploads');
         const data = await response.json();
         allUploads = data && Array.isArray(data.uploads) ? data.uploads : [];
+        renderFilterOptionLists();
         renderUploads();
       } catch (err) {
         console.error('Failed to load uploads:', err);
+        allUploads = [];
+        renderFilterOptionLists();
         tbody.innerHTML = `
           <tr>
-            <td colspan="8" class="empty-state">No uploads found.</td>
+            <td colspan="6" class="empty-state">Unable to load case uploads.</td>
           </tr>
         `;
       }
     }
 
     document.getElementById('uploadForm').addEventListener('submit', submitUpload);
+    document.getElementById('uploadResetButton').addEventListener('click', resetUploadWorkspace);
+    attachUploadZoneHandlers();
+    attachMultiSelectHandlers();
     attachFilterHandlers();
-    loadAuthUser();
     loadUploads();
   </script>
 </body>
